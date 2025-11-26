@@ -55,8 +55,8 @@ export default function AProposPage() {
   return (
     <main>
       <SEO
-        title="Hilary Farid – Ostéopathe D.O."
-        description="Diplômée en ostéopathie, spécialisée nourrissons, grossesse et périnatalité. Découvrez mon parcours."
+        title="À propos d’Hilary Farid – Ostéopathe D.O"
+        description="Diplômée en ostéopathie, spécialisée nourrissons, grossesse, périnatalité et drainage lymphatique Renata França. Découvrez mon parcours."
         canonical="/a-propos"
         image="/og-image.jpg"
       />
@@ -390,4 +390,5 @@ export default function AProposPage() {
     </main>
   );
 }
+
 
