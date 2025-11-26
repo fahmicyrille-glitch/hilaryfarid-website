@@ -95,8 +95,8 @@ export default function OsteopathiePage() {
 
       {/* ========= SEO ========= */}
       <SEO
-        title="Ostéopathie – Adultes, nourrissons, femmes enceintes"
-        description="Ostéopathie douce et globale pour maux de dos, posture, digestion, stress, grossesse et nourrissons. Sèvres & Paris 15."
+        title="Ostéopathe à Sèvres & Paris 15 – Consultations Adultes, Nourrissons, Grossesse & Femme enceinte"
+        description="Découvrez l’ostéopathie structurale, viscérale et crânienne. Hilary Farid accueille adultes, nourrissons, femmes enceintes et sportifs. Sèvres & Paris 15."
         canonical="/osteopathie"
         image="/og-image.jpg"
       />
@@ -629,4 +629,5 @@ export default function OsteopathiePage() {
     </main>
   );
 }
+
 
