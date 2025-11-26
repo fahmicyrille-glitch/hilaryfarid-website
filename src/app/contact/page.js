@@ -6,6 +6,8 @@ import Image from "next/image";
 import { FadeIn, SlideUp, HeroMotion } from "@/components/MotionWrapper";
 import { PHONE, PHONE_LINK, EMAIL } from "@/config/contact";
 import SEO from "@/components/SEO";
+import ContactForm from "@/components/ContactForm";
+
 
 const SECTIONS = [
   { id: "coordonnees", label: "Coordonnées" },
@@ -430,6 +432,7 @@ export default function ContactPage() {
     </main>
   );
 }
+
 
 
 
