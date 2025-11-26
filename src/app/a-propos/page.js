@@ -363,7 +363,7 @@ export default function AProposPage() {
                 </p>
 
                 <a
-                  href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
+                  href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
                   target="_blank"
                   rel="noreferrer"
                   className="mt-6 inline-block bg-offwhite text-primary px-10 py-4 rounded-lg hover:bg-light transition"
@@ -390,3 +390,4 @@ export default function AProposPage() {
     </main>
   );
 }
+
