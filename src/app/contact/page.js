@@ -56,7 +56,7 @@ export default function ContactPage() {
   return (
     <main>
       <SEO
-        title="Contact & prise de rendez-vous"
+        title="Contact & prise de rendez-vous – Ostéopathe Sèvres & Paris 15"
         description="Contact, informations et prise de rendez-vous pour les cabinets d’ostéopathie à Sèvres et Paris 15."
         canonical="/contact"
         image="/og-image.jpg"
@@ -470,4 +470,5 @@ export default function ContactPage() {
     </main>
   );
 }
+
 
