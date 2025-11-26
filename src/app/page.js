@@ -19,8 +19,8 @@ export default function Home() {
   return (
     <main>
       <SEO
-        title="Ostéopathe D.O. – Sèvres & Paris 15"
-        description="Ostéopathie pour adultes, nourrissons, femmes enceintes et sportifs à Sèvres et Paris 15. Une approche douce et globale du corps."
+        title="Hilary Farid – Ostéopathe D.O à Sèvres & Paris 15"
+        description="Ostéopathe D.O douce, précise et spécialisée nourrissons, grossesse et drainage lymphatique Renata França. Deux cabinets : Sèvres et Paris 15."
         canonical="/"
         image="/og-image.jpg"
       />
