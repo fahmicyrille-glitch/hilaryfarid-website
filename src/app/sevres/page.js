@@ -303,7 +303,7 @@ export default function SevresPage() {
                   <div className="flex justify-center">
                     <div className="relative w-full max-w-sm h-[450px] rounded-xl shadow-xl overflow-hidden">
                       <Image
-                        src="/Hilary.png"
+                        src="/hilary.png"
                         alt="Hilary Farid Ostéopathe à Sèvres"
                         fill
                         className="object-cover"
@@ -519,3 +519,4 @@ export default function SevresPage() {
     </main>
   );
 }
+
