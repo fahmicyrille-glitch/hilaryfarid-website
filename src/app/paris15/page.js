@@ -66,8 +66,8 @@ export default function Paris15Page() {
   return (
     <main>
       <SEO
-        title="Cabinet d’ostéopathie à Paris 15 – Commerce / Émile Zola"
-        description="28 Rue Letellier, 75015 Paris. Ostéopathie pour adultes, nourrissons, sportifs et femmes enceintes. Cabinet moderne et facilement accessible."
+        title="Ostéopathe Paris 15 – Cabinet Hilary Farid"
+        description="Cabinet d’ostéopathie à Paris 15. Consultations structural, viscéral, crânien, nourrisson, grossesse et drainage lymphatique Renata França."
         canonical="/paris15"
         image="/og-image.jpg"
       />
@@ -486,4 +486,5 @@ export default function Paris15Page() {
     </main>
   );
 }
+
 
