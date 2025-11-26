@@ -230,8 +230,8 @@ export default function TemoignagesPage() {
   return (
     <main>
       <SEO
-        title="Témoignages patients – Ostéopathe Sèvres & Paris 15"
-        description="Découvrez les avis et témoignages des patients suivis au cabinet d’ostéopathie Hilary Farid à Sèvres et Paris 15."
+        title="Avis & Témoignages – Ostéopathe Sèvres & Paris 15"
+        description="Découvrez les avis Google et témoignages de patients suivis en ostéopathie et drainage lymphatique Renata França."
         canonical="/temoignages"
         image="/og-image.jpg"
       />
@@ -521,3 +521,4 @@ export default function TemoignagesPage() {
     </main>
   );
 }
+
