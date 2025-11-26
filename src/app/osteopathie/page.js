@@ -146,7 +146,7 @@ export default function OsteopathiePage() {
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
-                  href="https://www.doctolib.fr"
+                  href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
                   target="_blank"
                   className="bg-primary text-offwhite px-7 py-3 rounded-lg hover:bg-secondary transition"
                 >
@@ -610,7 +610,7 @@ export default function OsteopathiePage() {
 
           <div className="mt-8 flex flex-wrap gap-4 justify-center">
             <a
-              href="https://www.doctolib.fr"
+              href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
               target="_blank"
               className="bg-primary text-offwhite px-7 py-3 rounded-lg hover:bg-secondary transition"
             >
@@ -629,3 +629,4 @@ export default function OsteopathiePage() {
     </main>
   );
 }
+
