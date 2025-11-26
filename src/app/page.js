@@ -405,28 +405,27 @@ export default function Home() {
         </FadeIn>
       </section>
 
-      {/* ================= BOUTON FLOTTANT DOCTOLIB (MOBILE) ================= */}
-      <div className="
-        fixed 
-        bottom-5 left-1/2 -translate-x-1/2 
-        z-50 
-        md:hidden
-        backdrop-blur-xl 
-        bg-white/90 
-        border border-primary/20
+      {/* ========================================================= */}
+      {/* ========= 🔥 BOUTONS FLOTTANTS DOCTOLIB MOBILE + DESKTOP ======== */}
+      {/* ========================================================= */}
+
+      {/* ------ MOBILE (centré en bas) ------ */}
+      <div
+        className="
+        fixed bottom-5 left-1/2 -translate-x-1/2
+        z-50 md:hidden
+        backdrop-blur-xl bg-white/90 border border-primary/20
         shadow-[0_8px_30px_rgba(0,0,0,0.15)]
-        rounded-full 
-        px-6 py-3 
-        flex items-center gap-2
+        rounded-full px-6 py-3 flex items-center gap-2
         animate-[fadeUp_0.6s_ease-out]
-      ">
+      "
+      >
         <a
           href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-primary font-semibold text-sm"
         >
-          {/* Icône calendrier stylée */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-5 h-5 opacity-80"
@@ -445,7 +444,56 @@ export default function Home() {
         </a>
       </div>
 
-      {/* Animation CSS */}
+      {/* ------ DESKTOP (collé à droite) ------ */}
+      <div
+        className="
+          hidden md:flex
+          fixed top-1/2 right-6 -translate-y-1/2
+          z-50
+        "
+      >
+        <a
+          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            flex flex-col items-center gap-3
+            bg-white/90 backdrop-blur-xl
+            border border-primary/20
+            shadow-[0_8px_30px_rgba(0,0,0,0.12)]
+            px-4 py-5 rounded-3xl
+            transition-all
+            hover:shadow-xl hover:-translate-y-1
+            hover:bg-white
+          "
+        >
+          {/* Icone */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-7 h-7 text-primary opacity-90"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+
+          {/* Texte vertical */}
+          <span
+            className="
+              text-primary font-semibold text-xs tracking-wide
+              writing-vertical
+            "
+            style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+          >
+            Prendre RDV
+          </span>
+        </a>
+      </div>
+
+      {/* ------ ANIMATIONS CSS ------ */}
       <style jsx>{`
         @keyframes fadeUp {
           from {
