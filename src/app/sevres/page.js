@@ -69,8 +69,8 @@ export default function SevresPage() {
   return (
     <main>
       <SEO
-        title="Cabinet d’ostéopathie à Sèvres"
-        description="104 Grande Rue, 92310 Sèvres. Ostéopathie pour adultes, nourrissons et femmes enceintes. Accès facile et parking."
+        title="Ostéopathe à Sèvres – Cabinet Hilary Farid"
+        description="Cabinet d’ostéopathie à Sèvres. Consultations adultes, nourrissons, grossesse et drainage lymphatique Renata França."
         canonical="/sevres"
         image="/og-image.jpg"
       />
@@ -519,4 +519,5 @@ export default function SevresPage() {
     </main>
   );
 }
+
 
