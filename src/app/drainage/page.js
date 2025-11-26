@@ -65,8 +65,8 @@ export default function DrainagePage() {
   return (
     <main>
       <SEO
-        title="Drainage lymphatique Renata França"
-        description="Méthode Renata França : dégonflement, détox, jambes légères, ventre plat et silhouette affinée. Sèvres & Paris 15."
+        title="Drainage Lymphatique Renata França – Sèvres & Paris 15"
+        description="Drainage lymphatique Renata França : remodelage, détox, jambes légères. Résultats visibles dès la première séance. Sèvres & Paris 15."
         canonical="/drainage"
         image="/og-image.jpg"
       />
@@ -568,3 +568,4 @@ export default function DrainagePage() {
     </main>
   );
 }
+
