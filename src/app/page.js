@@ -405,17 +405,59 @@ export default function Home() {
         </FadeIn>
       </section>
 
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 block md:hidden">
+      {/* ================= BOUTON FLOTTANT DOCTOLIB (MOBILE) ================= */}
+      <div className="
+        fixed 
+        bottom-5 left-1/2 -translate-x-1/2 
+        z-50 
+        md:hidden
+        backdrop-blur-xl 
+        bg-white/90 
+        border border-primary/20
+        shadow-[0_8px_30px_rgba(0,0,0,0.15)]
+        rounded-full 
+        px-6 py-3 
+        flex items-center gap-2
+        animate-[fadeUp_0.6s_ease-out]
+      ">
         <a
-          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
+          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
           target="_blank"
-          rel="noreferrer"
-          className="bg-primary text-offwhite px-7 py-3 rounded-full shadow-xl text-sm font-semibold hover:bg-secondary transition-all"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-primary font-semibold text-sm"
         >
-          Prendre RDV
+          {/* Icône calendrier stylée */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-5 h-5 opacity-80"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            viewBox="0 0 24 24"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+
+          <span>Prendre RDV</span>
         </a>
       </div>
 
+      {/* Animation CSS */}
+      <style jsx>{`
+        @keyframes fadeUp {
+          from {
+            opacity: 0;
+            transform: translate(-50%, 20px);
+          }
+          to {
+            opacity: 1;
+            transform: translate(-50%, 0);
+          }
+        }
+      `}</style>
     </main>
   );
 }
