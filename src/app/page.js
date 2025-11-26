@@ -439,8 +439,7 @@ export default function Home() {
           <span>Prendre RDV</span>
         </a>
       </div>
-      
-      {/* ------ DESKTOP (collé à droite) ------ */}
+      {/* ------ DESKTOP (collé à droite, horizontal) ------ */}
       <div
         className="
           hidden md:flex
@@ -453,19 +452,20 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
           className="
-            flex flex-col items-center gap-3
+            flex items-center gap-3
             bg-white/90 backdrop-blur-xl
             border border-primary/20
             shadow-[0_8px_30px_rgba(0,0,0,0.12)]
-            px-4 py-5 rounded-3xl
+            px-5 py-3 rounded-2xl
             transition-all
             hover:shadow-xl hover:-translate-y-1
             hover:bg-white
           "
         >
+          {/* Icone */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-7 h-7 text-primary opacity-90"
+            className="w-6 h-6 text-primary opacity-90"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
@@ -475,12 +475,8 @@ export default function Home() {
             <path d="M16 2v4M8 2v4M3 10h18" />
           </svg>
       
-          <span
-            className="
-              text-primary font-semibold text-xs tracking-wide
-            "
-            style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-          >
+          {/* Texte horizontal */}
+          <span className="text-primary font-semibold text-sm tracking-wide">
             Prendre RDV
           </span>
         </a>
