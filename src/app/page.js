@@ -395,7 +395,7 @@ export default function Home() {
             de vie.
           </p>
           <a
-            href="https://www.doctolib.fr"
+            href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
             target="_blank"
             rel="noreferrer"
             className="mt-8 inline-block bg-offwhite text-primary px-10 py-4 rounded-full font-semibold shadow-md hover:bg-light hover:text-primary transition"
