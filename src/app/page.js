@@ -405,20 +405,16 @@ export default function Home() {
         </FadeIn>
       </section>
 
-      {/* ========================================================= */}
-      {/* ========= 🔥 BOUTONS FLOTTANTS DOCTOLIB MOBILE + DESKTOP ======== */}
-      {/* ========================================================= */}
-
       {/* ------ MOBILE (centré en bas) ------ */}
       <div
         className="
-        fixed bottom-5 left-1/2 -translate-x-1/2
-        z-50 md:hidden
-        backdrop-blur-xl bg-white/90 border border-primary/20
-        shadow-[0_8px_30px_rgba(0,0,0,0.15)]
-        rounded-full px-6 py-3 flex items-center gap-2
-        animate-[fadeUp_0.6s_ease-out]
-      "
+          fixed bottom-5 left-1/2 -translate-x-1/2
+          z-50 md:hidden
+          backdrop-blur-xl bg-white/90 border border-primary/20
+          shadow-[0_8px_30px_rgba(0,0,0,0.15)]
+          rounded-full px-6 py-3 flex items-center gap-2
+          animate-fadeUp
+        "
       >
         <a
           href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
@@ -439,11 +435,11 @@ export default function Home() {
             <rect x="3" y="4" width="18" height="18" rx="2" />
             <path d="M16 2v4M8 2v4M3 10h18" />
           </svg>
-
+      
           <span>Prendre RDV</span>
         </a>
       </div>
-
+      
       {/* ------ DESKTOP (collé à droite) ------ */}
       <div
         className="
@@ -467,7 +463,6 @@ export default function Home() {
             hover:bg-white
           "
         >
-          {/* Icone */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-7 h-7 text-primary opacity-90"
@@ -479,12 +474,10 @@ export default function Home() {
             <rect x="3" y="4" width="18" height="18" rx="2" />
             <path d="M16 2v4M8 2v4M3 10h18" />
           </svg>
-
-          {/* Texte vertical */}
+      
           <span
             className="
               text-primary font-semibold text-xs tracking-wide
-              writing-vertical
             "
             style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
           >
@@ -493,19 +486,6 @@ export default function Home() {
         </a>
       </div>
 
-      {/* ------ ANIMATIONS CSS ------ */}
-      <style jsx>{`
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translate(-50%, 20px);
-          }
-          to {
-            opacity: 1;
-            transform: translate(-50%, 0);
-          }
-        }
-      `}</style>
     </main>
   );
 }
