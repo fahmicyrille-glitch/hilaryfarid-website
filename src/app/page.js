@@ -139,6 +139,12 @@ export default function Home() {
               </div>
 
               <div className="mt-8 flex flex-wrap gap-4">
+                <a
+                  href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-offwhite text-primary px-7 py-3 rounded-full font-semibold text-sm md:text-base shadow-md hover:bg-light hover:text-primary transition"
+                >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
@@ -146,13 +152,9 @@ export default function Home() {
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     className="opacity-70"
-                >
-                <a
-                  href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-offwhite text-primary px-7 py-3 rounded-full font-semibold text-sm md:text-base shadow-md hover:bg-light hover:text-primary transition"
-                >
+                  >
+                    <path d="M19 4h-3V2h-2v2H10V2H8v2H5C3.346 4 2 5.346 2 7v12c0 1.654 1.346 3 3 3h14c1.654 0 3-1.346 3-3V7c0-1.654-1.346-3-3-3zm1 15c0 .551-.449 1-1 1H5c-.551 0-1-.449-1-1V10h16v9zm0-11H4V7c0-.551.449-1 1-1h3v1h2V6h4v1h2V6h3c.551 0 1 .449 1 1v1z" />
+                  </svg>
                   Prendre rendez-vous sur Doctolib
                 </a>
 
