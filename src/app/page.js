@@ -145,16 +145,6 @@ export default function Home() {
                   rel="noreferrer"
                   className="bg-offwhite text-primary px-7 py-3 rounded-full font-semibold text-sm md:text-base shadow-md hover:bg-light hover:text-primary transition"
                 >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    className="opacity-70"
-                  >
-                    <path d="M19 4h-3V2h-2v2H10V2H8v2H5C3.346 4 2 5.346 2 7v12c0 1.654 1.346 3 3 3h14c1.654 0 3-1.346 3-3V7c0-1.654-1.346-3-3-3zm1 15c0 .551-.449 1-1 1H5c-.551 0-1-.449-1-1V10h16v9zm0-11H4V7c0-.551.449-1 1-1h3v1h2V6h4v1h2V6h3c.551 0 1 .449 1 1v1z" />
-                  </svg>
                   Prendre rendez-vous sur Doctolib
                 </a>
 
@@ -414,6 +404,18 @@ export default function Home() {
           </a>
         </FadeIn>
       </section>
+
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 block md:hidden">
+        <a
+          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
+          target="_blank"
+          rel="noreferrer"
+          className="bg-primary text-offwhite px-7 py-3 rounded-full shadow-xl text-sm font-semibold hover:bg-secondary transition-all"
+        >
+          Prendre RDV
+        </a>
+      </div>
+
     </main>
   );
 }
