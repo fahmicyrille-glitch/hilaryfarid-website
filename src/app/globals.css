@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===========================
+   🎨 VARIABLES DE COULEURS
+   =========================== */
+:root {
+  --foreground-rgb: 33, 33, 33; /* Texte sombre lisible */
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 245, 243, 241; /* léger beige pour douceur */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 240, 240, 240;
+    --background-start-rgb: 15, 15, 15;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+/* ===========================
+   🌍 STYLE GLOBAL DU BODY
+   =========================== */
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  @apply text-[17px] leading-relaxed antialiased;
+}
+
+/* ===========================
+   📝 TYPOGRAPHIE TITRES
+   =========================== */
+@layer base {
+  h1 {
+    @apply text-4xl md:text-5xl font-semibold text-[#1E2A38] text-offwhite;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-semibold text-[#1E2A38];
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-semibold text-[#1E2A38];
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-semibold text-[#1E2A38];
+  }
+
+  p {
+    @apply text-gray-700;
+  }
+
+  a {
+    @apply text-primary;
+  }
+}
+
+/* ===========================
+   🔘 BOUTON PREMIUM RÉUTILISABLE
+   =========================== */
+@layer components {
+  .btn-primary {
+    @apply inline-block bg-primary text-white font-semibold px-6 py-3 rounded-lg
+    hover:bg-secondary hover:-translate-y-[2px] transition-all duration-200;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
