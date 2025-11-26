@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hilaryfarid-website-dfuy.vercel.app/sitemap.xml
