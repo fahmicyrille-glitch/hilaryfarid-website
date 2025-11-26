@@ -19,11 +19,14 @@ export default function ContactForm() {
     const form = e.target;
     const data = new FormData(form);
 
-    // Appel FormSubmit sans reload
-    const res = await fetch("https://formsubmit.co/ajax/hilaryfarid.osteopathe@gmail.com", {
-      method: "POST",
-      body: data,
-    });
+    // Envoi AJAX vers FormSubmit
+    const res = await fetch(
+      "https://formsubmit.co/ajax/hilaryfarid.osteopathe@gmail.com",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
 
     setLoading(false);
 
@@ -35,15 +38,17 @@ export default function ContactForm() {
 
   return (
     <div>
+      {/* ✔ Message de succès */}
       {success && (
         <div className="mb-4 p-4 rounded-lg bg-green-50 border border-green-200 text-green-700 animate-fade-in">
           🎉 Votre message a bien été envoyé ! Je vous réponds rapidement.
         </div>
       )}
 
+      {/* === FORMULAIRE === */}
       <form onSubmit={handleSubmit} className="space-y-4">
 
-        {/* Honeypot invisible */}
+        {/* Honeypot invisible anti-spam */}
         <input
           type="text"
           name="_honey"
@@ -59,6 +64,7 @@ export default function ContactForm() {
           value="Nouveau message depuis le site Hilary Farid"
         />
 
+        {/* Nom */}
         <input
           type="text"
           name="name"
@@ -67,6 +73,7 @@ export default function ContactForm() {
           className="w-full p-3 border rounded-lg"
         />
 
+        {/* Email */}
         <input
           type="email"
           name="email"
@@ -75,6 +82,15 @@ export default function ContactForm() {
           className="w-full p-3 border rounded-lg"
         />
 
+        {/* 📞 Nouveau champ téléphone (non obligatoire) */}
+        <input
+          type="tel"
+          name="telephone"
+          placeholder="Votre numéro de téléphone (optionnel)"
+          className="w-full p-3 border rounded-lg"
+        />
+
+        {/* Message */}
         <textarea
           name="message"
           placeholder="Votre message"
@@ -83,6 +99,7 @@ export default function ContactForm() {
           className="w-full p-3 border rounded-lg"
         />
 
+        {/* Bouton */}
         <button
           type="submit"
           disabled={loading}
@@ -101,14 +118,20 @@ export default function ContactForm() {
         </button>
       </form>
 
-      {/* animation CSS */}
+      {/* Animation CSS */}
       <style jsx>{`
         .animate-fade-in {
           animation: fadeIn 0.5s ease-out forwards;
         }
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(5px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(5px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
       `}</style>
     </div>
