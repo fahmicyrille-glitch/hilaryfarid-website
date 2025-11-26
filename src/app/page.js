@@ -448,7 +448,7 @@ export default function Home() {
         "
       >
         <a
-          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
+          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
           target="_blank"
           rel="noopener noreferrer"
           className="
