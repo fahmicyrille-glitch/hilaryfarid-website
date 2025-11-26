@@ -250,64 +250,24 @@ export default function ContactPage() {
               </section>
             </SlideUp>
 
-            {/* ================= FORMULAIRE DE CONTACT ================= */}
+            {/* ================= FORMULAIRE DE CONTACT (NOUVELLE VERSION PRO) ================= */}
             <SlideUp>
               <section
                 id="formulaire"
                 className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
               >
-                <h2 className="text-3xl font-semibold text-primary">
-                  Formulaire de contact
-                </h2>
-
+                <h2 className="text-3xl font-semibold text-primary">Formulaire de contact</h2>
+            
                 <p className="text-graywarm mt-4 mb-6">
-                  Vous pouvez envoyer un message directement depuis ce
-                  formulaire. Je vous répondrai dès que possible.
+                  Vous pouvez envoyer un message directement depuis ce formulaire.
+                  Je vous répondrai dès que possible.
                 </p>
-
-                <form
-                  action="https://formsubmit.co/hilaryfarid.osteopathe@gmail.com"
-                  method="POST"
-                  className="space-y-4"
-                >
-                  <input type="hidden" name="_captcha" value="false" />
-                  <input
-                    type="hidden"
-                    name="_subject"
-                    value="Nouveau message depuis le site Hilary Farid"
-                  />
-
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Votre nom"
-                    required
-                    className="w-full p-3 border rounded-lg"
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Votre e-mail"
-                    required
-                    className="w-full p-3 border rounded-lg"
-                  />
-                  <textarea
-                    name="message"
-                    placeholder="Votre message"
-                    rows={5}
-                    required
-                    className="w-full p-3 border rounded-lg"
-                  ></textarea>
-
-                  <button
-                    type="submit"
-                    className="w-full bg-primary text-offwhite py-3 rounded-lg hover:bg-secondary transition"
-                  >
-                    Envoyer le message
-                  </button>
-                </form>
+            
+                {/* ==== NOUVEAU FORMULAIRE ==== */}
+                <ContactForm />
               </section>
             </SlideUp>
+
 
             {/* ================= INFOS PRATIQUES ================= */}
             <SlideUp>
@@ -470,5 +430,6 @@ export default function ContactPage() {
     </main>
   );
 }
+
 
 
