@@ -266,7 +266,7 @@ export default function ContactPage() {
                 </p>
 
                 <form
-                  action="https://formsubmit.co/contact@hilaryfarid-osteopathe.fr"
+                  action="https://formsubmit.co/hilaryfarid.osteopathe@gmail.com"
                   method="POST"
                   className="space-y-4"
                 >
@@ -470,3 +470,4 @@ export default function ContactPage() {
     </main>
   );
 }
+
