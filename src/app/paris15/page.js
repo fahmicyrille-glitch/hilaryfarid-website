@@ -288,7 +288,7 @@ export default function Paris15Page() {
                   <div className="flex justify-center">
                     <div className="relative w-full max-w-sm h-[450px] rounded-xl shadow-xl overflow-hidden">
                       <Image
-                        src="/Hilary.png"
+                        src="/hilary.png"
                         alt="Hilary Farid Ostéopathe Paris 15"
                         fill
                         className="object-cover"
@@ -486,3 +486,4 @@ export default function Paris15Page() {
     </main>
   );
 }
+
