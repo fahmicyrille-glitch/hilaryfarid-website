@@ -11,7 +11,18 @@ module.exports = {
         secondary: "#C09A7D",    // Hover boutons / accents
         light: "#F4EEE8",        // Fonds très clairs
         offwhite: "#FFFBF7",     // Fond page
-        graywarm: "#6B645F",     // NOUVEAU : texte courant (beaucoup plus lisible)
+        graywarm: "#6B645F",     // Texte courant lisible
+      },
+
+      // === ANIMATIONS GLOBALES ===
+      keyframes: {
+        fadeUp: {
+          "0%": { opacity: 0, transform: "translateY(20px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        fadeUp: "fadeUp 0.6s ease-out",
       },
     },
   },
