@@ -1,43 +1,38 @@
 User-agent: *
-# Autorisations générales
 Allow: /
 
-# Bloquer les pages sensibles inutiles pour Google
+# Bloquer les pages techniques ou inutiles
 Disallow: /admin
 Disallow: /dashboard
-Disallow: /api/*
 Disallow: /private/
 Disallow: /draft/
 Disallow: /temp/
 Disallow: /old/
-Disallow: /*?*          # Empêche l'indexation des URL avec paramètres
 
-# Empêcher l'indexation de ressources inutiles
-Disallow: /fonts/
-Disallow: /scripts/
-Disallow: /components/
+# Bloquer uniquement les paramètres inutiles (UTM, tracking…)
+Disallow: /*?utm_
+Disallow: /*?fbclid=
+
+# APIs internes (pas utiles au crawl)
+Disallow: /api/
+
+# Bloquer le répertoire interne Next.js
 Disallow: /_next/static/
-Disallow: /_next/image/
 
-# Autoriser Googlebot Images à indexer toutes tes photos (important en SEO local)
+# Autoriser les images et le rendu (important pour SEO Local)
 User-agent: Googlebot-Image
 Allow: /
 
-# Autoriser Googlebot-Mobile (Google Maps / Local Pack)
 User-agent: Googlebot-Mobile
 Allow: /
 
-# Autoriser Googlebot-News si tu publies un jour des articles
-User-agent: Googlebot-News
+# Permet une meilleure analyse Google Search Console
+User-agent: Google-InspectionTool
 Allow: /
 
-# Autoriser complètement le bot Doctolib pour améliorer ton référencement interne
+# Autoriser le bot Doctolib (important)
 User-agent: DoctolibBot
 Allow: /
 
-# Blog personnel : empêche le crawl inutile (tu n'en as pas pour l'instant)
-Disallow: /blog/draft/
-Disallow: /blog/private/
-
-# Sitemap principal
+# Sitemap
 Sitemap: https://www.hilaryfarid-osteopathe.fr/sitemap.xml
