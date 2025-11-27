@@ -66,8 +66,8 @@ export default function Paris15Page() {
   return (
     <main>
       <SEO
-        title="Ostéopathe Paris 15 – Cabinet Hilary Farid"
-        description="Cabinet d’ostéopathie à Paris 15. Consultations structural, viscéral, crânien, nourrisson, grossesse et drainage lymphatique Renata França."
+        title="Ostéopathe Paris 15 – Cabinet Rue Letellier | Hilary Farid Ostéopathe DO"
+        description="Cabinet d’ostéopathie au cœur du 15e, 28 Rue Letellier. Consultations adultes, nourrissons, grossesse et sportifs. Ostéopathe DO Hilary Farid. Métro Commerce / Émile Zola."
         canonical="/paris15"
         image="/og-image.jpg"
       />
@@ -486,5 +486,6 @@ export default function Paris15Page() {
     </main>
   );
 }
+
 
 
