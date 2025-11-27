@@ -44,6 +44,30 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
+
+      <head>
+        {/* --------- GOOGLE ANALYTICS --------- */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-BWDXGTQJKT"
+        />
+
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-BWDXGTQJKT', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
+      </head>
+
       <body className="bg-offwhite text-primary">
 
         {/* --------- PERSON SCHEMA --------- */}
