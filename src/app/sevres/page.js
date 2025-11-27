@@ -69,8 +69,8 @@ export default function SevresPage() {
   return (
     <main>
       <SEO
-        title="Ostéopathe à Sèvres – Cabinet Hilary Farid"
-        description="Cabinet d’ostéopathie à Sèvres. Consultations adultes, nourrissons, grossesse et drainage lymphatique Renata França."
+        title="Ostéopathe Sèvres – Cabinet Grande Rue | Hilary Farid Ostéopathe DO"
+        description="Cabinet d’ostéopathie à Sèvres, 104 Grande Rue. Accès facile tram T2 et gares. Consultations pour adultes, nourrissons, femmes enceintes et sportifs. Hilary Farid, ostéopathe DO diplômée."
         canonical="/sevres"
         image="/og-image.jpg"
       />
@@ -519,5 +519,6 @@ export default function SevresPage() {
     </main>
   );
 }
+
 
 
