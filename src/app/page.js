@@ -12,7 +12,16 @@ export const metadata = {
   alternates: {
     canonical: "/",
   },
+  openGraph: {
+    title:
+      "Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO",
+    description:
+      "Consultations d’ostéopathie et drainage lymphatique Renata França à Sèvres & Paris 15.",
+    url: "https://www.hilaryfarid-osteopathe.fr",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
 };
+
 
 export default function Home() {
   return (
