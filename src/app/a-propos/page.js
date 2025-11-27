@@ -55,8 +55,8 @@ export default function AProposPage() {
   return (
     <main>
       <SEO
-        title="À propos d’Hilary Farid – Ostéopathe D.O"
-        description="Diplômée en ostéopathie, spécialisée nourrissons, grossesse, périnatalité et drainage lymphatique Renata França. Découvrez mon parcours."
+        title="Hilary Farid – Ostéopathe DO à Sèvres & Paris 15 | Parcours & Spécialisations"
+        description="Découvrez le parcours d’Hilary Farid, ostéopathe DO à Sèvres et Paris 15. Spécialisée nourrissons, grossesse, post-partum et drainage lymphatique Renata França. Approche douce, précise et personnalisée."
         canonical="/a-propos"
         image="/og-image.jpg"
       />
@@ -390,5 +390,6 @@ export default function AProposPage() {
     </main>
   );
 }
+
 
 
