@@ -153,6 +153,21 @@ const FILTERS = [
   { id: "grossesse", label: "Grossesse & post-partum" },
   { id: "drainage", label: "Drainage Renata França" },
 ];
+          
+export const metadata = {
+  title: "Avis & Témoignages – Ostéopathe Sèvres & Paris 15",
+  description:
+    "Découvrez les avis Google et témoignages de patients suivis en ostéopathie et drainage lymphatique Renata França.",
+  alternates: { canonical: "/temoignages" },
+  openGraph: {
+    title: "Témoignages patients – Hilary Farid Ostéopathe DO",
+    description:
+      "Avis vérifiés de patients : ostéopathie adulte, nourrisson, grossesse et sportif. Cabinets à Sèvres et Paris 15.",
+    url: "https://www.hilaryfarid-osteopathe.fr/temoignages",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
+};
+
 
 export default function TemoignagesPage() {
   const [offsetY, setOffsetY] = useState(0); // parallax
@@ -229,13 +244,6 @@ export default function TemoignagesPage() {
 
   return (
     <main>
-      <SEO
-        title="Avis & Témoignages – Ostéopathe Sèvres & Paris 15"
-        description="Découvrez les avis Google et témoignages de patients suivis en ostéopathie et drainage lymphatique Renata França."
-        canonical="/temoignages"
-        image="/og-image.jpg"
-      />
-
       {/* --------- ReviewPage Schema (basé sur les avis manuels pour rester stable) --------- */}
       <Script
         id="ld-reviewpage-temoignages"
@@ -521,4 +529,5 @@ export default function TemoignagesPage() {
     </main>
   );
 }
+
 
