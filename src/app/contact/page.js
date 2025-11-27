@@ -58,8 +58,8 @@ export default function ContactPage() {
   return (
     <main>
       <SEO
-        title="Contact & prise de rendez-vous – Ostéopathe Sèvres & Paris 15"
-        description="Contact, informations et prise de rendez-vous pour les cabinets d’ostéopathie à Sèvres et Paris 15."
+        title="Contact & rendez-vous ostéopathe – Sèvres & Paris 15 | Hilary Farid DO"
+        description="Contact, coordonnées et prise de rendez-vous avec Hilary Farid, ostéopathe DO à Sèvres et Paris 15. Formulaire de contact, accès, localisation et horaires."
         canonical="/contact"
         image="/og-image.jpg"
       />
@@ -432,6 +432,7 @@ export default function ContactPage() {
     </main>
   );
 }
+
 
 
 
