@@ -15,6 +15,20 @@ const SECTIONS = [
   { id: "faq", label: "FAQ – Cabinet de Sèvres" },
 ];
 
+export const metadata = {
+  title: "Ostéopathe Sèvres – Cabinet Grande Rue | Hilary Farid Ostéopathe DO",
+  description:
+    "Cabinet d’ostéopathie à Sèvres, 104 Grande Rue. Accès facile tram T2 et gares. Consultations pour adultes, nourrissons, femmes enceintes et sportifs. Hilary Farid, ostéopathe DO diplômée.",
+  alternates: { canonical: "/sevres" },
+  openGraph: {
+    title: "Cabinet d’ostéopathie à Sèvres – Hilary Farid Ostéopathe DO",
+    description:
+      "Consultations d’ostéopathie à Sèvres : douleurs, posture, nourrissons, grossesse, sport. Cabinet situé au 104 Grande Rue.",
+    url: "https://www.hilaryfarid-osteopathe.fr/sevres",
+    images: [{ url: "/cabinet-sevres/cabinet-sevres-1.jpeg" }],
+  },
+};
+
 export default function SevresPage() {
   const [activeId, setActiveId] = useState("cabinet");
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -68,13 +82,6 @@ export default function SevresPage() {
 
   return (
     <main>
-      <SEO
-        title="Ostéopathe Sèvres – Cabinet Grande Rue | Hilary Farid Ostéopathe DO"
-        description="Cabinet d’ostéopathie à Sèvres, 104 Grande Rue. Accès facile tram T2 et gares. Consultations pour adultes, nourrissons, femmes enceintes et sportifs. Hilary Farid, ostéopathe DO diplômée."
-        canonical="/sevres"
-        image="/og-image.jpg"
-      />
-
       {/* === LOCAL BUSINESS + FAQ SCHEMA – SÈVRES === */}
       <Script
         id="ld-localbusiness-sevres"
@@ -519,6 +526,7 @@ export default function SevresPage() {
     </main>
   );
 }
+
 
 
 
