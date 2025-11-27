@@ -4,12 +4,12 @@ import Link from "next/link";
 import Script from "next/script";
 import SEO from "@/components/SEO";
 import { FadeIn, SlideUp, HeroMotion } from "@/components/MotionWrapper";
-
+  
 export const metadata = {
   title:
-    "Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO | Ostéopathie & Drainage lymphatique Renata França"
+    "Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO | Ostéopathie & Drainage lymphatique Renata França",
   description:
-    "Ostéopathe DO à Sèvres et Paris 15, Hilary Farid accompagne adultes, nourrissons, femmes enceintes et sportifs. Ostéopathie douce, précise et drainage lymphatique Renata França. Rendez-vous rapides."
+    "Ostéopathe DO à Sèvres et Paris 15, Hilary Farid accompagne adultes, nourrissons, femmes enceintes et sportifs. Ostéopathie douce, précise et drainage lymphatique Renata França. Rendez-vous rapides.",
   alternates: {
     canonical: "/",
   },
@@ -19,8 +19,8 @@ export default function Home() {
   return (
     <main>
       <SEO
-        title="Hilary Farid – Ostéopathe D.O à Sèvres & Paris 15"
-        description="Ostéopathe D.O douce, précise et spécialisée nourrissons, grossesse et drainage lymphatique Renata França. Deux cabinets : Sèvres et Paris 15."
+        title="Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO | Ostéopathie & Drainage lymphatique Renata França"
+        description="Ostéopathe DO à Sèvres et Paris 15, Hilary Farid accompagne adultes, nourrissons, femmes enceintes et sportifs. Ostéopathie douce, précise et drainage lymphatique Renata França. Rendez-vous rapides.",
         canonical="/"
         image="/og-image.jpg"
       />
