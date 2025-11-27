@@ -7,9 +7,9 @@ import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import SEO from "@/components/SEO";
 
 export const metadata = {
-  title: "Ostéopathie à Sèvres & Paris 15 – Adultes, Nourrissons, Grossesse & Femme enceinte | Hilary Farid Ostéopathe DO"
+  title: "Ostéopathie à Sèvres & Paris 15 – Adultes, Nourrissons, Grossesse & Femme enceinte | Hilary Farid Ostéopathe DO",
   description:
-    "Séances d’ostéopathie à Sèvres et Paris 15 : douleurs, posture, migraines, nourrissons, grossesse, post-partum et sportifs. Hilary Farid, ostéopathe DO, propose une approche douce et efficace."
+    "Séances d’ostéopathie à Sèvres et Paris 15 : douleurs, posture, migraines, nourrissons, grossesse, post-partum et sportifs. Hilary Farid, ostéopathe DO, propose une approche douce et efficace.",
   alternates: { canonical: "/osteopathie" },
   openGraph: {
     title: "Ostéopathie – Hilary Farid Ostéopathe DO",
@@ -636,6 +636,7 @@ export default function OsteopathiePage() {
     </main>
   );
 }
+
 
 
 
