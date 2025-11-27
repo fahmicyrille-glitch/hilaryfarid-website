@@ -2,9 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import SEO from "@/components/SEO";
 import { FadeIn, SlideUp, HeroMotion } from "@/components/MotionWrapper";
-  
+
 export const metadata = {
   title:
     "Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO | Ostéopathie & Drainage lymphatique Renata França",
@@ -18,14 +17,8 @@ export const metadata = {
 export default function Home() {
   return (
     <main>
-      <SEO
-        title="Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO | Ostéopathie & Drainage lymphatique Renata França"
-        description="Ostéopathe DO à Sèvres et Paris 15, Hilary Farid accompagne adultes, nourrissons, femmes enceintes et sportifs. Ostéopathie douce, précise et drainage lymphatique Renata França. Rendez-vous rapides.",
-        canonical="/"
-        image="/og-image.jpg"
-      />
 
-      {/* ======== MedicalWebPage + Physician + LocalBusiness (Homepage) ======== */}
+      {/* ======== MedicalWebPage + Physician + LocalBusiness ======== */}
       <Script
         id="ld-home-medicalwebpage"
         type="application/ld+json"
@@ -39,7 +32,7 @@ export default function Home() {
               url: "https://www.hilaryfarid-osteopathe.fr",
               name: "Hilary Farid – Ostéopathe DO à Sèvres & Paris 15",
               description:
-                "Ostéopathie pour adultes, nourrissons, femmes enceintes et sportifs. Deux cabinets : Sèvres et Paris 15. Prise en charge douce, globale et personnalisée.",
+                "Ostéopathie pour adultes, nourrissons, femmes enceintes et sportifs. Deux cabinets : Sèvres et Paris 15.",
               mainEntity: {
                 "@type": "Physician",
                 name: "Hilary Farid",
@@ -51,20 +44,19 @@ export default function Home() {
                   "Osteopathy",
                   "PregnancyCare",
                   "Pediatric",
-                  "SportsMedicine",
+                  "SportsMedicine"
                 ],
                 worksFor: [
                   {
                     "@type": "LocalBusiness",
                     name: "Cabinet d’ostéopathie – Sèvres",
-                    image:
-                      "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.jpeg",
+                    image: "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.jpeg",
                     address: {
                       "@type": "PostalAddress",
                       streetAddress: "104 Grande Rue",
                       addressLocality: "Sèvres",
                       postalCode: "92310",
-                      addressCountry: "FR",
+                      addressCountry: "FR"
                     },
                     telephone: "+33 6 72 01 45 39",
                     priceRange: "€€",
@@ -72,26 +64,25 @@ export default function Home() {
                   {
                     "@type": "LocalBusiness",
                     name: "Cabinet d’ostéopathie – Paris 15",
-                    image:
-                      "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.jpeg",
+                    image: "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.jpeg",
                     address: {
                       "@type": "PostalAddress",
                       streetAddress: "28 Rue Letellier",
                       addressLocality: "Paris",
                       postalCode: "75015",
-                      addressCountry: "FR",
+                      addressCountry: "FR"
                     },
                     telephone: "+33 6 72 01 45 39",
                     priceRange: "€€",
-                  },
+                  }
                 ],
                 aggregateRating: {
                   "@type": "AggregateRating",
                   ratingValue: "5",
                   ratingCount: "42",
-                  bestRating: "5",
-                },
-              },
+                  bestRating: "5"
+                }
+              }
             },
             null,
             2
@@ -99,16 +90,18 @@ export default function Home() {
         }}
       />
 
-      {/* ================= HERO : Hilary + accroche ostéo ================= */}
+      {/* ================= HERO SECTION ================= */}
       <section className="bg-primary text-offwhite relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.12] pointer-events-none bg-[radial-gradient(circle_at_top,_#ffffff_0,_transparent_55%)]" />
+
         <div className="max-w-6xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center relative z-10">
-          {/* Texte */}
+
           <HeroMotion>
             <div>
               <p className="uppercase tracking-[0.2em] text-xs md:text-sm text-light">
                 Ostéopathe D.O – Sèvres & Paris 15
               </p>
+
               <h1 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">
                 Soulager vos douleurs,
                 <br />
@@ -119,13 +112,9 @@ export default function Home() {
 
               <p className="mt-5 text-base md:text-lg text-offwhite/90">
                 Hilary Farid accompagne les{" "}
-                <strong>adultes, nourrissons, femmes enceintes</strong> et
-                sportifs avec une approche douce et personnalisée. Une étude de
-                l&apos;ensemble du corps pour soulager l&apos;origine de la
-                douleur.
+                <strong>adultes, nourrissons, femmes enceintes</strong> et sportifs avec une approche douce.
               </p>
 
-              {/* Petits badges premium */}
               <div className="mt-6 flex flex-wrap gap-2 text-[11px] md:text-xs text-primary">
                 <span className="bg-offwhite/90 rounded-full px-3 py-1">
                   Spécialisée nourrissons & grossesse
@@ -140,7 +129,7 @@ export default function Home() {
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
-                  href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
+                  href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
                   target="_blank"
                   rel="noreferrer"
                   className="bg-offwhite text-primary px-7 py-3 rounded-full font-semibold text-sm md:text-base shadow-md hover:bg-light hover:text-primary transition"
@@ -157,13 +146,11 @@ export default function Home() {
               </div>
 
               <p className="mt-4 text-xs md:text-sm text-offwhite/80">
-                Séances sur rendez-vous à Sèvres et Paris 15 – prise en charge
-                possible par votre mutuelle.
+                Séances sur rendez-vous à Sèvres et Paris 15 – prise en charge mutuelles.
               </p>
             </div>
           </HeroMotion>
 
-          {/* Photo Hilary */}
           <FadeIn>
             <div className="relative">
               <div className="absolute -inset-4 bg-offwhite/10 rounded-3xl blur-xl" />
@@ -179,6 +166,7 @@ export default function Home() {
               </div>
             </div>
           </FadeIn>
+
         </div>
       </section>
 
@@ -405,7 +393,8 @@ export default function Home() {
         </FadeIn>
       </section>
 
-      {/* ------ MOBILE (centré en bas) ------ */}
+
+      {/* ------ MOBILE DOCTOLIB ------ */}
       <div
         className="
           fixed bottom-5 left-1/2 -translate-x-1/2
@@ -428,8 +417,6 @@ export default function Home() {
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
             viewBox="0 0 24 24"
           >
             <rect x="3" y="4" width="18" height="18" rx="2" />
@@ -439,7 +426,8 @@ export default function Home() {
           <span>Prendre RDV</span>
         </a>
       </div>
-      {/* ------ DESKTOP (collé à droite, horizontal) ------ */}
+
+      {/* ------ DESKTOP DOCTOLIB ------ */}
       <div
         className="
           hidden md:flex
@@ -448,7 +436,7 @@ export default function Home() {
         "
       >
         <a
-          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
+          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
           target="_blank"
           rel="noopener noreferrer"
           className="
@@ -462,7 +450,6 @@ export default function Home() {
             hover:bg-white
           "
         >
-          {/* Icone */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-6 h-6 text-primary opacity-90"
@@ -475,7 +462,6 @@ export default function Home() {
             <path d="M16 2v4M8 2v4M3 10h18" />
           </svg>
       
-          {/* Texte horizontal */}
           <span className="text-primary font-semibold text-sm tracking-wide">
             Prendre RDV
           </span>
