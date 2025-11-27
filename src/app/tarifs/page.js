@@ -11,6 +11,20 @@ const SECTIONS = [
   { id: "faq", label: "FAQ Tarifs" },
   { id: "cta", label: "Prendre rendez-vous" },
 ];
+          
+export const metadata = {
+  title: "Tarifs ostéopathie & drainage lymphatique | Sèvres & Paris 15 – Hilary Farid",
+  description:
+    "Tarifs des séances d’ostéopathie et drainage lymphatique Renata França à Sèvres et Paris 15. Consultations adultes, nourrissons, grossesse, post-partum. Prise en charge mutuelle possible.",
+  alternates: { canonical: "/tarifs" },
+  openGraph: {
+    title: "Tarifs Ostéopathie & Drainage lymphatique Renata França – Hilary Farid DO",
+    description:
+      "Découvrez les tarifs des séances d’ostéopathie et de drainage lymphatique Renata França.",
+    url: "https://www.hilaryfarid-osteopathe.fr/tarifs",
+    images: [{ url: "/og-image.jpg" }],
+  },
+};
 
 export default function TarifsPage() {
   const tarifs = [
@@ -75,14 +89,6 @@ export default function TarifsPage() {
 
   return (
     <main>
-      {/* ===== SEO ===== */}
-      <SEO
-        title="Tarifs ostéopathie & drainage lymphatique | Sèvres & Paris 15 – Hilary Farid"
-        description="Tarifs des séances d’ostéopathie et drainage lymphatique Renata França à Sèvres et Paris 15. Consultations adultes, nourrissons, grossesse, post-partum. Prise en charge mutuelle possible."
-        canonical="/tarifs"
-        image="/og-image.jpg"
-      />
-
       {/* ===== JSON-LD ===== */}
       <Script
         id="schema-tarifs"
@@ -331,4 +337,5 @@ export default function TarifsPage() {
     </main>
   );
 }
+
 
