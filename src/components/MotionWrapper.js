@@ -2,22 +2,24 @@
 
 import dynamic from "next/dynamic";
 
-// On charge framer-motion uniquement côté client
+// Charge framer-motion uniquement côté client
 const MotionDiv = dynamic(
   () => import("framer-motion").then((mod) => mod.motion.div),
   { ssr: false }
 );
 
 /**
- * FadeIn
- * Apparition douce avec légère translation vers le haut
+ * FadeInS (Safe)
+ * ➜ AUCUN déplacement (0px)
+ * ➜ Animation 100% safe CLS
  */
 export function FadeIn({ children, delay = 0 }) {
   return (
     <MotionDiv
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, delay, ease: "easeOut" }}
+      style={{ willChange: "opacity" }}
     >
       {children}
     </MotionDiv>
@@ -25,15 +27,17 @@ export function FadeIn({ children, delay = 0 }) {
 }
 
 /**
- * SlideUp
- * Idem mais un peu plus marqué sur l’axe Y
+ * SlideUp (Safe)
+ * ➜ y supprimé → remplacé par un léger blur
+ * ➜ CLS = zéro
  */
 export function SlideUp({ children, delay = 0 }) {
   return (
     <MotionDiv
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay }}
+      initial={{ opacity: 0, filter: "blur(6px)" }}
+      animate={{ opacity: 1, filter: "blur(0px)" }}
+      transition={{ duration: 0.6, delay, ease: "easeOut" }}
+      style={{ willChange: "opacity, filter" }}
     >
       {children}
     </MotionDiv>
@@ -41,15 +45,19 @@ export function SlideUp({ children, delay = 0 }) {
 }
 
 /**
- * HeroMotion
- * Animation spécifique pour les blocs “hero”
+ * HeroMotion (Safe)
+ * ❗ IMPORTANT :
+ * ➜ scale supprimé (il casse le LCP)
+ * ➜ y supprimé
+ * ➜ animation uniquement sur l’opacité
  */
 export function HeroMotion({ children }) {
   return (
     <MotionDiv
-      initial={{ opacity: 0, scale: 0.97 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.9 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      style={{ willChange: "opacity" }}
     >
       {children}
     </MotionDiv>
