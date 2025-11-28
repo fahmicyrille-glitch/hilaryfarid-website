@@ -4,13 +4,29 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Script from "next/script";
+import localFont from "next/font/local";
 
 // ====== Élimination des requêtes Google Fonts cachées ======
 // Next empêche Chrome de charger automati­quement fonts.googleapis.com
-import { Roboto } from "next/font/google";
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+const roboto = localFont({
+  src: [
+    {
+      path: "../fonts/Roboto-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/Roboto-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../fonts/Roboto-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-roboto",
   display: "swap",
 });
 
@@ -52,7 +68,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr" className={roboto.className}>
       <head>
-
+        <link
+          rel="preload"
+          as="style"
+        />
         {/* 🔥 PRECONNECTS pour éviter 300ms de latence */}
         <link rel="preconnect" href="https://www.hilaryfarid-osteopathe.fr" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -88,7 +107,7 @@ export default function RootLayout({ children }) {
         />
       </head>
 
-      <body className="bg-offwhite text-primary">
+      <body className={`${roboto.variable} bg-offwhite text-primary`}>
 
         {/* --------- JSON-LD GLOBAL --------- */}
         <Script
