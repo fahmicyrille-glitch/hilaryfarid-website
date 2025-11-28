@@ -65,24 +65,50 @@ export default function AProposPage() {
               {
                 "@context": "https://schema.org",
                 "@type": "MedicalWebPage",
-                "@id":
-                  "https://www.hilaryfarid-osteopathe.fr/a-propos#about",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/a-propos#page",
                 url: "https://www.hilaryfarid-osteopathe.fr/a-propos",
                 name: "À propos – Hilary Farid, Ostéopathe D.O.",
                 description:
-                  "Présentation d’Hilary Farid, ostéopathe D.O. Formations, approches ostéopathiques, accompagnement des adultes, nourrissons, femmes enceintes et sportifs.",
+                  "Présentation d’Hilary Farid, ostéopathe D.O. installée à Sèvres et Paris 15. Formations, approche thérapeutique, spécialisations nourrissons, femmes enceintes, adultes et sportifs.",
+                image: "https://www.hilaryfarid-osteopathe.fr/Hilary.png",
+
+                // Relation avec le schéma global Person
+                about: {
+                  "@type": "Person",
+                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid",
+                },
+
+                breadcrumb: {
+                  "@type": "BreadcrumbList",
+                  itemListElement: [
+                    {
+                      "@type": "ListItem",
+                      position: 1,
+                      name: "Accueil",
+                      item: "https://www.hilaryfarid-osteopathe.fr",
+                    },
+                    {
+                      "@type": "ListItem",
+                      position: 2,
+                      name: "À propos",
+                      item: "https://www.hilaryfarid-osteopathe.fr/a-propos",
+                    },
+                  ],
+                },
               },
+
+              // ==== FAQ ====
               {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
                 mainEntity: [
                   {
                     "@type": "Question",
-                    name: "Hilary est-elle spécialisée en nourrissons ?",
+                    name: "Hilary est-elle spécialisée pour les nourrissons ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, Hilary Farid suit régulièrement des nourrissons pour des troubles de succion, d’allaitement, des tensions mandibulaires et des freins restrictifs.",
+                        "Oui, elle accompagne les nourrissons pour les troubles de succion, d’allaitement, les tensions mandibulaires, les asymétries et les freins restrictifs.",
                     },
                   },
                   {
@@ -91,7 +117,7 @@ export default function AProposPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Une approche douce, précise et adaptée à chaque patient, que ce soit un adulte, un sportif, une femme enceinte ou un nouveau-né.",
+                        "Une approche douce, globale et personnalisée, adaptée aux bébés, enfants, adultes, sportifs et femmes enceintes.",
                     },
                   },
                   {

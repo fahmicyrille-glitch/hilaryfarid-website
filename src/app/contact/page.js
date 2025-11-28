@@ -57,7 +57,7 @@ export default function ContactPage() {
 
   return (
     <main>
-      {/* == JSON-LD : ContactPage + Physician + FAQ == */}
+      {/* == JSON-LD : ContactPage + LocalBusiness + Physician + FAQ == */}
       <Script
         id="schema-contact"
         type="application/ld+json"
@@ -65,28 +65,114 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             [
+              /* === Contact Page === */
               {
                 "@context": "https://schema.org",
                 "@type": "ContactPage",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/contact#page",
-                name: "Contact – Hilary Farid Ostéopathe DO",
                 url: "https://www.hilaryfarid-osteopathe.fr/contact",
+                name: "Contact – Hilary Farid Ostéopathe DO",
                 description:
-                  "Coordonnées, informations et formulaire de contact pour Hilary Farid, Ostéopathe DO à Sèvres et Paris 15.",
-                mainEntity: {
-                  "@type": "Physician",
-                  name: "Hilary Farid",
-                  telephone: "+33 6 72 01 45 39",
-                  email: "contact@hilaryfarid-osteopathe.fr",
-                  image: "https://www.hilaryfarid-osteopathe.fr/Hilary.png",
-                  medicalSpecialty: [
-                    "Osteopathy",
-                    "PregnancyCare",
-                    "Pediatric",
-                    "SportsMedicine",
-                  ],
+                  "Coordonnées, informations de contact et accès aux cabinets de Sèvres et Paris 15 pour Hilary Farid, ostéopathe DO.",
+                about: {
+                  "@type": "Person",
+                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid"
                 },
+                breadcrumb: {
+                  "@type": "BreadcrumbList",
+                  itemListElement: [
+                    {
+                      "@type": "ListItem",
+                      position: 1,
+                      name: "Accueil",
+                      item: "https://www.hilaryfarid-osteopathe.fr"
+                    },
+                    {
+                      "@type": "ListItem",
+                      position: 2,
+                      name: "Contact",
+                      item: "https://www.hilaryfarid-osteopathe.fr/contact"
+                    }
+                  ]
+                }
               },
+
+              /* === LocalBusiness SÈVRES === */
+              {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/sevres#business",
+                name: "Cabinet d’Ostéopathie – Sèvres",
+                telephone: "+33 6 72 01 45 39",
+                priceRange: "60€ – 90€",
+                image:
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.jpeg",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "104 Grande Rue",
+                  postalCode: "92310",
+                  addressLocality: "Sèvres",
+                  addressCountry: "FR"
+                },
+                geo: {
+                  "@type": "GeoCoordinates",
+                  latitude: 48.822013,
+                  longitude: 2.2179
+                },
+                openingHoursSpecification: [
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "12:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Tuesday", opens: "00:00", closes: "00:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "15:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Thursday", opens: "00:00", closes: "00:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "09:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "13:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "00:00", closes: "00:00" }
+                ],
+                sameAs: [
+                  "https://www.doctolib.fr/osteopathe/sevres/hilary-farid",
+                  "https://g.page/r/CfEVH_swFUP2EB0/review"
+                ]
+              },
+
+              /* === LocalBusiness PARIS 15 === */
+              {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/paris15#business",
+                name: "Cabinet d’Ostéopathie – Paris 15",
+                telephone: "+33 6 72 01 45 39",
+                priceRange: "60€ – 90€",
+                image:
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.jpeg",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "28 Rue Letellier",
+                  postalCode: "75015",
+                  addressLocality: "Paris",
+                  addressRegion: "Île-de-France",
+                  addressCountry: "FR"
+                },
+                geo: {
+                  "@type": "GeoCoordinates",
+                  latitude: 48.847151,
+                  longitude: 2.293107
+                },
+                openingHoursSpecification: [
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "12:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Tuesday", opens: "00:00", closes: "00:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "15:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Thursday", opens: "00:00", closes: "00:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "09:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "13:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "00:00", closes: "00:00" }
+                ],
+                sameAs: [
+                  "https://www.doctolib.fr/osteopathe/paris/hilary-farid",
+                  "https://www.google.com/maps/place/28+Rue+Letellier,+75015+Paris"
+                ]
+              },
+
+              /* === FAQ === */
               {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
@@ -97,8 +183,8 @@ export default function ContactPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Vous pouvez contacter Hilary par téléphone, par e-mail ou via le formulaire de contact disponible sur cette page.",
-                    },
+                        "Vous pouvez contacter Hilary par téléphone, par e-mail ou via le formulaire de contact disponible sur cette page."
+                    }
                   },
                   {
                     "@type": "Question",
@@ -106,8 +192,8 @@ export default function ContactPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Les rendez-vous se prennent en ligne via Doctolib, ou par téléphone si vous préférez un contact direct.",
-                    },
+                        "Les rendez-vous se prennent en ligne via Doctolib ou par téléphone."
+                    }
                   },
                   {
                     "@type": "Question",
@@ -115,27 +201,26 @@ export default function ContactPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Hilary consulte au 104 Grande Rue à Sèvres (92310) et au 28 Rue Letellier à Paris 15 (75015).",
-                    },
+                        "Hilary consulte au 104 Grande Rue à Sèvres et au 28 Rue Letellier à Paris 15."
+                    }
                   },
                   {
                     "@type": "Question",
-                    name: "Est-ce possible de venir avec une poussette ou un nourrisson ?",
+                    name: "Les cabinets sont-ils adaptés aux nourrissons ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, les deux cabinets sont adaptés aux nourrissons et aux parents avec poussette.",
-                    },
-                  },
-                ],
-              },
+                        "Oui, les deux cabinets sont adaptés aux parents avec poussette et aux consultations nourrissons."
+                    }
+                  }
+                ]
+              }
             ],
             null,
             2
           ),
         }}
       />
-
       {/* ================= HERO ================= */}
       <section className="bg-primary text-offwhite py-16 text-center px-6 overflow-hidden">
         <HeroMotion>

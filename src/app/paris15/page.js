@@ -76,8 +76,7 @@ export default function Paris15Page() {
               {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
-                "@id":
-                  "https://www.hilaryfarid-osteopathe.fr/paris15#business",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/paris15#business",
                 name: "Cabinet d’Ostéopathie – Paris 15",
                 description:
                   "Cabinet d’ostéopathie d’Hilary Farid à Paris 15. Consultations pour adultes, nourrissons, femmes enceintes et sportifs.",
@@ -86,11 +85,27 @@ export default function Paris15Page() {
                 url: "https://www.hilaryfarid-osteopathe.fr/paris15",
                 telephone: "+33 6 72 01 45 39",
                 priceRange: "60€ – 90€",
-                openingHours: ["Mo-Sa 08:00-20:00"],
+
+                // ⭐⭐ AJOUT SIRET ⭐⭐
+                legalName: "Hilary Farid – Ostéopathe DO",
+                taxID: "90179515300021",
+
+                // ⭐⭐ HORAIRES RÉELS ⭐⭐
+                openingHoursSpecification: [
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "12:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Tuesday", opens: "00:00", closes: "00:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "15:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Thursday", opens: "00:00", closes: "00:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "09:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "13:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "00:00", closes: "00:00" }
+                ],
+
                 sameAs: [
                   "https://www.doctolib.fr/osteopathe/paris/hilary-farid",
-                  "https://www.google.com/maps/place/28+Rue+Letellier,+75015+Paris",
+                  "https://www.google.com/maps/place/28+Rue+Letellier,+75015+Paris"
                 ],
+
                 address: {
                   "@type": "PostalAddress",
                   streetAddress: "28 Rue Letellier",
@@ -99,14 +114,15 @@ export default function Paris15Page() {
                   addressRegion: "Île-de-France",
                   addressCountry: "FR",
                 },
+
                 geo: {
                   "@type": "GeoCoordinates",
                   latitude: 48.847151,
                   longitude: 2.293107,
-                },
+                }
               },
 
-              // ---- FAQ Paris 15 ----
+              // ---- FAQ STRUCTURÉE ----
               {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
@@ -127,7 +143,7 @@ export default function Paris15Page() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, le cabinet est situé à 3 min des stations Commerce, Émile Zola et La Motte-Picquet – Grenelle, idéal pour un accès facile depuis tout le 15e arrondissement.",
+                        "Oui, le cabinet est situé à 3 minutes des stations Commerce, Émile Zola et La Motte-Picquet – Grenelle.",
                     },
                   },
                   {
@@ -136,7 +152,7 @@ export default function Paris15Page() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, l’accueil des nourrissons et des parents avec poussette est facilité. Les consultations pédiatriques font partie de la pratique quotidienne.",
+                        "Oui, l’accueil des nourrissons et des parents avec poussette est facilité.",
                     },
                   },
                   {
@@ -149,7 +165,7 @@ export default function Paris15Page() {
                     },
                   },
                 ],
-              },
+              }
             ],
             null,
             2

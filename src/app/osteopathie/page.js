@@ -100,22 +100,156 @@ export default function OsteopathiePage() {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
-            {
-              "@context": "https://schema.org",
-              "@type": "MedicalWebPage",
-              name: "Ostéopathie – Hilary Farid Ostéopathe DO",
-              description:
-                "Ostéopathie douce pour adultes, nourrissons, femmes enceintes et sportifs.",
-              mainEntity: {
-                "@type": "FAQPage",
-                mainEntity: [],
+            [
+              /* ==================== MEDICAL WEB PAGE ==================== */
+              {
+                "@context": "https://schema.org",
+                "@type": "MedicalWebPage",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/osteopathie#page",
+                url: "https://www.hilaryfarid-osteopathe.fr/osteopathie",
+                name: "Ostéopathie – Hilary Farid Ostéopathe DO",
+                description:
+                  "Ostéopathie douce et globale pour adultes, nourrissons, femmes enceintes, enfants et sportifs. Soulagement des douleurs, amélioration de la mobilité, prévention et suivi personnalisé.",
+                about: {
+                  "@type": "MedicalSpecialty",
+                  name: "Osteopathy"
+                },
+                breadcrumb: {
+                  "@type": "BreadcrumbList",
+                  itemListElement: [
+                    {
+                      "@type": "ListItem",
+                      position: 1,
+                      name: "Accueil",
+                      item: "https://www.hilaryfarid-osteopathe.fr"
+                    },
+                    {
+                      "@type": "ListItem",
+                      position: 2,
+                      name: "Ostéopathie",
+                      item: "https://www.hilaryfarid-osteopathe.fr/osteopathie"
+                    }
+                  ]
+                }
               },
-            },
+
+              /* ==================== SERVICE : OSTÉOPATHIE ==================== */
+              {
+                "@context": "https://schema.org",
+                "@type": "Service",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/osteopathie#service",
+                serviceType: "Ostéopathie",
+                provider: {
+                  "@type": "Person",
+                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid"
+                },
+                description:
+                  "Consultations d'ostéopathie pour adultes, bébés, femmes enceintes, sportifs et seniors. Approche douce et personnalisée.",
+                areaServed: ["Sèvres", "Paris 15"],
+                audience: [
+                  "Adult",
+                  "Infant",
+                  "PregnantWomen",
+                  "Athlete",
+                  "Child"
+                ]
+              },
+
+              /* ==================== LOCAL BUSINESS (SÈVRES) ==================== */
+              {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/sevres#business",
+                name: "Cabinet d’Ostéopathie – Sèvres",
+                telephone: "+33 6 72 01 45 39",
+                image:
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.jpeg",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "104 Grande Rue",
+                  postalCode: "92310",
+                  addressLocality: "Sèvres",
+                  addressCountry: "FR"
+                },
+                makesOffer: {
+                  "@type": "Service",
+                  "@id": "https://www.hilaryfarid-osteopathe.fr/osteopathie#service"
+                }
+              },
+
+              /* ==================== LOCAL BUSINESS (PARIS 15) ==================== */
+              {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/paris15#business",
+                name: "Cabinet d’Ostéopathie – Paris 15",
+                telephone: "+33 6 72 01 45 39",
+                image:
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.jpeg",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "28 Rue Letellier",
+                  postalCode: "75015",
+                  addressLocality: "Paris",
+                  addressRegion: "Île-de-France",
+                  addressCountry: "FR"
+                },
+                makesOffer: {
+                  "@type": "Service",
+                  "@id": "https://www.hilaryfarid-osteopathe.fr/osteopathie#service"
+                }
+              },
+
+              /* ==================== FAQ STRUCTURÉE ==================== */
+              {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "Quand consulter un ostéopathe ?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text:
+                        "En cas de douleurs musculo-squelettiques, troubles digestifs, migraines, stress, problèmes de posture, gêne durant la grossesse ou inconfort du nourrisson."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    name: "L’ostéopathie est-elle adaptée aux nourrissons ?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text:
+                        "Oui. Techniques très douces adaptées aux bébés : torticolis, reflux, plagiocéphalie, troubles de succion."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Est-ce que l’ostéopathie aide pendant la grossesse ?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text:
+                        "Oui, l’ostéopathie soulage les lombalgies, sciatiques, tensions du bassin, troubles respiratoires et prépare au post-partum."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Combien de séances sont nécessaires ?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text:
+                        "Entre 1 et 3 séances en général pour un trouble récent. Un bilan annuel est conseillé en prévention."
+                    }
+                  }
+                ]
+              }
+            ],
             null,
             2
           ),
         }}
       />
+
 
       {/* ========= HERO ========= */}
       <FadeIn>

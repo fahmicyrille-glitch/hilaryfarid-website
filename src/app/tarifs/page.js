@@ -83,15 +83,117 @@ export default function TarifsPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             [
+              /* ========================================================= */
+              /* =============== MEDICAL WEB PAGE ======================== */
+              /* ========================================================= */
               {
                 "@context": "https://schema.org",
                 "@type": "MedicalWebPage",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/tarifs#page",
                 url: "https://www.hilaryfarid-osteopathe.fr/tarifs",
-                name: "Tarifs ostéopathie & drainage – Hilary Farid",
+                name: "Tarifs Ostéopathie & Drainage – Hilary Farid",
                 description:
-                  "Tarifs des séances d’ostéopathie et drainage lymphatique Renata França à Sèvres et Paris 15.",
+                  "Tarifs des consultations d’ostéopathie et du drainage lymphatique Renata França dans les cabinets de Sèvres et Paris 15.",
+                breadcrumb: {
+                  "@type": "BreadcrumbList",
+                  itemListElement: [
+                    {
+                      "@type": "ListItem",
+                      position: 1,
+                      name: "Accueil",
+                      item: "https://www.hilaryfarid-osteopathe.fr"
+                    },
+                    {
+                      "@type": "ListItem",
+                      position: 2,
+                      name: "Tarifs",
+                      item: "https://www.hilaryfarid-osteopathe.fr/tarifs"
+                    }
+                  ]
+                }
               },
+
+              /* ========================================================= */
+              /* ===================== SERVICE OSTÉO ====================== */
+              /* ========================================================= */
+              {
+                "@context": "https://schema.org",
+                "@type": "Service",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/osteopathie#service",
+                serviceType: "Consultation d’ostéopathie",
+                provider: {
+                  "@type": "Person",
+                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid"
+                },
+                areaServed: ["Sèvres", "Paris 15"],
+                hasOfferCatalog: {
+                  "@type": "OfferCatalog",
+                  name: "Tarifs des consultations d’ostéopathie",
+                  itemListElement: [
+                    {
+                      "@type": "Offer",
+                      name: "Consultation ostéopathie adulte",
+                      price: "70",
+                      priceCurrency: "EUR"
+                    },
+                    {
+                      "@type": "Offer",
+                      name: "Consultation nourrisson / enfant",
+                      price: "50",
+                      priceCurrency: "EUR"
+                    },
+                    {
+                      "@type": "Offer",
+                      name: "Consultation ostéopathie jours fériés / dimanche",
+                      price: "90",
+                      priceCurrency: "EUR"
+                    },
+                    {
+                      "@type": "Offer",
+                      name: "Offre post-accouchement : Maman + Bébé",
+                      price: "100",
+                      priceCurrency: "EUR"
+                    }
+                  ]
+                }
+              },
+
+              /* ========================================================= */
+              /* =============== SERVICE DRAINAGE RENATA ================= */
+              /* ========================================================= */
+              {
+                "@context": "https://schema.org",
+                "@type": "Service",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#service",
+                serviceType: "Drainage lymphatique – Méthode Renata França",
+                provider: {
+                  "@type": "Person",
+                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid"
+                },
+                areaServed: ["Sèvres", "Paris 15"],
+                hasOfferCatalog: {
+                  "@type": "OfferCatalog",
+                  name: "Tarifs drainage lymphatique Renata França",
+                  itemListElement: [
+                    {
+                      "@type": "Offer",
+                      name: "Séance drainage lymphatique corps entier",
+                      price: "180",
+                      priceCurrency: "EUR"
+                    },
+                    {
+                      "@type": "Offer",
+                      name: "Cure 5 séances drainage lymphatique",
+                      price: "800",
+                      priceCurrency: "EUR"
+                    }
+                  ]
+                }
+              },
+
+              /* ========================================================= */
+              /* ======================== FAQ ============================ */
+              /* ========================================================= */
               {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
@@ -102,29 +204,29 @@ export default function TarifsPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, les tarifs sont identiques dans les deux cabinets afin d’assurer une cohérence et une transparence totale.",
-                    },
+                        "Oui, les tarifs sont identiques dans les deux cabinets pour assurer cohérence et transparence."
+                    }
                   },
                   {
                     "@type": "Question",
-                    name: "La séance de drainage est-elle remboursée ?",
+                    name: "Les séances d’ostéopathie sont-elles remboursées ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Non, le drainage lymphatique Renata França n’est pas remboursé. Certaines mutuelles remboursent cependant l’ostéopathie.",
-                    },
+                        "Oui, la majorité des mutuelles remboursent les séances. Une facture est remise après chaque consultation."
+                    }
                   },
                   {
                     "@type": "Question",
-                    name: "Acceptez-vous les mutuelles ?",
+                    name: "Le drainage lymphatique Renata França est-il remboursé ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, une facture est fournie après chaque séance d’ostéopathie pour un éventuel remboursement.",
-                    },
-                  },
-                ],
-              },
+                        "Non, il s’agit d’un soin bien-être non remboursé. Seules les séances d’ostéopathie peuvent être prises en charge selon votre mutuelle."
+                    }
+                  }
+                ]
+              }
             ],
             null,
             2

@@ -34,20 +34,30 @@ export default function Home() {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
-            {
-              "@context": "https://schema.org",
-              "@type": "MedicalWebPage",
-              "@id": "https://www.hilaryfarid-osteopathe.fr/#home",
-              url: "https://www.hilaryfarid-osteopathe.fr",
-              name: "Hilary Farid – Ostéopathe DO à Sèvres & Paris 15",
-              description:
-                "Ostéopathie pour adultes, nourrissons, femmes enceintes et sportifs. Deux cabinets : Sèvres et Paris 15.",
-              mainEntity: {
+            [
+              {
+                "@context": "https://schema.org",
+                "@type": "MedicalWebPage",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/#webpage",
+                url: "https://www.hilaryfarid-osteopathe.fr",
+                name: "Hilary Farid – Ostéopathe DO à Sèvres & Paris 15",
+                description:
+                  "Ostéopathie adulte, nourrisson, femme enceinte et sportif. Drainage lymphatique Renata França. Deux cabinets : Sèvres & Paris 15.",
+                mainEntity: { "@id": "https://www.hilaryfarid-osteopathe.fr/#physician" }
+              },
+
+              /* ========================================================= */
+              /* ======================== PHYSICIAN ======================= */
+              /* ========================================================= */
+              {
+                "@context": "https://schema.org",
                 "@type": "Physician",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/#physician",
                 name: "Hilary Farid",
                 image: "https://www.hilaryfarid-osteopathe.fr/Hilary.png",
                 jobTitle: "Ostéopathe D.O.",
                 telephone: "+33 6 72 01 45 39",
+                email: "contact@hilaryfarid-osteopathe.fr",
                 url: "https://www.hilaryfarid-osteopathe.fr",
                 medicalSpecialty: [
                   "Osteopathy",
@@ -56,43 +66,106 @@ export default function Home() {
                   "SportsMedicine"
                 ],
                 worksFor: [
-                  {
-                    "@type": "LocalBusiness",
-                    name: "Cabinet d’ostéopathie – Sèvres",
-                    image: "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.jpeg",
-                    address: {
-                      "@type": "PostalAddress",
-                      streetAddress: "104 Grande Rue",
-                      addressLocality: "Sèvres",
-                      postalCode: "92310",
-                      addressCountry: "FR"
-                    },
-                    telephone: "+33 6 72 01 45 39",
-                    priceRange: "€€",
-                  },
-                  {
-                    "@type": "LocalBusiness",
-                    name: "Cabinet d’ostéopathie – Paris 15",
-                    image: "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.jpeg",
-                    address: {
-                      "@type": "PostalAddress",
-                      streetAddress: "28 Rue Letellier",
-                      addressLocality: "Paris",
-                      postalCode: "75015",
-                      addressCountry: "FR"
-                    },
-                    telephone: "+33 6 72 01 45 39",
-                    priceRange: "€€",
-                  }
+                  { "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-sevres" },
+                  { "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-paris15" }
                 ],
                 aggregateRating: {
                   "@type": "AggregateRating",
                   ratingValue: "5",
                   ratingCount: "42",
-                  bestRating: "5"
+                  bestRating: "5",
+                  worstRating: "5"
                 }
+              },
+
+              /* ========================================================= */
+              /* ==================== LOCAL BUSINESS : SEVRES ============ */
+              /* ========================================================= */
+              {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-sevres",
+                name: "Cabinet d’ostéopathie – Sèvres",
+                image: [
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.jpeg",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-2.jpeg",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-3.jpeg"
+                ],
+                telephone: "+33 6 72 01 45 39",
+                priceRange: "€€",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "104 Grande Rue",
+                  addressLocality: "Sèvres",
+                  postalCode: "92310",
+                  addressCountry: "FR"
+                },
+                identifier: {
+                  "@type": "PropertyValue",
+                  name: "SIRET",
+                  value: "90179515300013"
+                },
+                legalName: "SIREN 901795153",
+                openingHoursSpecification: [
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "09:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "13:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "12:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "15:00", closes: "20:00" }
+                ]
+              },
+
+              /* ========================================================= */
+              /* =================== LOCAL BUSINESS : PARIS 15 =========== */
+              /* ========================================================= */
+              {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-paris15",
+                name: "Cabinet d’ostéopathie – Paris 15",
+                image: [
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.jpeg",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-2.jpeg",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-3.jpeg"
+                ],
+                telephone: "+33 6 72 01 45 39",
+                priceRange: "€€",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "28 Rue Letellier",
+                  addressLocality: "Paris",
+                  postalCode: "75015",
+                  addressCountry: "FR"
+                },
+                identifier: {
+                  "@type": "PropertyValue",
+                  name: "SIRET",
+                  value: "90179515300021"
+                },
+                legalName: "SIREN 901795153",
+                openingHoursSpecification: [
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "09:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "13:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "12:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "15:00", closes: "20:00" }
+                ]
+              },
+
+              /* ========================================================= */
+              /* ======================== SERVICES ======================== */
+              /* ========================================================= */
+              {
+                "@context": "https://schema.org",
+                "@type": "Service",
+                serviceType: "Ostéopathie",
+                provider: { "@id": "https://www.hilaryfarid-osteopathe.fr/#physician" }
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "Service",
+                serviceType: "Drainage lymphatique – Méthode Renata França",
+                provider: { "@id": "https://www.hilaryfarid-osteopathe.fr/#physician" }
               }
-            },
+            ],
             null,
             2
           ),
@@ -431,7 +504,7 @@ export default function Home() {
             <rect x="3" y="4" width="18" height="18" rx="2" />
             <path d="M16 2v4M8 2v4M3 10h18" />
           </svg>
-      
+
           <span>Prendre RDV</span>
         </a>
       </div>
@@ -470,7 +543,7 @@ export default function Home() {
             <rect x="3" y="4" width="18" height="18" rx="2" />
             <path d="M16 2v4M8 2v4M3 10h18" />
           </svg>
-      
+
           <span className="text-primary font-semibold text-sm tracking-wide">
             Prendre RDV
           </span>

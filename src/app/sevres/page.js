@@ -79,90 +79,104 @@ export default function SevresPage() {
               {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
-                "@id":
-                  "https://www.hilaryfarid-osteopathe.fr/sevres#business",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/sevres#business",
                 name: "Cabinet d’Ostéopathie – Sèvres",
                 description:
-                  "Cabinet d’ostéopathie d’Hilary Farid à Sèvres. Consultations pour adultes, nourrissons, femmes enceintes et sportifs.",
+                  "Cabinet d’ostéopathie d’Hilary Farid à Sèvres. Consultations pour adultes, nourrissons, femmes enceintes, sportifs et seniors.",
                 image:
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.jpeg",
                 url: "https://www.hilaryfarid-osteopathe.fr/sevres",
                 telephone: "+33 6 72 01 45 39",
                 priceRange: "60€ – 90€",
-                openingHours: ["Mo-Sa 08:00-20:00"],
+
+                // ⭐ SIRET EXACT SÈVRES ⭐
+                legalName: "Hilary Farid – Ostéopathe DO",
+                taxID: "90179515300013",
+
+                // ⭐ HORAIRES EXACTS SÈVRES (format Google) ⭐
+                openingHoursSpecification: [
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "12:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Tuesday", opens: "00:00", closes: "00:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "15:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Thursday", opens: "00:00", closes: "00:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "09:00", closes: "20:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "13:00" },
+                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "00:00", closes: "00:00" }
+                ],
+
                 sameAs: [
                   "https://www.doctolib.fr/osteopathe/sevres/hilary-farid",
-                  "https://g.page/r/CfEVH_swFUP2EB0/review",
+                  "https://maps.google.com/?q=104+Grande+Rue,+92310+Sèvres"
                 ],
+
                 address: {
                   "@type": "PostalAddress",
                   streetAddress: "104 Grande Rue",
                   addressLocality: "Sèvres",
                   postalCode: "92310",
-                  addressCountry: "FR",
+                  addressRegion: "Île-de-France",
+                  addressCountry: "FR"
                 },
+
                 geo: {
                   "@type": "GeoCoordinates",
                   latitude: 48.822013,
-                  longitude: 2.2179,
-                },
+                  longitude: 2.2179
+                }
               },
+
+              // ⭐ FAQ SÈVRES Optimisée pour Rich Results ⭐
               {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
                 mainEntity: [
                   {
                     "@type": "Question",
-                    name:
-                      "Quels motifs sont pris en charge au cabinet de Sèvres ?",
+                    name: "Quels motifs sont pris en charge au cabinet d’ostéopathie de Sèvres ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Le cabinet de Sèvres accueille les adultes, nourrissons, femmes enceintes, sportifs et seniors pour des douleurs musculo-squelettiques, troubles fonctionnels, suivi de grossesse ou après un accouchement.",
+                        "Le cabinet accueille adultes, nourrissons, femmes enceintes, sportifs et seniors pour douleurs musculo-squelettiques, troubles fonctionnels, suivi de grossesse ou post-partum.",
                     },
                   },
                   {
                     "@type": "Question",
-                    name:
-                      "Le cabinet de Sèvres est-il facilement accessible en transports ?",
+                    name: "Le cabinet est-il accessible en transports depuis Sèvres ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, le cabinet est situé au 104 Grande Rue, à proximité de la gare de Sèvres, du tramway T2 et de plusieurs lignes de bus, ce qui en facilite l’accès en transports en commun.",
+                        "Oui, situé au 104 Grande Rue, le cabinet est proche de la gare de Sèvres, du tramway T2 et de plusieurs lignes de bus.",
                     },
                   },
                   {
                     "@type": "Question",
-                    name:
-                      "Puis-je venir avec mon nourrisson ou une poussette au cabinet de Sèvres ?",
+                    name: "Le cabinet de Sèvres est-il adapté aux nourrissons et aux poussettes ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, le cabinet est adapté à l’accueil des nourrissons et des parents avec poussette. Les consultations pédiatriques font partie des prises en charge habituelles.",
+                        "Oui, il est parfaitement adapté à l’accueil des nourrissons et des parents avec poussette. Les consultations pédiatriques font partie de la pratique quotidienne.",
                     },
                   },
                   {
                     "@type": "Question",
-                    name:
-                      "Y a-t-il un parking à proximité du cabinet d’ostéopathie ?",
+                    name: "Y a-t-il un parking à proximité du cabinet de Sèvres ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, plusieurs places de stationnement sont disponibles dans la Grande Rue de Sèvres et dans les rues adjacentes, ce qui permet un accès pratique en voiture.",
+                        "Oui, des places de stationnement sont disponibles dans la Grande Rue de Sèvres et les rues voisines.",
                     },
                   },
                   {
                     "@type": "Question",
-                    name:
-                      "Comment prendre rendez-vous au cabinet d’ostéopathie de Sèvres ?",
+                    name: "Comment prendre rendez-vous au cabinet d’ostéopathie de Sèvres ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Les rendez-vous se prennent directement en ligne via Doctolib ou par téléphone. Les créneaux sont disponibles du lundi au samedi, en journée et en fin de journée.",
+                        "Les rendez-vous se prennent via Doctolib ou par téléphone. Les consultations sont ouvertes du lundi au samedi.",
                     },
-                  },
-                ],
-              },
+                  }
+                ]
+              }
             ],
             null,
             2

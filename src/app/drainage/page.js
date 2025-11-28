@@ -72,35 +72,100 @@ export default function DrainagePage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             [
+              /* ==================== PAGE TYPE ==================== */
               {
                 "@context": "https://schema.org",
                 "@type": "MedicalWebPage",
-                "@id":
-                  "https://www.hilaryfarid-osteopathe.fr/drainage#medical",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#page",
                 url: "https://www.hilaryfarid-osteopathe.fr/drainage",
                 name: "Drainage lymphatique – Méthode Renata França",
                 description:
-                  "Drainage lymphatique méthode Renata França : dégonflement, légèreté, ventre plat, amélioration de la circulation et détox immédiate.",
-                about: [
-                  {
-                    "@type": "TherapeuticProcedure",
-                    name: "Drainage lymphatique Renata França",
-                  },
-                ],
-                medicalAudience: ["Adult", "PostpartumWomen", "Athlete"],
-                mainEntity: {
-                  "@type": "Physician",
-                  name: "Hilary Farid",
-                  image:
-                    "https://www.hilaryfarid-osteopathe.fr/Hilary.png",
-                  url: "https://www.hilaryfarid-osteopathe.fr",
-                  medicalSpecialty: [
-                    "Osteopathy",
-                    "PhysicalTherapy",
-                    "LymphaticTherapy",
-                  ],
+                  "Drainage lymphatique méthode Renata França : dégonflement immédiat, ventre plat, jambes légères, amélioration de la circulation et détox rapide.",
+                about: {
+                  "@type": "TherapeuticProcedure",
+                  name: "Drainage lymphatique Renata França"
                 },
+                breadcrumb: {
+                  "@type": "BreadcrumbList",
+                  itemListElement: [
+                    {
+                      "@type": "ListItem",
+                      position: 1,
+                      name: "Accueil",
+                      item: "https://www.hilaryfarid-osteopathe.fr"
+                    },
+                    {
+                      "@type": "ListItem",
+                      position: 2,
+                      name: "Drainage lymphatique",
+                      item: "https://www.hilaryfarid-osteopathe.fr/drainage"
+                    }
+                  ]
+                }
               },
+
+              /* ==================== SERVICE ==================== */
+              {
+                "@context": "https://schema.org",
+                "@type": "Service",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#service",
+                serviceType: "Drainage lymphatique – Méthode Renata França",
+                provider: {
+                  "@type": "Person",
+                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid"
+                },
+                areaServed: ["Sèvres", "Paris 15"],
+                description:
+                  "Méthode Renata França : drainage lymphatique manuel tonique, résultats immédiats : dégonflement, ventre plat, jambes légères, silhouette affinée.",
+                audience: ["Adult", "PostpartumWomen", "Athlete"]
+              },
+
+              /* ==================== LOCALBUSINESS SÈVRES ==================== */
+              {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/sevres#business",
+                name: "Cabinet d’Ostéopathie – Sèvres",
+                telephone: "+33 6 72 01 45 39",
+                image:
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.jpeg",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "104 Grande Rue",
+                  postalCode: "92310",
+                  addressLocality: "Sèvres",
+                  addressCountry: "FR"
+                },
+                makesOffer: {
+                  "@type": "Service",
+                  "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#service"
+                }
+              },
+
+              /* ==================== LOCALBUSINESS PARIS 15 ==================== */
+              {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/paris15#business",
+                name: "Cabinet d’Ostéopathie – Paris 15",
+                telephone: "+33 6 72 01 45 39",
+                image:
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.jpeg",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "28 Rue Letellier",
+                  postalCode: "75015",
+                  addressLocality: "Paris",
+                  addressRegion: "Île-de-France",
+                  addressCountry: "FR"
+                },
+                makesOffer: {
+                  "@type": "Service",
+                  "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#service"
+                }
+              },
+
+              /* ==================== FAQ ==================== */
               {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
@@ -112,8 +177,8 @@ export default function DrainagePage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "La méthode Renata França réduit la rétention d’eau, dégonfle immédiatement, affine la silhouette, améliore la digestion et procure une sensation de légèreté et de bien-être.",
-                    },
+                        "La méthode Renata França réduit la rétention d’eau, affine la silhouette, dégonfle dès la première séance, améliore la digestion et procure des jambes légères."
+                    }
                   },
                   {
                     "@type": "Question",
@@ -121,20 +186,29 @@ export default function DrainagePage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Une séance permet déjà un dégonflement visible. Une cure de 3 à 5 séances optimise les résultats.",
-                    },
+                        "Une séance suffit pour un effet immédiat. Une cure de 3 à 5 séances optimise les résultats."
+                    }
                   },
                   {
                     "@type": "Question",
-                    name: "Le drainage Renata França fait-il mal ?",
+                    name: "La méthode est-elle douloureuse ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "La méthode est tonique mais jamais douloureuse. Les pressions sont adaptées au confort de chacun.",
-                    },
+                        "Non. Les pressions sont toniques mais jamais douloureuses, et toujours adaptées au confort du patient."
+                    }
                   },
-                ],
-              },
+                  {
+                    "@type": "Question",
+                    name: "Est-ce adapté en post-partum ?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text:
+                        "Oui, c’est très efficace pour dégonfler, améliorer la digestion et retrouver une sensation de légèreté."
+                    }
+                  }
+                ]
+              }
             ],
             null,
             2

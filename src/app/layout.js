@@ -12,11 +12,9 @@ export const metadata = {
   },
   description:
     "Hilary Farid, ostéopathe DO à Sèvres et Paris 15. Consultations pour adultes, nourrissons, femmes enceintes et post-accouchement, ainsi que drainage lymphatique méthode Renata França.",
-
   icons: {
     icon: "/favicon.ico",
   },
-
   openGraph: {
     title: "Hilary Farid – Ostéopathe DO à Sèvres & Paris 15",
     description:
@@ -34,7 +32,6 @@ export const metadata = {
       },
     ],
   },
-
   robots: {
     index: true,
     follow: true,
@@ -46,6 +43,7 @@ export default function RootLayout({ children }) {
     <html lang="fr">
 
       <head>
+
         {/* --------- GOOGLE ANALYTICS --------- */}
         <Script
           async
@@ -70,102 +68,40 @@ export default function RootLayout({ children }) {
 
       <body className="bg-offwhite text-primary">
 
-        {/* --------- PERSON SCHEMA --------- */}
+        {/* --------- JSON-LD GLOBAL (PERSON + PHYSICIAN) --------- */}
         <Script
-          id="ld-person-hilary-farid"
+          id="ld-global-hilary-farid"
           type="application/ld+json"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(
               {
                 "@context": "https://schema.org",
-                "@type": "Person",
+                "@type": ["Person", "Physician"],
+                "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid",
                 name: "Hilary Farid",
                 jobTitle: "Ostéopathe D.O.",
-                telephone: "+33 6 72 01 45 39",
+                image: "https://www.hilaryfarid-osteopathe.fr/Hilary.png",
                 url: "https://www.hilaryfarid-osteopathe.fr",
-                image: "https://www.hilaryfarid-osteopathe.fr/Hilary.png",
-                worksFor: [
-                  {
-                    "@type": "LocalBusiness",
-                    name: "Cabinet d’ostéopathie – Sèvres",
-                    address: {
-                      "@type": "PostalAddress",
-                      streetAddress: "104 Grande Rue",
-                      postalCode: "92310",
-                      addressLocality: "Sèvres",
-                      addressCountry: "FR",
-                    },
-                  },
-                  {
-                    "@type": "LocalBusiness",
-                    name: "Cabinet d’ostéopathie – Paris 15",
-                    address: {
-                      "@type": "PostalAddress",
-                      streetAddress: "28 Rue Letellier",
-                      postalCode: "75015",
-                      addressLocality: "Paris",
-                      addressRegion: "Île-de-France",
-                      addressCountry: "FR",
-                    },
-                  },
-                ],
-              },
-              null,
-              2
-            ),
-          }}
-        />
-
-        {/* --------- PHYSICIAN / MEDICAL SCHEMA --------- */}
-        <Script
-          id="ld-schema-physician"
-          type="application/ld+json"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(
-              {
-                "@context": "https://schema.org",
-                "@type": "Physician",
-                "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid",
-                name: "Hilary Farid",
-                image: "https://www.hilaryfarid-osteopathe.fr/Hilary.png",
+                telephone: "+33 6 72 01 45 39",
                 description:
-                  "Ostéopathe D.O. à Sèvres (92310) et Paris 15 (75015). Spécialisé en ostéopathie adulte, nourrisson, femme enceinte et sportif.",
+                  "Ostéopathe D.O. spécialisée en ostéopathie adulte, nourrisson, femme enceinte et sportif. Consultations à Sèvres (92310) et Paris 15 (75015).",
+                nationality: "Française",
                 medicalSpecialty: [
                   "Osteopathy",
                   "PregnancyCare",
                   "SportsMedicine",
                   "Pediatric"
                 ],
-                telephone: "+33 6 72 01 45 39",
-                url: "https://www.hilaryfarid-osteopathe.fr",
-
-                address: [
-                  {
-                    "@type": "PostalAddress",
-                    streetAddress: "104 Grande Rue",
-                    addressLocality: "Sèvres",
-                    postalCode: "92310",
-                    addressCountry: "FR"
-                  },
-                  {
-                    "@type": "PostalAddress",
-                    streetAddress: "28 Rue Letellier",
-                    addressLocality: "Paris",
-                    postalCode: "75015",
-                    addressRegion: "Île-de-France",
-                    addressCountry: "FR"
-                  }
+                knowsAbout: [
+                  "Ostéopathie adulte",
+                  "Ostéopathie femme enceinte",
+                  "Ostéopathie nourrisson",
+                  "Ostéopathie pédiatrique",
+                  "Ostéopathie du sport",
+                  "Douleurs articulaires",
+                  "Mobilité articulaire"
                 ],
-
-                availableService: [
-                  { "@type": "MedicalTherapy", name: "Ostéopathie adulte" },
-                  { "@type": "MedicalTherapy", name: "Ostéopathie nourrisson" },
-                  { "@type": "MedicalTherapy", name: "Ostéopathie femme enceinte" },
-                  { "@type": "MedicalTherapy", name: "Ostéopathie du sport" }
-                ],
-
                 sameAs: [
                   "https://www.doctolib.fr/osteopathe/sevres/hilary-farid",
                   "https://www.google.com/maps/place/104+Grande+Rue,+92310+Sèvres",
