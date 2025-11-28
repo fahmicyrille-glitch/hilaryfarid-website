@@ -81,7 +81,7 @@ export default function Paris15Page() {
                 description:
                   "Cabinet d’ostéopathie d’Hilary Farid à Paris 15. Consultations pour adultes, nourrissons, femmes enceintes et sportifs.",
                 image:
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.jpeg",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
                 url: "https://www.hilaryfarid-osteopathe.fr/paris15",
                 telephone: "+33 6 72 01 45 39",
                 priceRange: "60€ – 90€",
@@ -176,7 +176,7 @@ export default function Paris15Page() {
       {/* ================= HERO ================= */}
       <section className="relative h-[60vh] w-full overflow-hidden">
         <Image
-          src="/cabinet-paris15/cabinet-paris15-1.jpeg"
+          src="/cabinet-paris15/cabinet-paris15-1.webp"
           alt="Cabinet d'ostéopathie à Paris 15"
           fill
           className="absolute inset-0 object-cover"
@@ -297,7 +297,7 @@ export default function Paris15Page() {
                   <div className="flex justify-center">
                     <div className="relative w-full max-w-sm h-[450px] rounded-xl shadow-xl overflow-hidden">
                       <Image
-                        src="/hilary.png"
+                        src="/hilary.webp"
                         alt="Hilary Farid Ostéopathe Paris 15"
                         fill
                         className="object-cover"
@@ -320,9 +320,9 @@ export default function Paris15Page() {
 
                 <div className="grid md:grid-cols-3 gap-6">
                   {[
-                    "cabinet-paris15-1.jpeg",
-                    "cabinet-paris15-2.jpeg",
-                    "cabinet-paris15-3.jpeg",
+                    "cabinet-paris15-1.webp",
+                    "cabinet-paris15-2.webp",
+                    "cabinet-paris15-3.webp",
                   ].map((img, i) => (
                     <div
                       key={i}
@@ -366,7 +366,7 @@ export default function Paris15Page() {
 
                   <div className="relative w-full h-[260px] md:h-[300px] rounded-lg overflow-hidden shadow-xl">
                     <Image
-                      src="/cabinet-paris15/cabinet-paris15-2.jpeg"
+                      src="/cabinet-paris15/cabinet-paris15-2.webp"
                       alt="Salle du cabinet d’ostéopathie Paris 15"
                       fill
                       className="object-cover"

@@ -8,10 +8,10 @@ import Image from "next/image";
 
 export default function DrainageGallery() {
   const images = [
-    { src: "/drainage/avant_apres_jambe.png", alt: "Avant / Après jambes" },
-    { src: "/drainage/avant_apres_ventre.png", alt: "Avant / Après ventre" },
-    { src: "/drainage/drainage_jambe.png", alt: "Drainage des jambes" },
-    { src: "/drainage/drainage_ventre.png", alt: "Drainage du ventre" },
+    { src: "/drainage/avant_apres_jambe.webp", alt: "Avant / Après jambes" },
+    { src: "/drainage/avant_apres_ventre.webp", alt: "Avant / Après ventre" },
+    { src: "/drainage/drainage_jambe.webp", alt: "Drainage des jambes" },
+    { src: "/drainage/drainage_ventre.webp", alt: "Drainage du ventre" },
   ];
 
   const [open, setOpen] = useState(false);

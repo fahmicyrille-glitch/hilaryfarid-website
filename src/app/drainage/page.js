@@ -128,7 +128,7 @@ export default function DrainagePage() {
                 name: "Cabinet d’Ostéopathie – Sèvres",
                 telephone: "+33 6 72 01 45 39",
                 image:
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.jpeg",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
                 address: {
                   "@type": "PostalAddress",
                   streetAddress: "104 Grande Rue",
@@ -150,7 +150,7 @@ export default function DrainagePage() {
                 name: "Cabinet d’Ostéopathie – Paris 15",
                 telephone: "+33 6 72 01 45 39",
                 image:
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.jpeg",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
                 address: {
                   "@type": "PostalAddress",
                   streetAddress: "28 Rue Letellier",
@@ -219,7 +219,7 @@ export default function DrainagePage() {
       {/* ================= HERO ================= */}
       <section className="relative h-[70vh] w-full overflow-hidden">
         <Image
-          src="/drainage/drainage_ventre.png"
+          src="/drainage/drainage_ventre.webp"
           alt="Drainage lymphatique Renata França"
           fill
           priority
@@ -229,7 +229,7 @@ export default function DrainagePage() {
         <div className="absolute inset-0 bg-black/50 flex flex-col justify-center text-center px-6">
           <FadeIn>
             <Image
-              src="/drainage/drainage_Logo.png"
+              src="/drainage/drainage_Logo.webp"
               alt="Logo Renata França"
               width={160}
               height={160}
@@ -432,7 +432,7 @@ export default function DrainagePage() {
                 <div className="grid md:grid-cols-2 gap-12 mt-12">
                   <div className="shadow-xl rounded-lg overflow-hidden">
                     <Image
-                      src="/drainage/avant_apres_jambe.png"
+                      src="/drainage/avant_apres_jambe.webp"
                       alt="Résultat avant après jambes drainage lymphatique"
                       width={900}
                       height={900}
@@ -442,7 +442,7 @@ export default function DrainagePage() {
 
                   <div className="shadow-xl rounded-lg overflow-hidden">
                     <Image
-                      src="/drainage/avant_apres_ventre.png"
+                      src="/drainage/avant_apres_ventre.webp"
                       alt="Résultat avant après ventre drainage lymphatique"
                       width={900}
                       height={900}
@@ -467,7 +467,7 @@ export default function DrainagePage() {
 
                 <div className="grid md:grid-cols-2 gap-10 mt-12 items-center">
                   <Image
-                    src="/drainage/drainage_jambe.png"
+                    src="/drainage/drainage_jambe.webp"
                     alt="Drainage lymphatique jambes méthode Renata França"
                     width={800}
                     height={800}

@@ -18,7 +18,7 @@ export const metadata = {
     description:
       "Consultations d’ostéopathie et drainage lymphatique Renata França à Sèvres & Paris 15. Adultes, nourrissons, femmes enceintes et sportifs.",
     url: "https://www.hilaryfarid-osteopathe.fr",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
   },
 };
 
@@ -53,7 +53,7 @@ export default function Home() {
                 "@type": "Physician",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/#physician",
                 name: "Hilary Farid",
-                image: "https://www.hilaryfarid-osteopathe.fr/Hilary.png",
+                image: "https://www.hilaryfarid-osteopathe.fr/Hilary.webp",
                 jobTitle: "Ostéopathe D.O.",
                 telephone: "+33 6 72 01 45 39",
                 email: "contact@hilaryfarid-osteopathe.fr",
@@ -86,9 +86,9 @@ export default function Home() {
                 "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-sevres",
                 name: "Cabinet d’ostéopathie – Sèvres",
                 image: [
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.jpeg",
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-2.jpeg",
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-3.jpeg"
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-2.webp",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-3.webp"
                 ],
                 telephone: "+33 6 72 01 45 39",
                 priceRange: "€€",
@@ -122,9 +122,9 @@ export default function Home() {
                 "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-paris15",
                 name: "Cabinet d’ostéopathie – Paris 15",
                 image: [
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.jpeg",
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-2.jpeg",
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-3.jpeg"
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-2.webp",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-3.webp"
                 ],
                 telephone: "+33 6 72 01 45 39",
                 priceRange: "€€",
@@ -237,7 +237,7 @@ export default function Home() {
               <div className="absolute -inset-4 bg-offwhite/10 rounded-3xl blur-xl" />
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-offwhite/30">
                 <Image
-                  src="/hilary.png"
+                  src="/hilary.webp"
                   alt="Hilary Farid, ostéopathe à Sèvres et Paris 15"
                   width={600}
                   height={600}
@@ -410,21 +410,21 @@ export default function Home() {
               {/* Galerie */}
               <div className="grid grid-cols-3 gap-2 mb-5 rounded-xl overflow-hidden">
                 <Image
-                  src="/cabinet-sevres/cabinet-sevres-1.jpeg"
+                  src="/cabinet-sevres/cabinet-sevres-1.webp"
                   width={350}
                   height={200}
                   alt="Cabinet d’ostéopathie à Sèvres – salle de consultation"
                   className="object-cover h-28 w-full"
                 />
                 <Image
-                  src="/cabinet-sevres/cabinet-sevres-2.jpeg"
+                  src="/cabinet-sevres/cabinet-sevres-2.webp"
                   width={350}
                   height={200}
                   alt="Cabinet d’ostéopathie à Sèvres – table de soin"
                   className="object-cover h-28 w-full"
                 />
                 <Image
-                  src="/cabinet-sevres/cabinet-sevres-3.jpeg"
+                  src="/cabinet-sevres/cabinet-sevres-3.webp"
                   width={350}
                   height={200}
                   alt="Cabinet d’ostéopathie à Sèvres – salle d’attente"
@@ -458,21 +458,21 @@ export default function Home() {
               {/* Galerie */}
               <div className="grid grid-cols-3 gap-2 mb-5 rounded-xl overflow-hidden">
                 <Image
-                  src="/cabinet-paris15/cabinet-paris15-1.jpeg"
+                  src="/cabinet-paris15/cabinet-paris15-1.webp"
                   width={350}
                   height={200}
                   alt="Cabinet d’ostéopathie à Paris 15 – salle de consultation"
                   className="object-cover h-28 w-full"
                 />
                 <Image
-                  src="/cabinet-paris15/cabinet-paris15-2.jpeg"
+                  src="/cabinet-paris15/cabinet-paris15-2.webp"
                   width={350}
                   height={200}
                   alt="Cabinet d’ostéopathie à Paris 15 – table de soin"
                   className="object-cover h-28 w-full"
                 />
                 <Image
-                  src="/cabinet-paris15/cabinet-paris15-3.jpeg"
+                  src="/cabinet-paris15/cabinet-paris15-3.webp"
                   width={350}
                   height={200}
                   alt="Cabinet d’ostéopathie à Paris 15 – salle d’attente"

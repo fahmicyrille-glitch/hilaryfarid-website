@@ -9,6 +9,6 @@ export const metadata = {
   description:
     "Avis vérifiés de patients : ostéopathie adulte, nourrisson, grossesse et sportif. Cabinets à Sèvres et Paris 15.",
   url: "https://www.hilaryfarid-osteopathe.fr/temoignages",
-  images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
   },
 };

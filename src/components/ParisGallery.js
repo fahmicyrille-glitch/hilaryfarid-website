@@ -9,9 +9,9 @@ export default function ParisGallery() {
   const [open, setOpen] = useState(false);
 
   const images = [
-    "/cabinet-paris15/cabinet-paris15-1.jpeg",
-    "/cabinet-paris15/cabinet-paris15-2.jpeg",
-    "/cabinet-paris15/cabinet-paris15-3.jpeg",
+    "/cabinet-paris15/cabinet-paris15-1.webp",
+    "/cabinet-paris15/cabinet-paris15-2.webp",
+    "/cabinet-paris15/cabinet-paris15-3.webp",
   ];
 
   return (

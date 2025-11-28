@@ -4,7 +4,7 @@ export default function SEO({
   title,
   description,
   canonical = "",
-  image = "/og-image.jpg",
+  image = "/og-image.webp",
 }) {
   const fullCanonical = canonical.startsWith("http")
     ? canonical

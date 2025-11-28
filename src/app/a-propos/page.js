@@ -70,7 +70,7 @@ export default function AProposPage() {
                 name: "À propos – Hilary Farid, Ostéopathe D.O.",
                 description:
                   "Présentation d’Hilary Farid, ostéopathe D.O. installée à Sèvres et Paris 15. Formations, approche thérapeutique, spécialisations nourrissons, femmes enceintes, adultes et sportifs.",
-                image: "https://www.hilaryfarid-osteopathe.fr/Hilary.png",
+                image: "https://www.hilaryfarid-osteopathe.fr/Hilary.webp",
 
                 // Relation avec le schéma global Person
                 about: {

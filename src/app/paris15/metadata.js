@@ -9,6 +9,6 @@ export const metadata = {
     description:
       "Ostéopathie douce et précise pour adultes, grossesse, nourrissons et sportifs. Cabinet situé 28 Rue Letellier, Paris 15.",
     url: "https://www.hilaryfarid-osteopathe.fr/paris15",
-    images: [{ url: "/cabinet-paris15/cabinet-paris15-1.jpeg" }],
+    images: [{ url: "/cabinet-paris15/cabinet-paris15-1.webp" }],
   },
 };

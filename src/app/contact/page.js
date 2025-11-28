@@ -106,7 +106,7 @@ export default function ContactPage() {
                 telephone: "+33 6 72 01 45 39",
                 priceRange: "60€ – 90€",
                 image:
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.jpeg",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
                 address: {
                   "@type": "PostalAddress",
                   streetAddress: "104 Grande Rue",
@@ -143,7 +143,7 @@ export default function ContactPage() {
                 telephone: "+33 6 72 01 45 39",
                 priceRange: "60€ – 90€",
                 image:
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.jpeg",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
                 address: {
                   "@type": "PostalAddress",
                   streetAddress: "28 Rue Letellier",

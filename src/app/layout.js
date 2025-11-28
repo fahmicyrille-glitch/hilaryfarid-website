@@ -25,7 +25,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Hilary Farid Ostéopathe DO – Sèvres & Paris 15",
@@ -81,7 +81,7 @@ export default function RootLayout({ children }) {
                 "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid",
                 name: "Hilary Farid",
                 jobTitle: "Ostéopathe D.O.",
-                image: "https://www.hilaryfarid-osteopathe.fr/Hilary.png",
+                image: "https://www.hilaryfarid-osteopathe.fr/Hilary.webp",
                 url: "https://www.hilaryfarid-osteopathe.fr",
                 telephone: "+33 6 72 01 45 39",
                 description:

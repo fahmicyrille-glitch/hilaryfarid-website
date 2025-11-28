@@ -163,7 +163,7 @@ export default function OsteopathiePage() {
                 name: "Cabinet d’Ostéopathie – Sèvres",
                 telephone: "+33 6 72 01 45 39",
                 image:
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.jpeg",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
                 address: {
                   "@type": "PostalAddress",
                   streetAddress: "104 Grande Rue",
@@ -185,7 +185,7 @@ export default function OsteopathiePage() {
                 name: "Cabinet d’Ostéopathie – Paris 15",
                 telephone: "+33 6 72 01 45 39",
                 image:
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.jpeg",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
                 address: {
                   "@type": "PostalAddress",
                   streetAddress: "28 Rue Letellier",
@@ -295,7 +295,7 @@ export default function OsteopathiePage() {
 
             <div className="relative w-full h-72 md:h-96 rounded-2xl overflow-hidden shadow-lg">
               <Image
-                src="/osteopathie/urgence.png"
+                src="/osteopathie/urgence.webp"
                 alt="Douleurs cervicales soulagées par l’ostéopathie"
                 fill
                 priority
@@ -349,7 +349,7 @@ export default function OsteopathiePage() {
                 <article className="bg-white rounded-xl shadow-sm overflow-hidden border">
                   <div className="relative h-32">
                     <Image
-                      src="/osteopathie/urgence.png"
+                      src="/osteopathie/urgence.webp"
                       alt="Ostéopathie adulte"
                       fill
                       className="object-cover"
@@ -371,7 +371,7 @@ export default function OsteopathiePage() {
                 <article className="bg-white rounded-xl shadow-sm overflow-hidden border">
                   <div className="relative h-32">
                     <Image
-                      src="/osteopathie/FE.png"
+                      src="/osteopathie/FE.webp"
                       alt="Ostéopathie femme enceinte"
                       fill
                       className="object-cover"
@@ -395,7 +395,7 @@ export default function OsteopathiePage() {
                 <article className="bg-white rounded-xl shadow-sm overflow-hidden border">
                   <div className="relative h-32">
                     <Image
-                      src="/osteopathie/enfant.png"
+                      src="/osteopathie/enfant.webp"
                       alt="Ostéopathie enfant"
                       fill
                       className="object-cover"
@@ -419,7 +419,7 @@ export default function OsteopathiePage() {
                 <article className="bg-white rounded-xl shadow-sm overflow-hidden border">
                   <div className="relative h-32">
                     <Image
-                      src="/osteopathie/nour.png"
+                      src="/osteopathie/nour.webp"
                       alt="Ostéopathie nourrisson"
                       fill
                       className="object-cover"
@@ -455,7 +455,7 @@ export default function OsteopathiePage() {
                 <div className="p-6 rounded-xl border bg-offwhite/60 flex gap-4">
                   <div className="relative w-28 h-28 rounded-full overflow-hidden shadow-lg ring-2 ring-light flex-shrink-0">
                     <Image
-                      src="/osteopathie/urgence.png"
+                      src="/osteopathie/urgence.webp"
                       alt="Douleurs musculo-squelettiques"
                       fill
                       className="object-cover"
@@ -478,7 +478,7 @@ export default function OsteopathiePage() {
                 <div className="p-6 rounded-xl border bg-offwhite/60 flex gap-4">
                   <div className="relative w-28 h-28 rounded-full overflow-hidden shadow-lg ring-2 ring-light flex-shrink-0">
                     <Image
-                      src="/osteopathie/machoir.png"
+                      src="/osteopathie/machoir.webp"
                       alt="Douleurs de mâchoire ATM"
                       fill
                       className="object-cover"
@@ -500,7 +500,7 @@ export default function OsteopathiePage() {
                 <div className="p-6 rounded-xl border bg-offwhite/60 flex gap-4">
                   <div className="relative w-28 h-28 rounded-full overflow-hidden shadow-lg ring-2 ring-light flex-shrink-0">
                     <Image
-                      src="/osteopathie/sport.jpg"
+                      src="/osteopathie/sport.webp"
                       alt="Ostéopathie du sport"
                       fill
                       className="object-cover"

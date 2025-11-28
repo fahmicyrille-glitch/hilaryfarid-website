@@ -9,6 +9,6 @@ export const metadata = {
   description:
     "Drainage lymphatique Renata França : détox, jambes légères, réduction des gonflements. Disponible à Sèvres & Paris 15.",
   url: "https://www.hilaryfarid-osteopathe.fr/drainage",
-  images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
   },
 };

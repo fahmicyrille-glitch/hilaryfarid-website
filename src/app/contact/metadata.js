@@ -9,6 +9,6 @@ export const metadata = {
     description:
       "Contactez votre ostéopathe à Sèvres & Paris 15. Toutes les informations pratiques.",
     url: "https://www.hilaryfarid-osteopathe.fr/contact",
-    images: [{ url: "/og-image.jpg" }],
+    images: [{ url: "/og-image.webp" }],
   },
 };

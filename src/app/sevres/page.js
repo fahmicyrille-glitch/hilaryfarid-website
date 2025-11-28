@@ -84,7 +84,7 @@ export default function SevresPage() {
                 description:
                   "Cabinet d’ostéopathie d’Hilary Farid à Sèvres. Consultations pour adultes, nourrissons, femmes enceintes, sportifs et seniors.",
                 image:
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.jpeg",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
                 url: "https://www.hilaryfarid-osteopathe.fr/sevres",
                 telephone: "+33 6 72 01 45 39",
                 priceRange: "60€ – 90€",
@@ -187,7 +187,7 @@ export default function SevresPage() {
       {/* ================= HERO ================= */}
       <section className="relative h-[60vh] w-full overflow-hidden">
         <Image
-          src="/cabinet-sevres/cabinet-sevres-1.jpeg"
+          src="/cabinet-sevres/cabinet-sevres-1.webp"
           alt="Cabinet d'ostéopathie à Sèvres"
           fill
           className="absolute inset-0 object-cover"
@@ -310,7 +310,7 @@ export default function SevresPage() {
                   <div className="flex justify-center">
                     <div className="relative w-full max-w-sm h-[450px] rounded-xl shadow-xl overflow-hidden">
                       <Image
-                        src="/hilary.png"
+                        src="/hilary.webp"
                         alt="Hilary Farid Ostéopathe à Sèvres"
                         fill
                         className="object-cover"
@@ -333,9 +333,9 @@ export default function SevresPage() {
 
                 <div className="grid md:grid-cols-3 gap-6">
                   {[
-                    "cabinet-sevres-1.jpeg",
-                    "cabinet-sevres-2.jpeg",
-                    "cabinet-sevres-3.jpeg",
+                    "cabinet-sevres-1.webp",
+                    "cabinet-sevres-2.webp",
+                    "cabinet-sevres-3.webp",
                   ].map((img, i) => (
                     <div
                       key={i}
@@ -380,7 +380,7 @@ export default function SevresPage() {
 
                   <div className="relative w-full h-[260px] md:h-[300px] rounded-lg overflow-hidden shadow-xl">
                     <Image
-                      src="/cabinet-sevres/cabinet-sevres-2.jpeg"
+                      src="/cabinet-sevres/cabinet-sevres-2.webp"
                       alt="Salle d'attente du cabinet"
                       fill
                       className="object-cover"

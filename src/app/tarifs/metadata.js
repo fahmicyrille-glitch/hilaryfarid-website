@@ -9,6 +9,6 @@ title: "Tarifs Ostéopathie & Drainage lymphatique Renata França – Hilary Far
 description:
 "Découvrez les tarifs des séances d’ostéopathie et de drainage lymphatique Renata França.",
 url: "https://www.hilaryfarid-osteopathe.fr/tarifs",
-images: [{ url: "/og-image.jpg" }],
+images: [{ url: "/og-image.webp" }],
 },
 };

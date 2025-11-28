@@ -9,9 +9,9 @@ export default function SevresGallery() {
   const [open, setOpen] = useState(false);
 
   const images = [
-    "/cabinet-sevres/cabinet-sevres-1.jpeg",
-    "/cabinet-sevres/cabinet-sevres-2.jpeg",
-    "/cabinet-sevres/cabinet-sevres-3.jpeg",
+    "/cabinet-sevres/cabinet-sevres-1.webp",
+    "/cabinet-sevres/cabinet-sevres-2.webp",
+    "/cabinet-sevres/cabinet-sevres-3.webp",
   ];
 
   return (

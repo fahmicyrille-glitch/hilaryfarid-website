@@ -9,6 +9,6 @@ export const metadata = {
     description:
       "Consultations d’ostéopathie à Sèvres : douleurs, posture, nourrissons, grossesse, sport. Cabinet situé au 104 Grande Rue.",
     url: "https://www.hilaryfarid-osteopathe.fr/sevres",
-    images: [{ url: "/cabinet-sevres/cabinet-sevres-1.jpeg" }],
+    images: [{ url: "/cabinet-sevres/cabinet-sevres-1.webp" }],
   },
 };
