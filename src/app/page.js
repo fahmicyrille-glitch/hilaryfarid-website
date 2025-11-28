@@ -9,9 +9,7 @@ export const metadata = {
     "Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO | Ostéopathie & Drainage lymphatique Renata França",
   description:
     "Ostéopathe DO à Sèvres (92310) et Paris 15 (75015), Hilary Farid prend en charge adultes, nourrissons, femmes enceintes et sportifs. Ostéopathie douce, précise et drainage lymphatique Renata França. Rendez-vous rapides sur Doctolib.",
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
   openGraph: {
     title:
       "Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO",
@@ -30,7 +28,7 @@ export default function Home() {
       <Script
         id="ld-home-medicalwebpage"
         type="application/ld+json"
-        strategy="lazyOnload"
+        strategy="afterInteractive"  /* FIX SEO + Perf */
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             [
@@ -44,10 +42,6 @@ export default function Home() {
                   "Ostéopathie adulte, nourrisson, femme enceinte et sportif. Drainage lymphatique Renata França. Deux cabinets : Sèvres & Paris 15.",
                 mainEntity: { "@id": "https://www.hilaryfarid-osteopathe.fr/#physician" }
               },
-
-              /* ========================================================= */
-              /* ======================== PHYSICIAN ======================= */
-              /* ========================================================= */
               {
                 "@context": "https://schema.org",
                 "@type": "Physician",
@@ -76,10 +70,6 @@ export default function Home() {
                   worstRating: "5"
                 }
               },
-
-              /* ========================================================= */
-              /* ==================== LOCAL BUSINESS : SEVRES ============ */
-              /* ========================================================= */
               {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
@@ -112,10 +102,6 @@ export default function Home() {
                   { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "15:00", closes: "20:00" }
                 ]
               },
-
-              /* ========================================================= */
-              /* =================== LOCAL BUSINESS : PARIS 15 =========== */
-              /* ========================================================= */
               {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
@@ -148,10 +134,6 @@ export default function Home() {
                   { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "15:00", closes: "20:00" }
                 ]
               },
-
-              /* ========================================================= */
-              /* ======================== SERVICES ======================== */
-              /* ========================================================= */
               {
                 "@context": "https://schema.org",
                 "@type": "Service",
@@ -512,15 +494,15 @@ export default function Home() {
         </FadeInNoShift>
       </section>
 
-      {/* ===== FIX CLS DESKTOP — placeholder réservé ===== */}
-      <div className="hidden md:block w-[90px] h-[200px]"></div>
+      {/* ===== FIX CLS DESKTOP */}
+      <div className="hidden md:block w-[90px] h-[200px] shrink-0 min-h-[200px]"></div>
 
-      {/* ------ MOBILE DOCTOLIB ------ */}
+      {/* ------ MOBILE DOCTOLIB (no blur = FIX PERF) ------ */}
       <div
         className="
           fixed bottom-5 left-1/2 -translate-x-1/2
           z-50 md:hidden
-          backdrop-blur-xl bg-white/90 border border-primary/20
+          bg-white/95 border border-primary/20
           shadow-[0_8px_30px_rgba(0,0,0,0.15)]
           rounded-full px-6 py-3 flex items-center gap-2
         "
@@ -547,7 +529,7 @@ export default function Home() {
         </a>
       </div>
 
-      {/* ------ DESKTOP DOCTOLIB ------ */}
+      {/* ------ DESKTOP DOCTOLIB (no blur = FIX PERF) ------ */}
       <div
         className="
           hidden md:flex
@@ -561,7 +543,7 @@ export default function Home() {
           rel="noopener noreferrer"
           className="
             flex items-center gap-3
-            bg-white/90 backdrop-blur-xl
+            bg-white/95
             border border-primary/20
             shadow-[0_8px_30px_rgba(0,0,0,0.12)]
             px-5 py-3 rounded-2xl

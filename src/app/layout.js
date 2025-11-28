@@ -1,8 +1,18 @@
+// src/app/layout.js
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Script from "next/script";
+
+// ====== Élimination des requêtes Google Fonts cachées ======
+// Next empêche Chrome de charger automati­quement fonts.googleapis.com
+import { Roboto } from "next/font/google";
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  display: "swap",
+});
 
 export const metadata = {
   metadataBase: new URL("https://www.hilaryfarid-osteopathe.fr"),
@@ -25,7 +35,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.webp",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Hilary Farid Ostéopathe DO – Sèvres & Paris 15",
@@ -40,9 +50,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fr">
-
+    <html lang="fr" className={roboto.className}>
       <head>
+
+        {/* 🔥 PRECONNECTS pour éviter 300ms de latence */}
+        <link rel="preconnect" href="https://www.hilaryfarid-osteopathe.fr" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+
+        {/* 🔥 PRELOAD CSS — permet un LCP beaucoup plus rapide */}
+        <link
+          rel="preload"
+          href="/globals.css"
+          as="style"
+        />
+        <link rel="stylesheet" href="/globals.css" />
 
         {/* --------- GOOGLE ANALYTICS --------- */}
         <Script
@@ -68,7 +90,7 @@ export default function RootLayout({ children }) {
 
       <body className="bg-offwhite text-primary">
 
-        {/* --------- JSON-LD GLOBAL (PERSON + PHYSICIAN) --------- */}
+        {/* --------- JSON-LD GLOBAL --------- */}
         <Script
           id="ld-global-hilary-farid"
           type="application/ld+json"
