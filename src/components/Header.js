@@ -7,19 +7,17 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 
-// === Framer Motion Dynamic Imports ===
+// Framer Motion (lazy)
 const MotionDiv = dynamic(
-  () => import("framer-motion").then((mod) => mod.motion.div),
+  () => import("framer-motion").then((m) => m.motion.div),
   { ssr: false }
 );
-
 const MotionSpan = dynamic(
-  () => import("framer-motion").then((mod) => mod.motion.span),
+  () => import("framer-motion").then((m) => m.motion.span),
   { ssr: false }
 );
-
 const AnimatePresence = dynamic(
-  () => import("framer-motion").then((mod) => mod.AnimatePresence),
+  () => import("framer-motion").then((m) => m.AnimatePresence),
   { ssr: false }
 );
 
@@ -30,7 +28,6 @@ export default function Header() {
 
   const toggleMenu = () => setOpen((prev) => !prev);
 
-  // Shrink du header au scroll
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", onScroll);
@@ -39,18 +36,6 @@ export default function Header() {
 
   const isActive = (href) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
-
-  const menuItemBase =
-    "relative inline-block transition-colors duration-200 after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:bg-primary after:transition-all after:duration-300";
-
-  const getMenuItemClass = (href) =>
-    [
-      menuItemBase,
-      "text-sm md:text-base",
-      isActive(href)
-        ? "text-primary font-semibold after:w-full"
-        : "text-graywarm hover:text-primary after:w-0 hover:after:w-full",
-    ].join(" ");
 
   const links = [
     ["Accueil", "/"],
@@ -66,20 +51,19 @@ export default function Header() {
 
   return (
     <header
-      className={`w-full sticky top-0 z-[9998] border-b border-graywarm/40 bg-offwhite/95 backdrop-blur-sm transition-all duration-300
+      className={`w-full sticky top-0 z-[1000] border-b border-graywarm/40 bg-offwhite/95 backdrop-blur-sm transition-all duration-300
         ${isScrolled ? "py-1 shadow-md" : "py-3"}
       `}
       style={{ minHeight: "70px" }}
-      aria-label="Navigation principale"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6">
 
-        {/* LOGO + NOM */}
-        <Link href="/" className="flex items-center gap-3" aria-label="Retour à l’accueil">
+        {/* LOGO */}
+        <Link href="/" className="flex items-center gap-3">
           <div className="relative w-10 h-10 md:w-11 md:h-11">
             <Image
               src="/hilary-logo.svg"
-              alt="Logo du cabinet d’ostéopathie Hilary Farid"
+              alt="Logo Hilary Farid"
               fill
               sizes="44px"
               className="object-contain rounded-full"
@@ -91,57 +75,55 @@ export default function Header() {
               Hilary Farid
             </span>
             <span className="text-xs text-graywarm hidden sm:block">
-              Ostéopathe DO – Drainage Lymphatique Renata França
+              Ostéopathe DO – Renata França
             </span>
           </div>
         </Link>
 
-        {/* BOUTON MOBILE HAMBURGER (plus visible) */}
+        {/* MENU DESKTOP */}
+        <nav className="hidden md:flex items-center gap-6 text-primary font-medium">
+          {links.map(([label, href]) => (
+            <Link
+              key={href}
+              href={href}
+              className={`text-sm md:text-base ${
+                isActive(href)
+                  ? "text-primary font-semibold underline underline-offset-4"
+                  : "text-graywarm hover:text-primary"
+              }`}
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* BURGER MOBILE — VERSION PLUS LISIBLE ET PLUS CONTRASTÉE */}
         <button
           className="md:hidden text-primary focus:outline-none"
           onClick={toggleMenu}
           aria-expanded={open}
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
         >
-          <MotionSpan
-            initial={false}
-            animate={open ? "open" : "closed"}
-            className="block w-8 h-8 relative"
-          >
-            {/* Barre 1 */}
-            <MotionSpan
-              variants={{
-                closed: { rotate: 0, y: -7 },
-                open: { rotate: 45, y: 0 },
-              }}
-              transition={{ duration: 0.2 }}
-              className="absolute left-0 right-0 h-[3px] bg-primary"
+          <div className="relative w-9 h-9 flex items-center justify-center">
+            <span
+              className={`block w-8 h-[3px] bg-primary rounded-md shadow-[0_0_3px_rgba(0,0,0,0.4)] transition-all ${
+                open ? "rotate-45 translate-y-[2px]" : "-translate-y-2"
+              }`}
             />
-
-            {/* Barre 2 */}
-            <MotionSpan
-              variants={{
-                closed: { opacity: 1 },
-                open: { opacity: 0 },
-              }}
-              transition={{ duration: 0.15 }}
-              className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[3px] bg-primary"
+            <span
+              className={`block absolute w-8 h-[3px] bg-primary rounded-md transition-all shadow-[0_0_3px_rgba(0,0,0,0.4)] ${
+                open ? "opacity-0" : "opacity-100"
+              }`}
             />
-
-            {/* Barre 3 */}
-            <MotionSpan
-              variants={{
-                closed: { rotate: 0, y: 7 },
-                open: { rotate: -45, y: 0 },
-              }}
-              transition={{ duration: 0.2 }}
-              className="absolute left-0 right-0 h-[3px] bg-primary bottom-0"
+            <span
+              className={`block w-8 h-[3px] bg-primary rounded-md shadow-[0_0_3px_rgba(0,0,0,0.4)] transition-all ${
+                open ? "-rotate-45 -translate-y-[2px]" : "translate-y-2"
+              }`}
             />
-          </MotionSpan>
+          </div>
         </button>
       </div>
 
-      {/* MENU MOBILE FULLSCREEN — FIX ANDROID */}
+      {/* MENU MOBILE FIX ANDROID */}
       <AnimatePresence>
         {open && (
           <MotionDiv
@@ -152,48 +134,38 @@ export default function Header() {
             transition={{ duration: 0.25 }}
             className="
               fixed inset-0
-              z-[9999]
               bg-offwhite
-              bg-opacity-100
-              flex flex-col
+              bg-opacity-95
+              backdrop-blur-md
+              z-[9999]
+              flex flex-col shadow-xl
             "
-            role="dialog"
-            aria-modal="true"
-            aria-label="Menu mobile"
           >
-            <div className="flex items-center justify-between px-6 py-4 border-b border-graywarm/30">
+            <div className="flex items-center justify-between px-6 py-5 border-b border-graywarm/30">
               <span className="text-primary font-semibold text-lg">
-                Menu – Hilary Farid
+                Menu
               </span>
+
               <button
                 onClick={toggleMenu}
-                className="text-3xl text-primary"
-                aria-label="Fermer le menu"
+                className="text-primary text-4xl font-light"
               >
                 &times;
               </button>
             </div>
 
-            <MotionDiv
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="flex-1 flex flex-col items-center justify-center gap-5 text-primary font-semibold text-lg"
-            >
+            <div className="flex-1 flex flex-col items-center justify-center gap-5 text-primary font-semibold text-xl">
               {links.map(([label, href]) => (
                 <Link
                   key={href}
                   href={href}
                   onClick={() => setOpen(false)}
-                  className={`relative px-2 py-1 ${
-                    isActive(href) ? "text-primary" : "text-graywarm"
-                  }`}
+                  className={isActive(href) ? "text-primary" : "text-graywarm"}
                 >
                   {label}
                 </Link>
               ))}
-            </MotionDiv>
+            </div>
           </MotionDiv>
         )}
       </AnimatePresence>
