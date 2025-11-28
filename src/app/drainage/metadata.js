@@ -1,7 +1,14 @@
+
 export const metadata = {
-  title:
-    "Drainage lymphatique Renata França | Détox – Jambes Légères – Silhouette Affinée | Hilary Farid – Sèvres & Paris 15",
+  title: "Drainage lymphatique Renata França à Sèvres & Paris 15 – Hilary Farid",
   description:
-    "Drainage lymphatique méthode Renata França : résultats visibles dès la première séance. Ventre plat, dégonflement, jambes légères, détox, silhouette affinée. À Sèvres & Paris 15 avec Hilary Farid.",
+    "Drainage lymphatique Renata França à Sèvres et Paris 15 : jambes légères, détox, ventre plus plat et réduction des gonflements. Séance professionnelle réalisée par Hilary Farid, certifiée Renata França.",
   alternates: { canonical: "/drainage" },
+  openGraph: {
+  title: "Drainage lymphatique Renata França – Hilary Farid",
+  description:
+    "Drainage lymphatique Renata França : détox, jambes légères, réduction des gonflements. Disponible à Sèvres & Paris 15.",
+  url: "https://www.hilaryfarid-osteopathe.fr/drainage",
+  images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
 };

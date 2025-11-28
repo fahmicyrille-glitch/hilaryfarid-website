@@ -17,21 +17,6 @@ const SECTIONS = [
   { id: "faq", label: "FAQ Contact" },
 ];
 
-export const metadata = {
-  title: "Contact & rendez-vous ostéopathe – Sèvres & Paris 15 | Hilary Farid DO",
-  description:
-    "Contact, coordonnées et prise de rendez-vous avec Hilary Farid, ostéopathe DO à Sèvres et Paris 15. Formulaire de contact, accès, localisation et horaires.",
-  alternates: { canonical: "/contact" },
-  openGraph: {
-    title: "Contact – Hilary Farid Ostéopathe DO",
-    description:
-      "Contactez votre ostéopathe à Sèvres & Paris 15. Toutes les informations pratiques.",
-    url: "https://www.hilaryfarid-osteopathe.fr/contact",
-    images: [{ url: "/og-image.jpg" }],
-  },
-};
-
-
 export default function ContactPage() {
   const [activeId, setActiveId] = useState("coordonnees");
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -267,12 +252,12 @@ export default function ContactPage() {
                 className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
               >
                 <h2 className="text-3xl font-semibold text-primary">Formulaire de contact</h2>
-            
+
                 <p className="text-graywarm mt-4 mb-6">
                   Vous pouvez envoyer un message directement depuis ce formulaire.
                   Je vous répondrai dès que possible.
                 </p>
-            
+
                 {/* ==== NOUVEAU FORMULAIRE ==== */}
                 <ContactForm />
               </section>
@@ -440,9 +425,3 @@ export default function ContactPage() {
     </main>
   );
 }
-
-
-
-
-
-
