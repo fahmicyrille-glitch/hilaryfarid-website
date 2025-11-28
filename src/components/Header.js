@@ -41,7 +41,7 @@ export default function Header() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   const menuItemBase =
-    "relative inline-block transition-colors duration-200 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-primary after:transition-all after:duration-300";
+    "relative inline-block transition-colors duration-200 after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:bg-primary after:transition-all after:duration-300";
 
   const getMenuItemClass = (href) =>
     [
@@ -66,7 +66,7 @@ export default function Header() {
 
   return (
     <header
-      className={`w-full sticky top-0 z-50 border-b border-graywarm/40 bg-offwhite/95 backdrop-blur-sm transition-all duration-300
+      className={`w-full sticky top-0 z-[9998] border-b border-graywarm/40 bg-offwhite/95 backdrop-blur-sm transition-all duration-300
         ${isScrolled ? "py-1 shadow-md" : "py-3"}
       `}
       style={{ minHeight: "70px" }}
@@ -96,19 +96,7 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* MENU DESKTOP */}
-        <nav
-          className="hidden md:flex items-center gap-6 text-primary font-medium"
-          aria-label="Menu principal"
-        >
-          {links.map(([label, href]) => (
-            <Link key={href} href={href} className={getMenuItemClass(href)}>
-              {label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* BOUTON MOBILE */}
+        {/* BOUTON MOBILE HAMBURGER (plus visible) */}
         <button
           className="md:hidden text-primary focus:outline-none"
           onClick={toggleMenu}
@@ -118,37 +106,42 @@ export default function Header() {
           <MotionSpan
             initial={false}
             animate={open ? "open" : "closed"}
-            className="block w-7 h-7 relative"
+            className="block w-8 h-8 relative"
           >
+            {/* Barre 1 */}
             <MotionSpan
               variants={{
-                closed: { rotate: 0, y: -6 },
+                closed: { rotate: 0, y: -7 },
                 open: { rotate: 45, y: 0 },
               }}
               transition={{ duration: 0.2 }}
-              className="absolute left-0 right-0 h-[2px] bg-primary"
+              className="absolute left-0 right-0 h-[3px] bg-primary"
             />
+
+            {/* Barre 2 */}
             <MotionSpan
               variants={{
                 closed: { opacity: 1 },
                 open: { opacity: 0 },
               }}
               transition={{ duration: 0.15 }}
-              className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[2px] bg-primary"
+              className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[3px] bg-primary"
             />
+
+            {/* Barre 3 */}
             <MotionSpan
               variants={{
-                closed: { rotate: 0, y: 6 },
+                closed: { rotate: 0, y: 7 },
                 open: { rotate: -45, y: 0 },
               }}
               transition={{ duration: 0.2 }}
-              className="absolute left-0 right-0 h-[2px] bg-primary bottom-0"
+              className="absolute left-0 right-0 h-[3px] bg-primary bottom-0"
             />
           </MotionSpan>
         </button>
       </div>
 
-      {/* MENU MOBILE FULLSCREEN */}
+      {/* MENU MOBILE FULLSCREEN — FIX ANDROID */}
       <AnimatePresence>
         {open && (
           <MotionDiv
@@ -157,7 +150,13 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 bg-offwhite/95 backdrop-blur-sm flex flex-col"
+            className="
+              fixed inset-0
+              z-[9999]
+              bg-offwhite
+              bg-opacity-100
+              flex flex-col
+            "
             role="dialog"
             aria-modal="true"
             aria-label="Menu mobile"
@@ -176,28 +175,22 @@ export default function Header() {
             </div>
 
             <MotionDiv
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 10, opacity: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="flex-1 flex flex-col items-center justify-center gap-4 text-primary font-semibold text-lg"
-              aria-label="Navigation mobile"
+              className="flex-1 flex flex-col items-center justify-center gap-5 text-primary font-semibold text-lg"
             >
               {links.map(([label, href]) => (
                 <Link
                   key={href}
                   href={href}
                   onClick={() => setOpen(false)}
-                  className={`relative inline-block px-2 py-1 ${
+                  className={`relative px-2 py-1 ${
                     isActive(href) ? "text-primary" : "text-graywarm"
                   }`}
                 >
-                  <span>{label}</span>
-                  <span
-                    className={`block h-[2px] mt-1 bg-primary transition-all duration-300 ${
-                      isActive(href) ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
-                  />
+                  {label}
                 </Link>
               ))}
             </MotionDiv>
