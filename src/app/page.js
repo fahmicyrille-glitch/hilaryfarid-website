@@ -8,7 +8,7 @@ export const metadata = {
   title:
     "Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO | Ostéopathie & Drainage lymphatique Renata França",
   description:
-    "Ostéopathe DO à Sèvres et Paris 15, Hilary Farid accompagne adultes, nourrissons, femmes enceintes et sportifs. Ostéopathie douce, précise et drainage lymphatique Renata França. Rendez-vous rapides.",
+    "Ostéopathe DO à Sèvres (92310) et Paris 15 (75015), Hilary Farid prend en charge adultes, nourrissons, femmes enceintes et sportifs. Ostéopathie douce, précise et drainage lymphatique Renata França. Rendez-vous rapides sur Doctolib.",
   alternates: {
     canonical: "/",
   },
@@ -16,12 +16,11 @@ export const metadata = {
     title:
       "Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO",
     description:
-      "Consultations d’ostéopathie et drainage lymphatique Renata França à Sèvres & Paris 15.",
+      "Consultations d’ostéopathie et drainage lymphatique Renata França à Sèvres & Paris 15. Adultes, nourrissons, femmes enceintes et sportifs.",
     url: "https://www.hilaryfarid-osteopathe.fr",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };
-
 
 export default function Home() {
   return (
@@ -193,8 +192,8 @@ export default function Home() {
               </h1>
 
               <p className="mt-5 text-base md:text-lg text-offwhite/90">
-                Hilary Farid accompagne les{" "}
-                <strong>adultes, nourrissons, femmes enceintes</strong> et sportifs avec une approche douce.
+                Hilary Farid, <strong>ostéopathe à Sèvres et Paris 15</strong>, accompagne les{" "}
+                <strong>adultes, nourrissons, femmes enceintes</strong> et sportifs avec une approche douce et personnalisée.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2 text-[11px] md:text-xs text-primary">
@@ -228,7 +227,7 @@ export default function Home() {
               </div>
 
               <p className="mt-4 text-xs md:text-sm text-offwhite/80">
-                Séances sur rendez-vous à Sèvres et Paris 15 – prise en charge mutuelles.
+              Séances sur rendez-vous à Sèvres et Paris 15 – prise en charge par de nombreuses mutuelles.
               </p>
             </div>
           </HeroMotion>
@@ -239,7 +238,7 @@ export default function Home() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-offwhite/30">
                 <Image
                   src="/hilary.png"
-                  alt="Hilary Farid, ostéopathe D.O"
+                  alt="Hilary Farid, ostéopathe à Sèvres et Paris 15"
                   width={600}
                   height={600}
                   className="object-cover w-full h-full"
@@ -262,8 +261,11 @@ export default function Home() {
             <p className="mt-4 text-center text-graywarm max-w-3xl mx-auto">
               L’ostéopathie aide à soulager de nombreux troubles fonctionnels,
               que ce soit après un faux mouvement, une grossesse, une pratique
-              sportive intensive ou simplement un trop-plein de stress.
+              sportive intensive ou simplement un trop-plein de stress. En consultation
+              d’ostéopathie à <strong>Sèvres</strong> ou à <strong>Paris 15</strong>, l’objectif est de
+              retrouver mobilité, confort et mieux-être au quotidien.
             </p>
+
 
             <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <FadeIn delay={0.1}>
@@ -314,6 +316,17 @@ export default function Home() {
                 </div>
               </FadeIn>
             </div>
+            <p className="mt-8 text-center text-sm text-graywarm">
+              Pour plus de détails sur les séances, vous pouvez consulter la page{" "}
+              <Link href="/osteopathie" className="text-primary underline underline-offset-4 hover:text-secondary">
+                ostéopathie
+              </Link>{" "}
+              ou découvrir les{" "}
+              <Link href="/tarifs" className="text-primary underline underline-offset-4 hover:text-secondary">
+                tarifs des consultations
+              </Link>
+              .
+            </p>
           </div>
         </SlideUp>
       </section>
@@ -384,7 +397,7 @@ export default function Home() {
       <section className="py-16 md:py-20 bg-offwhite relative">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-semibold text-primary text-center">
-            Deux cabinets pour vous accueillir
+            Cabinets d’ostéopathie à Sèvres et Paris 15
           </h2>
 
           <div className="mt-12 grid md:grid-cols-2 gap-10">
@@ -396,9 +409,27 @@ export default function Home() {
             >
               {/* Galerie */}
               <div className="grid grid-cols-3 gap-2 mb-5 rounded-xl overflow-hidden">
-                <Image src="/cabinet-sevres/cabinet-sevres-1.jpeg" width={350} height={200} alt="" className="object-cover h-28 w-full" />
-                <Image src="/cabinet-sevres/cabinet-sevres-2.jpeg" width={350} height={200} alt="" className="object-cover h-28 w-full" />
-                <Image src="/cabinet-sevres/cabinet-sevres-3.jpeg" width={350} height={200} alt="" className="object-cover h-28 w-full" />
+                <Image
+                  src="/cabinet-sevres/cabinet-sevres-1.jpeg"
+                  width={350}
+                  height={200}
+                  alt="Cabinet d’ostéopathie à Sèvres – salle de consultation"
+                  className="object-cover h-28 w-full"
+                />
+                <Image
+                  src="/cabinet-sevres/cabinet-sevres-2.jpeg"
+                  width={350}
+                  height={200}
+                  alt="Cabinet d’ostéopathie à Sèvres – table de soin"
+                  className="object-cover h-28 w-full"
+                />
+                <Image
+                  src="/cabinet-sevres/cabinet-sevres-3.jpeg"
+                  width={350}
+                  height={200}
+                  alt="Cabinet d’ostéopathie à Sèvres – salle d’attente"
+                  className="object-cover h-28 w-full"
+                />
               </div>
 
               {/* Badge */}
@@ -426,9 +457,27 @@ export default function Home() {
             >
               {/* Galerie */}
               <div className="grid grid-cols-3 gap-2 mb-5 rounded-xl overflow-hidden">
-                <Image src="/cabinet-paris15/cabinet-paris15-1.jpeg" width={350} height={200} alt="" className="object-cover h-28 w-full" />
-                <Image src="/cabinet-paris15/cabinet-paris15-2.jpeg" width={350} height={200} alt="" className="object-cover h-28 w-full" />
-                <Image src="/cabinet-paris15/cabinet-paris15-3.jpeg" width={350} height={200} alt="" className="object-cover h-28 w-full" />
+                <Image
+                  src="/cabinet-paris15/cabinet-paris15-1.jpeg"
+                  width={350}
+                  height={200}
+                  alt="Cabinet d’ostéopathie à Paris 15 – salle de consultation"
+                  className="object-cover h-28 w-full"
+                />
+                <Image
+                  src="/cabinet-paris15/cabinet-paris15-2.jpeg"
+                  width={350}
+                  height={200}
+                  alt="Cabinet d’ostéopathie à Paris 15 – table de soin"
+                  className="object-cover h-28 w-full"
+                />
+                <Image
+                  src="/cabinet-paris15/cabinet-paris15-3.jpeg"
+                  width={350}
+                  height={200}
+                  alt="Cabinet d’ostéopathie à Paris 15 – salle d’attente"
+                  className="object-cover h-28 w-full"
+                />
               </div>
 
               {/* Badge */}
