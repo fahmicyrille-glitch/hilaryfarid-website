@@ -1,11 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    ppr: true, // 🚀 Partial Prerendering
-    optimizePackageImports: ["framer-motion"], // ⚡ Optimisation sûre
+    optimizePackageImports: ["lucide-react", "framer-motion"],
+    forceSwcTransforms: true, // 🔥 Force Next à NE PAS inclure les polyfills ES5
   },
-
-  swcMinify: true, // 🔥 Minification moderne
+  swcMinify: true,             // 🔥 Minification moderne
 };
 
 module.exports = nextConfig;
