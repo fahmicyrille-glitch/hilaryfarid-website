@@ -10,6 +10,8 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
+import Image from "next/image";
+
 export default function ParisGallery() {
   const images = [
     "/cabinet-paris15/cabinet-paris15-1.jpeg",
@@ -32,12 +34,22 @@ export default function ParisGallery() {
         className="rounded-lg shadow-lg cursor-pointer"
       >
         {images.map((src, i) => (
-          <SwiperSlide key={i} onClick={() => { setIndex(i); setOpen(true); }}>
-            <img
-              src={src}
-              alt={`Cabinet Paris 15 - Photo ${i + 1}`}
-              className="w-full h-72 object-cover rounded-lg"
-            />
+          <SwiperSlide
+            key={i}
+            onClick={() => {
+              setIndex(i);
+              setOpen(true);
+            }}
+          >
+            <div className="relative w-full h-72 rounded-lg overflow-hidden">
+              <Image
+                src={src}
+                alt={`Cabinet Paris 15 - Photo ${i + 1}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

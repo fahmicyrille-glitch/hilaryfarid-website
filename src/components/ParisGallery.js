@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import Image from "next/image";
 
 export default function ParisGallery() {
   const [open, setOpen] = useState(false);
@@ -18,13 +19,19 @@ export default function ParisGallery() {
       {/* Grid des images */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {images.map((src, i) => (
-          <img
+          <div
             key={i}
-            src={src}
-            alt={`Cabinet Paris 15 - photo ${i + 1}`}
-            className="rounded-lg shadow-md cursor-pointer hover:opacity-90 transition"
+            className="relative w-full h-64 rounded-lg shadow-md cursor-pointer hover:opacity-90 transition overflow-hidden"
             onClick={() => setOpen(i)}
-          />
+          >
+            <Image
+              src={src}
+              alt={`Cabinet Paris 15 - photo ${i + 1}`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+          </div>
         ))}
       </div>
 

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import YarlLightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import Image from "next/image";
 
 export default function DrainageGallery() {
   const images = [
@@ -23,16 +24,18 @@ export default function DrainageGallery() {
           <motion.div
             key={i}
             whileHover={{ scale: 1.03 }}
-            className="cursor-pointer rounded-lg overflow-hidden shadow-md"
+            className="cursor-pointer rounded-lg overflow-hidden shadow-md relative w-full h-48"
             onClick={() => {
               setIndex(i);
               setOpen(true);
             }}
           >
-            <img
+            <Image
               src={img.src}
               alt={img.alt}
-              className="w-full h-48 object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 33vw"
             />
           </motion.div>
         ))}
@@ -42,7 +45,7 @@ export default function DrainageGallery() {
         open={open}
         close={() => setOpen(false)}
         index={index}
-        slides={images}
+        slides={images} // On garde les mêmes src car YARL fonctionne avec src direct
       />
     </div>
   );
