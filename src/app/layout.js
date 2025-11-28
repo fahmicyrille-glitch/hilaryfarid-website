@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Script from "next/script";
+import { Suspense } from "react";
 import localFont from "next/font/local";
 
 // ====== Élimination des requêtes Google Fonts cachées ======
@@ -156,9 +157,13 @@ export default function RootLayout({ children }) {
         />
 
         <ScrollProgressBar />
-        <Header />
+        <Suspense fallback={null}>
+          <Header />
+        </Suspense>
         <main>{children}</main>
-        <Footer />
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
       </body>
     </html>
   );
