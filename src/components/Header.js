@@ -66,9 +66,10 @@ export default function Header() {
 
   return (
     <header
-      className={`w-full sticky top-0 z-50 border-b border-graywarm/40 bg-offwhite/95 backdrop-blur-sm transition-all duration-300 ${
-        isScrolled ? "py-1 shadow-md" : "py-3"
-      }`}
+      className={`w-full sticky top-0 z-50 border-b border-graywarm/40 bg-offwhite/95 backdrop-blur-sm transition-all duration-300
+        ${isScrolled ? "py-1 shadow-md" : "py-3"}
+      `}
+      style={{ minHeight: "70px" }}
       aria-label="Navigation principale"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6">

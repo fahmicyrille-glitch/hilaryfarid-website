@@ -63,3 +63,15 @@ export function HeroMotion({ children }) {
     </MotionDiv>
   );
 }
+
+export function FadeInNoShift({ children, delay = 0 }) {
+  return (
+    <MotionDiv
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, delay }}
+    >
+      {children}
+    </MotionDiv>
+  );
+}

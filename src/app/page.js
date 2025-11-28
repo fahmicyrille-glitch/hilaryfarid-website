@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import { FadeIn, SlideUp, HeroMotion } from "@/components/MotionWrapper";
+import { FadeInNoShift, HeroMotion } from "@/components/MotionWrapper";
 
 export const metadata = {
   title:
@@ -30,7 +30,7 @@ export default function Home() {
       <Script
         id="ld-home-medicalwebpage"
         type="application/ld+json"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             [
@@ -232,10 +232,13 @@ export default function Home() {
             </div>
           </HeroMotion>
 
-          <FadeIn>
+          <FadeInNoShift>
             <div className="relative">
-              <div className="absolute -inset-4 bg-offwhite/10 rounded-3xl blur-xl" />
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-offwhite/30">
+              <div aria-hidden="true" className="absolute -inset-4 bg-offwhite/10 rounded-3xl blur-xl" />
+                <div
+                  className="relative rounded-3xl overflow-hidden shadow-2xl border border-offwhite/30"
+                  style={{ minHeight: 300 }}
+                >
                 <Image
                   src="/hilary.webp"
                   alt="Hilary Farid, ostéopathe à Sèvres et Paris 15"
@@ -243,18 +246,18 @@ export default function Home() {
                   height={600}
                   className="object-cover w-full h-full"
                   priority
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 90vw, 600px"
                 />
               </div>
             </div>
-          </FadeIn>
+          </FadeInNoShift>
 
         </div>
       </section>
 
       {/* ================= SECTION : Pourquoi consulter ? ================= */}
       <section className="py-16 md:py-20 bg-offwhite">
-        <SlideUp>
+        <FadeInNoShift>
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-semibold text-primary text-center">
               Quand consulter en ostéopathie ?
@@ -269,7 +272,7 @@ export default function Home() {
 
 
             <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <FadeIn delay={0.1}>
+              <FadeInNoShift delay={0.1}>
                 <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80">
                   <h3 className="font-semibold text-primary">
                     Douleurs & posture
@@ -279,9 +282,9 @@ export default function Home() {
                     récurrentes, migraines…
                   </p>
                 </div>
-              </FadeIn>
+              </FadeInNoShift>
 
-              <FadeIn delay={0.2}>
+              <FadeInNoShift delay={0.2}>
                 <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80">
                   <h3 className="font-semibold text-primary">
                     Nourrissons & enfants
@@ -291,9 +294,9 @@ export default function Home() {
                     de croissance et posture.
                   </p>
                 </div>
-              </FadeIn>
+              </FadeInNoShift>
 
-              <FadeIn delay={0.3}>
+              <FadeInNoShift delay={0.3}>
                 <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80">
                   <h3 className="font-semibold text-primary">
                     Grossesse & post-partum
@@ -303,9 +306,9 @@ export default function Home() {
                     récupération après l’accouchement.
                   </p>
                 </div>
-              </FadeIn>
+              </FadeInNoShift>
 
-              <FadeIn delay={0.4}>
+              <FadeInNoShift delay={0.4}>
                 <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80">
                   <h3 className="font-semibold text-primary">
                     Digestion, stress & sommeil
@@ -315,7 +318,7 @@ export default function Home() {
                     stress, sommeil agité.
                   </p>
                 </div>
-              </FadeIn>
+              </FadeInNoShift>
             </div>
             <p className="mt-8 text-center text-sm text-graywarm">
               Pour plus de détails sur les séances, vous pouvez consulter la page{" "}
@@ -329,12 +332,12 @@ export default function Home() {
               .
             </p>
           </div>
-        </SlideUp>
+        </FadeInNoShift>
       </section>
 
       {/* ================= SECTION : Ostéo + Drainage ================= */}
       <section className="py-16 md:py-20 bg-light">
-        <SlideUp>
+        <FadeInNoShift>
           <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-[1.2fr,1fr] gap-10 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-semibold text-primary">
@@ -369,7 +372,7 @@ export default function Home() {
             </div>
 
             <div className="space-y-4">
-              <FadeIn delay={0.1}>
+              <FadeInNoShift delay={0.1}>
                 <div className="p-4 rounded-xl bg-white shadow-sm border border-light/80">
                   <p className="text-sm text-graywarm">
                     « Mon objectif : que vous repartiez avec moins de douleurs,
@@ -380,18 +383,18 @@ export default function Home() {
                     — Hilary Farid, Ostéopathe DO
                   </p>
                 </div>
-              </FadeIn>
+              </FadeInNoShift>
 
-              <FadeIn delay={0.2}>
+              <FadeInNoShift delay={0.2}>
                 <div className="p-4 rounded-xl bg-white shadow-sm border border-light/80 text-sm text-graywarm">
                   <p>⏱ Séance d’ostéopathie : environ 45 minutes.</p>
                   <p>📍 Cabinets à Sèvres et Paris 15.</p>
                   <p>👶 Consultations possibles dès la naissance.</p>
                 </div>
-              </FadeIn>
+              </FadeInNoShift>
             </div>
           </div>
-        </SlideUp>
+        </FadeInNoShift>
       </section>
 
       {/* ================= SECTION : Cabinets (AMÉLIORÉE) ================= */}
@@ -434,10 +437,11 @@ export default function Home() {
               </div>
 
               {/* Badge */}
-              <span className="absolute top-4 right-4 bg-primary text-offwhite text-xs px-3 py-1 rounded-full shadow-sm">
-                📍 Sèvres
-              </span>
-
+              <div className="relative h-8">
+                <span className="absolute top-4 right-4 bg-primary text-offwhite text-xs px-3 py-1 rounded-full shadow-sm">
+                  📍 Sèvres
+                </span>
+              </div>
               {/* Texte */}
               <h3 className="text-xl font-semibold text-primary">Cabinet de Sèvres</h3>
 
@@ -482,9 +486,11 @@ export default function Home() {
               </div>
 
               {/* Badge */}
-              <span className="absolute top-4 right-4 bg-primary text-offwhite text-xs px-3 py-1 rounded-full shadow-sm">
-                📍 Paris 15
-              </span>
+              <div className="relative h-8">
+                <span className="absolute top-4 right-4 bg-primary text-offwhite text-xs px-3 py-1 rounded-full shadow-sm">
+                  📍 Paris 15
+                </span>
+              </div>
 
               {/* Texte */}
               <h3 className="text-xl font-semibold text-primary">Cabinet Paris 15</h3>
@@ -505,7 +511,7 @@ export default function Home() {
 
       {/* ================= CTA finale ================= */}
       <section className="py-16 md:py-20 bg-primary text-offwhite text-center">
-        <FadeIn>
+        <FadeInNoShift>
           <h2 className="text-3xl md:text-4xl font-semibold">
             Prêt(e) à soulager vos douleurs ?
           </h2>
@@ -522,7 +528,7 @@ export default function Home() {
           >
             Réserver votre séance sur Doctolib
           </a>
-        </FadeIn>
+        </FadeInNoShift>
       </section>
 
 
@@ -534,8 +540,9 @@ export default function Home() {
           backdrop-blur-xl bg-white/90 border border-primary/20
           shadow-[0_8px_30px_rgba(0,0,0,0.15)]
           rounded-full px-6 py-3 flex items-center gap-2
-          animate-fadeUp
+          opacity-100
         "
+        style={{ transform: "translateX(-50%)" }}
       >
         <a
           href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
