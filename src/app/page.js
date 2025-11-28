@@ -243,6 +243,7 @@ export default function Home() {
                   height={600}
                   className="object-cover w-full h-full"
                   priority
+                  sizes="100vw"
                 />
               </div>
             </div>

@@ -5,7 +5,23 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import dynamic from "next/dynamic";
+
+// === Framer Motion Dynamic Imports ===
+const MotionDiv = dynamic(
+  () => import("framer-motion").then((mod) => mod.motion.div),
+  { ssr: false }
+);
+
+const MotionSpan = dynamic(
+  () => import("framer-motion").then((mod) => mod.motion.span),
+  { ssr: false }
+);
+
+const AnimatePresence = dynamic(
+  () => import("framer-motion").then((mod) => mod.AnimatePresence),
+  { ssr: false }
+);
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -21,7 +37,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Fonction active
   const isActive = (href) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
@@ -99,12 +114,12 @@ export default function Header() {
           aria-expanded={open}
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
         >
-          <motion.span
+          <MotionSpan
             initial={false}
             animate={open ? "open" : "closed"}
             className="block w-7 h-7 relative"
           >
-            <motion.span
+            <MotionSpan
               variants={{
                 closed: { rotate: 0, y: -6 },
                 open: { rotate: 45, y: 0 },
@@ -112,7 +127,7 @@ export default function Header() {
               transition={{ duration: 0.2 }}
               className="absolute left-0 right-0 h-[2px] bg-primary"
             />
-            <motion.span
+            <MotionSpan
               variants={{
                 closed: { opacity: 1 },
                 open: { opacity: 0 },
@@ -120,7 +135,7 @@ export default function Header() {
               transition={{ duration: 0.15 }}
               className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[2px] bg-primary"
             />
-            <motion.span
+            <MotionSpan
               variants={{
                 closed: { rotate: 0, y: 6 },
                 open: { rotate: -45, y: 0 },
@@ -128,14 +143,14 @@ export default function Header() {
               transition={{ duration: 0.2 }}
               className="absolute left-0 right-0 h-[2px] bg-primary bottom-0"
             />
-          </motion.span>
+          </MotionSpan>
         </button>
       </div>
 
       {/* MENU MOBILE FULLSCREEN */}
       <AnimatePresence>
         {open && (
-          <motion.div
+          <MotionDiv
             key="mobile-menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -159,7 +174,7 @@ export default function Header() {
               </button>
             </div>
 
-            <motion.nav
+            <MotionDiv
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 10, opacity: 0 }}
@@ -184,8 +199,8 @@ export default function Header() {
                   />
                 </Link>
               ))}
-            </motion.nav>
-          </motion.div>
+            </MotionDiv>
+          </MotionDiv>
         )}
       </AnimatePresence>
     </header>
