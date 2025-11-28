@@ -173,7 +173,6 @@ export default function Home() {
 
       {/* ================= HERO SECTION ================= */}
       <section className="bg-primary text-offwhite relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.12] pointer-events-none bg-[radial-gradient(circle_at_top,_#ffffff_0,_transparent_55%)]" />
 
         <div className="max-w-6xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center relative z-10">
 
@@ -227,7 +226,7 @@ export default function Home() {
               </div>
 
               <p className="mt-4 text-xs md:text-sm text-offwhite/80">
-              Séances sur rendez-vous à Sèvres et Paris 15 – prise en charge par de nombreuses mutuelles.
+                Séances sur rendez-vous à Sèvres et Paris 15 – prise en charge par de nombreuses mutuelles.
               </p>
             </div>
           </HeroMotion>
@@ -235,10 +234,10 @@ export default function Home() {
           <FadeInNoShift>
             <div className="relative">
               <div aria-hidden="true" className="absolute -inset-4 bg-offwhite/10 rounded-3xl blur-xl" />
-                <div
-                  className="relative rounded-3xl overflow-hidden shadow-2xl border border-offwhite/30"
-                  style={{ minHeight: 300 }}
-                >
+
+              <div
+                className="relative rounded-3xl overflow-hidden shadow-2xl border border-offwhite/30 aspect-square"
+              >
                 <Image
                   src="/hilary.webp"
                   alt="Hilary Farid, ostéopathe à Sèvres et Paris 15"
@@ -265,11 +264,8 @@ export default function Home() {
             <p className="mt-4 text-center text-graywarm max-w-3xl mx-auto">
               L’ostéopathie aide à soulager de nombreux troubles fonctionnels,
               que ce soit après un faux mouvement, une grossesse, une pratique
-              sportive intensive ou simplement un trop-plein de stress. En consultation
-              d’ostéopathie à <strong>Sèvres</strong> ou à <strong>Paris 15</strong>, l’objectif est de
-              retrouver mobilité, confort et mieux-être au quotidien.
+              sportive intensive ou simplement un trop-plein de stress.
             </p>
-
 
             <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <FadeInNoShift delay={0.1}>
@@ -290,8 +286,7 @@ export default function Home() {
                     Nourrissons & enfants
                   </h3>
                   <p className="mt-2 text-sm text-graywarm">
-                    Plagiocéphalie, coliques, reflux, troubles du sommeil, suivi
-                    de croissance et posture.
+                    Plagiocéphalie, coliques, reflux, troubles du sommeil…
                   </p>
                 </div>
               </FadeInNoShift>
@@ -302,8 +297,7 @@ export default function Home() {
                     Grossesse & post-partum
                   </h3>
                   <p className="mt-2 text-sm text-graywarm">
-                    Lombalgies, bassin, sciatique, confort respiratoire,
-                    récupération après l’accouchement.
+                    Lombalgies, bassin, sciatique, confort respiratoire…
                   </p>
                 </div>
               </FadeInNoShift>
@@ -314,22 +308,21 @@ export default function Home() {
                     Digestion, stress & sommeil
                   </h3>
                   <p className="mt-2 text-sm text-graywarm">
-                    Troubles digestifs, anxiété, tensions musculaires liées au
-                    stress, sommeil agité.
+                    Troubles digestifs, anxiété, sommeil agité…
                   </p>
                 </div>
               </FadeInNoShift>
             </div>
+
             <p className="mt-8 text-center text-sm text-graywarm">
-              Pour plus de détails sur les séances, vous pouvez consulter la page{" "}
+              Pour plus de détails, consultez{" "}
               <Link href="/osteopathie" className="text-primary underline underline-offset-4 hover:text-secondary">
-                ostéopathie
+                l’ostéopathie
               </Link>{" "}
-              ou découvrir les{" "}
+              ou les{" "}
               <Link href="/tarifs" className="text-primary underline underline-offset-4 hover:text-secondary">
-                tarifs des consultations
-              </Link>
-              .
+                tarifs
+              </Link>.
             </p>
           </div>
         </FadeInNoShift>
@@ -339,29 +332,28 @@ export default function Home() {
       <section className="py-16 md:py-20 bg-light">
         <FadeInNoShift>
           <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-[1.2fr,1fr] gap-10 items-center">
+
             <div>
               <h2 className="text-3xl md:text-4xl font-semibold text-primary">
                 Une prise en charge globale du corps
               </h2>
               <p className="mt-4 text-graywarm">
-                Chaque séance commence par un temps d’écoute : vos douleurs,
-                votre contexte de vie, vos antécédents. L’objectif est de
-                comprendre l’origine du déséquilibre pour agir en douceur mais
-                en profondeur.
+                Chaque séance commence par un temps d’écoute afin de comprendre
+                l’origine du déséquilibre.
               </p>
               <p className="mt-3 text-graywarm">
-                En complément de l’ostéopathie, Hilary propose aussi le{" "}
-                <strong>drainage lymphatique méthode Renata França</strong>,
-                idéal pour la circulation, la détox et la sensation de jambes
-                légères.
+                En complément, Hilary propose le{" "}
+                <strong>drainage lymphatique Renata França</strong>.
               </p>
+
               <div className="mt-6 flex flex-wrap gap-4">
                 <Link
                   href="/osteopathie"
                   className="text-secondary underline underline-offset-4 hover:text-primary"
                 >
-                  Découvrir l’ostéopathie en détail
+                  Découvrir l’ostéopathie
                 </Link>
+
                 <Link
                   href="/drainage"
                   className="text-secondary underline underline-offset-4 hover:text-primary"
@@ -376,8 +368,7 @@ export default function Home() {
                 <div className="p-4 rounded-xl bg-white shadow-sm border border-light/80">
                   <p className="text-sm text-graywarm">
                     « Mon objectif : que vous repartiez avec moins de douleurs,
-                    plus de mobilité, et la sensation d’être vraiment
-                    écouté(e). »
+                    plus de mobilité et la sensation d’être écouté(e). »
                   </p>
                   <p className="mt-2 text-xs text-primary font-semibold">
                     — Hilary Farid, Ostéopathe DO
@@ -387,17 +378,18 @@ export default function Home() {
 
               <FadeInNoShift delay={0.2}>
                 <div className="p-4 rounded-xl bg-white shadow-sm border border-light/80 text-sm text-graywarm">
-                  <p>⏱ Séance d’ostéopathie : environ 45 minutes.</p>
-                  <p>📍 Cabinets à Sèvres et Paris 15.</p>
-                  <p>👶 Consultations possibles dès la naissance.</p>
+                  <p>⏱ Séance : ~45 minutes</p>
+                  <p>📍 Cabinets à Sèvres & Paris 15</p>
+                  <p>👶 Dès la naissance</p>
                 </div>
               </FadeInNoShift>
             </div>
+
           </div>
         </FadeInNoShift>
       </section>
 
-      {/* ================= SECTION : Cabinets (AMÉLIORÉE) ================= */}
+      {/* ================= SECTION : Cabinets ================= */}
       <section className="py-16 md:py-20 bg-offwhite relative">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-semibold text-primary text-center">
@@ -411,7 +403,6 @@ export default function Home() {
               href="/sevres"
               className="group relative p-8 rounded-2xl bg-white/90 backdrop-blur-md border border-light/80 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
             >
-              {/* Galerie */}
               <div className="grid grid-cols-3 gap-2 mb-5 rounded-xl overflow-hidden">
                 <Image
                   src="/cabinet-sevres/cabinet-sevres-1.webp"
@@ -436,20 +427,17 @@ export default function Home() {
                 />
               </div>
 
-              {/* Badge */}
               <div className="relative h-8">
                 <span className="absolute top-4 right-4 bg-primary text-offwhite text-xs px-3 py-1 rounded-full shadow-sm">
                   📍 Sèvres
                 </span>
               </div>
-              {/* Texte */}
-              <h3 className="text-xl font-semibold text-primary">Cabinet de Sèvres</h3>
 
+              <h3 className="text-xl font-semibold text-primary">Cabinet de Sèvres</h3>
               <p className="mt-3 text-graywarm leading-relaxed">
-                104 Grande Rue, 92310 Sèvres — accessible en transports et parking à proximité.
+                104 Grande Rue, 92310 Sèvres.
               </p>
 
-              {/* CTA */}
               <span className="mt-5 inline-block text-secondary underline underline-offset-4 group-hover:text-primary">
                 Voir le cabinet →
               </span>
@@ -460,7 +448,6 @@ export default function Home() {
               href="/paris15"
               className="group relative p-8 rounded-2xl bg-white/90 backdrop-blur-md border border-light/80 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
             >
-              {/* Galerie */}
               <div className="grid grid-cols-3 gap-2 mb-5 rounded-xl overflow-hidden">
                 <Image
                   src="/cabinet-paris15/cabinet-paris15-1.webp"
@@ -485,21 +472,17 @@ export default function Home() {
                 />
               </div>
 
-              {/* Badge */}
               <div className="relative h-8">
                 <span className="absolute top-4 right-4 bg-primary text-offwhite text-xs px-3 py-1 rounded-full shadow-sm">
                   📍 Paris 15
                 </span>
               </div>
 
-              {/* Texte */}
               <h3 className="text-xl font-semibold text-primary">Cabinet Paris 15</h3>
-
               <p className="mt-3 text-graywarm leading-relaxed">
-                28 Rue Letellier, 75015 Paris — entre Commerce et Émile Zola, facilement accessible en métro.
+                28 Rue Letellier, 75015 Paris.
               </p>
 
-              {/* CTA */}
               <span className="mt-5 inline-block text-secondary underline underline-offset-4 group-hover:text-primary">
                 Voir le cabinet →
               </span>
@@ -516,9 +499,7 @@ export default function Home() {
             Prêt(e) à soulager vos douleurs ?
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-offwhite/90">
-            Une première séance permet déjà de faire le point, de libérer des
-            tensions et de poser un plan d’accompagnement adapté à votre rythme
-            de vie.
+            Une première séance permet déjà de faire le point.
           </p>
           <a
             href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
@@ -531,6 +512,8 @@ export default function Home() {
         </FadeInNoShift>
       </section>
 
+      {/* ===== FIX CLS DESKTOP — placeholder réservé ===== */}
+      <div className="hidden md:block w-[90px] h-[200px]"></div>
 
       {/* ------ MOBILE DOCTOLIB ------ */}
       <div
@@ -540,9 +523,7 @@ export default function Home() {
           backdrop-blur-xl bg-white/90 border border-primary/20
           shadow-[0_8px_30px_rgba(0,0,0,0.15)]
           rounded-full px-6 py-3 flex items-center gap-2
-          opacity-100
         "
-        style={{ transform: "translateX(-50%)" }}
       >
         <a
           href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
