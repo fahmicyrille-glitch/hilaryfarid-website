@@ -2,12 +2,25 @@
 
 import { useState, useEffect } from "react";
 import Script from "next/script";
-import Image from "next/image";
-import { FadeIn, SlideUp, HeroMotion } from "@/components/MotionWrapper";
+import dynamic from "next/dynamic";
 import { PHONE, PHONE_LINK, EMAIL } from "@/config/contact";
-import SEO from "@/components/SEO";
 import ContactForm from "@/components/ContactForm";
 
+// Framer Motion wrappers chargés dynamiquement (perf ++)
+const FadeIn = dynamic(
+  () => import("@/components/MotionWrapper").then((m) => m.FadeIn),
+  { ssr: false }
+);
+
+const SlideUp = dynamic(
+  () => import("@/components/MotionWrapper").then((m) => m.SlideUp),
+  { ssr: false }
+);
+
+const HeroMotion = dynamic(
+  () => import("@/components/MotionWrapper").then((m) => m.HeroMotion),
+  { ssr: false }
+);
 
 const SECTIONS = [
   { id: "coordonnees", label: "Coordonnées" },
@@ -21,22 +34,40 @@ export default function ContactPage() {
   const [activeId, setActiveId] = useState("coordonnees");
   const [showBackToTop, setShowBackToTop] = useState(false);
 
-  // Scrollspy
+  // Fonction générique de scroll
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    window.scrollTo({
+      top: el.getBoundingClientRect().top + window.scrollY - 120,
+      behavior: "smooth",
+    });
+  };
+
+  // Scrollspy optimisé (requestAnimationFrame)
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      let current = "coordonnees";
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          let current = "coordonnees";
 
-      for (const section of SECTIONS) {
-        const el = document.getElementById(section.id);
-        if (el) {
-          const offset = el.offsetTop - 140;
-          if (scrollY >= offset) current = section.id;
-        }
+          for (const section of SECTIONS) {
+            const el = document.getElementById(section.id);
+            if (el) {
+              const offset = el.offsetTop - 140;
+              if (scrollY >= offset) current = section.id;
+            }
+          }
+
+          setActiveId(current);
+          setShowBackToTop(scrollY > 600);
+          ticking = false;
+        });
+        ticking = true;
       }
-
-      setActiveId(current);
-      setShowBackToTop(scrollY > 600);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -47,12 +78,7 @@ export default function ContactPage() {
 
   const smoothScroll = (e, id) => {
     e.preventDefault();
-    const el = document.getElementById(id);
-    if (!el) return;
-    window.scrollTo({
-      top: el.getBoundingClientRect().top + window.scrollY - 120,
-      behavior: "smooth",
-    });
+    scrollToId(id);
   };
 
   return (
@@ -76,7 +102,7 @@ export default function ContactPage() {
                   "Coordonnées, informations de contact et accès aux cabinets de Sèvres et Paris 15 pour Hilary Farid, ostéopathe DO.",
                 about: {
                   "@type": "Person",
-                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid"
+                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid",
                 },
                 breadcrumb: {
                   "@type": "BreadcrumbList",
@@ -85,16 +111,16 @@ export default function ContactPage() {
                       "@type": "ListItem",
                       position: 1,
                       name: "Accueil",
-                      item: "https://www.hilaryfarid-osteopathe.fr"
+                      item: "https://www.hilaryfarid-osteopathe.fr",
                     },
                     {
                       "@type": "ListItem",
                       position: 2,
                       name: "Contact",
-                      item: "https://www.hilaryfarid-osteopathe.fr/contact"
-                    }
-                  ]
-                }
+                      item: "https://www.hilaryfarid-osteopathe.fr/contact",
+                    },
+                  ],
+                },
               },
 
               /* === LocalBusiness SÈVRES === */
@@ -112,26 +138,61 @@ export default function ContactPage() {
                   streetAddress: "104 Grande Rue",
                   postalCode: "92310",
                   addressLocality: "Sèvres",
-                  addressCountry: "FR"
+                  addressCountry: "FR",
                 },
                 geo: {
                   "@type": "GeoCoordinates",
                   latitude: 48.822013,
-                  longitude: 2.2179
+                  longitude: 2.2179,
                 },
                 openingHoursSpecification: [
-                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "12:00", closes: "20:00" },
-                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Tuesday", opens: "00:00", closes: "00:00" },
-                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "15:00", closes: "20:00" },
-                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Thursday", opens: "00:00", closes: "00:00" },
-                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "09:00", closes: "20:00" },
-                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "13:00" },
-                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "00:00", closes: "00:00" }
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Monday",
+                    opens: "12:00",
+                    closes: "20:00",
+                  },
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Tuesday",
+                    opens: "00:00",
+                    closes: "00:00",
+                  },
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Wednesday",
+                    opens: "15:00",
+                    closes: "20:00",
+                  },
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Thursday",
+                    opens: "00:00",
+                    closes: "00:00",
+                  },
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Friday",
+                    opens: "09:00",
+                    closes: "20:00",
+                  },
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Saturday",
+                    opens: "10:00",
+                    closes: "13:00",
+                  },
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Sunday",
+                    opens: "00:00",
+                    closes: "00:00",
+                  },
                 ],
                 sameAs: [
                   "https://www.doctolib.fr/osteopathe/sevres/hilary-farid",
-                  "https://g.page/r/CfEVH_swFUP2EB0/review"
-                ]
+                  "https://g.page/r/CfEVH_swFUP2EB0/review",
+                ],
               },
 
               /* === LocalBusiness PARIS 15 === */
@@ -150,26 +211,61 @@ export default function ContactPage() {
                   postalCode: "75015",
                   addressLocality: "Paris",
                   addressRegion: "Île-de-France",
-                  addressCountry: "FR"
+                  addressCountry: "FR",
                 },
                 geo: {
                   "@type": "GeoCoordinates",
                   latitude: 48.847151,
-                  longitude: 2.293107
+                  longitude: 2.293107,
                 },
                 openingHoursSpecification: [
-                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "12:00", closes: "20:00" },
-                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Tuesday", opens: "00:00", closes: "00:00" },
-                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "15:00", closes: "20:00" },
-                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Thursday", opens: "00:00", closes: "00:00" },
-                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "09:00", closes: "20:00" },
-                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "13:00" },
-                  { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "00:00", closes: "00:00" }
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Monday",
+                    opens: "12:00",
+                    closes: "20:00",
+                  },
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Tuesday",
+                    opens: "00:00",
+                    closes: "00:00",
+                  },
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Wednesday",
+                    opens: "15:00",
+                    closes: "20:00",
+                  },
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Thursday",
+                    opens: "00:00",
+                    closes: "00:00",
+                  },
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Friday",
+                    opens: "09:00",
+                    closes: "20:00",
+                  },
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Saturday",
+                    opens: "10:00",
+                    closes: "13:00",
+                  },
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Sunday",
+                    opens: "00:00",
+                    closes: "00:00",
+                  },
                 ],
                 sameAs: [
                   "https://www.doctolib.fr/osteopathe/paris/hilary-farid",
-                  "https://www.google.com/maps/place/28+Rue+Letellier,+75015+Paris"
-                ]
+                  "https://www.google.com/maps/place/28+Rue+Letellier,+75015+Paris",
+                ],
               },
 
               /* === FAQ === */
@@ -183,8 +279,8 @@ export default function ContactPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Vous pouvez contacter Hilary par téléphone, par e-mail ou via le formulaire de contact disponible sur cette page."
-                    }
+                        "Vous pouvez contacter Hilary par téléphone, par e-mail ou via le formulaire de contact disponible sur cette page.",
+                    },
                   },
                   {
                     "@type": "Question",
@@ -192,8 +288,8 @@ export default function ContactPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Les rendez-vous se prennent en ligne via Doctolib ou par téléphone."
-                    }
+                        "Les rendez-vous se prennent en ligne via Doctolib ou par téléphone.",
+                    },
                   },
                   {
                     "@type": "Question",
@@ -201,8 +297,8 @@ export default function ContactPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Hilary consulte au 104 Grande Rue à Sèvres et au 28 Rue Letellier à Paris 15."
-                    }
+                        "Hilary consulte au 104 Grande Rue à Sèvres et au 28 Rue Letellier à Paris 15.",
+                    },
                   },
                   {
                     "@type": "Question",
@@ -210,17 +306,18 @@ export default function ContactPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, les deux cabinets sont adaptés aux parents avec poussette et aux consultations nourrissons."
-                    }
-                  }
-                ]
-              }
+                        "Oui, les deux cabinets sont adaptés aux parents avec poussette et aux consultations nourrissons.",
+                    },
+                  },
+                ],
+              },
             ],
             null,
             2
           ),
         }}
       />
+
       {/* ================= HERO ================= */}
       <section className="bg-primary text-offwhite py-16 text-center px-6 overflow-hidden">
         <HeroMotion>
@@ -237,7 +334,6 @@ export default function ContactPage() {
       {/* ============== WRAPPER SOMMAIRE + CONTENU ============== */}
       <section className="bg-offwhite py-12 px-4 md:px-6">
         <div className="max-w-6xl mx-auto flex gap-10">
-
           {/* === SOMMAIRE DESKTOP === */}
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-28 bg-white rounded-2xl shadow-sm border border-light/70 p-5">
@@ -265,7 +361,6 @@ export default function ContactPage() {
 
           {/* === CONTENU PRINCIPAL === */}
           <div className="flex-1 space-y-16">
-
             {/* === SOMMAIRE MOBILE === */}
             <div className="lg:hidden mb-4">
               <div className="bg-white rounded-2xl border border-light/70 p-4">
@@ -276,7 +371,7 @@ export default function ContactPage() {
                   {SECTIONS.map((s) => (
                     <button
                       key={s.id}
-                      onClick={() => smoothScroll({ preventDefault: () => {} }, s.id)}
+                      onClick={() => scrollToId(s.id)}
                       className={`px-3 py-1 rounded-full border text-[11px] transition ${
                         activeId === s.id
                           ? "bg-primary text-offwhite border-primary"
@@ -330,24 +425,24 @@ export default function ContactPage() {
               </section>
             </SlideUp>
 
-            {/* ================= FORMULAIRE DE CONTACT (NOUVELLE VERSION PRO) ================= */}
+            {/* ================= FORMULAIRE ================= */}
             <SlideUp>
               <section
                 id="formulaire"
                 className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
               >
-                <h2 className="text-3xl font-semibold text-primary">Formulaire de contact</h2>
+                <h2 className="text-3xl font-semibold text-primary">
+                  Formulaire de contact
+                </h2>
 
                 <p className="text-graywarm mt-4 mb-6">
                   Vous pouvez envoyer un message directement depuis ce formulaire.
                   Je vous répondrai dès que possible.
                 </p>
 
-                {/* ==== NOUVEAU FORMULAIRE ==== */}
                 <ContactForm />
               </section>
             </SlideUp>
-
 
             {/* ================= INFOS PRATIQUES ================= */}
             <SlideUp>
