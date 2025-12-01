@@ -61,6 +61,13 @@ export default function RootLayout({ children }) {
         {/* PRELOAD CSS – accélère le LCP */}
         <link rel="preload" href="/globals.css" as="style" />
         <link rel="stylesheet" href="/globals.css" />
+        <link
+          rel="preload"
+          as="image"
+          href="/hilary.webp"
+          imagesrcset="/hilary.webp 600w"
+          imagesizes="100vw"
+        />
 
         {/* ⚡ Google Analytics – lazy pour optimiser le LCP */}
         <Script

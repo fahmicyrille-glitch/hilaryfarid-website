@@ -215,10 +215,9 @@ export default function Home() {
 
           <FadeInNoShift>
             <div className="relative">
-              <div aria-hidden="true" className="absolute -inset-4 bg-offwhite/10 rounded-3xl blur-xl" />
-
+              <div aria-hidden="true" className="hero-halo" />
               <div
-                className="relative rounded-3xl overflow-hidden shadow-2xl border border-offwhite/30 aspect-square"
+                className="relative w-full max-w-[450px] aspect-square rounded-3xl overflow-hidden shadow-2xl border border-offwhite/30"
               >
                 <Image
                   src="/hilary.webp"
