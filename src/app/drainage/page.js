@@ -219,23 +219,26 @@ export default function DrainagePage() {
       {/* ================= HERO ================= */}
       <section className="relative h-[70vh] w-full overflow-hidden">
         <Image
-          src="/drainage/drainage_ventre.webp"
-          alt="Drainage lymphatique Renata França"
-          fill
-          priority
-          className="absolute inset-0 w-full h-full object-cover"
+          src="/drainage/drainage_Logo.webp"
+          alt="Logo Renata França"
+          width={160}
+          height={160}
+          loading="lazy"
+          sizes="160px"
+          className="mx-auto w-40 mb-6 opacity-90"
         />
 
         <div className="absolute inset-0 bg-black/50 flex flex-col justify-center text-center px-6">
           <FadeIn>
-            <Image
+          <Image
               src="/drainage/drainage_Logo.webp"
               alt="Logo Renata França"
               width={160}
               height={160}
+              loading="lazy"
+              sizes="160px"
               className="mx-auto w-40 mb-6 opacity-90"
             />
-
             <h1 className="text-4xl md:text-5xl font-semibold text-white drop-shadow-lg">
               Drainage lymphatique <br />
               Méthode Renata França
@@ -436,6 +439,10 @@ export default function DrainagePage() {
                       alt="Résultat avant après jambes drainage lymphatique"
                       width={900}
                       height={900}
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw,
+                             (max-width: 1200px) 50vw,
+                             450px"
                       className="w-full h-auto"
                     />
                   </div>
@@ -446,6 +453,10 @@ export default function DrainagePage() {
                       alt="Résultat avant après ventre drainage lymphatique"
                       width={900}
                       height={900}
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw,
+                             (max-width: 1200px) 50vw,
+                             450px"
                       className="w-full h-auto"
                     />
                   </div>

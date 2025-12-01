@@ -6,30 +6,22 @@ import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Script from "next/script";
 import localFont from "next/font/local";
 
-// ====== Élimination des requêtes Google Fonts cachées ======
-// Next empêche Chrome de charger automati­quement fonts.googleapis.com
+// ================================
+//   FONTS LOCALES – PAS DE GOOGLE FONTS
+// ================================
 const roboto = localFont({
   src: [
-    {
-      path: "../fonts/Roboto-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../fonts/Roboto-Medium.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../fonts/Roboto-Bold.woff2",
-      weight: "700",
-      style: "normal",
-    },
+    { path: "../fonts/Roboto-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/Roboto-Medium.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/Roboto-Bold.woff2", weight: "700", style: "normal" },
   ],
   variable: "--font-roboto",
   display: "swap",
 });
 
+// ================================
+//   SEO / METADATA
+// ================================
 export const metadata = {
   metadataBase: new URL("https://www.hilaryfarid-osteopathe.fr"),
   title: {
@@ -38,9 +30,7 @@ export const metadata = {
   },
   description:
     "Hilary Farid, ostéopathe DO à Sèvres et Paris 15. Consultations pour adultes, nourrissons, femmes enceintes et post-accouchement, ainsi que drainage lymphatique méthode Renata França.",
-  icons: {
-    icon: "/favicon.ico",
-  },
+  icons: { icon: "/favicon.ico" },
   openGraph: {
     title: "Hilary Farid – Ostéopathe DO à Sèvres & Paris 15",
     description:
@@ -58,42 +48,28 @@ export const metadata = {
       },
     ],
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
+// ================================
+//   ROOT LAYOUT
+// ================================
 export default function RootLayout({ children }) {
   return (
     <html lang="fr" className={roboto.className}>
       <head>
-        <link
-          rel="preload"
-          as="style"
-        />
-        {/* 🔥 PRECONNECTS pour éviter 300ms de latence */}
-        <link rel="preconnect" href="https://www.hilaryfarid-osteopathe.fr" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-
-        {/* 🔥 PRELOAD CSS — permet un LCP beaucoup plus rapide */}
-        <link
-          rel="preload"
-          href="/globals.css"
-          as="style"
-        />
+        {/* PRELOAD CSS – accélère le LCP */}
+        <link rel="preload" href="/globals.css" as="style" />
         <link rel="stylesheet" href="/globals.css" />
 
-        {/* --------- GOOGLE ANALYTICS --------- */}
+        {/* ⚡ Google Analytics – lazy pour optimiser le LCP */}
         <Script
-          async
           src="https://www.googletagmanager.com/gtag/js?id=G-BWDXGTQJKT"
+          strategy="lazyOnload"
         />
-
         <Script
           id="google-analytics"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -109,11 +85,11 @@ export default function RootLayout({ children }) {
 
       <body className={`${roboto.variable} bg-offwhite text-primary`}>
 
-        {/* --------- JSON-LD GLOBAL --------- */}
+        {/* JSON-LD – lazy pour réduire le main-thread */}
         <Script
           id="ld-global-hilary-farid"
           type="application/ld+json"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(
               {
@@ -132,7 +108,7 @@ export default function RootLayout({ children }) {
                   "Osteopathy",
                   "PregnancyCare",
                   "SportsMedicine",
-                  "Pediatric"
+                  "Pediatric",
                 ],
                 knowsAbout: [
                   "Ostéopathie adulte",
@@ -141,13 +117,13 @@ export default function RootLayout({ children }) {
                   "Ostéopathie pédiatrique",
                   "Ostéopathie du sport",
                   "Douleurs articulaires",
-                  "Mobilité articulaire"
+                  "Mobilité articulaire",
                 ],
                 sameAs: [
                   "https://www.doctolib.fr/osteopathe/sevres/hilary-farid",
                   "https://www.google.com/maps/place/104+Grande+Rue,+92310+Sèvres",
-                  "https://www.google.com/maps/place/28+Rue+Letellier,+75015+Paris"
-                ]
+                  "https://www.google.com/maps/place/28+Rue+Letellier,+75015+Paris",
+                ],
               },
               null,
               2
@@ -155,10 +131,27 @@ export default function RootLayout({ children }) {
           }}
         />
 
-        <ScrollProgressBar />
+        {/* HEADER + PAGE CONTENT */}
         <Header />
         <main>{children}</main>
         <Footer />
+
+        {/* Scroll Progress – chargé après LCP */}
+        <Script id="scroll-progressbar" strategy="lazyOnload">
+          {`
+            window.addEventListener("scroll", () => {
+              const bar = document.querySelector('#scroll-progress');
+              if (!bar) return;
+              const scrollTop = window.scrollY;
+              const docHeight = document.body.scrollHeight - window.innerHeight;
+              const progress = (scrollTop / docHeight) * 100;
+              bar.style.width = progress + "%";
+            });
+          `}
+        </Script>
+
+        {/* Conteneur HTML de la barre */}
+        <ScrollProgressBar />
       </body>
     </html>
   );

@@ -299,6 +299,7 @@ export default function OsteopathiePage() {
                 alt="Douleurs cervicales soulagées par l’ostéopathie"
                 fill
                 priority
+                sizes="100vw"         // ⭐ essentiel pour un bon LCP
                 className="object-cover"
               />
             </div>
@@ -352,7 +353,9 @@ export default function OsteopathiePage() {
                       src="/osteopathie/urgence.webp"
                       alt="Ostéopathie adulte"
                       fill
+                      sizes="(max-width: 768px) 100vw, 25vw"    // ⭐⭐ inutile de charger 2000px !
                       className="object-cover"
+                      loading="lazy"
                     />
                   </div>
                   <div className="p-4">
@@ -374,8 +377,11 @@ export default function OsteopathiePage() {
                       src="/osteopathie/FE.webp"
                       alt="Ostéopathie femme enceinte"
                       fill
+                      sizes="(max-width: 768px) 100vw, 25vw"    // ⭐⭐ inutile de charger 2000px !
                       className="object-cover"
+                      loading="lazy"
                     />
+
                   </div>
                   <div className="p-4">
                     <h3 className="font-semibold text-primary">
@@ -398,7 +404,9 @@ export default function OsteopathiePage() {
                       src="/osteopathie/enfant.webp"
                       alt="Ostéopathie enfant"
                       fill
+                      sizes="(max-width: 768px) 100vw, 25vw"    // ⭐⭐ inutile de charger 2000px !
                       className="object-cover"
+                      loading="lazy"
                     />
                   </div>
                   <div className="p-4">
@@ -422,7 +430,9 @@ export default function OsteopathiePage() {
                       src="/osteopathie/nour.webp"
                       alt="Ostéopathie nourrisson"
                       fill
+                      sizes="(max-width: 768px) 100vw, 25vw"    // ⭐⭐ inutile de charger 2000px !
                       className="object-cover"
+                      loading="lazy"
                     />
                   </div>
                   <div className="p-4">
@@ -458,7 +468,9 @@ export default function OsteopathiePage() {
                       src="/osteopathie/urgence.webp"
                       alt="Douleurs musculo-squelettiques"
                       fill
+                      sizes="112px"        // ⭐ taille réelle du rond → PERF MAX !
                       className="object-cover"
+                      loading="lazy"
                     />
                   </div>
                   <div>
@@ -481,7 +493,9 @@ export default function OsteopathiePage() {
                       src="/osteopathie/machoir.webp"
                       alt="Douleurs de mâchoire ATM"
                       fill
+                      sizes="112px"        // ⭐ taille réelle du rond → PERF MAX !
                       className="object-cover"
+                      loading="lazy"
                     />
                   </div>
                   <div>
@@ -503,7 +517,9 @@ export default function OsteopathiePage() {
                       src="/osteopathie/sport.webp"
                       alt="Ostéopathie du sport"
                       fill
+                      sizes="112px"        // ⭐ taille réelle du rond → PERF MAX !
                       className="object-cover"
+                      loading="lazy"
                     />
                   </div>
                   <div>

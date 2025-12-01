@@ -179,8 +179,11 @@ export default function Paris15Page() {
           src="/cabinet-paris15/cabinet-paris15-1.webp"
           alt="Cabinet d'ostéopathie à Paris 15"
           fill
+          priority      // ⭐ accélère le LCP
+          sizes="100vw" // ⭐ essentiel pour le mobile
           className="absolute inset-0 object-cover"
         />
+
         <div className="absolute inset-0 bg-black/40 flex flex-col justify-center text-center px-6">
           <FadeIn>
             <h1 className="text-4xl md:text-5xl font-semibold text-offwhite drop-shadow-lg">
@@ -328,11 +331,13 @@ export default function Paris15Page() {
                       key={i}
                       className="relative w-full h-[280px] md:h-[320px] rounded-lg shadow-lg overflow-hidden"
                     >
-                      <Image
-                        src={`/cabinet-paris15/${img}`}
-                        alt={`Cabinet Paris 15 image ${i + 1}`}
-                        fill
-                        className="object-cover"
+                    <Image
+                      src={`/cabinet-paris15/${img}`}
+                      alt={`Cabinet Paris 15 image ${i + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"   // ⭐ essentiel
+                      className="object-cover"
+                      loading="lazy"
                       />
                     </div>
                   ))}
@@ -369,7 +374,9 @@ export default function Paris15Page() {
                       src="/cabinet-paris15/cabinet-paris15-2.webp"
                       alt="Salle du cabinet d’ostéopathie Paris 15"
                       fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover"
+                      loading="lazy"
                     />
                   </div>
                 </div>

@@ -1,9 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
+import dynamic from "next/dynamic";
 import Image from "next/image";
+
+// Lightbox chargée uniquement quand nécessaire → énorme gain perf
+const YarlLightbox = dynamic(
+  () => import("yet-another-react-lightbox"),
+  { ssr: false }
+);
+
+import "yet-another-react-lightbox/styles.css";
 
 export default function ParisGallery() {
   const [open, setOpen] = useState(false);
@@ -16,7 +23,8 @@ export default function ParisGallery() {
 
   return (
     <div className="max-w-4xl mx-auto py-10">
-      {/* Grid des images */}
+
+      {/* ==== GALERIE EN GRID ==== */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {images.map((src, i) => (
           <div
@@ -29,19 +37,28 @@ export default function ParisGallery() {
               alt={`Cabinet Paris 15 - photo ${i + 1}`}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, 33vw"
+              loading="lazy"
+              quality={75}
+              sizes="(max-width: 768px) 100vw,
+                     (max-width: 1024px) 50vw,
+                     33vw"
+              placeholder="blur"
+              blurDataURL="/placeholder.webp"
             />
           </div>
         ))}
       </div>
 
-      {/* Lightbox */}
-      <Lightbox
-        open={open !== false}
-        close={() => setOpen(false)}
-        index={open ?? 0}
-        slides={images.map((src) => ({ src }))}
-      />
+      {/* ==== LIGHTBOX DYNAMIQUE ==== */}
+      {open !== false && (
+        <YarlLightbox
+          open={open !== false}
+          close={() => setOpen(false)}
+          index={open}
+          slides={images.map((src) => ({ src }))}
+          carousel={{ preload: 1 }}
+        />
+      )}
     </div>
   );
 }

@@ -2,9 +2,13 @@
 const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
-    forceSwcTransforms: true, // 🔥 Force Next à NE PAS inclure les polyfills ES5
+    forceSwcTransforms: true,
+    ppr: true, // 🚀 Active le Partial Prerendering
   },
-  swcMinify: true,             // 🔥 Minification moderne
+  swcMinify: true,
+  images: {
+    formats: ["image/avif", "image/webp"], // ajoute AVIF
+  },
 };
 
 module.exports = nextConfig;

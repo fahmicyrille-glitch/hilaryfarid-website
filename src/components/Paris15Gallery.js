@@ -1,26 +1,43 @@
 "use client";
 
 import { useState } from "react";
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
-
 import dynamic from "next/dynamic";
-import { Autoplay, Pagination } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/pagination";
-
 import Image from "next/image";
 
+/* ================ DYNAMIC IMPORTS ================ */
+// Swiper chargé uniquement au scroll → énorme gain perf
 const Swiper = dynamic(
-  () => import("swiper/react").then((mod) => mod.Swiper),
+  () =>
+    import("swiper/react").then((mod) => mod.Swiper),
   { ssr: false }
 );
 
 const SwiperSlide = dynamic(
-  () => import("swiper/react").then((mod) => mod.SwiperSlide),
+  () =>
+    import("swiper/react").then((mod) => mod.SwiperSlide),
   { ssr: false }
 );
+
+// Swiper modules
+const SwiperModules = dynamic(
+  () =>
+    import("swiper/modules").then((mod) => ({
+      Autoplay: mod.Autoplay,
+      Pagination: mod.Pagination,
+    })),
+  { ssr: false }
+);
+
+// Lightbox chargée uniquement au clic
+const YarlLightbox = dynamic(
+  () => import("yet-another-react-lightbox"),
+  { ssr: false }
+);
+
+/* Styles */
+import "swiper/css";
+import "swiper/css/pagination";
+import "yet-another-react-lightbox/styles.css";
 
 export default function ParisGallery() {
   const images = [
@@ -34,11 +51,19 @@ export default function ParisGallery() {
 
   return (
     <div className="max-w-3xl mx-auto mt-10">
-      {/* SLIDER */}
+
+      {/* =============== SLIDER =============== */}
       <Swiper
-        modules={[Autoplay, Pagination]}
-        autoplay={{ delay: 2500 }}
-        pagination={{ clickable: true }}
+        modules={[]}
+        onSwiper={(swiper) => {
+          // Charger les modules *après* le rendu → boost perf
+          SwiperModules.then((mods) => {
+            swiper.params.modules = [mods.Autoplay, mods.Pagination];
+            swiper.params.autoplay = { delay: 3000 };
+            swiper.params.pagination = { clickable: true };
+            swiper.update();
+          });
+        }}
         loop
         spaceBetween={20}
         className="rounded-lg shadow-lg cursor-pointer"
@@ -54,23 +79,32 @@ export default function ParisGallery() {
             <div className="relative w-full h-72 rounded-lg overflow-hidden">
               <Image
                 src={src}
-                alt={`Cabinet Paris 15 - Photo ${i + 1}`}
+                alt={`Cabinet Paris 15 – Photo ${i + 1}`}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw,
+                       (max-width: 1200px) 50vw,
+                       33vw"
+                quality={75}
+                placeholder="blur"
+                blurDataURL="/placeholder.webp"
               />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {/* LIGHTBOX */}
-      <Lightbox
-        open={open}
-        close={() => setOpen(false)}
-        index={index}
-        slides={images.map((src) => ({ src }))}
-      />
+      {/* =============== LIGHTBOX =============== */}
+      {open && (
+        <YarlLightbox
+          open={open}
+          close={() => setOpen(false)}
+          index={index}
+          slides={images.map((src) => ({ src }))}
+          carousel={{ preload: 1 }}
+        />
+      )}
     </div>
   );
 }

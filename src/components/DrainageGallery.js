@@ -1,12 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import YarlLightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
-import Image from "next/image";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
-// Framer Motion uniquement côté client
+// Lightbox chargée uniquement au clic (énorme gain perf 🚀)
+const YarlLightbox = dynamic(
+  () => import("yet-another-react-lightbox"),
+  { ssr: false }
+);
+
+// Styles séparés + lazy load automatique
+import "yet-another-react-lightbox/styles.css";
+
+// Motion côté client uniquement
 const MotionDiv = dynamic(
   () => import("framer-motion").then((mod) => mod.motion.div),
   { ssr: false }
@@ -41,18 +48,27 @@ export default function DrainageGallery() {
               alt={img.alt}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, 33vw"
+              loading="lazy"
+              quality={75}
+              sizes="(max-width: 640px) 100vw,
+                     (max-width: 1024px) 50vw,
+                     33vw"
+              placeholder="blur"
+              blurDataURL="/placeholder.webp"
             />
           </MotionDiv>
         ))}
       </div>
 
-      <YarlLightbox
-        open={open}
-        close={() => setOpen(false)}
-        index={index}
-        slides={images} // YARL fonctionne avec { src }
-      />
+      {open && (
+        <YarlLightbox
+          open={open}
+          close={() => setOpen(false)}
+          index={index}
+          slides={images}
+          carousel={{ preload: 1 }} // optimise mémoire
+        />
+      )}
     </div>
   );
 }

@@ -190,6 +190,8 @@ export default function SevresPage() {
           src="/cabinet-sevres/cabinet-sevres-1.webp"
           alt="Cabinet d'ostéopathie à Sèvres"
           fill
+          priority
+          sizes="100vw"
           className="absolute inset-0 object-cover"
         />
         <div className="absolute inset-0 bg-black/40 flex flex-col justify-center text-center px-6">
@@ -314,6 +316,10 @@ export default function SevresPage() {
                         alt="Hilary Farid Ostéopathe à Sèvres"
                         fill
                         className="object-cover"
+                        loading="lazy"
+                        sizes="(max-width: 768px) 90vw,
+                               (max-width: 1200px) 50vw,
+                               400px"
                       />
                     </div>
                   </div>
@@ -345,6 +351,10 @@ export default function SevresPage() {
                         src={`/cabinet-sevres/${img}`}
                         alt={`Cabinet Sèvres image ${i + 1}`}
                         fill
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw,
+                               (max-width: 1200px) 50vw,
+                               33vw"
                         className="object-cover"
                       />
                     </div>
@@ -383,6 +393,10 @@ export default function SevresPage() {
                       src="/cabinet-sevres/cabinet-sevres-2.webp"
                       alt="Salle d'attente du cabinet"
                       fill
+                      loading="lazy"
+                      sizes="(max-width: 768px) 90vw,
+                             (max-width: 1200px) 50vw,
+                             400px"
                       className="object-cover"
                     />
                   </div>

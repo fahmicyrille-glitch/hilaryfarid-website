@@ -227,7 +227,9 @@ export default function Home() {
                   height={600}
                   className="object-cover w-full h-full"
                   priority
-                  sizes="(max-width: 768px) 90vw, 600px"
+                  sizes="(max-width: 768px) 90vw,
+                         (max-width: 1200px) 50vw,
+                         600px"
                 />
               </div>
             </div>
@@ -392,6 +394,10 @@ export default function Home() {
                   height={200}
                   alt="Cabinet d’ostéopathie à Sèvres – salle de consultation"
                   className="object-cover h-28 w-full"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw,
+                         (max-width: 1200px) 50vw,
+                         33vw"
                 />
                 <Image
                   src="/cabinet-sevres/cabinet-sevres-2.webp"
@@ -399,6 +405,10 @@ export default function Home() {
                   height={200}
                   alt="Cabinet d’ostéopathie à Sèvres – table de soin"
                   className="object-cover h-28 w-full"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw,
+                         (max-width: 1200px) 50vw,
+                         33vw"
                 />
                 <Image
                   src="/cabinet-sevres/cabinet-sevres-3.webp"
@@ -406,6 +416,10 @@ export default function Home() {
                   height={200}
                   alt="Cabinet d’ostéopathie à Sèvres – salle d’attente"
                   className="object-cover h-28 w-full"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw,
+                         (max-width: 1200px) 50vw,
+                         33vw"
                 />
               </div>
 
@@ -437,6 +451,10 @@ export default function Home() {
                   height={200}
                   alt="Cabinet d’ostéopathie à Paris 15 – salle de consultation"
                   className="object-cover h-28 w-full"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw,
+                         (max-width: 1200px) 50vw,
+                         33vw"
                 />
                 <Image
                   src="/cabinet-paris15/cabinet-paris15-2.webp"
@@ -444,6 +462,10 @@ export default function Home() {
                   height={200}
                   alt="Cabinet d’ostéopathie à Paris 15 – table de soin"
                   className="object-cover h-28 w-full"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw,
+                         (max-width: 1200px) 50vw,
+                         33vw"
                 />
                 <Image
                   src="/cabinet-paris15/cabinet-paris15-3.webp"
@@ -451,6 +473,10 @@ export default function Home() {
                   height={200}
                   alt="Cabinet d’ostéopathie à Paris 15 – salle d’attente"
                   className="object-cover h-28 w-full"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw,
+                         (max-width: 1200px) 50vw,
+                         33vw"
                 />
               </div>
 
