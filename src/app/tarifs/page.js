@@ -40,28 +40,37 @@ export default function TarifsPage() {
   const [activeId, setActiveId] = useState("consultations");
   const [showBackToTop, setShowBackToTop] = useState(false);
 
+  /* ================== SCROLLSPY CORRIGÉ ================== */
   useEffect(() => {
     const handleScroll = () => {
+      const trigger = window.innerHeight * 0.25; // zone haute du viewport
+
       let current = "consultations";
-      const scrollY = window.scrollY;
 
       SECTIONS.forEach((s) => {
         const el = document.getElementById(s.id);
-        if (el) {
-          const offset = el.offsetTop - 140;
-          if (scrollY >= offset) current = s.id;
+        if (!el) return;
+
+        const rect = el.getBoundingClientRect();
+
+        // La section est considérée "active" si son top est au-dessus
+        // d'un quart de la hauteur de l'écran, et son bottom en-dessous.
+        if (rect.top <= trigger && rect.bottom > trigger) {
+          current = s.id;
         }
       });
 
       setActiveId(current);
-      setShowBackToTop(scrollY > 600);
+      setShowBackToTop(window.scrollY > 600);
     };
-
+  
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  /* ======================================================= */
 
   const smoothScroll = (e, id) => {
     e.preventDefault();
@@ -101,16 +110,16 @@ export default function TarifsPage() {
                       "@type": "ListItem",
                       position: 1,
                       name: "Accueil",
-                      item: "https://www.hilaryfarid-osteopathe.fr"
+                      item: "https://www.hilaryfarid-osteopathe.fr",
                     },
                     {
                       "@type": "ListItem",
                       position: 2,
                       name: "Tarifs",
-                      item: "https://www.hilaryfarid-osteopathe.fr/tarifs"
-                    }
-                  ]
-                }
+                      item: "https://www.hilaryfarid-osteopathe.fr/tarifs",
+                    },
+                  ],
+                },
               },
 
               /* ========================================================= */
@@ -123,7 +132,7 @@ export default function TarifsPage() {
                 serviceType: "Consultation d’ostéopathie",
                 provider: {
                   "@type": "Person",
-                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid"
+                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid",
                 },
                 areaServed: ["Sèvres", "Paris 15"],
                 hasOfferCatalog: {
@@ -134,28 +143,28 @@ export default function TarifsPage() {
                       "@type": "Offer",
                       name: "Consultation ostéopathie adulte",
                       price: "70",
-                      priceCurrency: "EUR"
+                      priceCurrency: "EUR",
                     },
                     {
                       "@type": "Offer",
                       name: "Consultation nourrisson / enfant",
                       price: "50",
-                      priceCurrency: "EUR"
+                      priceCurrency: "EUR",
                     },
                     {
                       "@type": "Offer",
                       name: "Consultation ostéopathie jours fériés / dimanche",
                       price: "90",
-                      priceCurrency: "EUR"
+                      priceCurrency: "EUR",
                     },
                     {
                       "@type": "Offer",
                       name: "Offre post-accouchement : Maman + Bébé",
                       price: "100",
-                      priceCurrency: "EUR"
-                    }
-                  ]
-                }
+                      priceCurrency: "EUR",
+                    },
+                  ],
+                },
               },
 
               /* ========================================================= */
@@ -168,7 +177,7 @@ export default function TarifsPage() {
                 serviceType: "Drainage lymphatique – Méthode Renata França",
                 provider: {
                   "@type": "Person",
-                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid"
+                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid",
                 },
                 areaServed: ["Sèvres", "Paris 15"],
                 hasOfferCatalog: {
@@ -179,16 +188,16 @@ export default function TarifsPage() {
                       "@type": "Offer",
                       name: "Séance drainage lymphatique corps entier",
                       price: "180",
-                      priceCurrency: "EUR"
+                      priceCurrency: "EUR",
                     },
                     {
                       "@type": "Offer",
                       name: "Cure 5 séances drainage lymphatique",
                       price: "800",
-                      priceCurrency: "EUR"
-                    }
-                  ]
-                }
+                      priceCurrency: "EUR",
+                    },
+                  ],
+                },
               },
 
               /* ========================================================= */
@@ -204,8 +213,8 @@ export default function TarifsPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, les tarifs sont identiques dans les deux cabinets pour assurer cohérence et transparence."
-                    }
+                        "Oui, les tarifs sont identiques dans les deux cabinets pour assurer cohérence et transparence.",
+                    },
                   },
                   {
                     "@type": "Question",
@@ -213,8 +222,8 @@ export default function TarifsPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, la majorité des mutuelles remboursent les séances. Une facture est remise après chaque consultation."
-                    }
+                        "Oui, la majorité des mutuelles remboursent les séances. Une facture est remise après chaque consultation.",
+                    },
                   },
                   {
                     "@type": "Question",
@@ -222,11 +231,11 @@ export default function TarifsPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Non, il s’agit d’un soin bien-être non remboursé. Seules les séances d’ostéopathie peuvent être prises en charge selon votre mutuelle."
-                    }
-                  }
-                ]
-              }
+                        "Non, il s’agit d’un soin bien-être non remboursé. Seules les séances d’ostéopathie peuvent être prises en charge selon votre mutuelle.",
+                    },
+                  },
+                ],
+              },
             ],
             null,
             2
@@ -247,7 +256,6 @@ export default function TarifsPage() {
       {/* ================= WRAPPER CONTENT + SOMMAIRE ================= */}
       <section className="bg-offwhite py-12 px-4 md:px-6">
         <div className="max-w-6xl mx-auto flex gap-10">
-
           {/* ==== SOMMAIRE STICKY (desktop) ==== */}
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-28 bg-white rounded-2xl shadow-sm border border-light p-5">
@@ -275,7 +283,6 @@ export default function TarifsPage() {
 
           {/* ==== CONTENU PRINCIPAL ==== */}
           <div className="flex-1 space-y-16">
-
             {/* ===== SOMMAIRE MOBILE ===== */}
             <div className="lg:hidden mb-4">
               <div className="bg-white rounded-2xl border border-light p-4">

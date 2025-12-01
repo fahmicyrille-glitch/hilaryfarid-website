@@ -46,34 +46,35 @@ export default function ContactPage() {
 
   // Scrollspy optimisé (requestAnimationFrame)
   useEffect(() => {
-    let ticking = false;
+    const sectionIds = SECTIONS.map((s) => s.id);
 
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          let current = "coordonnees";
-
-          for (const section of SECTIONS) {
-            const el = document.getElementById(section.id);
-            if (el) {
-              const offset = el.offsetTop - 140;
-              if (scrollY >= offset) current = section.id;
-            }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
           }
-
-          setActiveId(current);
-          setShowBackToTop(scrollY > 600);
-          ticking = false;
         });
-        ticking = true;
+      },
+      {
+        root: null,
+        rootMargin: "-35% 0px -50% 0px", // 🔥 BEST SETTING pour ton layout
+        threshold: 0,
       }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    const onScroll = () => setShowBackToTop(window.scrollY > 600);
+    window.addEventListener("scroll", onScroll);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
     };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const smoothScroll = (e, id) => {

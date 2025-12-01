@@ -20,27 +20,34 @@ export default function AProposPage() {
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   /* ===== Scrollspy ===== */
+  /* ===== Scrollspy (IntersectionObserver) ===== */
   useEffect(() => {
-    const handleScroll = () => {
-      let current = "intro";
-      const scrollY = window.scrollY;
+    if (typeof window === "undefined") return;
 
-      SECTIONS.forEach((s) => {
-        const el = document.getElementById(s.id);
-        if (el) {
-          const offset = el.offsetTop - 140;
-          if (scrollY >= offset) current = s.id;
-        }
-      });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            setActiveId(id);
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.3,
+        rootMargin: "-20% 0px -50% 0px",
+      }
+    );
 
-      setActiveId(current);
-      setShowBackToTop(scrollY > 600);
-    };
+    SECTIONS.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => observer.disconnect();
   }, []);
+
 
   const smoothScroll = (e, id) => {
     e.preventDefault();

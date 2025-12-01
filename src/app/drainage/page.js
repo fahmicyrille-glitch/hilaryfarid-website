@@ -9,7 +9,6 @@ import SEO from "@/components/SEO";
 
 const SECTIONS = [
   { id: "a-propos", label: "À propos du drainage" },
-  { id: "effets", label: "Effets & résultats" },
   { id: "avant-apres", label: "Avant / Après" },
   { id: "benefices", label: "Bénéfices au quotidien" },
   { id: "contre-indications", label: "Contre-indications" },
@@ -17,39 +16,70 @@ const SECTIONS = [
   { id: "faq", label: "FAQ" },
 ];
 
+
 export default function DrainagePage() {
   const [activeId, setActiveId] = useState("a-propos");
   const [showBackToTop, setShowBackToTop] = useState(false);
 
-  // Scrollspy + bouton retour en haut
+  /* ------------------ 1) Scrollspy avec IntersectionObserver ------------------ */
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      let current = activeId;
+    if (typeof window === "undefined") return;
 
-      for (const section of SECTIONS) {
-        const el = document.getElementById(section.id);
-        if (el) {
-          const offsetTop = el.offsetTop - 140;
-          if (scrollY >= offsetTop) {
-            current = section.id;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            if (SECTIONS.some((s) => s.id === id)) {
+              setActiveId(id);
+            }
           }
-        }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.25,
+        rootMargin: "-10% 0px -60% 0px",
       }
+    );
 
-      if (current !== activeId) {
-        setActiveId(current);
+    // Observer toutes les sections
+    SECTIONS.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    // SI on est en haut de la page → À propos actif
+    const onScroll = () => {
+      if (window.scrollY < 200) {
+        setActiveId("a-propos");
       }
-      setShowBackToTop(scrollY > 600);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [activeId]);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
-  // Smooth scroll (JS pur, pas de TS)
+  /* ------------------ 2) Bouton retour en haut ------------------ */
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const onScroll = () => {
+      setShowBackToTop(window.scrollY > 600);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  /* ------------------ 3) Smooth scroll ------------------ */
   const handleSmoothScroll = (e, id) => {
     e.preventDefault();
     const el = document.getElementById(id);
@@ -72,7 +102,6 @@ export default function DrainagePage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             [
-              /* ==================== PAGE TYPE ==================== */
               {
                 "@context": "https://schema.org",
                 "@type": "MedicalWebPage",
@@ -83,7 +112,7 @@ export default function DrainagePage() {
                   "Drainage lymphatique méthode Renata França : dégonflement immédiat, ventre plat, jambes légères, amélioration de la circulation et détox rapide.",
                 about: {
                   "@type": "TherapeuticProcedure",
-                  name: "Drainage lymphatique Renata França"
+                  name: "Drainage lymphatique Renata França",
                 },
                 breadcrumb: {
                   "@type": "BreadcrumbList",
@@ -92,19 +121,17 @@ export default function DrainagePage() {
                       "@type": "ListItem",
                       position: 1,
                       name: "Accueil",
-                      item: "https://www.hilaryfarid-osteopathe.fr"
+                      item: "https://www.hilaryfarid-osteopathe.fr",
                     },
                     {
                       "@type": "ListItem",
                       position: 2,
                       name: "Drainage lymphatique",
-                      item: "https://www.hilaryfarid-osteopathe.fr/drainage"
-                    }
-                  ]
-                }
+                      item: "https://www.hilaryfarid-osteopathe.fr/drainage",
+                    },
+                  ],
+                },
               },
-
-              /* ==================== SERVICE ==================== */
               {
                 "@context": "https://schema.org",
                 "@type": "Service",
@@ -112,15 +139,13 @@ export default function DrainagePage() {
                 serviceType: "Drainage lymphatique – Méthode Renata França",
                 provider: {
                   "@type": "Person",
-                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid"
+                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid",
                 },
                 areaServed: ["Sèvres", "Paris 15"],
                 description:
                   "Méthode Renata França : drainage lymphatique manuel tonique, résultats immédiats : dégonflement, ventre plat, jambes légères, silhouette affinée.",
-                audience: ["Adult", "PostpartumWomen", "Athlete"]
+                audience: ["Adult", "PostpartumWomen", "Athlete"],
               },
-
-              /* ==================== LOCALBUSINESS SÈVRES ==================== */
               {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
@@ -134,19 +159,19 @@ export default function DrainagePage() {
                   streetAddress: "104 Grande Rue",
                   postalCode: "92310",
                   addressLocality: "Sèvres",
-                  addressCountry: "FR"
+                  addressCountry: "FR",
                 },
                 makesOffer: {
                   "@type": "Service",
-                  "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#service"
-                }
+                  "@id":
+                    "https://www.hilaryfarid-osteopathe.fr/drainage#service",
+                },
               },
-
-              /* ==================== LOCALBUSINESS PARIS 15 ==================== */
               {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
-                "@id": "https://www.hilaryfarid-osteopathe.fr/paris15#business",
+                "@id":
+                  "https://www.hilaryfarid-osteopathe.fr/paris15#business",
                 name: "Cabinet d’Ostéopathie – Paris 15",
                 telephone: "+33 6 72 01 45 39",
                 image:
@@ -157,15 +182,14 @@ export default function DrainagePage() {
                   postalCode: "75015",
                   addressLocality: "Paris",
                   addressRegion: "Île-de-France",
-                  addressCountry: "FR"
+                  addressCountry: "FR",
                 },
                 makesOffer: {
                   "@type": "Service",
-                  "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#service"
-                }
+                  "@id":
+                    "https://www.hilaryfarid-osteopathe.fr/drainage#service",
+                },
               },
-
-              /* ==================== FAQ ==================== */
               {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
@@ -177,8 +201,8 @@ export default function DrainagePage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "La méthode Renata França réduit la rétention d’eau, affine la silhouette, dégonfle dès la première séance, améliore la digestion et procure des jambes légères."
-                    }
+                        "La méthode Renata França réduit la rétention d’eau, affine la silhouette, dégonfle dès la première séance, améliore la digestion et procure des jambes légères.",
+                    },
                   },
                   {
                     "@type": "Question",
@@ -186,8 +210,8 @@ export default function DrainagePage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Une séance suffit pour un effet immédiat. Une cure de 3 à 5 séances optimise les résultats."
-                    }
+                        "Une séance suffit pour un effet immédiat. Une cure de 3 à 5 séances optimise les résultats.",
+                    },
                   },
                   {
                     "@type": "Question",
@@ -195,8 +219,8 @@ export default function DrainagePage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Non. Les pressions sont toniques mais jamais douloureuses, et toujours adaptées au confort du patient."
-                    }
+                        "Non. Les pressions sont toniques mais jamais douloureuses, et toujours adaptées au confort du patient.",
+                    },
                   },
                   {
                     "@type": "Question",
@@ -204,11 +228,11 @@ export default function DrainagePage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, c’est très efficace pour dégonfler, améliorer la digestion et retrouver une sensation de légèreté."
-                    }
-                  }
-                ]
-              }
+                        "Oui, c’est très efficace pour dégonfler, améliorer la digestion et retrouver une sensation de légèreté.",
+                    },
+                  },
+                ],
+              },
             ],
             null,
             2
@@ -217,28 +241,25 @@ export default function DrainagePage() {
       />
 
       {/* ================= HERO ================= */}
-      <section className="relative h-[70vh] w-full overflow-hidden">
+      <section className="relative h-[70vh] w-full overflow-visible">
         <Image
-          src="/drainage/drainage_Logo.webp"
-          alt="Logo Renata França"
-          width={160}
-          height={160}
-          loading="lazy"
-          sizes="160px"
-          className="mx-auto w-40 mb-6 opacity-90"
+          src="/drainage/drainage_ventre.webp"
+          alt="Drainage lymphatique Renata França"
+          fill
+          priority
+          className="absolute inset-0 w-full h-full object-cover"
         />
 
         <div className="absolute inset-0 bg-black/50 flex flex-col justify-center text-center px-6">
           <FadeIn>
-          <Image
+            <Image
               src="/drainage/drainage_Logo.webp"
               alt="Logo Renata França"
               width={160}
               height={160}
-              loading="lazy"
-              sizes="160px"
               className="mx-auto w-40 mb-6 opacity-90"
             />
+
             <h1 className="text-4xl md:text-5xl font-semibold text-white drop-shadow-lg">
               Drainage lymphatique <br />
               Méthode Renata França
@@ -254,11 +275,10 @@ export default function DrainagePage() {
 
       {/* ================= WRAPPER SOMMAIRE + CONTENU ================= */}
       <section className="bg-offwhite py-12 px-4 md:px-6">
-        <div className="max-w-6xl mx-auto flex gap-10">
-
+        <div className="max-w-6xl mx-auto flex gap-10 overflow-visible">
           {/* ===== SOMMAIRE STICKY (DESKTOP) ===== */}
-          <aside className="hidden lg:block w-64 flex-shrink-0">
-            <div className="sticky top-28 bg-white rounded-2xl shadow-sm border border-light/70 p-5">
+          <aside className="hidden lg:block w-64 flex-shrink-0 sticky top-28 self-start h-max">
+            <div className="bg-white rounded-2xl shadow-sm border border-light/70 p-5">
               <h2 className="text-sm font-semibold text-primary mb-3 tracking-wide uppercase">
                 Sommaire
               </h2>
@@ -284,7 +304,6 @@ export default function DrainagePage() {
 
           {/* ===== CONTENU PRINCIPAL ===== */}
           <div className="flex-1 space-y-16">
-
             {/* ===== Sommaire Mobile ===== */}
             <div className="lg:hidden mb-4">
               <div className="bg-white rounded-2xl shadow-sm border border-light/70 p-4">
@@ -310,38 +329,32 @@ export default function DrainagePage() {
               </div>
             </div>
 
-            {/* ================================================================= */}
             {/* ====================== SECTION : A PROPOS ======================= */}
-            {/* ================================================================= */}
             <SlideUp>
               <section
                 id="a-propos"
-                className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
+                className="pt-24 bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
               >
                 <h2 className="text-3xl md:text-4xl font-semibold text-primary text-center">
                   Un drainage unique, aux résultats immédiats
                 </h2>
 
                 <div className="mt-10 space-y-8 text-graywarm leading-relaxed text-base md:text-lg">
-
                   <p className="text-center">
                     Le <strong>drainage lymphatique Renata França</strong> est
                     une méthode révolutionnaire, bien plus tonique que le
                     drainage classique. Elle stimule intensément la circulation{" "}
-                    <strong>lymphatique</strong> et <strong>sanguine</strong> pour
-                    obtenir un effet visible dès la première séance.
+                    <strong>lymphatique</strong> et <strong>sanguine</strong>{" "}
+                    pour obtenir un effet visible dès la première séance.
                   </p>
 
                   <p className="text-center font-medium text-xl text-primary">
-                    👉 Résultats immédiats : silhouette affinée, ventre dégonflé,
-                    jambes légères, énergie retrouvée.
+                    👉 Résultats immédiats : silhouette affinée, ventre
+                    dégonflé, jambes légères, énergie retrouvée.
                   </p>
 
                   <hr className="border-graywarm/30 my-8" />
 
-                  {/* ============================================================= */}
-                  {/* ====================== SECTION : EFFETS ===================== */}
-                  {/* ============================================================= */}
                   <div id="effets">
                     <h3 className="text-2xl font-semibold text-primary text-center">
                       Pourquoi cette méthode est-elle si efficace ?
@@ -355,7 +368,8 @@ export default function DrainagePage() {
                     </ul>
 
                     <p className="mt-4 italic">
-                      Une sensation incomparable de légèreté, dès la première séance.
+                      Une sensation incomparable de légèreté, dès la première
+                      séance.
                     </p>
                   </div>
 
@@ -386,8 +400,8 @@ export default function DrainagePage() {
 
                     <p className="mt-3 text-center">
                       Idéal avant un <strong>shooting</strong>, un{" "}
-                      <strong>mariage</strong>, des vacances, une compétition ou un{" "}
-                      <strong>post-partum</strong>.
+                      <strong>mariage</strong>, des vacances, une compétition ou
+                      un <strong>post-partum</strong>.
                     </p>
                   </div>
 
@@ -400,7 +414,9 @@ export default function DrainagePage() {
 
                     <ul className="mt-4 space-y-2 list-disc list-inside">
                       <li>✔️ Une séance = effet immédiat</li>
-                      <li>✔️ Cure de 3 à 5 séances = résultats optimisés</li>
+                      <li>
+                        ✔️ Cure de 3 à 5 séances = résultats optimisés
+                      </li>
                     </ul>
                   </div>
 
@@ -413,16 +429,15 @@ export default function DrainagePage() {
 
                     <p className="mt-3 text-center">
                       Je suis <strong>formée et certifiée</strong> à la Méthode
-                      Renata França, et j’adapte chaque séance à votre morphologie.
+                      Renata França, et j’adapte chaque séance à votre
+                      morphologie.
                     </p>
                   </div>
                 </div>
               </section>
             </SlideUp>
 
-            {/* ================================================================= */}
             {/* ====================== SECTION : AVANT APRES ==================== */}
-            {/* ================================================================= */}
             <SlideUp>
               <section
                 id="avant-apres"
@@ -439,7 +454,6 @@ export default function DrainagePage() {
                       alt="Résultat avant après jambes drainage lymphatique"
                       width={900}
                       height={900}
-                      loading="lazy"
                       sizes="(max-width: 768px) 100vw,
                              (max-width: 1200px) 50vw,
                              450px"
@@ -453,7 +467,6 @@ export default function DrainagePage() {
                       alt="Résultat avant après ventre drainage lymphatique"
                       width={900}
                       height={900}
-                      loading="lazy"
                       sizes="(max-width: 768px) 100vw,
                              (max-width: 1200px) 50vw,
                              450px"
@@ -464,9 +477,7 @@ export default function DrainagePage() {
               </section>
             </SlideUp>
 
-            {/* ================================================================= */}
             {/* ====================== SECTION : BENEFICES ====================== */}
-            {/* ================================================================= */}
             <SlideUp>
               <section
                 id="benefices"
@@ -482,9 +493,11 @@ export default function DrainagePage() {
                     alt="Drainage lymphatique jambes méthode Renata França"
                     width={800}
                     height={800}
+                    sizes="(max-width: 768px) 90vw,
+                           (max-width: 1200px) 50vw,
+                           400px"
                     className="rounded-lg shadow-lg"
                   />
-
                   <ul className="space-y-4 text-graywarm text-lg">
                     <li>✔️ Effet immédiat dès la première séance</li>
                     <li>✔️ Diminution de la rétention d’eau</li>
@@ -497,9 +510,7 @@ export default function DrainagePage() {
               </section>
             </SlideUp>
 
-            {/* ================================================================= */}
             {/* ================= SECTION : CONTRE INDICATIONS ================= */}
-            {/* ================================================================= */}
             <SlideUp>
               <section
                 id="contre-indications"
@@ -510,8 +521,9 @@ export default function DrainagePage() {
                 </h2>
 
                 <p className="mt-6 text-graywarm text-center max-w-2xl mx-auto">
-                  Le drainage lymphatique Renata França est une méthode puissante.
-                  Certaines situations demandent un avis médical préalable :
+                  Le drainage lymphatique Renata França est une méthode
+                  puissante. Certaines situations demandent un avis médical
+                  préalable :
                 </p>
 
                 <ul className="mt-6 space-y-3 text-graywarm list-disc list-inside">
@@ -523,14 +535,13 @@ export default function DrainagePage() {
                 </ul>
 
                 <p className="mt-6 text-graywarm text-center">
-                  En cas de doute, je vous invite à me contacter avant la séance.
+                  En cas de doute, je vous invite à me contacter avant la
+                  séance.
                 </p>
               </section>
             </SlideUp>
 
-            {/* ================================================================= */}
             {/* ====================== SECTION : GALERIE ======================== */}
-            {/* ================================================================= */}
             <SlideUp>
               <section
                 id="galerie"
@@ -544,9 +555,7 @@ export default function DrainagePage() {
               </section>
             </SlideUp>
 
-            {/* ================================================================= */}
             {/* ====================== SECTION : FAQ ============================ */}
-            {/* ================================================================= */}
             <SlideUp>
               <section
                 id="faq"
@@ -562,8 +571,8 @@ export default function DrainagePage() {
                       Quels sont les effets dès la première séance ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
-                      Diminution de la rétention d’eau, ventre plus plat, jambes
-                      légères, sensation de dégonflement immédiate.
+                      Diminution de la rétention d’eau, ventre plus plat,
+                      jambes légères, sensation de dégonflement immédiate.
                     </p>
                   </details>
 
@@ -572,7 +581,8 @@ export default function DrainagePage() {
                       Est-ce que la méthode est douloureuse ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
-                      Non. La pression est tonique mais jamais douloureuse et toujours adaptée à votre confort.
+                      Non. La pression est tonique mais jamais douloureuse et
+                      toujours adaptée à votre confort.
                     </p>
                   </details>
 
@@ -581,7 +591,8 @@ export default function DrainagePage() {
                       Combien de séances sont recommandées ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
-                      Une séance suffit pour un effet immédiat. Une cure de 3 à 5 séances optimise les résultats.
+                      Une séance suffit pour un effet immédiat. Une cure de 3 à
+                      5 séances optimise les résultats.
                     </p>
                   </details>
 
@@ -590,7 +601,8 @@ export default function DrainagePage() {
                       Est-ce adapté en post-partum ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
-                      Oui, très recommandé pour éliminer la rétention d’eau, améliorer la digestion et réduire les gonflements.
+                      Oui, très recommandé pour éliminer la rétention d’eau,
+                      améliorer la digestion et réduire les gonflements.
                     </p>
                   </details>
 
@@ -599,16 +611,15 @@ export default function DrainagePage() {
                       Faut-il boire beaucoup d’eau après la séance ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
-                      Oui, il est conseillé de bien s’hydrater pour accompagner la détoxification naturelle.
+                      Oui, il est conseillé de bien s’hydrater pour accompagner
+                      la détoxification naturelle.
                     </p>
                   </details>
                 </div>
               </section>
             </SlideUp>
 
-            {/* ================================================================= */}
             {/* ====================== CTA FINAL =============================== */}
-            {/* ================================================================= */}
             <FadeIn>
               <section className="bg-primary text-offwhite rounded-2xl shadow-sm p-8 md:p-10 text-center">
                 <h2 className="text-3xl font-semibold">

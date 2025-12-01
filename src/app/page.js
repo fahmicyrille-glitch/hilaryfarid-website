@@ -215,9 +215,10 @@ export default function Home() {
 
           <FadeInNoShift>
             <div className="relative">
-              <div aria-hidden="true" className="hero-halo" />
+              <div aria-hidden="true" className="absolute -inset-4 bg-offwhite/10 rounded-3xl blur-xl" />
+
               <div
-                className="relative w-full max-w-[450px] aspect-square rounded-3xl overflow-hidden shadow-2xl border border-offwhite/30"
+                className="relative rounded-3xl overflow-hidden shadow-2xl border border-offwhite/30 aspect-square"
               >
                 <Image
                   src="/hilary.webp"
@@ -226,13 +227,12 @@ export default function Home() {
                   height={600}
                   className="object-cover w-full h-full"
                   priority
-                  sizes="(max-width: 768px) 90vw,
-                         (max-width: 1200px) 50vw,
-                         600px"
+                  sizes="(max-width: 768px) 90vw, 600px"
                 />
               </div>
             </div>
           </FadeInNoShift>
+
 
         </div>
       </section>

@@ -22,25 +22,32 @@ export default function Paris15Page() {
   // Scrollspy + bouton retour en haut
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      let current = "cabinet";
+      const viewportHeight = window.innerHeight;
+      const triggerLine = viewportHeight * 0.3; // zone haute du viewport
+      let current = SECTIONS[0].id;
 
       for (const section of SECTIONS) {
         const el = document.getElementById(section.id);
-        if (el) {
-          const offsetTop = el.offsetTop - 140;
-          if (scrollY >= offsetTop) current = section.id;
+        if (!el) continue;
+
+        const rect = el.getBoundingClientRect();
+
+        // La section est active si la trigger-line est dans sa zone
+        if (rect.top <= triggerLine && rect.bottom > triggerLine) {
+          current = section.id;
         }
       }
 
       setActiveId(current);
-      setShowBackToTop(scrollY > 600);
+      setShowBackToTop(window.scrollY > 600);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
 
   const handleSmoothScroll = (e, id) => {
     e.preventDefault();

@@ -22,21 +22,24 @@ export default function SevresPage() {
   // Scrollspy + bouton retour en haut
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
+      const trigger = window.innerHeight * 0.25; // zone haute du viewport
+
       let current = "cabinet";
 
-      for (const section of SECTIONS) {
-        const el = document.getElementById(section.id);
-        if (el) {
-          const offsetTop = el.offsetTop - 140; // marge pour le header
-          if (scrollY >= offsetTop) {
-            current = section.id;
-          }
+      SECTIONS.forEach((s) => {
+        const el = document.getElementById(s.id);
+        if (!el) return;
+
+        const rect = el.getBoundingClientRect();
+
+        // active si la zone rect traverse la ligne "trigger"
+        if (rect.top <= trigger && rect.bottom > trigger) {
+          current = s.id;
         }
-      }
+      });
 
       setActiveId(current);
-      setShowBackToTop(scrollY > 600);
+      setShowBackToTop(window.scrollY > 600);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -44,6 +47,7 @@ export default function SevresPage() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
 
   const handleSmoothScroll = (e, id) => {
     e.preventDefault();

@@ -20,33 +20,34 @@ export default function OsteopathiePage() {
       "faq",
     ];
 
-    const observers = [];
+    const options = {
+      root: null,
+      rootMargin: "-30% 0px -55% 0px",
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, options);
 
     sectionIds.forEach((id) => {
       const el = document.getElementById(id);
-      if (!el) return;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) setActiveSection(id);
-          });
-        },
-        { threshold: 0.3 }
-      );
-
-      observer.observe(el);
-      observers.push(observer);
+      if (el) observer.observe(el);
     });
 
     const onScroll = () => setShowBackTop(window.scrollY > 300);
     window.addEventListener("scroll", onScroll);
 
     return () => {
-      observers.forEach((obs) => obs.disconnect());
+      observer.disconnect();
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
+
 
   return (
     <main className="relative">
