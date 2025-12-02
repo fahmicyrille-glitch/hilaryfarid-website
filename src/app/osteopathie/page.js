@@ -296,7 +296,7 @@ export default function OsteopathiePage() {
 
             <div className="relative w-full h-72 md:h-96 rounded-2xl overflow-hidden shadow-lg">
               <Image
-                src="/osteopathie/urgence.webp"
+                src="/osteopathie/man.webp"
                 alt="Douleurs cervicales soulagées par l’ostéopathie"
                 fill
                 priority
@@ -351,7 +351,7 @@ export default function OsteopathiePage() {
                 <article className="bg-white rounded-xl shadow-sm overflow-hidden border">
                   <div className="relative h-32">
                     <Image
-                      src="/osteopathie/urgence.webp"
+                      src="/osteopathie/woman.webp"
                       alt="Ostéopathie adulte"
                       fill
                       sizes="(max-width: 768px) 100vw, 25vw"    // ⭐⭐ inutile de charger 2000px !
