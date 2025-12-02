@@ -10,38 +10,42 @@ import { usePathname } from "next/navigation";
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false); // pour le portail
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
-  const toggleMenu = () => setOpen((prev) => !prev);
-
-  /* ---- Hero ombre au scroll ---- */
+  /* ==== Scroll shadow (sans décalage) ==== */
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* ---- Savoir si on est monté (pour createPortal) ---- */
+  /* ==== Portal OK une fois monté ==== */
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  /* ---- Bloquer le scroll quand le menu est ouvert ---- */
+  /* ==== Scroll lock mobile propre (iOS compliant) ==== */
   useEffect(() => {
     if (!mounted) return;
 
     if (open) {
       document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none"; // iOS FIX
     } else {
       document.body.style.overflow = "";
+      document.body.style.touchAction = "";
     }
 
     return () => {
       document.body.style.overflow = "";
+      document.body.style.touchAction = "";
     };
   }, [open, mounted]);
 
+  const toggleMenu = () => setOpen((o) => !o);
+
+  /* ==== Active link ==== */
   const isActive = (href) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
@@ -68,18 +72,21 @@ export default function Header() {
         : "text-graywarm hover:text-primary",
     ].join(" ");
 
-  /* ----------- JSX du menu mobile (utilisé dans le portail) ----------- */
+  /* =====================
+     MENU MOBILE PORTAL
+     ===================== */
   const mobileMenu =
     open && (
       <div
         className="
           fixed inset-0 z-[9999] bg-offwhite
-          flex flex-col
+          flex flex-col animate-fadeInMenu
         "
         role="dialog"
         aria-modal="true"
         aria-label="Menu mobile"
       >
+        {/* Top bar */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-graywarm/30">
           <span className="text-primary font-semibold text-lg">
             Menu – Hilary Farid
@@ -93,6 +100,7 @@ export default function Header() {
           </button>
         </div>
 
+        {/* Links */}
         <nav
           className="flex-1 flex flex-col items-center justify-center gap-6 text-primary font-semibold text-lg"
           aria-label="Navigation mobile"
@@ -113,21 +121,26 @@ export default function Header() {
 
   return (
     <>
+      {/* ============ HEADER PRINCIPAL ============ */}
       <header
-        className={`w-full sticky top-0 z-[70] border-b border-graywarm/40 bg-offwhite/95 backdrop-blur-sm
-          transition-shadow duration-300 ${isScrolled ? "shadow-md" : "shadow-none"}
+        className={`
+          w-full sticky top-0 z-[70]
+          bg-offwhite/95 backdrop-blur-sm border-b border-graywarm/30
+          transition-shadow duration-300
+          ${isScrolled ? "shadow-md" : "shadow-none"}
         `}
-        style={{ height: "72px" }}
+        style={{ height: "72px" }} /* Fix hauteur → plus de CLS */
         aria-label="Navigation principale"
       >
         <div className="max-w-7xl mx-auto h-full flex items-center justify-between px-4 md:px-6">
-          {/* LOGO + NOM */}
+
+          {/* LOGO */}
           <Link
             href="/"
             className="flex items-center gap-3"
             aria-label="Retour à l’accueil"
           >
-            <div className="relative w-10 h-10 md:w-11 md:h-11">
+            <div className="relative w-10 h-10 md:w-11 md:h-11 shrink-0">
               <Image
                 src="/hilary-logo.svg"
                 alt="Logo du cabinet d’ostéopathie Hilary Farid"
@@ -137,6 +150,7 @@ export default function Header() {
                 priority
               />
             </div>
+
             <div className="flex flex-col leading-tight">
               <span className="text-primary text-base md:text-lg font-semibold">
                 Hilary Farid
@@ -166,7 +180,6 @@ export default function Header() {
             aria-expanded={open}
             aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           >
-            <span className="sr-only">Menu</span>
             {!open ? (
               <svg width="28" height="28" viewBox="0 0 24 24">
                 <path
@@ -190,7 +203,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* PORTAIL MENU MOBILE AU NIVEAU DE <body> */}
+      {/* PORTAL MENU MOBILE */}
       {mounted && mobileMenu && createPortal(mobileMenu, document.body)}
     </>
   );
