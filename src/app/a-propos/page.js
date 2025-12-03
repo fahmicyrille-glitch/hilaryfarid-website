@@ -76,7 +76,7 @@ export default function AProposPage() {
                 url: "https://www.hilaryfarid-osteopathe.fr/a-propos",
                 name: "À propos – Hilary Farid, Ostéopathe D.O.",
                 description:
-                  "Présentation d’Hilary Farid, ostéopathe D.O. installée à Sèvres et Paris 15. Formations, approche thérapeutique, spécialisations nourrissons, femmes enceintes, adultes et sportifs.",
+                  "Présentation d'Hilary Farid, ostéopathe D.O. installée à Sèvres et Paris 15. Formations, approche thérapeutique, spécialisations nourrissons, femmes enceintes, adultes et sportifs.",
                 image: "https://www.hilaryfarid-osteopathe.fr/Hilary.webp",
 
                 // Relation avec le schéma global Person
@@ -115,7 +115,7 @@ export default function AProposPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, elle accompagne les nourrissons pour les troubles de succion, d’allaitement, les tensions mandibulaires, les asymétries et les freins restrictifs.",
+                        "Oui, elle accompagne les nourrissons pour les troubles de succion, d'allaitement, les tensions mandibulaires, les asymétries et les freins restrictifs.",
                     },
                   },
                   {
@@ -152,10 +152,10 @@ export default function AProposPage() {
         className="bg-primary text-offwhite py-16 text-center px-6"
       >
         <FadeIn>
-          <h1 className="text-4xl font-semibold">À propos d’Hilary</h1>
+          <h1 className="text-4xl font-semibold">À propos d'Hilary</h1>
           <p className="mt-4 text-light text-lg max-w-2xl mx-auto">
-            Ostéopathe DO diplômée, douce et à l’écoute, spécialisée dans
-            l’accompagnement des nourrissons, femmes enceintes et adultes.
+            Ostéopathe DO diplômée, douce et à l'écoute, spécialisée dans
+            l'accompagnement des nourrissons, femmes enceintes et adultes.
           </p>
         </FadeIn>
       </section>
@@ -229,7 +229,7 @@ export default function AProposPage() {
 
                 <p className="text-graywarm mt-10 leading-relaxed text-center max-w-3xl mx-auto">
                   Hilary Farid est Ostéopathe DO installée à Sèvres et Paris 15.
-                  Passionnée par l’humain, le mouvement et l’accompagnement
+                  Passionnée par l'humain, le mouvement et l'accompagnement
                   global, elle propose une pratique douce, précise et adaptée à
                   chaque âge et chaque situation : nourrissons, femmes enceintes,
                   adultes et seniors.
@@ -256,12 +256,12 @@ export default function AProposPage() {
                         Ostéopathie (D.O.)
                       </h3>
                       <p className="text-graywarm italic text-sm mt-1">
-                        Institut Dauphine d’Ostéopathie – Paris (IDO Paris) - 2021
+                        Institut Dauphine d'Ostéopathie – Paris (IDO Paris) - 2021
                       </p>
 
                       <ul className="mt-4 text-graywarm space-y-2 list-disc list-inside">
                         <li>Formation complète en 5 années à temps plein</li>
-                        <li>Diplôme d’Ostéopathe agréé RNCP Niveau 7</li>
+                        <li>Diplôme d'Ostéopathe agréé RNCP Niveau 7</li>
                         <li>Études approfondies en anatomie, physiologie et biomécanique</li>
                         <li>Pratique clinique encadrée en consultations réelles</li>
                         <li>Techniques structurelles, viscérales, crâniennes & tissulaires</li>
@@ -310,7 +310,7 @@ export default function AProposPage() {
                     <FadeIn delay={0.4}>
                       <div className="p-6 border rounded-lg bg-light shadow-sm h-full">
                         <h3 className="text-xl font-semibold text-primary">
-                          Ostéopathie pendant la grossesse : de l’inconfort au bien-être
+                          Ostéopathie pendant la grossesse : de l'inconfort au bien-être
                         </h3>
                         <p className="text-graywarm italic text-sm mt-1">
                           CFPCO — 2025
@@ -354,7 +354,7 @@ export default function AProposPage() {
 
                 <div className="mt-10 space-y-6 text-graywarm leading-relaxed max-w-3xl mx-auto">
                   <p>
-                    Chaque patient est unique. Hilary prend le temps d’écouter,
+                    Chaque patient est unique. Hilary prend le temps d'écouter,
                     comprendre et analyser votre situation afin de proposer un
                     traitement précis, doux et ciblé sur vos besoins réels.
                   </p>
@@ -364,7 +364,7 @@ export default function AProposPage() {
                     et respectueuses du corps.
                   </p>
                   <p>
-                    L’objectif : soulager durablement, restaurer l’équilibre du
+                    L'objectif : soulager durablement, restaurer l'équilibre du
                     corps et améliorer votre qualité de vie au quotidien.
                   </p>
                 </div>
@@ -388,14 +388,14 @@ export default function AProposPage() {
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
                       Oui, elle est formée aux troubles de succion,
-                      l’allaitement, les tensions mandibulaires et les freins
+                      l'allaitement, les tensions mandibulaires et les freins
                       restrictifs.
                     </p>
                   </details>
 
                   <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
                     <summary className="font-semibold text-primary cursor-pointer">
-                      Quel type d’approche utilise Hilary ?
+                      Quel type d'approche utilise Hilary ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
                       Une approche douce, globale et personnalisée adaptée à

@@ -150,7 +150,7 @@ export default function DrainagePage() {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/sevres#business",
-                name: "Cabinet d’Ostéopathie – Sèvres",
+                name: "Cabinet d'Ostéopathie – Sèvres",
                 telephone: "+33 6 72 01 45 39",
                 image:
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
@@ -172,7 +172,7 @@ export default function DrainagePage() {
                 "@type": "LocalBusiness",
                 "@id":
                   "https://www.hilaryfarid-osteopathe.fr/paris15#business",
-                name: "Cabinet d’Ostéopathie – Paris 15",
+                name: "Cabinet d'Ostéopathie – Paris 15",
                 telephone: "+33 6 72 01 45 39",
                 image:
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
@@ -201,7 +201,7 @@ export default function DrainagePage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "La méthode Renata França réduit la rétention d’eau, affine la silhouette, dégonfle dès la première séance, améliore la digestion et procure des jambes légères.",
+                        "La méthode Renata França réduit la rétention d'eau, affine la silhouette, dégonfle dès la première séance, améliore la digestion et procure des jambes légères.",
                     },
                   },
                   {
@@ -228,7 +228,7 @@ export default function DrainagePage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, c’est très efficace pour dégonfler, améliorer la digestion et retrouver une sensation de légèreté.",
+                        "Oui, c'est très efficace pour dégonfler, améliorer la digestion et retrouver une sensation de légèreté.",
                     },
                   },
                 ],
@@ -363,7 +363,7 @@ export default function DrainagePage() {
                     <ul className="mt-4 space-y-2 list-disc list-inside">
                       <li>Pressions profondes et rythmées</li>
                       <li>Circulation lymphatique relancée</li>
-                      <li>Déstockage de l’eau stagnante</li>
+                      <li>Déstockage de l'eau stagnante</li>
                       <li>Détoxification naturelle du corps</li>
                     </ul>
 
@@ -411,7 +411,7 @@ export default function DrainagePage() {
 
                     <p className="mt-3 text-center">
                       Je suis <strong>formée et certifiée</strong> à la Méthode
-                      Renata França, et j’adapte chaque séance à votre
+                      Renata França, et j'adapte chaque séance à votre
                       morphologie.
                     </p>
                   </div>
@@ -483,7 +483,7 @@ export default function DrainagePage() {
 
                   <ul className="space-y-4 text-graywarm text-lg">
                     <li>✔️ Effet immédiat dès la première séance</li>
-                    <li>✔️ Diminution de la rétention d’eau</li>
+                    <li>✔️ Diminution de la rétention d'eau</li>
                     <li>✔️ Ventre plus plat & meilleure digestion</li>
                     <li>✔️ Jambes légères et affinées</li>
                     <li>✔️ Silhouette harmonisée & dégonflement rapide</li>
@@ -554,7 +554,7 @@ export default function DrainagePage() {
                       Quels sont les effets dès la première séance ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
-                      Diminution de la rétention d’eau, ventre plus plat,
+                      Diminution de la rétention d'eau, ventre plus plat,
                       jambes légères, sensation de dégonflement immédiate.
                     </p>
                   </details>
@@ -584,17 +584,17 @@ export default function DrainagePage() {
                       Est-ce adapté en post-partum ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
-                      Oui, très recommandé pour éliminer la rétention d’eau,
+                      Oui, très recommandé pour éliminer la rétention d'eau,
                       améliorer la digestion et réduire les gonflements.
                     </p>
                   </details>
 
                   <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
                     <summary className="font-semibold text-primary cursor-pointer">
-                      Faut-il boire beaucoup d’eau après la séance ?
+                      Faut-il boire beaucoup d'eau après la séance ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
-                      Oui, il est conseillé de bien s’hydrater pour accompagner
+                      Oui, il est conseillé de bien s'hydrater pour accompagner
                       la détoxification naturelle.
                     </p>
                   </details>

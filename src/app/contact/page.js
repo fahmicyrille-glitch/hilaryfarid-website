@@ -129,7 +129,7 @@ export default function ContactPage() {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/sevres#business",
-                name: "Cabinet d’Ostéopathie – Sèvres",
+                name: "Cabinet d'Ostéopathie – Sèvres",
                 telephone: "+33 6 72 01 45 39",
                 priceRange: "60€ – 90€",
                 image:
@@ -201,7 +201,7 @@ export default function ContactPage() {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/paris15#business",
-                name: "Cabinet d’Ostéopathie – Paris 15",
+                name: "Cabinet d'Ostéopathie – Paris 15",
                 telephone: "+33 6 72 01 45 39",
                 priceRange: "60€ – 90€",
                 image:
@@ -326,7 +326,7 @@ export default function ContactPage() {
             Contact & Rendez-vous
           </h1>
           <p className="mt-4 text-light text-lg max-w-2xl mx-auto">
-            Une question, un besoin d’information ou un doute sur votre motif ?
+            Une question, un besoin d'information ou un doute sur votre motif ?
             Je vous réponds avec écoute et bienveillance.
           </p>
         </HeroMotion>
@@ -490,7 +490,7 @@ export default function ContactPage() {
                     </h3>
                     <p className="text-graywarm">
                       104 Grande Rue, 92310 Sèvres <br />
-                      Tram T2 • Gare Sèvres-Ville-d’Avray • Arrêts de bus à
+                      Tram T2 • Gare Sèvres-Ville-d'Avray • Arrêts de bus à
                       proximité
                     </p>
 
@@ -572,7 +572,7 @@ export default function ContactPage() {
             <FadeIn>
               <section className="bg-primary text-offwhite rounded-2xl shadow-sm p-10 text-center">
                 <h2 className="text-3xl font-semibold">
-                  Besoin d’un rendez-vous ?
+                  Besoin d'un rendez-vous ?
                 </h2>
                 <p className="mt-3 text-offwhite/80">
                   Je vous accueille à Sèvres et Paris 15 du lundi au samedi.

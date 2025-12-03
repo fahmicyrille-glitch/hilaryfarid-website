@@ -13,19 +13,19 @@ const BASE_REVIEWS = [
   {
     name: "Sabrina",
     text:
-      "Un soin incroyable ! Résultats visibles dès la première séance de drainage. Hilary est douce, professionnelle et l’accueil est parfait. Je recommande les yeux fermés.",
+      "Un soin incroyable ! Résultats visibles dès la première séance de drainage. Hilary est douce, professionnelle et l'accueil est parfait. Je recommande les yeux fermés.",
     type: "drainage",
   },
   {
     name: "Julie",
     text:
-      "J’ai consulté pour mon nourrisson de 2 mois. Hilary a été très douce et a rapidement identifié les tensions. Mon bébé dort tellement mieux depuis !",
+      "J'ai consulté pour mon nourrisson de 2 mois. Hilary a été très douce et a rapidement identifié les tensions. Mon bébé dort tellement mieux depuis !",
     type: "nourrisson",
   },
   {
     name: "Mathieu",
     text:
-      "Ostéo exceptionnelle. Très à l’écoute, technique et efficace. Mes douleurs cervicales ont disparu en deux séances.",
+      "Ostéo exceptionnelle. Très à l'écoute, technique et efficace. Mes douleurs cervicales ont disparu en deux séances.",
     type: "osteo",
   },
   {
@@ -37,7 +37,7 @@ const BASE_REVIEWS = [
   {
     name: "Camille",
     text:
-      "Consultation grossesse : j’ai enfin trouvé une ostéopathe qui explique, rassure et soulage vraiment. Merci !",
+      "Consultation grossesse : j'ai enfin trouvé une ostéopathe qui explique, rassure et soulage vraiment. Merci !",
     type: "grossesse",
   },
 
@@ -45,7 +45,7 @@ const BASE_REVIEWS = [
   {
     name: "Aurélie",
     text:
-      "Hilary m’a suivie pendant toute ma grossesse. Chaque séance m’a apporté un vrai soulagement. Je n’ai jamais eu un suivi aussi humain et rassurant.",
+      "Hilary m'a suivie pendant toute ma grossesse. Chaque séance m'a apporté un vrai soulagement. Je n'ai jamais eu un suivi aussi humain et rassurant.",
     type: "grossesse",
   },
   {
@@ -63,25 +63,25 @@ const BASE_REVIEWS = [
   {
     name: "Clara",
     text:
-      "J’ai emmené mon fils de 4 ans pour des réveils nocturnes. Après la séance, beaucoup plus apaisé. Merci pour votre douceur.",
+      "J'ai emmené mon fils de 4 ans pour des réveils nocturnes. Après la séance, beaucoup plus apaisé. Merci pour votre douceur.",
     type: "nourrisson",
   },
   {
     name: "Manon",
     text:
-      "Séance post-partum : Hilary a pris le temps de m’écouter et d’adapter la séance. Je suis ressortie légère, réalignée, et surtout comprise.",
+      "Séance post-partum : Hilary a pris le temps de m'écouter et d'adapter la séance. Je suis ressortie légère, réalignée, et surtout comprise.",
     type: "grossesse",
   },
   {
     name: "Bastien",
     text:
-      "Très bonne ostéopathe. Elle explique chaque geste, ce qui met immédiatement en confiance. Mes douleurs d’épaule ont disparu.",
+      "Très bonne ostéopathe. Elle explique chaque geste, ce qui met immédiatement en confiance. Mes douleurs d'épaule ont disparu.",
     type: "osteo",
   },
   {
     name: "Sarah",
     text:
-      "J’ai adoré le drainage Renata França : sensation de détox totale, silhouette affinée et ventre dégonflé. Un must-have !",
+      "J'ai adoré le drainage Renata França : sensation de détox totale, silhouette affinée et ventre dégonflé. Un must-have !",
     type: "drainage",
   },
   {
@@ -93,13 +93,13 @@ const BASE_REVIEWS = [
   {
     name: "David",
     text:
-      "En tant que sportif, je suis exigeant. Hilary a su débloquer une douleur chronique au genou que personne n’arrivait à traiter.",
+      "En tant que sportif, je suis exigeant. Hilary a su débloquer une douleur chronique au genou que personne n'arrivait à traiter.",
     type: "osteo",
   },
   {
     name: "Anaïs",
     text:
-      "J’ai fait plusieurs ostéos mais Hilary est de loin la plus pédagogue et la plus précise. Une vraie professionnelle passionnée.",
+      "J'ai fait plusieurs ostéos mais Hilary est de loin la plus pédagogue et la plus précise. Une vraie professionnelle passionnée.",
     type: "osteo",
   },
   {
@@ -117,13 +117,13 @@ const BASE_REVIEWS = [
   {
     name: "Hugo",
     text:
-      "Douleur à la mâchoire depuis plusieurs mois. Hilary a tout de suite identifié la cause et m’a donné des exercices réellement utiles.",
+      "Douleur à la mâchoire depuis plusieurs mois. Hilary a tout de suite identifié la cause et m'a donné des exercices réellement utiles.",
     type: "osteo",
   },
   {
     name: "Sonia",
     text:
-      "Une ostéopathe d’exception. D’une gentillesse rare et d’une précision remarquable. On se sent vraiment en confiance.",
+      "Une ostéopathe d'exception. D'une gentillesse rare et d'une précision remarquable. On se sent vraiment en confiance.",
     type: "osteo",
   },
   {
@@ -185,7 +185,7 @@ export default function TemoignagesPage() {
             text: r.text,
             rating: r.rating,
             sourceUrl: r.sourceUrl,
-            type: "osteo", // ou "google", mais on le met dans Ostéo pour l’affichage
+            type: "osteo", // ou "google", mais on le met dans Ostéo pour l'affichage
             source: "google",
           })) ?? [];
 
@@ -244,7 +244,7 @@ export default function TemoignagesPage() {
               url: "https://www.hilaryfarid-osteopathe.fr/temoignages",
               name: "Avis & témoignages – Hilary Farid Ostéopathe DO",
               description:
-                "Découvrez les avis patients sur les consultations d’ostéopathie et drainage lymphatique à Sèvres et Paris 15.",
+                "Découvrez les avis patients sur les consultations d'ostéopathie et drainage lymphatique à Sèvres et Paris 15.",
               review: BASE_REVIEWS.map((r) => ({
                 "@type": "Review",
                 author: { "@type": "Person", name: r.name },
@@ -344,7 +344,7 @@ export default function TemoignagesPage() {
                         {currentSlide.name}
                       </span>
                       <span className="text-graywarm/80">
-                        {currentSlide.type === "osteo" && "Consultation d’ostéopathie"}
+                        {currentSlide.type === "osteo" && "Consultation d'ostéopathie"}
                         {currentSlide.type === "nourrisson" &&
                           "Suivi nourrisson / enfant"}
                         {currentSlide.type === "grossesse" &&
@@ -380,7 +380,7 @@ export default function TemoignagesPage() {
                         ? "w-4 bg-primary"
                         : "bg-graywarm/30 hover:bg-primary/60"
                     }`}
-                    aria-label={`Afficher l’avis ${idx + 1}`}
+                    aria-label={`Afficher l'avis ${idx + 1}`}
                   />
                 ))}
               </div>
@@ -389,7 +389,7 @@ export default function TemoignagesPage() {
         </div>
       </section>
 
-      {/* ================= FILTRES + GRILLE D’AVIS ================= */}
+      {/* ================= FILTRES + GRILLE D'AVIS ================= */}
       <section className="py-16 px-6 max-w-6xl mx-auto">
         <SlideUp>
           <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -424,7 +424,7 @@ export default function TemoignagesPage() {
             </div>
           </header>
 
-          {/* Grille d’avis */}
+          {/* Grille d'avis */}
           <div className="mt-10 grid md:grid-cols-2 gap-8">
             {filteredReviews.map((r, i) => (
               <FadeIn key={`${r.name}-${i}`} delay={(i % 4) * 0.05}>
@@ -446,7 +446,7 @@ export default function TemoignagesPage() {
                     <div>
                       <p className="text-primary font-semibold">— {r.name}</p>
                       <p className="text-graywarm/80 mt-0.5">
-                        {r.type === "osteo" && "Consultation d’ostéopathie"}
+                        {r.type === "osteo" && "Consultation d'ostéopathie"}
                         {r.type === "nourrisson" &&
                           "Suivi nourrisson / enfant"}
                         {r.type === "grossesse" &&
@@ -474,7 +474,7 @@ export default function TemoignagesPage() {
                       rel="noreferrer"
                       className="mt-3 inline-block text-[11px] text-secondary underline underline-offset-4"
                     >
-                      Voir l’avis sur Google
+                      Voir l'avis sur Google
                     </a>
                   )}
                 </article>
@@ -497,7 +497,7 @@ export default function TemoignagesPage() {
             Vous souhaitez partager votre expérience ?
           </h2>
           <p className="mt-3 text-graywarm max-w-xl mx-auto">
-            Votre témoignage aide d’autres patients à faire le bon choix et
+            Votre témoignage aide d'autres patients à faire le bon choix et
             soutient un accompagnement bienveillant et de qualité.
           </p>
 

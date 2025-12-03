@@ -25,7 +25,7 @@ export const metadata = {
   openGraph: {
     title: "Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO",
     description:
-      "Consultations d’ostéopathie et drainage lymphatique Renata França à Sèvres & Paris 15. Adultes, nourrissons, femmes enceintes et sportifs.",
+      "Consultations d'ostéopathie et drainage lymphatique Renata França à Sèvres & Paris 15. Adultes, nourrissons, femmes enceintes et sportifs.",
     url: "https://www.hilaryfarid-osteopathe.fr",
     images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
   },
@@ -90,7 +90,7 @@ export default function Home() {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-sevres",
-                name: "Cabinet d’ostéopathie – Sèvres",
+                name: "Cabinet d'ostéopathie – Sèvres",
                 image: [
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-2.webp",
@@ -142,7 +142,7 @@ export default function Home() {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-paris15",
-                name: "Cabinet d’ostéopathie – Paris 15",
+                name: "Cabinet d'ostéopathie – Paris 15",
                 image: [
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-2.webp",
@@ -247,7 +247,7 @@ export default function Home() {
                 href="/osteopathie"
                 className="border border-offwhite/70 text-offwhite px-6 py-3 rounded-full text-sm md:text-base hover:bg-offwhite/10 transition"
               >
-                Comprendre l’ostéopathie
+                Comprendre l'ostéopathie
               </Link>
             </div>
 
@@ -289,12 +289,12 @@ export default function Home() {
               Quand consulter en ostéopathie ?
             </h2>
             <p className="mt-4 text-center text-graywarm max-w-3xl mx-auto">
-              L’ostéopathie aide à soulager de nombreux troubles fonctionnels,
+              L'ostéopathie aide à soulager de nombreux troubles fonctionnels,
               que ce soit après un faux mouvement, une grossesse,
               une pratique sportive intensive, un trop-plein de stress,
-              ou simplement dans le cadre d’un bilan ostéopathique.
-              Ce bilan permet d’évaluer les tensions et dysfonctionnements
-              éventuels afin d’accompagner le corps vers un meilleur équilibre.
+              ou simplement dans le cadre d'un bilan ostéopathique.
+              Ce bilan permet d'évaluer les tensions et dysfonctionnements
+              éventuels afin d'accompagner le corps vers un meilleur équilibre.
             </p>
 
             <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-5 gap-6">
@@ -353,7 +353,7 @@ export default function Home() {
                 href="/osteopathie"
                 className="text-primary underline underline-offset-4 hover:text-secondary"
               >
-                l’ostéopathie
+                l'ostéopathie
               </Link>{" "}
               ou les{" "}
               <Link
@@ -390,7 +390,7 @@ export default function Home() {
                   href="/osteopathie"
                   className="text-secondary underline underline-offset-4 hover:text-primary"
                 >
-                  Découvrir l’ostéopathie
+                  Découvrir l'ostéopathie
                 </Link>
 
                 <Link
@@ -433,7 +433,7 @@ export default function Home() {
       <section className="py-16 md:py-20 bg-offwhite relative">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-semibold text-primary text-center">
-            Cabinets d’ostéopathie à Sèvres et Paris 15
+            Cabinets d'ostéopathie à Sèvres et Paris 15
           </h2>
 
           <div className="mt-12 grid md:grid-cols-2 gap-10">
@@ -448,7 +448,7 @@ export default function Home() {
                   src="/cabinet-sevres/cabinet-sevres-1.webp"
                   width={350}
                   height={200}
-                  alt="Cabinet d’ostéopathie à Sèvres – salle de consultation"
+                  alt="Cabinet d'ostéopathie à Sèvres – salle de consultation"
                   className="object-cover h-28 w-full"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw,
@@ -459,7 +459,7 @@ export default function Home() {
                   src="/cabinet-sevres/cabinet-sevres-2.webp"
                   width={350}
                   height={200}
-                  alt="Cabinet d’ostéopathie à Sèvres – table de soin"
+                  alt="Cabinet d'ostéopathie à Sèvres – table de soin"
                   className="object-cover h-28 w-full"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw,
@@ -470,7 +470,7 @@ export default function Home() {
                   src="/cabinet-sevres/cabinet-sevres-3.webp"
                   width={350}
                   height={200}
-                  alt="Cabinet d’ostéopathie à Sèvres – salle d’attente"
+                  alt="Cabinet d'ostéopathie à Sèvres – salle d'attente"
                   className="object-cover h-28 w-full"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw,
@@ -505,7 +505,7 @@ export default function Home() {
                   src="/cabinet-paris15/cabinet-paris15-1.webp"
                   width={350}
                   height={200}
-                  alt="Cabinet d’ostéopathie à Paris 15 – salle de consultation"
+                  alt="Cabinet d'ostéopathie à Paris 15 – salle de consultation"
                   className="object-cover h-28 w-full"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw,
@@ -516,7 +516,7 @@ export default function Home() {
                   src="/cabinet-paris15/cabinet-paris15-2.webp"
                   width={350}
                   height={200}
-                  alt="Cabinet d’ostéopathie à Paris 15 – table de soin"
+                  alt="Cabinet d'ostéopathie à Paris 15 – table de soin"
                   className="object-cover h-28 w-full"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw,
@@ -527,7 +527,7 @@ export default function Home() {
                   src="/cabinet-paris15/cabinet-paris15-3.webp"
                   width={350}
                   height={200}
-                  alt="Cabinet d’ostéopathie à Paris 15 – salle d’attente"
+                  alt="Cabinet d'ostéopathie à Paris 15 – salle d'attente"
                   className="object-cover h-28 w-full"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw,

@@ -138,12 +138,12 @@ export default function Header() {
           <Link
             href="/"
             className="flex items-center gap-3"
-            aria-label="Retour à l’accueil"
+            aria-label="Retour à l'accueil"
           >
             <div className="relative w-10 h-10 md:w-11 md:h-11 shrink-0">
               <Image
                 src="/hilary-logo.svg"
-                alt="Logo du cabinet d’ostéopathie Hilary Farid"
+                alt="Logo du cabinet d'ostéopathie Hilary Farid"
                 fill
                 sizes="44px"
                 className="object-contain rounded-full"

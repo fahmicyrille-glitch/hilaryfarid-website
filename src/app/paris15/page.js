@@ -84,9 +84,9 @@ export default function Paris15Page() {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/paris15#business",
-                name: "Cabinet d’Ostéopathie – Paris 15",
+                name: "Cabinet d'Ostéopathie – Paris 15",
                 description:
-                  "Cabinet d’ostéopathie d’Hilary Farid à Paris 15. Consultations pour adultes, nourrissons, femmes enceintes et sportifs.",
+                  "Cabinet d'ostéopathie d'Hilary Farid à Paris 15. Consultations pour adultes, nourrissons, femmes enceintes et sportifs.",
                 image:
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
                 url: "https://www.hilaryfarid-osteopathe.fr/paris15",
@@ -137,7 +137,7 @@ export default function Paris15Page() {
                   {
                     "@type": "Question",
                     name:
-                      "Quels patients sont reçus au cabinet d’ostéopathie de Paris 15 ?",
+                      "Quels patients sont reçus au cabinet d'ostéopathie de Paris 15 ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
@@ -159,7 +159,7 @@ export default function Paris15Page() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, l’accueil des nourrissons et des parents avec poussette est facilité.",
+                        "Oui, l'accueil des nourrissons et des parents avec poussette est facilité.",
                     },
                   },
                   {
@@ -194,7 +194,7 @@ export default function Paris15Page() {
         <div className="absolute inset-0 bg-black/40 flex flex-col justify-center text-center px-6">
           <FadeIn>
             <h1 className="text-4xl md:text-5xl font-semibold text-offwhite drop-shadow-lg">
-              Cabinet d’Ostéopathie – Paris 15
+              Cabinet d'Ostéopathie – Paris 15
             </h1>
             <p className="mt-4 text-offwhite text-lg md:text-xl max-w-2xl mx-auto">
               Un cabinet moderne, lumineux et chaleureux au cœur du 15e
@@ -271,7 +271,7 @@ export default function Paris15Page() {
                 </h2>
 
                 <p className="text-graywarm text-base md:text-lg leading-relaxed mt-8 text-center">
-                  Le cabinet d’ostéopathie de Paris 15 vous accueille dans un
+                  Le cabinet d'ostéopathie de Paris 15 vous accueille dans un
                   espace <strong>calme, lumineux et apaisant</strong>, pensé
                   pour favoriser la détente et permettre un travail
                   ostéopathique précis dans les meilleures conditions.
@@ -292,9 +292,9 @@ export default function Paris15Page() {
                     </h2>
 
                     <p className="text-graywarm text-base md:text-lg leading-relaxed mt-6">
-                      Ostéopathe DO diplômée, j’accompagne les patients du 15e
+                      Ostéopathe DO diplômée, j'accompagne les patients du 15e
                       arrondissement dans une approche personnalisée,
-                      bienveillante et orientée sur l’origine des douleurs.
+                      bienveillante et orientée sur l'origine des douleurs.
                     </p>
 
                     <p className="text-graywarm text-base md:text-lg leading-relaxed mt-4">
@@ -379,7 +379,7 @@ export default function Paris15Page() {
                   <div className="relative w-full h-[260px] md:h-[300px] rounded-lg overflow-hidden shadow-xl">
                     <Image
                       src="/cabinet-paris15/cabinet-paris15-2.webp"
-                      alt="Salle du cabinet d’ostéopathie Paris 15"
+                      alt="Salle du cabinet d'ostéopathie Paris 15"
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover"
@@ -425,7 +425,7 @@ export default function Paris15Page() {
                 className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
               >
                 <h2 className="text-3xl font-semibold text-primary text-center">
-                  FAQ – Cabinet d’ostéopathie Paris 15
+                  FAQ – Cabinet d'ostéopathie Paris 15
                 </h2>
 
                 <div className="mt-10 space-y-6">

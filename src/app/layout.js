@@ -34,7 +34,7 @@ export const metadata = {
   openGraph: {
     title: "Hilary Farid – Ostéopathe DO à Sèvres & Paris 15",
     description:
-      "Consultations d’ostéopathie et drainage lymphatique méthode Renata França à Sèvres et Paris 15.",
+      "Consultations d'ostéopathie et drainage lymphatique méthode Renata França à Sèvres et Paris 15.",
     url: "https://www.hilaryfarid-osteopathe.fr",
     siteName: "Hilary Farid – Ostéopathe DO",
     locale: "fr_FR",

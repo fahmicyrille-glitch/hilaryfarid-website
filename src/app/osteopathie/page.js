@@ -61,9 +61,9 @@ export default function OsteopathiePage() {
         </h3>
         <ul className="space-y-2 text-sm">
           {[
-            ["À qui s’adresse l’ostéopathie ?", "a-qui-sadresse"],
+            ["À qui s'adresse l'ostéopathie ?", "a-qui-sadresse"],
             ["Motifs fréquents", "motifs"],
-            ["Déroulement d’une séance", "deroulement"],
+            ["Déroulement d'une séance", "deroulement"],
             ["Pourquoi me consulter ?", "pourquoi-consulter"],
             ["Risques & contre-indications", "risques"],
             ["FAQ", "faq"],
@@ -161,7 +161,7 @@ export default function OsteopathiePage() {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/sevres#business",
-                name: "Cabinet d’Ostéopathie – Sèvres",
+                name: "Cabinet d'Ostéopathie – Sèvres",
                 telephone: "+33 6 72 01 45 39",
                 image:
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
@@ -183,7 +183,7 @@ export default function OsteopathiePage() {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/paris15#business",
-                name: "Cabinet d’Ostéopathie – Paris 15",
+                name: "Cabinet d'Ostéopathie – Paris 15",
                 telephone: "+33 6 72 01 45 39",
                 image:
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
@@ -217,7 +217,7 @@ export default function OsteopathiePage() {
                   },
                   {
                     "@type": "Question",
-                    name: "L’ostéopathie est-elle adaptée aux nourrissons ?",
+                    name: "L'ostéopathie est-elle adaptée aux nourrissons ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
@@ -226,11 +226,11 @@ export default function OsteopathiePage() {
                   },
                   {
                     "@type": "Question",
-                    name: "Est-ce que l’ostéopathie aide pendant la grossesse ?",
+                    name: "Est-ce que l'ostéopathie aide pendant la grossesse ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, l’ostéopathie soulage les lombalgies, sciatiques, tensions du bassin, troubles respiratoires et prépare au post-partum."
+                        "Oui, l'ostéopathie soulage les lombalgies, sciatiques, tensions du bassin, troubles respiratoires et prépare au post-partum."
                     }
                   },
                   {
@@ -266,7 +266,7 @@ export default function OsteopathiePage() {
               </h1>
 
               <p className="mt-6 text-lg text-graywarm leading-relaxed">
-                L’ostéopathie est une approche manuelle douce visant à
+                L'ostéopathie est une approche manuelle douce visant à
                 améliorer la mobilité, diminuer la douleur et rééquilibrer le
                 corps dans sa globalité. Adaptée à tous les âges : nourrissons, enfants, adolescents, adultes, femmes
                 enceintes et sportifs.
@@ -297,7 +297,7 @@ export default function OsteopathiePage() {
             <div className="relative w-full h-72 md:h-96 rounded-2xl overflow-hidden shadow-lg">
               <Image
                 src="/osteopathie/man.webp"
-                alt="Douleurs cervicales soulagées par l’ostéopathie"
+                alt="Douleurs cervicales soulagées par l'ostéopathie"
                 fill
                 priority
                 sizes="100vw"         // ⭐ essentiel pour un bon LCP
@@ -315,9 +315,9 @@ export default function OsteopathiePage() {
 
           <ul className="flex flex-wrap justify-center gap-3 md:gap-6 text-sm text-graywarm">
             {[
-              ["À qui s’adresse l’ostéopathie ?", "a-qui-sadresse"],
+              ["À qui s'adresse l'ostéopathie ?", "a-qui-sadresse"],
               ["Motifs fréquents", "motifs"],
-              ["Déroulement d’une séance", "deroulement"],
+              ["Déroulement d'une séance", "deroulement"],
               ["Pourquoi me consulter ?", "pourquoi-consulter"],
               ["Risques & contre-indications", "risques"],
               ["FAQ", "faq"],
@@ -332,15 +332,15 @@ export default function OsteopathiePage() {
         </div>
       </section>
 
-      {/* ========= À QUI S’ADRESSE ========= */}
+      {/* ========= À QUI S'ADRESSE ========= */}
       <SlideUp>
         <section id="a-qui-sadresse" className="py-16 px-6 bg-light">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-semibold text-primary text-center">
-              À qui s’adresse l’ostéopathie ?
+              À qui s'adresse l'ostéopathie ?
             </h2>
             <p className="mt-4 text-center text-graywarm max-w-3xl mx-auto">
-              L’ostéopathie s’adapte à chaque âge et au vécu de chacun. Chaque
+              L'ostéopathie s'adapte à chaque âge et au vécu de chacun. Chaque
               technique est choisie selon votre confort, vos antécédents et vos
               besoins.
             </p>
@@ -482,7 +482,7 @@ export default function OsteopathiePage() {
                       Dos, nuque & articulations
                     </h3>
                     <p className="text-sm text-graywarm mt-2">
-                    Torticolis, douleurs d’épaule, de coude ou de poignet, lombalgies,
+                    Torticolis, douleurs d'épaule, de coude ou de poignet, lombalgies,
                     douleurs de hanche, genou et cheville.
                     </p>
                   </div>
@@ -620,7 +620,7 @@ export default function OsteopathiePage() {
                 </h3>
                 <p className="mt-2 text-sm">
                   Formée aux techniques structurelles, viscérales, crâniennes et
-                  tissulaires, j’adapte chaque geste à votre confort et votre
+                  tissulaires, j'adapte chaque geste à votre confort et votre
                   physiologie.
                 </p>
               </div>
@@ -642,7 +642,7 @@ export default function OsteopathiePage() {
                 </h3>
                 <p className="mt-2 text-sm">
                   Vous repartez avec une explication simple, des conseils
-                  ciblés et un plan d’accompagnement si nécessaire.
+                  ciblés et un plan d'accompagnement si nécessaire.
                 </p>
               </div>
 
@@ -670,8 +670,8 @@ export default function OsteopathiePage() {
             </h2>
 
             <p className="mt-6 text-graywarm text-center max-w-2xl mx-auto">
-              L’ostéopathie est une pratique douce et non invasive.
-              Certaines situations nécessitent toutefois l’avis d’un médecin au préalable :
+              L'ostéopathie est une pratique douce et non invasive.
+              Certaines situations nécessitent toutefois l'avis d'un médecin au préalable :
             </p>
 
             <ul className="mt-6 space-y-3 text-graywarm list-disc list-inside text-sm">
@@ -683,7 +683,7 @@ export default function OsteopathiePage() {
             </ul>
 
             <p className="mt-6 text-graywarm text-sm text-center">
-              En cas de doute, vous pouvez m’appeler — je vous orienterai vers
+              En cas de doute, vous pouvez m'appeler — je vous orienterai vers
               la bonne prise en charge.
             </p>
           </div>
@@ -712,7 +712,7 @@ export default function OsteopathiePage() {
 
               <details className="bg-white border rounded-xl p-4 shadow-sm">
                 <summary className="font-semibold text-primary cursor-pointer">
-                  L’ostéopathie est-elle adaptée aux nourrissons ?
+                  L'ostéopathie est-elle adaptée aux nourrissons ?
                 </summary>
                 <p className="mt-2 text-graywarm text-sm">
                   Oui, avec des techniques très douces : torticolis, reflux,
@@ -722,7 +722,7 @@ export default function OsteopathiePage() {
 
               <details className="bg-white border rounded-xl p-4 shadow-sm">
                 <summary className="font-semibold text-primary cursor-pointer">
-                  Est-ce que l’ostéopathie aide pendant la grossesse ?
+                  Est-ce que l'ostéopathie aide pendant la grossesse ?
                 </summary>
                 <p className="mt-2 text-graywarm text-sm">
                   Oui : lombalgies, sciatique, respiration, confort du bassin.

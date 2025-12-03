@@ -14,10 +14,10 @@ const SECTIONS = [
 
 export default function TarifsPage() {
   const tarifs = [
-    { label: "Adulte - Consultation d’ostéopathie", price: "70 €" },
+    { label: "Adulte - Consultation d'ostéopathie", price: "70 €" },
     {
       label:
-        "Nourrisson et enfant (jusqu’à 12 ans) - Consultation d’ostéopathie",
+        "Nourrisson et enfant (jusqu'à 12 ans) - Consultation d'ostéopathie",
       price: "50 €",
     },
     {
@@ -31,7 +31,7 @@ export default function TarifsPage() {
       price: "800 €",
     },
     {
-      label: "Jours fériés et Dimanches - Consultation d’ostéopathie",
+      label: "Jours fériés et Dimanches - Consultation d'ostéopathie",
       price: "90 €",
     },
     { label: "Offre post-accouchement Maman + Bébé", price: "100 €" },
@@ -102,7 +102,7 @@ export default function TarifsPage() {
                 url: "https://www.hilaryfarid-osteopathe.fr/tarifs",
                 name: "Tarifs Ostéopathie & Drainage – Hilary Farid",
                 description:
-                  "Tarifs des consultations d’ostéopathie et du drainage lymphatique Renata França dans les cabinets de Sèvres et Paris 15.",
+                  "Tarifs des consultations d'ostéopathie et du drainage lymphatique Renata França dans les cabinets de Sèvres et Paris 15.",
                 breadcrumb: {
                   "@type": "BreadcrumbList",
                   itemListElement: [
@@ -129,7 +129,7 @@ export default function TarifsPage() {
                 "@context": "https://schema.org",
                 "@type": "Service",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/osteopathie#service",
-                serviceType: "Consultation d’ostéopathie",
+                serviceType: "Consultation d'ostéopathie",
                 provider: {
                   "@type": "Person",
                   "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid",
@@ -137,7 +137,7 @@ export default function TarifsPage() {
                 areaServed: ["Sèvres", "Paris 15"],
                 hasOfferCatalog: {
                   "@type": "OfferCatalog",
-                  name: "Tarifs des consultations d’ostéopathie",
+                  name: "Tarifs des consultations d'ostéopathie",
                   itemListElement: [
                     {
                       "@type": "Offer",
@@ -218,7 +218,7 @@ export default function TarifsPage() {
                   },
                   {
                     "@type": "Question",
-                    name: "Les séances d’ostéopathie sont-elles remboursées ?",
+                    name: "Les séances d'ostéopathie sont-elles remboursées ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
@@ -231,7 +231,7 @@ export default function TarifsPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Non, il s’agit d’un soin bien-être non remboursé. Seules les séances d’ostéopathie peuvent être prises en charge selon votre mutuelle.",
+                        "Non, il s'agit d'un soin bien-être non remboursé. Seules les séances d'ostéopathie peuvent être prises en charge selon votre mutuelle.",
                     },
                   },
                 ],
@@ -374,7 +374,7 @@ export default function TarifsPage() {
                       Les consultations sont-elles remboursées ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
-                      De nombreuses mutuelles remboursent l’ostéopathie. Une
+                      De nombreuses mutuelles remboursent l'ostéopathie. Une
                       facture vous est remise après la séance.
                     </p>
                   </details>
@@ -384,7 +384,7 @@ export default function TarifsPage() {
                       Le drainage Renata França est-il remboursé ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
-                      Non, ce soin n’est pas remboursé. Il s’agit d’un soin
+                      Non, ce soin n'est pas remboursé. Il s'agit d'un soin
                       bien-être non médical.
                     </p>
                   </details>

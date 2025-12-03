@@ -84,9 +84,9 @@ export default function SevresPage() {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/sevres#business",
-                name: "Cabinet d’Ostéopathie – Sèvres",
+                name: "Cabinet d'Ostéopathie – Sèvres",
                 description:
-                  "Cabinet d’ostéopathie d’Hilary Farid à Sèvres. Consultations pour adultes, nourrissons, femmes enceintes, sportifs et seniors.",
+                  "Cabinet d'ostéopathie d'Hilary Farid à Sèvres. Consultations pour adultes, nourrissons, femmes enceintes, sportifs et seniors.",
                 image:
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
                 url: "https://www.hilaryfarid-osteopathe.fr/sevres",
@@ -136,7 +136,7 @@ export default function SevresPage() {
                 mainEntity: [
                   {
                     "@type": "Question",
-                    name: "Quels motifs sont pris en charge au cabinet d’ostéopathie de Sèvres ?",
+                    name: "Quels motifs sont pris en charge au cabinet d'ostéopathie de Sèvres ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
@@ -158,7 +158,7 @@ export default function SevresPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, il est parfaitement adapté à l’accueil des nourrissons et des parents avec poussette. Les consultations pédiatriques font partie de la pratique quotidienne.",
+                        "Oui, il est parfaitement adapté à l'accueil des nourrissons et des parents avec poussette. Les consultations pédiatriques font partie de la pratique quotidienne.",
                     },
                   },
                   {
@@ -172,7 +172,7 @@ export default function SevresPage() {
                   },
                   {
                     "@type": "Question",
-                    name: "Comment prendre rendez-vous au cabinet d’ostéopathie de Sèvres ?",
+                    name: "Comment prendre rendez-vous au cabinet d'ostéopathie de Sèvres ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
@@ -201,7 +201,7 @@ export default function SevresPage() {
         <div className="absolute inset-0 bg-black/40 flex flex-col justify-center text-center px-6">
           <FadeIn>
             <h1 className="text-4xl md:text-5xl font-semibold text-offwhite drop-shadow-lg">
-              Cabinet d’Ostéopathie – Sèvres
+              Cabinet d'Ostéopathie – Sèvres
             </h1>
             <p className="mt-4 text-offwhite text-lg md:text-xl max-w-2xl mx-auto">
               Un espace moderne, calme et lumineux pensé pour votre bien-être.
@@ -275,7 +275,7 @@ export default function SevresPage() {
                 </h2>
 
                 <p className="text-graywarm text-base md:text-lg leading-relaxed mt-8 text-center">
-                  Le cabinet d’ostéopathie de Sèvres a été conçu pour offrir un
+                  Le cabinet d'ostéopathie de Sèvres a été conçu pour offrir un
                   lieu
                   <strong> lumineux, chaleureux et propice au relâchement.</strong>{" "}
                   Chaque détail a été pensé pour vous accueillir dans les
@@ -300,14 +300,14 @@ export default function SevresPage() {
                     <p className="text-graywarm text-base md:text-lg leading-relaxed mt-6">
                       Ostéopathe DO diplômée, je vous accueille au cabinet de
                       Sèvres dans une approche globale, douce et personnalisée.
-                      Mon objectif est de comprendre l’origine de vos douleurs
+                      Mon objectif est de comprendre l'origine de vos douleurs
                       pour agir de manière durable, tout en respectant votre
                       histoire et votre corps.
                     </p>
 
                     <p className="text-graywarm text-base md:text-lg leading-relaxed mt-4">
                       Formée aux techniques structurelles, viscérales,
-                      crâniennes et tissulaires, j’accompagne également les
+                      crâniennes et tissulaires, j'accompagne également les
                       femmes enceintes, les nourrissons ainsi que les sportifs
                       dans leur récupération physique.
                     </p>
@@ -443,7 +443,7 @@ export default function SevresPage() {
                 className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
               >
                 <h2 className="text-3xl font-semibold text-primary text-center">
-                  FAQ – Cabinet d’ostéopathie à Sèvres
+                  FAQ – Cabinet d'ostéopathie à Sèvres
                 </h2>
 
                 <div className="mt-10 space-y-6">
@@ -467,7 +467,7 @@ export default function SevresPage() {
                     <p className="mt-2 text-graywarm text-sm">
                       Le cabinet est situé sur la Grande Rue de Sèvres, à
                       proximité de la gare, du tramway T2 et de plusieurs lignes
-                      de bus. L’adresse exacte est : 104 Grande Rue, 92310
+                      de bus. L'adresse exacte est : 104 Grande Rue, 92310
                       Sèvres.
                     </p>
                   </details>
@@ -477,7 +477,7 @@ export default function SevresPage() {
                       Puis-je venir avec une poussette ou mon nourrisson ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
-                      Oui, le cabinet est adapté à l’accueil des nourrissons et
+                      Oui, le cabinet est adapté à l'accueil des nourrissons et
                       des parents avec poussette. Les consultations pour bébés
                       font partie intégrante de la pratique.
                     </p>
