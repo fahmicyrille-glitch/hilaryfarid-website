@@ -339,8 +339,8 @@ export default function Home() {
                 <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 min-w-[230px]">
                   <h3 className="font-semibold text-primary">Bilan ostéopathique</h3>
                   <p className="mt-2 text-sm text-graywarm">
-                    Prévenir l’apparition de douleurs, anticiper torticolis ou
-                    lombalgies, et faire le point sur l’équilibre général du corps.
+                    Prévenir l'apparition de douleurs, anticiper torticolis ou
+                    lombalgies, et faire le point sur l'équilibre général du corps.
                   </p>
                 </div>
               </FadeInNoShift>
@@ -378,7 +378,7 @@ export default function Home() {
               </h2>
               <p className="mt-4 text-graywarm">
                 Chaque séance commence par un temps d'échange afin de comprendre
-                l’origine du déséquilibre.
+                l'origine du déséquilibre.
               </p>
               <p className="mt-3 text-graywarm">
                 En complément, Hilary propose le{" "}
