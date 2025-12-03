@@ -57,7 +57,7 @@ export default function Header() {
     ["Sèvres", "/sevres"],
     ["Paris 15", "/paris15"],
     ["Témoignages", "/temoignages"],
-    ["À propos", "/a-propos"],
+    ["Qui suis-je ?", "/a-propos"],
     ["Contact", "/contact"],
   ];
 

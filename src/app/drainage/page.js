@@ -377,24 +377,6 @@ export default function DrainagePage() {
 
                   <div>
                     <h3 className="text-2xl font-semibold text-primary text-center">
-                      Les résultats que vous pouvez attendre
-                    </h3>
-
-                    <ul className="mt-4 space-y-3 list-disc list-inside">
-                      <li>
-                        ✔️ <strong>Diminution de la rétention d’eau</strong>
-                      </li>
-                      <li>✔️ Jambes affinées et légères</li>
-                      <li>✔️ Ventre plus plat & meilleure digestion</li>
-                      <li>✔️ Silhouette redessinée</li>
-                      <li>✔️ Bien-être et détente profonde</li>
-                    </ul>
-                  </div>
-
-                  <hr className="border-graywarm/30 my-8" />
-
-                  <div>
-                    <h3 className="text-2xl font-semibold text-primary text-center">
                       Parfait avant un événement
                     </h3>
 
@@ -412,7 +394,7 @@ export default function DrainagePage() {
                       Combien de séances ?
                     </h3>
 
-                    <ul className="mt-4 space-y-2 list-disc list-inside">
+                    <ul className="mt-4 space-y-2 list-inside">
                       <li>✔️ Une séance = effet immédiat</li>
                       <li>
                         ✔️ Cure de 3 à 5 séances = résultats optimisés
@@ -484,7 +466,7 @@ export default function DrainagePage() {
                 className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
               >
                 <h2 className="text-3xl font-semibold text-primary text-center">
-                  Les bénéfices du drainage
+                  Effets & bénéfices du drainage Renata França
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-10 mt-12 items-center">
@@ -498,15 +480,17 @@ export default function DrainagePage() {
                            400px"
                     className="rounded-lg shadow-lg"
                   />
+
                   <ul className="space-y-4 text-graywarm text-lg">
                     <li>✔️ Effet immédiat dès la première séance</li>
                     <li>✔️ Diminution de la rétention d’eau</li>
-                    <li>✔️ Jambes légères</li>
-                    <li>✔️ Amélioration de la digestion</li>
-                    <li>✔️ Silhouette affinée et harmonieuse</li>
-                    <li>✔️ Détox naturelle du corps</li>
+                    <li>✔️ Ventre plus plat & meilleure digestion</li>
+                    <li>✔️ Jambes légères et affinées</li>
+                    <li>✔️ Silhouette harmonisée & dégonflement rapide</li>
+                    <li>✔️ Détox naturelle & sensation de légèreté</li>
                   </ul>
                 </div>
+
               </section>
             </SlideUp>
 
@@ -527,7 +511,6 @@ export default function DrainagePage() {
                 </p>
 
                 <ul className="mt-6 space-y-3 text-graywarm list-disc list-inside">
-                  <li>Grossesse sans avis médical</li>
                   <li>Insuffisance cardiaque ou rénale non stabilisée</li>
                   <li>Phlébite / thrombose récente</li>
                   <li>Infections aiguës, fièvre</li>

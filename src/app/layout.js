@@ -63,8 +63,8 @@ export default function RootLayout({ children }) {
           rel="preload"
           as="image"
           href="/hilary.webp"
-          imagesrcset="/hilary.webp 600w"
-          imagesizes="100vw"
+          imageSrcSet="/hilary.webp 600w"
+          imageSizes="100vw"
         />
 
         {/* GOOGLE ANALYTICS – Lazy */}

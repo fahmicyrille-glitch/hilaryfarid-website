@@ -1,0 +1,8 @@
+lancer http://localhost:3000/
+npm run dev
+
+remonter le code sur git
+
+git add -A
+git commit -m "imporve score"
+git push origin main

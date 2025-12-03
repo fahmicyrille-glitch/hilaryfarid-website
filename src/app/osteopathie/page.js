@@ -221,7 +221,7 @@ export default function OsteopathiePage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui. Techniques très douces adaptées aux bébés : torticolis, reflux, plagiocéphalie, troubles de succion."
+                        "Oui. Techniques très douces adaptées aux bébés : torticolis, reflux, plagiocéphalie, troubles de la succion."
                     }
                   },
                   {
@@ -268,8 +268,8 @@ export default function OsteopathiePage() {
               <p className="mt-6 text-lg text-graywarm leading-relaxed">
                 L’ostéopathie est une approche manuelle douce visant à
                 améliorer la mobilité, diminuer la douleur et rééquilibrer le
-                corps. Adaptée à tous les âges : adultes, nourrissons, femmes
-                enceintes, enfants, adolescents et sportifs.
+                corps dans sa globalité. Adaptée à tous les âges : nourrissons, enfants, adolescents, adultes, femmes
+                enceintes et sportifs.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
@@ -346,13 +346,14 @@ export default function OsteopathiePage() {
             </p>
 
             <div className="mt-10 grid md:grid-cols-4 gap-8">
-              {/* Adultes */}
+
+              {/* Nourrissons */}
               <FadeIn delay={0.1}>
                 <article className="bg-white rounded-xl shadow-sm overflow-hidden border">
                   <div className="relative h-32">
                     <Image
-                      src="/osteopathie/woman.webp"
-                      alt="Ostéopathie adulte"
+                      src="/osteopathie/nour.webp"
+                      alt="Ostéopathie nourrisson"
                       fill
                       sizes="(max-width: 768px) 100vw, 25vw"    // ⭐⭐ inutile de charger 2000px !
                       className="object-cover"
@@ -360,45 +361,18 @@ export default function OsteopathiePage() {
                     />
                   </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-primary">Adultes</h3>
+                    <h3 className="font-semibold text-primary">Nourrissons</h3>
                     <ul className="mt-2 text-sm text-graywarm space-y-1 list-disc list-inside">
-                      <li>Maux de dos, nuque, épaules</li>
-                      <li>Migraines, digestion, stress</li>
-                      <li>Posture & fatigue chronique</li>
-                    </ul>
-                  </div>
-                </article>
-              </FadeIn>
-
-              {/* Femmes enceintes */}
-              <FadeIn delay={0.2}>
-                <article className="bg-white rounded-xl shadow-sm overflow-hidden border">
-                  <div className="relative h-32">
-                    <Image
-                      src="/osteopathie/FE.webp"
-                      alt="Ostéopathie femme enceinte"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 25vw"    // ⭐⭐ inutile de charger 2000px !
-                      className="object-cover"
-                      loading="lazy"
-                    />
-
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-primary">
-                      Femmes enceintes
-                    </h3>
-                    <ul className="mt-2 text-sm text-graywarm space-y-1 list-disc list-inside">
-                      <li>Lombalgies & sciatique</li>
-                      <li>Confort du bassin et des côtes</li>
-                      <li>Préparation post-accouchement</li>
+                      <li>Troubles de la succion</li>
+                      <li>Coliques, reflux</li>
+                      <li>Plagiocéphalie, torticolis</li>
                     </ul>
                   </div>
                 </article>
               </FadeIn>
 
               {/* Enfants & ados */}
-              <FadeIn delay={0.4}>
+              <FadeIn delay={0.2}>
                 <article className="bg-white rounded-xl shadow-sm overflow-hidden border">
                   <div className="relative h-32">
                     <Image
@@ -423,13 +397,13 @@ export default function OsteopathiePage() {
                 </article>
               </FadeIn>
 
-              {/* Nourrissons */}
+              {/* Adultes */}
               <FadeIn delay={0.3}>
                 <article className="bg-white rounded-xl shadow-sm overflow-hidden border">
                   <div className="relative h-32">
                     <Image
-                      src="/osteopathie/nour.webp"
-                      alt="Ostéopathie nourrisson"
+                      src="/osteopathie/woman.webp"
+                      alt="Ostéopathie adulte"
                       fill
                       sizes="(max-width: 768px) 100vw, 25vw"    // ⭐⭐ inutile de charger 2000px !
                       className="object-cover"
@@ -437,15 +411,44 @@ export default function OsteopathiePage() {
                     />
                   </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-primary">Nourrissons</h3>
+                    <h3 className="font-semibold text-primary">Adultes</h3>
                     <ul className="mt-2 text-sm text-graywarm space-y-1 list-disc list-inside">
-                      <li>Troubles de la succion</li>
-                      <li>Coliques, reflux</li>
-                      <li>Plagiocéphalie, torticolis</li>
+                      <li>Maux de dos, nuque, épaules</li>
+                      <li>Migraines, digestion, stress</li>
+                      <li>Posture & fatigue chronique</li>
                     </ul>
                   </div>
                 </article>
               </FadeIn>
+
+              {/* Femmes enceintes */}
+              <FadeIn delay={0.4}>
+                <article className="bg-white rounded-xl shadow-sm overflow-hidden border">
+                  <div className="relative h-32">
+                    <Image
+                      src="/osteopathie/FE.webp"
+                      alt="Ostéopathie femme enceinte"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 25vw"    // ⭐⭐ inutile de charger 2000px !
+                      className="object-cover"
+                      loading="lazy"
+                    />
+
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold text-primary">
+                      Femmes enceintes
+                    </h3>
+                    <ul className="mt-2 text-sm text-graywarm space-y-1 list-disc list-inside">
+                      <li>Lombalgies & sciatique</li>
+                      <li>Confort du bassin et des côtes</li>
+                      <li>Préparation à l'accouchement</li>
+                      <li>Post-partum</li>
+                    </ul>
+                  </div>
+                </article>
+              </FadeIn>
+
             </div>
           </div>
         </section>
@@ -479,8 +482,8 @@ export default function OsteopathiePage() {
                       Dos, nuque & articulations
                     </h3>
                     <p className="text-sm text-graywarm mt-2">
-                      Lumbago, torticolis, douleurs d’épaule, hanche, genou,
-                      blocages après un faux mouvement.
+                    Torticolis, douleurs d’épaule, de coude ou de poignet, lombalgies,
+                    douleurs de hanche, genou et cheville.
                     </p>
                   </div>
                 </div>
@@ -528,8 +531,7 @@ export default function OsteopathiePage() {
                       Sport & performance
                     </h3>
                     <p className="text-sm text-graywarm mt-2">
-                      Récupération, prévention, tendinites, entorses, travail
-                      post-blessure.
+                      Récupération, prévention, tendinites et entorses.
                     </p>
                   </div>
                 </div>
@@ -571,7 +573,7 @@ export default function OsteopathiePage() {
                     2. Bilan
                   </p>
                   <h3 className="font-semibold text-primary mt-2">
-                    Tests & observations
+                    Observations & tests
                   </h3>
                   <p className="text-sm text-graywarm mt-3">
                     Tests de mobilité, palpation douce et analyse posturale.
@@ -629,7 +631,7 @@ export default function OsteopathiePage() {
                 </h3>
                 <p className="mt-2 text-sm">
                   Accompagnement précis des bébés (torticolis, plagiocéphalie,
-                  succion) et des femmes enceintes (bassin, lombaires,
+                  troubles de la succion) et des femmes enceintes (bassin, lombaires,
                   respiration).
                 </p>
               </div>
@@ -714,7 +716,7 @@ export default function OsteopathiePage() {
                 </summary>
                 <p className="mt-2 text-graywarm text-sm">
                   Oui, avec des techniques très douces : torticolis, reflux,
-                  plagiocéphalie, troubles de succion.
+                  plagiocéphalie, troubles de la succion.
                 </p>
               </details>
 
@@ -732,7 +734,7 @@ export default function OsteopathiePage() {
                   Combien de séances sont nécessaires ?
                 </summary>
                 <p className="mt-2 text-graywarm text-sm">
-                  En général 1 à 3 séances suffisent pour un trouble récent.
+                  En général 1 à 2 séances suffisent pour un trouble récent.
                 </p>
               </details>
 

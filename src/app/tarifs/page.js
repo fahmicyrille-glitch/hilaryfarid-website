@@ -63,7 +63,7 @@ export default function TarifsPage() {
       setActiveId(current);
       setShowBackToTop(window.scrollY > 600);
     };
-  
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
@@ -341,7 +341,7 @@ export default function TarifsPage() {
               >
                 <p className="text-graywarm text-sm leading-relaxed">
                   Ces honoraires vous sont communiqués à titre indicatif par le
-                  soignant. Ils peuvent varier selon le type de soins réalisés
+                  praticien. Ils peuvent varier selon le type de soins réalisés
                   en cabinet, le nombre de consultations et les actes
                   additionnels nécessaires. En cas de dépassement, le praticien
                   doit vous en informer avant la séance.

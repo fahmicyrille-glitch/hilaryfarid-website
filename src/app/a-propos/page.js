@@ -242,64 +242,102 @@ export default function AProposPage() {
               <section
                 id="formations"
                 className="bg-white rounded-2xl shadow-sm border border-light p-6 md:p-8"
-              >
+                >
+                <div id="formations" className="h-[1px]"></div>
                 <h2 className="text-3xl font-semibold text-primary text-center">
                   Formations & Spécialisations
                 </h2>
 
-                <div className="grid md:grid-cols-2 gap-10 mt-12 max-w-5xl mx-auto">
-
+                <div className="mt-12 max-w-5xl mx-auto space-y-10">
+                  {/* ===== Carte Ostéopathie (PLEINE LARGEUR) ===== */}
                   <FadeIn delay={0.1}>
                     <div className="p-6 border rounded-lg bg-light shadow-sm">
                       <h3 className="text-xl font-semibold text-primary">
                         Ostéopathie (D.O.)
                       </h3>
-                      <p className="text-graywarm mt-2">
-                        Formation complète en ostéopathie structurelle,
-                        viscérale et crânienne.
+                      <p className="text-graywarm italic text-sm mt-1">
+                        Institut Dauphine d’Ostéopathie – Paris (IDO Paris) - 2021
                       </p>
-                    </div>
-                  </FadeIn>
 
-                  <FadeIn delay={0.2}>
-                    <div className="p-6 border rounded-lg bg-light shadow-sm">
-                      <h3 className="text-xl font-semibold text-primary">
-                        Nourrissons (0 à 1 an)
-                      </h3>
-                      <ul className="mt-3 text-graywarm space-y-2 list-disc list-inside">
-                        <li>Troubles de la succion</li>
-                        <li>Allaitement</li>
-                        <li>Troubles mandibulaires</li>
-                        <li>Freins restrictifs (pré & post-frénectomie)</li>
-                        <li>Formation Catherine Rybus – Centre YGY (2023)</li>
+                      <ul className="mt-4 text-graywarm space-y-2 list-disc list-inside">
+                        <li>Formation complète en 5 années à temps plein</li>
+                        <li>Diplôme d’Ostéopathe agréé RNCP Niveau 7</li>
+                        <li>Études approfondies en anatomie, physiologie et biomécanique</li>
+                        <li>Pratique clinique encadrée en consultations réelles</li>
+                        <li>Techniques structurelles, viscérales, crâniennes & tissulaires</li>
+                        <li>Accompagnement de nourrissons, femmes enceintes, sportifs & adultes</li>
                       </ul>
                     </div>
                   </FadeIn>
 
-                  <FadeIn delay={0.3}>
-                    <div className="p-6 border rounded-lg bg-light shadow-sm">
-                      <h3 className="text-xl font-semibold text-primary">
-                        Grossesse & Post-partum
-                      </h3>
-                      <ul className="mt-3 text-graywarm space-y-2 list-disc list-inside">
-                        <li>Douleurs du bassin & lombaires</li>
-                        <li>Respiration & mobilité</li>
-                        <li>Formation 2025 – Ostéopathie de la grossesse</li>
-                      </ul>
-                    </div>
-                  </FadeIn>
+                  {/* ===== Grille des autres formations ===== */}
+                  <div className="grid md:grid-cols-2 gap-10">
 
-                  <FadeIn delay={0.4}>
-                    <div className="p-6 border rounded-lg bg-light shadow-sm">
-                      <h3 className="text-xl font-semibold text-primary">
-                        Drainage lymphatique Renata França
-                      </h3>
-                      <p className="text-graywarm mt-2">
-                        Formation officielle Renata França – 2023 (SPA Renata
-                        França).
-                      </p>
-                    </div>
-                  </FadeIn>
+                    {/* Nourrissons – Pédiatrie */}
+                    <FadeIn delay={0.2}>
+                      <div className="p-6 border rounded-lg bg-light shadow-sm h-full">
+                        <h3 className="text-xl font-semibold text-primary">
+                          Nourrissons – Pédiatrie
+                        </h3>
+                        <p className="text-graywarm italic text-sm mt-1">
+                          Centre YGY – Catherine Rybus — 2023
+                        </p>
+                        <ul className="mt-4 text-graywarm space-y-2 list-disc list-inside">
+                          <li>Prise en charge du nourrisson (0 à 1 an)</li>
+                          <li>Tensions, asymétries, reflux, coliques</li>
+                        </ul>
+                      </div>
+                    </FadeIn>
+
+                    {/* Troubles de la succion */}
+                    <FadeIn delay={0.3}>
+                      <div className="p-6 border rounded-lg bg-light shadow-sm h-full">
+                        <h3 className="text-xl font-semibold text-primary">
+                          Nourrissons – Troubles de la succion
+                        </h3>
+                        <p className="text-graywarm italic text-sm mt-1">
+                          Centre YGY – Catherine Rybus — 2024
+                        </p>
+                        <ul className="mt-4 text-graywarm space-y-2 list-disc list-inside">
+                          <li>Allaitement</li>
+                          <li>Troubles mandibulaires</li>
+                          <li>Freins restrictifs (pré & préparation à la frénectomie)</li>
+                        </ul>
+                      </div>
+                    </FadeIn>
+
+                    {/* Grossesse & Post-partum */}
+                    <FadeIn delay={0.4}>
+                      <div className="p-6 border rounded-lg bg-light shadow-sm h-full">
+                        <h3 className="text-xl font-semibold text-primary">
+                          Ostéopathie pendant la grossesse : de l’inconfort au bien-être
+                        </h3>
+                        <p className="text-graywarm italic text-sm mt-1">
+                          CFPCO — 2025
+                        </p>
+                        <ul className="mt-4 text-graywarm space-y-2 list-disc list-inside">
+                          <li>Douleurs du bassin & lombaires</li>
+                          <li>Respiration & mobilité</li>
+                        </ul>
+                      </div>
+                    </FadeIn>
+
+                    {/* Drainage Renata França */}
+                    <FadeIn delay={0.5}>
+                      <div className="p-6 border rounded-lg bg-light shadow-sm h-full">
+                        <h3 className="text-xl font-semibold text-primary">
+                          Drainage lymphatique Renata França
+                        </h3>
+                        <p className="text-graywarm italic text-sm mt-1">
+                          SPA Renata França — 2023
+                        </p>
+                        <p className="mt-4 text-graywarm">
+                          Formation officielle à la méthode Renata França.
+                        </p>
+                      </div>
+                    </FadeIn>
+
+                  </div>
                 </div>
               </section>
             </SlideUp>

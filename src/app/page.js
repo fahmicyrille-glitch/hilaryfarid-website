@@ -290,11 +290,14 @@ export default function Home() {
             </h2>
             <p className="mt-4 text-center text-graywarm max-w-3xl mx-auto">
               L’ostéopathie aide à soulager de nombreux troubles fonctionnels,
-              que ce soit après un faux mouvement, une grossesse, une pratique
-              sportive intensive ou simplement un trop-plein de stress.
+              que ce soit après un faux mouvement, une grossesse,
+              une pratique sportive intensive, un trop-plein de stress,
+              ou simplement dans le cadre d’un bilan ostéopathique.
+              Ce bilan permet d’évaluer les tensions et dysfonctionnements
+              éventuels afin d’accompagner le corps vers un meilleur équilibre.
             </p>
 
-            <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-5 gap-6">
               <FadeInNoShift delay={0.1}>
                 <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80">
                   <h3 className="font-semibold text-primary">Douleurs & posture</h3>
@@ -331,6 +334,17 @@ export default function Home() {
                   </p>
                 </div>
               </FadeInNoShift>
+
+              <FadeInNoShift delay={0.5}>
+                <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 min-w-[230px]">
+                  <h3 className="font-semibold text-primary">Bilan ostéopathique</h3>
+                  <p className="mt-2 text-sm text-graywarm">
+                    Prévenir l’apparition de douleurs, anticiper torticolis ou
+                    lombalgies, et faire le point sur l’équilibre général du corps.
+                  </p>
+                </div>
+              </FadeInNoShift>
+
             </div>
 
             <p className="mt-8 text-center text-sm text-graywarm">
@@ -363,7 +377,7 @@ export default function Home() {
                 Une prise en charge globale du corps
               </h2>
               <p className="mt-4 text-graywarm">
-                Chaque séance commence par un temps d’écoute afin de comprendre
+                Chaque séance commence par un temps d'échange afin de comprendre
                 l’origine du déséquilibre.
               </p>
               <p className="mt-3 text-graywarm">
@@ -393,7 +407,8 @@ export default function Home() {
                 <div className="p-4 rounded-xl bg-white shadow-sm border border-light/80">
                   <p className="text-sm text-graywarm">
                     « Mon objectif : que vous repartiez avec moins de douleurs,
-                    plus de mobilité et la sensation d’être écouté(e). »
+                    plus de mobilité, écouté(e) et accompagné(e) dans votre prise
+                    en charge globale. »
                   </p>
                   <p className="mt-2 text-xs text-primary font-semibold">
                     — Hilary Farid, Ostéopathe DO
