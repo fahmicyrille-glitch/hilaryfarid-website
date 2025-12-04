@@ -91,6 +91,7 @@ export default function SevresPage() {
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
                 url: "https://www.hilaryfarid-osteopathe.fr/sevres",
                 telephone: "+33 6 72 01 45 39",
+                logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
                 priceRange: "60€ – 90€",
 
                 // ⭐ SIRET EXACT SÈVRES ⭐

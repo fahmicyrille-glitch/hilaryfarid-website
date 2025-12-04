@@ -104,6 +104,7 @@ export default function RootLayout({ children }) {
                 image: "https://www.hilaryfarid-osteopathe.fr/Hilary.webp",
                 url: "https://www.hilaryfarid-osteopathe.fr",
                 telephone: "+33 6 72 01 45 39",
+                logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
                 medicalSpecialty: [
                   "Osteopathy", "PregnancyCare", "SportsMedicine", "Pediatric"
                 ],

@@ -66,6 +66,7 @@ export default function Home() {
                 image: "https://www.hilaryfarid-osteopathe.fr/Hilary.webp",
                 jobTitle: "Ostéopathe D.O.",
                 telephone: "+33 6 72 01 45 39",
+                logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
                 email: "contact@hilaryfarid-osteopathe.fr",
                 url: "https://www.hilaryfarid-osteopathe.fr",
                 medicalSpecialty: [
@@ -97,6 +98,7 @@ export default function Home() {
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-3.webp",
                 ],
                 telephone: "+33 6 72 01 45 39",
+                logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
                 priceRange: "€€",
                 address: {
                   "@type": "PostalAddress",
@@ -149,6 +151,7 @@ export default function Home() {
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-3.webp",
                 ],
                 telephone: "+33 6 72 01 45 39",
+                logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
                 priceRange: "€€",
                 address: {
                   "@type": "PostalAddress",

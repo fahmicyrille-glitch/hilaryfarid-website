@@ -163,6 +163,7 @@ export default function OsteopathiePage() {
                 "@id": "https://www.hilaryfarid-osteopathe.fr/sevres#business",
                 name: "Cabinet d'Ostéopathie – Sèvres",
                 telephone: "+33 6 72 01 45 39",
+                logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
                 image:
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
                 address: {
@@ -185,6 +186,7 @@ export default function OsteopathiePage() {
                 "@id": "https://www.hilaryfarid-osteopathe.fr/paris15#business",
                 name: "Cabinet d'Ostéopathie – Paris 15",
                 telephone: "+33 6 72 01 45 39",
+                logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
                 image:
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
                 address: {

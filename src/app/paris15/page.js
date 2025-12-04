@@ -91,6 +91,7 @@ export default function Paris15Page() {
                   "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
                 url: "https://www.hilaryfarid-osteopathe.fr/paris15",
                 telephone: "+33 6 72 01 45 39",
+                logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
                 priceRange: "60€ – 90€",
 
                 // ⭐⭐ AJOUT SIRET ⭐⭐
