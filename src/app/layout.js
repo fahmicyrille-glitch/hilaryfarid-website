@@ -7,8 +7,7 @@ import Script from "next/script";
 import localFont from "next/font/local";
 
 /* ================================
-   FONTS LOCALES — OPTIMISATION
-   Ajout fallback + display swap OK
+   FONTS LOCALES
 ================================ */
 const roboto = localFont({
   src: [
@@ -18,7 +17,6 @@ const roboto = localFont({
   ],
   variable: "--font-roboto",
   display: "swap",
-  fallback: ["system-ui", "Arial"]
 });
 
 /* ================================
@@ -59,20 +57,19 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr" className={roboto.className}>
       <head>
+        <link rel="preload" as="style" href="/_next/static/css/app/layout.css" />
 
-        {/* ⚡ Optimisé : suppression du preload CSS inutile
-            Next le fait déjà automatiquement */}
-
-        {/* ⚡ PRELOAD IMAGE LCP — amélioré */}
+        {/* PRELOAD IMAGE – accélère le LCP de l'image Hilary */}
         <link
           rel="preload"
           as="image"
           href="/hilary.webp"
-          fetchPriority="high"
+          imageSrcSet="/hilary.webp 600w"
+          imageSizes="100vw"
         />
 
-        {/* ⚡ GTM + GA → en "afterInteractive" pour éviter bloquer le thread */}
-        <Script id="gtm-head" strategy="afterInteractive">
+        {/* GOOGLE TAG MANAGER */}
+        <Script id="gtm-head" strategy="lazyOnload">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -82,35 +79,35 @@ export default function RootLayout({ children }) {
             })(window,document,'script','dataLayer','GTM-MN4339H9');
           `}
         </Script>
+        {/* END GTM */}
 
-        {/* GOOGLE ANALYTICS optimisé */}
+        {/* GOOGLE ANALYTICS – Lazy */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-BWDXGTQJKT"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-BWDXGTQJKT', { page_path: window.location.pathname });
-          `}
-        </Script>
+        <Script
+          id="google-analytics"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-BWDXGTQJKT', { page_path: window.location.pathname });
+            `,
+          }}
+        />
       </head>
 
       <body className={`${roboto.variable} bg-offwhite text-primary`}>
 
-        {/* GTM NOSCRIPT */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-MN4339H9"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
+        {/* GOOGLE TAG MANAGER (NOSCRIPT) */}
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MN4339H9"
+        height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe></noscript>
+        {/* END GTM NOSCRIPT */}
 
-        {/* JSON-LD global (inchangé) */}
+        {/* JSON-LD global */}
         <Script
           id="ld-global-hilary-farid"
           type="application/ld+json"
@@ -145,18 +142,21 @@ export default function RootLayout({ children }) {
               },
               null,
               2
-            )
+            ),
           }}
         />
 
+        {/* HEADER */}
         <Header />
+
+        {/* PAGE CONTENT */}
         <main>{children}</main>
+
+        {/* FOOTER */}
         <Footer />
 
-        {/* ⚡ ScrollProgressBar → ne doit pas bloquer le LCP */}
-        <div style={{ contain: "layout paint" }}>
-          <ScrollProgressBar />
-        </div>
+        {/* SCROLL PROGRESS BAR (React uniquement) */}
+        <ScrollProgressBar />
 
       </body>
     </html>
