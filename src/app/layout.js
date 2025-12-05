@@ -7,7 +7,8 @@ import Script from "next/script";
 import localFont from "next/font/local";
 
 /* ================================
-   FONTS LOCALES
+   FONTS LOCALES — OPTIMISATION
+   Ajout fallback + display swap OK
 ================================ */
 const roboto = localFont({
   src: [
@@ -17,6 +18,7 @@ const roboto = localFont({
   ],
   variable: "--font-roboto",
   display: "swap",
+  fallback: ["system-ui", "Arial"]
 });
 
 /* ================================
@@ -57,19 +59,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr" className={roboto.className}>
       <head>
-        <link rel="preload" as="style" href="/_next/static/css/app/layout.css" />
 
-        {/* PRELOAD IMAGE – accélère le LCP de l'image Hilary */}
+        {/* ⚡ Optimisé : suppression du preload CSS inutile
+            Next le fait déjà automatiquement */}
+
+        {/* ⚡ PRELOAD IMAGE LCP — amélioré */}
         <link
           rel="preload"
           as="image"
           href="/hilary.webp"
-          imageSrcSet="/hilary.webp 600w"
-          imageSizes="100vw"
+          fetchPriority="high"
         />
 
-        {/* GOOGLE TAG MANAGER */}
-        <Script id="gtm-head" strategy="lazyOnload">
+        {/* ⚡ GTM + GA → en "afterInteractive" pour éviter bloquer le thread */}
+        <Script id="gtm-head" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -79,35 +82,35 @@ export default function RootLayout({ children }) {
             })(window,document,'script','dataLayer','GTM-MN4339H9');
           `}
         </Script>
-        {/* END GTM */}
 
-        {/* GOOGLE ANALYTICS – Lazy */}
+        {/* GOOGLE ANALYTICS optimisé */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-BWDXGTQJKT"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
-        <Script
-          id="google-analytics"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-BWDXGTQJKT', { page_path: window.location.pathname });
-            `,
-          }}
-        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BWDXGTQJKT', { page_path: window.location.pathname });
+          `}
+        </Script>
       </head>
 
       <body className={`${roboto.variable} bg-offwhite text-primary`}>
 
-        {/* GOOGLE TAG MANAGER (NOSCRIPT) */}
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MN4339H9"
-        height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe></noscript>
-        {/* END GTM NOSCRIPT */}
+        {/* GTM NOSCRIPT */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MN4339H9"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
 
-        {/* JSON-LD global */}
+        {/* JSON-LD global (inchangé) */}
         <Script
           id="ld-global-hilary-farid"
           type="application/ld+json"
@@ -142,21 +145,18 @@ export default function RootLayout({ children }) {
               },
               null,
               2
-            ),
+            )
           }}
         />
 
-        {/* HEADER */}
         <Header />
-
-        {/* PAGE CONTENT */}
         <main>{children}</main>
-
-        {/* FOOTER */}
         <Footer />
 
-        {/* SCROLL PROGRESS BAR (React uniquement) */}
-        <ScrollProgressBar />
+        {/* ⚡ ScrollProgressBar → ne doit pas bloquer le LCP */}
+        <div style={{ contain: "layout paint" }}>
+          <ScrollProgressBar />
+        </div>
 
       </body>
     </html>
