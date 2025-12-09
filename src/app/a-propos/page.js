@@ -5,6 +5,7 @@ import Script from "next/script";
 import Image from "next/image";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import SEO from "@/components/SEO";
+import MobileSummary from "@/components/MobileSummary";
 
 const SECTIONS = [
   { id: "intro", label: "Introduction" },
@@ -154,7 +155,7 @@ export default function AProposPage() {
         <FadeIn>
           <h1 className="text-4xl font-semibold">À propos d'Hilary</h1>
           <p className="mt-4 text-light text-lg max-w-2xl mx-auto">
-            Ostéopathe DO diplômée, douce et à l'écoute, spécialisée dans
+            Ostéopathe DO diplômée, douce et à l'écoute, expertises dans
             l'accompagnement des nourrissons, femmes enceintes et adultes.
           </p>
         </FadeIn>
@@ -194,28 +195,11 @@ export default function AProposPage() {
           <div className="flex-1 space-y-16">
 
             {/* SOMMAIRE MOBILE */}
-            <div className="lg:hidden mb-4">
-              <div className="bg-white border border-light rounded-2xl p-4">
-                <h4 className="text-sm font-semibold text-primary mb-2 uppercase tracking-wide">
-                  Sommaire
-                </h4>
-                <div className="flex flex-wrap gap-2 text-xs">
-                  {SECTIONS.map((s) => (
-                    <button
-                      key={s.id}
-                      onClick={(e) => smoothScroll(e, s.id)}
-                      className={`px-3 py-1 rounded-full border text-[11px] transition ${
-                        activeId === s.id
-                          ? "bg-primary text-offwhite border-primary"
-                          : "border-light text-graywarm hover:border-primary"
-                      }`}
-                    >
-                      {s.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <MobileSummary
+              sections={SECTIONS}
+              activeId={activeId}
+              smoothScroll={smoothScroll}
+            />
 
             {/* ================= QUI SUIS-JE ================= */}
             <SlideUp>
@@ -245,7 +229,7 @@ export default function AProposPage() {
                 >
                 <div id="formations" className="h-[1px]"></div>
                 <h2 className="text-3xl font-semibold text-primary text-center">
-                  Formations & Spécialisations
+                  Formations & Expertises
                 </h2>
 
                 <div className="mt-12 max-w-5xl mx-auto space-y-10">

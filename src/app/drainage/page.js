@@ -6,6 +6,8 @@ import Image from "next/image";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import DrainageGallery from "@/components/DrainageGallery";
 import SEO from "@/components/SEO";
+import MobileSummary from "@/components/MobileSummary";
+
 
 const SECTIONS = [
   { id: "a-propos", label: "À propos du drainage" },
@@ -91,6 +93,17 @@ export default function DrainagePage() {
 
   const handleBackToTop = () =>
     window.scrollTo({ top: 0, behavior: "smooth" });
+
+  const smoothScroll = (e, id) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    window.scrollTo({
+      top: el.getBoundingClientRect().top + window.scrollY - 120,
+      behavior: "smooth",
+    });
+  };
+
 
   return (
     <main>
@@ -307,29 +320,11 @@ export default function DrainagePage() {
           {/* ===== CONTENU PRINCIPAL ===== */}
           <div className="flex-1 space-y-16">
             {/* ===== Sommaire Mobile ===== */}
-            <div className="lg:hidden mb-4">
-              <div className="bg-white rounded-2xl shadow-sm border border-light/70 p-4">
-                <h2 className="text-sm font-semibold text-primary mb-2 uppercase tracking-wide">
-                  Sommaire
-                </h2>
-
-                <div className="flex flex-wrap gap-2 text-xs">
-                  {SECTIONS.map((section) => (
-                    <button
-                      key={section.id}
-                      onClick={(e) => handleSmoothScroll(e, section.id)}
-                      className={`px-3 py-1 rounded-full border text-[11px] transition ${
-                        activeId === section.id
-                          ? "bg-primary text-offwhite border-primary"
-                          : "border-light text-graywarm hover:border-primary hover:text-primary"
-                      }`}
-                    >
-                      {section.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <MobileSummary
+              sections={SECTIONS}
+              activeId={activeId}
+              smoothScroll={smoothScroll}
+            />
 
             {/* ====================== SECTION : A PROPOS ======================= */}
             <SlideUp>

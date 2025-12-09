@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Script from "next/script";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import SEO from "@/components/SEO";
+import MobileSummary from "@/components/MobileSummary";
+
 
 const SECTIONS = [
   { id: "consultations", label: "Consultations & prestations" },
@@ -284,29 +286,12 @@ export default function TarifsPage() {
           {/* ==== CONTENU PRINCIPAL ==== */}
           <div className="flex-1 space-y-16">
             {/* ===== SOMMAIRE MOBILE ===== */}
-            <div className="lg:hidden mb-4">
-              <div className="bg-white rounded-2xl border border-light p-4">
-                <h3 className="text-sm font-semibold text-primary mb-2 uppercase tracking-wide">
-                  Sommaire
-                </h3>
+            <MobileSummary
+              sections={SECTIONS}
+              activeId={activeId}
+              smoothScroll={smoothScroll}
+            />
 
-                <div className="flex flex-wrap gap-2 text-xs">
-                  {SECTIONS.map((s) => (
-                    <button
-                      key={s.id}
-                      onClick={(e) => smoothScroll(e, s.id)}
-                      className={`px-3 py-1 rounded-full border text-[11px] transition ${
-                        activeId === s.id
-                          ? "bg-primary text-offwhite border-primary"
-                          : "border-light text-graywarm hover:border-primary"
-                      }`}
-                    >
-                      {s.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
 
             {/* ================= SECTION : TARIFS ================= */}
             <SlideUp>
@@ -321,11 +306,19 @@ export default function TarifsPage() {
                 <div className="space-y-6">
                   {tarifs.map((t, i) => (
                     <FadeIn key={i} delay={i * 0.05}>
-                      <div className="flex justify-between items-center border-b border-graywarm/40 pb-3">
-                        <span className="text-graywarm text-lg">{t.label}</span>
-                        <span className="text-primary font-semibold text-lg">
-                          {t.price}
-                        </span>
+                      <div className="border-b border-graywarm/30 pb-4">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+
+                          {/* Intitulé */}
+                          <p className="text-graywarm text-base md:text-lg font-medium md:max-w-[70%]">
+                            {t.label}
+                          </p>
+
+                          {/* Prix */}
+                          <p className="text-primary font-semibold text-lg mt-1 md:mt-0">
+                            {t.price}
+                          </p>
+                        </div>
                       </div>
                     </FadeIn>
                   ))}

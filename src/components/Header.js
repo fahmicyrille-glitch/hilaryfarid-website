@@ -155,7 +155,7 @@ export default function Header() {
               <span className="text-primary text-base md:text-lg font-semibold">
                 Hilary Farid
               </span>
-              <span className="text-xs text-graywarm hidden sm:block">
+              <span className="text-xs text-graywarm hidden lg:block">
                 Ostéopathe DO – Drainage Lymphatique Renata França
               </span>
             </div>

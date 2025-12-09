@@ -5,6 +5,7 @@ import Script from "next/script";
 import Image from "next/image";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import SEO from "@/components/SEO";
+import MobileSummary from "@/components/MobileSummary";
 
 export default function OsteopathiePage() {
   const [activeSection, setActiveSection] = useState("a-qui-sadresse");
@@ -629,7 +630,7 @@ export default function OsteopathiePage() {
 
               <div className="p-6 rounded-xl bg-white shadow-sm border">
                 <h3 className="font-semibold text-primary text-lg">
-                  Spécialisation nourrissons & grossesse
+                  Expertises en nourrissons & grossesse
                 </h3>
                 <p className="mt-2 text-sm">
                   Accompagnement précis des bébés (torticolis, plagiocéphalie,

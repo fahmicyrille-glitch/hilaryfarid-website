@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import { FadeInNoShift } from "@/components/MotionWrapper";
+import BackToTop from "@/components/BackToTop";
+
 
 /* 🚀 ANIMATION CSS SSR-SAFE (ZÉRO CLS) */
 const fadeCss = `
@@ -215,7 +217,7 @@ export default function Home() {
               <br />
               retrouver de la mobilité,
               <br />
-              respirer enfin mieux.
+              respirer enfin mieux
             </h1>
 
             <p className="mt-5 text-base md:text-lg text-offwhite/90">
@@ -224,17 +226,22 @@ export default function Home() {
               avec une approche douce et personnalisée.
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-2 text-[11px] md:text-xs text-primary">
-              <span className="bg-offwhite/90 rounded-full px-3 py-1">
-                Spécialisée nourrissons & grossesse
+            <div className="mt-6 flex flex-wrap gap-2 text-xs md:text-sm text-primary">
+
+              <span className="bg-white/100 rounded-full px-6 py-1.5">
+                Expertise nourrissons & grossesse
               </span>
-              <span className="bg-offwhite/80 rounded-full px-3 py-1">
+
+              <span className="bg-white/90 rounded-full px-6 py-1.5">
                 Drainage lymphatique Renata França
               </span>
-              <span className="bg-offwhite/70 rounded-full px-3 py-1">
+
+              <span className="bg-white/80 rounded-full px-6 py-1.5">
                 Deux cabinets : Sèvres & Paris 15
               </span>
+
             </div>
+
 
             <div className="mt-8 flex flex-wrap gap-4">
               <a
@@ -350,7 +357,7 @@ export default function Home() {
 
             </div>
 
-            <p className="mt-8 text-center text-sm text-graywarm">
+            <p className="mt-8 text-center text-base md:text-lg text-graywarm">
               Pour plus de détails, consultez{" "}
               <Link
                 href="/osteopathie"
@@ -645,6 +652,8 @@ export default function Home() {
           </span>
         </a>
       </div>
+
+      <BackToTop />
 
     </main>
   );

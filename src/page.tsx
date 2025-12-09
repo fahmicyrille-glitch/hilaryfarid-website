@@ -40,7 +40,7 @@ export default function Home() {
         <section className="py-16 bg-offwhite">
           <SlideUp>
             <h2 className="text-center text-3xl font-semibold text-primary">
-              Mes spécialités
+              Mes expertises
             </h2>
           </SlideUp>
 
