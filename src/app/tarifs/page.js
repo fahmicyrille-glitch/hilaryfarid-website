@@ -24,11 +24,6 @@ export default function TarifsPage() {
     },
     {
       label:
-        "Séance de drainage lymphatique méthode Renata França (corps entier)",
-      price: "180 €",
-    },
-    {
-      label:
         "Cure de 5 séances de drainage lymphatique méthode Renata França (corps entier)",
       price: "800 €",
     },
@@ -189,7 +184,7 @@ export default function TarifsPage() {
                     {
                       "@type": "Offer",
                       name: "Séance drainage lymphatique corps entier",
-                      price: "180",
+                      price: "150",
                       priceCurrency: "EUR",
                     },
                     {
@@ -215,7 +210,7 @@ export default function TarifsPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, les tarifs sont identiques dans les deux cabinets pour assurer cohérence et transparence.",
+                        "Oui, le tarif du drainage lymphatique peut différer entre les cabinets de Paris 15 et de Sèvres. Les tarifs d’ostéopathie sont identiques dans les deux cabinets.",
                     },
                   },
                   {
@@ -322,6 +317,24 @@ export default function TarifsPage() {
                       </div>
                     </FadeIn>
                   ))}
+                </div>
+                {/* ===== DRAINAGE LYMPHATIQUE ===== */}
+                <div className="border-b border-graywarm/30 pb-4 mt-6">
+                  <p className="text-graywarm text-base md:text-lg font-medium md:max-w-[70%]">
+                    Séance de drainage lymphatique méthode Renata França (corps entier)
+                  </p>
+
+                  <div className="mt-3 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-base font-medium text-graywarm">Paris 15</span>
+                      <span className="text-primary font-semibold text-lg">150 €</span>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <span className="text-base font-medium text-graywarm">Sèvres</span>
+                      <span className="text-primary font-semibold text-lg">180 €</span>
+                    </div>
+                  </div>
                 </div>
               </section>
             </SlideUp>

@@ -1,0 +1,27 @@
+User-agent: *
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /private/
+Disallow: /draft/
+Disallow: /temp/
+Disallow: /old/
+Disallow: /api/
+
+# Autoriser explicitement le rendu (important)
+Allow: /_next/
+
+# Bots spécifiques
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Google-InspectionTool
+Allow: /
+
+User-agent: DoctolibBot
+Allow: /
+
+# Sitemap
+Sitemap: https://www.hilaryfarid-osteopathe.fr/sitemap.xml

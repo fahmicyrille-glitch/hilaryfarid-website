@@ -23,12 +23,14 @@ export const metadata = {
     "Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO | Ostéopathie & Drainage lymphatique Renata França",
   description:
     "Ostéopathe DO à Sèvres (92310) et Paris 15 (75015), Hilary Farid prend en charge adultes, nourrissons, femmes enceintes et sportifs. Ostéopathie douce, précise et drainage lymphatique Renata França. Rendez-vous rapides sur Doctolib.",
-  alternates: { canonical: "/" },
+    alternates: {
+      canonical: "https://www.hilaryfarid-osteopathe.fr/",
+    },
   openGraph: {
     title: "Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO",
     description:
       "Consultations d'ostéopathie et drainage lymphatique Renata França à Sèvres & Paris 15. Adultes, nourrissons, femmes enceintes et sportifs.",
-    url: "https://www.hilaryfarid-osteopathe.fr",
+    url: "https://www.hilaryfarid-osteopathe.fr/",
     images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
   },
 };
@@ -52,7 +54,7 @@ export default function Home() {
                 "@context": "https://schema.org",
                 "@type": "MedicalWebPage",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/#webpage",
-                url: "https://www.hilaryfarid-osteopathe.fr",
+                url: "https://www.hilaryfarid-osteopathe.fr/",
                 name: "Hilary Farid – Ostéopathe DO à Sèvres & Paris 15",
                 description:
                   "Ostéopathie adulte, nourrisson, femme enceinte et sportif. Drainage lymphatique Renata França. Deux cabinets : Sèvres & Paris 15.",
@@ -70,7 +72,7 @@ export default function Home() {
                 telephone: "+33 6 72 01 45 39",
                 logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
                 email: "contact@hilaryfarid-osteopathe.fr",
-                url: "https://www.hilaryfarid-osteopathe.fr",
+                url: "https://www.hilaryfarid-osteopathe.fr/",
                 medicalSpecialty: [
                   "Osteopathy",
                   "PregnancyCare",

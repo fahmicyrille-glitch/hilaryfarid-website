@@ -4,62 +4,76 @@ import { useEffect, useState } from "react";
 import Script from "next/script";
 import Image from "next/image";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
-import DrainageGallery from "@/components/DrainageGallery";
 import SEO from "@/components/SEO";
 import MobileSummary from "@/components/MobileSummary";
+import DrainageCarousel from "@/components/DrainageCarousel";
 
+import {
+  IconLegs,
+  IconCellulite,
+  IconDetox,
+  IconRelax,
+  IconImmunity,
+  IconDigestion,
+  IconRecovery,
+  IconPregnancy,
+  IconFertility,
+} from "@/components/icons/BenefitIcons";
+
+
+const DOCTOLIB_URL =
+  "https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile";
 
 const SECTIONS = [
-  { id: "a-propos", label: "À propos du drainage" },
+  { id: "presentation", label: "La lymphe, c’est quoi ?" },
+  { id: "bienfaits", label: "Bienfaits" },
+  { id: "deroulement", label: "Déroulement" },
+  { id: "pour-qui", label: "Pour qui ?" },
+  { id: "pourquoi-moi", label: "Pourquoi me consulter ?" },
   { id: "avant-apres", label: "Avant / Après" },
-  { id: "benefices", label: "Bénéfices au quotidien" },
-  { id: "contre-indications", label: "Contre-indications" },
-  { id: "galerie", label: "Galerie" },
+  { id: "contraindications", label: "Contre-indications" },
   { id: "faq", label: "FAQ" },
+  { id: "cta", label: "Prendre RDV" },
 ];
 
+export default function DrainageLymphatiquePage() {
+  const [activeSection, setActiveSection] = useState(SECTIONS[0].id);
+  const [showBackTop, setShowBackTop] = useState(false);
 
-export default function DrainagePage() {
-  const [activeId, setActiveId] = useState("a-propos");
-  const [showBackToTop, setShowBackToTop] = useState(false);
+  const smoothScroll = (e, id) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
 
-  /* ------------------ 1) Scrollspy avec IntersectionObserver ------------------ */
+    const yOffset = -80; // ajuste si header fixe
+    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
+
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    const ids = SECTIONS
+                .map((s) => s.id)
+                .filter((id) => id !== "cta");
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            if (SECTIONS.some((s) => s.id === id)) {
-              setActiveId(id);
-            }
-          }
-        });
-      },
-      {
-        root: null,
-        threshold: 0.25,
-        rootMargin: "-10% 0px -60% 0px",
-      }
-    );
+    const options = {
+      root: null,
+      rootMargin: "-25% 0px -45% 0px",
+      threshold: 0,
+    };
 
-    // Observer toutes les sections
-    SECTIONS.forEach(({ id }) => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => entry.isIntersecting && setActiveSection(entry.target.id));
+    }, options);
+
+    ids.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
 
-    // SI on est en haut de la page → À propos actif
-    const onScroll = () => {
-      if (window.scrollY < 200) {
-        setActiveId("a-propos");
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    const onScroll = () => setShowBackTop(window.scrollY > 300);
+    window.addEventListener("scroll", onScroll);
 
     return () => {
       observer.disconnect();
@@ -67,47 +81,15 @@ export default function DrainagePage() {
     };
   }, []);
 
-  /* ------------------ 2) Bouton retour en haut ------------------ */
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const onScroll = () => {
-      setShowBackToTop(window.scrollY > 600);
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  /* ------------------ 3) Smooth scroll ------------------ */
-  const handleSmoothScroll = (e, id) => {
-    e.preventDefault();
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    const y = el.getBoundingClientRect().top + window.scrollY - 120;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  };
-
-  const handleBackToTop = () =>
-    window.scrollTo({ top: 0, behavior: "smooth" });
-
-  const smoothScroll = (e, id) => {
-    e.preventDefault();
-    const el = document.getElementById(id);
-    if (!el) return;
-    window.scrollTo({
-      top: el.getBoundingClientRect().top + window.scrollY - 120,
-      behavior: "smooth",
-    });
-  };
-
-
   return (
-    <main>
-      {/* ========= SCHEMA UNIQUE ========= */}
+    <main className="relative">
+      <SEO
+        title="Drainage lymphatique Renata França – Paris 15 & Sèvres | Hilary Farid"
+        description="Drainage lymphatique méthode Renata França : sensation de jambes légères, détente, récupération, rétention d’eau. Séances à Paris 15 et Sèvres. RDV Doctolib."
+        canonical="https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique"
+      />
+
+      {/* ========= SCHEMA ORG ========= */}
       <Script
         id="schema-drainage"
         type="application/ld+json"
@@ -118,15 +100,11 @@ export default function DrainagePage() {
               {
                 "@context": "https://schema.org",
                 "@type": "MedicalWebPage",
-                "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#page",
-                url: "https://www.hilaryfarid-osteopathe.fr/drainage",
-                name: "Drainage lymphatique – Méthode Renata França",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique#page",
+                url: "https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique",
+                name: "Drainage lymphatique Renata França – Hilary Farid",
                 description:
-                  "Drainage lymphatique méthode Renata França : dégonflement immédiat, ventre plat, jambes légères, amélioration de la circulation et détox rapide.",
-                about: {
-                  "@type": "TherapeuticProcedure",
-                  name: "Drainage lymphatique Renata França",
-                },
+                  "Drainage lymphatique méthode Renata França : bien-être, sensation de légèreté, amélioration possible de la rétention d’eau. Séances à Paris 15 et Sèvres.",
                 breadcrumb: {
                   "@type": "BreadcrumbList",
                   itemListElement: [
@@ -140,7 +118,7 @@ export default function DrainagePage() {
                       "@type": "ListItem",
                       position: 2,
                       name: "Drainage lymphatique",
-                      item: "https://www.hilaryfarid-osteopathe.fr/drainage",
+                      item: "https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique",
                     },
                   ],
                 },
@@ -148,26 +126,24 @@ export default function DrainagePage() {
               {
                 "@context": "https://schema.org",
                 "@type": "Service",
-                "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#service",
-                serviceType: "Drainage lymphatique – Méthode Renata França",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique#service",
+                serviceType: "Drainage lymphatique (méthode Renata França)",
                 provider: {
                   "@type": "Person",
                   "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid",
                 },
-                areaServed: ["Sèvres", "Paris 15"],
+                areaServed: ["Paris 15", "Sèvres"],
                 description:
-                  "Méthode Renata França : drainage lymphatique manuel tonique, résultats immédiats : dégonflement, ventre plat, jambes légères, silhouette affinée.",
-                audience: ["Adult", "PostpartumWomen", "Athlete"],
+                  "Séance de drainage lymphatique méthode Renata França réalisée par Hilary Farid, ostéopathe DO. Objectifs : sensation de légèreté, confort circulatoire, détente.",
               },
               {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
                 "@id": "https://www.hilaryfarid-osteopathe.fr/sevres#business",
-                name: "Cabinet d'Ostéopathie – Sèvres",
+                name: "Cabinet – Sèvres",
                 telephone: "+33 6 72 01 45 39",
                 logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
-                image:
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
+                image: "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
                 address: {
                   "@type": "PostalAddress",
                   streetAddress: "104 Grande Rue",
@@ -177,16 +153,14 @@ export default function DrainagePage() {
                 },
                 makesOffer: {
                   "@type": "Service",
-                  "@id":
-                    "https://www.hilaryfarid-osteopathe.fr/drainage#service",
+                  "@id": "https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique#service",
                 },
               },
               {
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
-                "@id":
-                  "https://www.hilaryfarid-osteopathe.fr/paris15#business",
-                name: "Cabinet d'Ostéopathie – Paris 15",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/paris15#business",
+                name: "Cabinet – Paris 15",
                 telephone: "+33 6 72 01 45 39",
                 logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
                 image:
@@ -201,8 +175,7 @@ export default function DrainagePage() {
                 },
                 makesOffer: {
                   "@type": "Service",
-                  "@id":
-                    "https://www.hilaryfarid-osteopathe.fr/drainage#service",
+                  "@id": "https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique#service",
                 },
               },
               {
@@ -211,39 +184,38 @@ export default function DrainagePage() {
                 mainEntity: [
                   {
                     "@type": "Question",
-                    name:
-                      "Quels sont les effets du drainage lymphatique Renata França ?",
+                    name: "En combien de séances peut-on ressentir une différence ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "La méthode Renata França réduit la rétention d'eau, affine la silhouette, dégonfle dès la première séance, améliore la digestion et procure des jambes légères.",
+                        "Beaucoup de patients décrivent une sensation de légèreté dès la première séance. Le nombre de séances dépend de l’objectif et du ressenti.",
                     },
                   },
                   {
                     "@type": "Question",
-                    name: "Combien de séances sont nécessaires ?",
+                    name: "Le drainage lymphatique Renata França est-il douloureux ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Une séance suffit pour un effet immédiat. Une cure de 3 à 5 séances optimise les résultats.",
+                        "La technique est dynamique et tonique tout en restant confortable. L’intensité est toujours adaptée à votre sensibilité.",
                     },
                   },
                   {
                     "@type": "Question",
-                    name: "La méthode est-elle douloureuse ?",
+                    name: "Peut-on faire un drainage pendant la grossesse ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Non. Les pressions sont toniques mais jamais douloureuses, et toujours adaptées au confort du patient.",
+                        "Selon le terme et votre situation, cela peut être envisagé pour améliorer le confort circulatoire. Un avis médical peut être recommandé en cas de doute.",
                     },
                   },
                   {
                     "@type": "Question",
-                    name: "Est-ce adapté en post-partum ?",
+                    name: "Quelles sont les contre-indications principales ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, c'est très efficace pour dégonfler, améliorer la digestion et retrouver une sensation de légèreté.",
+                        "Fièvre/infection aiguë, phlébite/risque thrombotique, pathologies non stabilisées, chirurgie très récente selon avis médical. En cas de doute, contactez-moi avant de réserver.",
                     },
                   },
                 ],
@@ -255,385 +227,644 @@ export default function DrainagePage() {
         }}
       />
 
-      {/* ================= HERO ================= */}
-      <section className="relative h-[70vh] w-full overflow-visible">
-        <Image
-          src="/drainage/drainage_ventre.webp"
-          alt="Drainage lymphatique Renata França"
-          fill
-          priority
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+      {/* 🔥 STICKY SIDEBAR SOMMAIRE (desktop) */}
+      <aside className="hidden lg:block fixed left-6 top-40 w-56 bg-white/80 backdrop-blur-md shadow-lg border border-gray-200 rounded-xl p-4 z-40">
+        <h3 className="text-sm font-semibold text-primary mb-2">Sommaire</h3>
+        <ul className="space-y-2 text-sm">
+          {SECTIONS.map((s) => (
+            <li key={s.id}>
+              <a
+                href={`#${s.id}`}
+                onClick={(e) => smoothScroll(e, s.id)}
+                className={`block transition font-medium ${
+                  activeSection === s.id
+                    ? "text-primary underline underline-offset-4"
+                    : "text-graywarm hover:text-primary"
+                }`}
+              >
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-        <div className="absolute inset-0 bg-black/50 flex flex-col justify-center text-center px-6">
-          <FadeIn>
-            <Image
-              src="/drainage/drainage_Logo.webp"
-              alt="Logo Renata França"
-              width={160}
-              height={160}
-              className="mx-auto w-40 mb-6 opacity-90"
-            />
-
-            <h1 className="text-4xl md:text-5xl font-semibold text-white drop-shadow-lg">
-              Drainage lymphatique <br />
-              Méthode Renata França
-            </h1>
-
-            <p className="mt-4 text-offwhite text-lg md:text-xl max-w-2xl mx-auto">
-              Une technique dynamique aux résultats <strong>immédiats</strong> :
-              dégonflement, légèreté, détox, silhouette affinée.
-            </p>
-          </FadeIn>
+        <div className="mt-4 pt-4 border-t border-gray-200">
+          <a
+            href={DOCTOLIB_URL}
+            target="_blank"
+            className="block text-center bg-primary text-offwhite px-4 py-2 rounded-lg hover:bg-secondary transition"
+          >
+            Prendre rendez-vous
+          </a>
+          <p className="mt-2 text-xs text-graywarm text-center">
+            Paris 15 & Sèvres
+          </p>
         </div>
-      </section>
+      </aside>
 
-      {/* ================= WRAPPER SOMMAIRE + CONTENU ================= */}
-      <section className="bg-offwhite py-12 px-4 md:px-6">
-        <div className="max-w-6xl mx-auto flex gap-10 overflow-visible">
-          {/* ===== SOMMAIRE STICKY (DESKTOP) ===== */}
-          <aside className="hidden lg:block w-64 flex-shrink-0 sticky top-28 self-start h-max">
-            <div className="bg-white rounded-2xl shadow-sm border border-light/70 p-5">
-              <h2 className="text-sm font-semibold text-primary mb-3 tracking-wide uppercase">
-                Sommaire
-              </h2>
-
-              <nav className="space-y-2 text-sm">
-                {SECTIONS.map((section) => (
-                  <a
-                    key={section.id}
-                    href={`#${section.id}`}
-                    onClick={(e) => handleSmoothScroll(e, section.id)}
-                    className={`block rounded-lg px-3 py-2 transition ${
-                      activeId === section.id
-                        ? "bg-primary/10 text-primary font-semibold"
-                        : "text-graywarm hover:text-primary hover:bg-light/70"
-                    }`}
-                  >
-                    {section.label}
-                  </a>
-                ))}
-              </nav>
-            </div>
-          </aside>
-
-          {/* ===== CONTENU PRINCIPAL ===== */}
-          <div className="flex-1 space-y-16">
-            {/* ===== Sommaire Mobile ===== */}
-            <MobileSummary
-              sections={SECTIONS}
-              activeId={activeId}
-              smoothScroll={smoothScroll}
-            />
-
-            {/* ====================== SECTION : A PROPOS ======================= */}
-            <SlideUp>
-              <section
-                id="a-propos"
-                className="pt-24 bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
-              >
-                <h2 className="text-3xl md:text-4xl font-semibold text-primary text-center">
-                  Un drainage unique, aux résultats immédiats
-                </h2>
-
-                <div className="mt-10 space-y-8 text-graywarm leading-relaxed text-base md:text-lg">
-                  <p className="text-center">
-                    Le <strong>drainage lymphatique Renata França</strong> est
-                    une méthode révolutionnaire, bien plus tonique que le
-                    drainage classique. Elle stimule intensément la circulation{" "}
-                    <strong>lymphatique</strong> et <strong>sanguine</strong>{" "}
-                    pour obtenir un effet visible dès la première séance.
-                  </p>
-
-                  <p className="text-center font-medium text-xl text-primary">
-                    👉 Résultats immédiats : silhouette affinée, ventre
-                    dégonflé, jambes légères, énergie retrouvée.
-                  </p>
-
-                  <hr className="border-graywarm/30 my-8" />
-
-                  <div id="effets">
-                    <h3 className="text-2xl font-semibold text-primary text-center">
-                      Pourquoi cette méthode est-elle si efficace ?
-                    </h3>
-
-                    <ul className="mt-4 space-y-2 list-disc list-inside">
-                      <li>Pressions profondes et rythmées</li>
-                      <li>Circulation lymphatique relancée</li>
-                      <li>Déstockage de l'eau stagnante</li>
-                      <li>Détoxification naturelle du corps</li>
-                    </ul>
-
-                    <p className="mt-4 italic">
-                      Une sensation incomparable de légèreté, dès la première
-                      séance.
-                    </p>
-                  </div>
-
-                  <hr className="border-graywarm/30 my-8" />
-
-                  <div>
-                    <h3 className="text-2xl font-semibold text-primary text-center">
-                      Parfait avant un événement
-                    </h3>
-
-                    <p className="mt-3 text-center">
-                      Idéal avant un <strong>shooting</strong>, un{" "}
-                      <strong>mariage</strong>, des vacances, une compétition ou
-                      un <strong>post-partum</strong>.
-                    </p>
-                  </div>
-
-                  <hr className="border-graywarm/30 my-8" />
-
-                  <div>
-                    <h3 className="text-2xl font-semibold text-primary text-center">
-                      Combien de séances ?
-                    </h3>
-
-                    <ul className="mt-4 space-y-2 list-inside">
-                      <li>✔️ Une séance = effet immédiat</li>
-                      <li>
-                        ✔️ Cure de 3 à 5 séances = résultats optimisés
-                      </li>
-                    </ul>
-                  </div>
-
-                  <hr className="border-graywarm/30 my-8" />
-
-                  <div>
-                    <h3 className="text-2xl font-semibold text-primary text-center">
-                      Une praticienne formée et certifiée
-                    </h3>
-
-                    <p className="mt-3 text-center">
-                      Je suis <strong>formée et certifiée</strong> à la Méthode
-                      Renata França, et j'adapte chaque séance à votre
-                      morphologie.
-                    </p>
-                  </div>
-                </div>
-              </section>
-            </SlideUp>
-
-            {/* ====================== SECTION : AVANT APRES ==================== */}
-            <SlideUp>
-              <section
-                id="avant-apres"
-                className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
-              >
-                <h2 className="text-3xl font-semibold text-primary text-center">
-                  Résultats Avant / Après
-                </h2>
-
-                <div className="grid md:grid-cols-2 gap-12 mt-12">
-                  <div className="shadow-xl rounded-lg overflow-hidden">
-                    <Image
-                      src="/drainage/avant_apres_jambe.webp"
-                      alt="Résultat avant après jambes drainage lymphatique"
-                      width={900}
-                      height={900}
-                      sizes="(max-width: 768px) 100vw,
-                             (max-width: 1200px) 50vw,
-                             450px"
-                      className="w-full h-auto"
-                    />
-                  </div>
-
-                  <div className="shadow-xl rounded-lg overflow-hidden">
-                    <Image
-                      src="/drainage/avant_apres_ventre.webp"
-                      alt="Résultat avant après ventre drainage lymphatique"
-                      width={900}
-                      height={900}
-                      sizes="(max-width: 768px) 100vw,
-                             (max-width: 1200px) 50vw,
-                             450px"
-                      className="w-full h-auto"
-                    />
-                  </div>
-                </div>
-              </section>
-            </SlideUp>
-
-            {/* ====================== SECTION : BENEFICES ====================== */}
-            <SlideUp>
-              <section
-                id="benefices"
-                className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
-              >
-                <h2 className="text-3xl font-semibold text-primary text-center">
-                  Effets & bénéfices du drainage Renata França
-                </h2>
-
-                <div className="grid md:grid-cols-2 gap-10 mt-12 items-center">
-                  <Image
-                    src="/drainage/drainage_jambe.webp"
-                    alt="Drainage lymphatique jambes méthode Renata França"
-                    width={800}
-                    height={800}
-                    sizes="(max-width: 768px) 90vw,
-                           (max-width: 1200px) 50vw,
-                           400px"
-                    className="rounded-lg shadow-lg"
-                  />
-
-                  <ul className="space-y-4 text-graywarm text-lg">
-                    <li>✔️ Effet immédiat dès la première séance</li>
-                    <li>✔️ Diminution de la rétention d'eau</li>
-                    <li>✔️ Ventre plus plat & meilleure digestion</li>
-                    <li>✔️ Jambes légères et affinées</li>
-                    <li>✔️ Silhouette harmonisée & dégonflement rapide</li>
-                    <li>✔️ Détox naturelle & sensation de légèreté</li>
-                  </ul>
-                </div>
-
-              </section>
-            </SlideUp>
-
-            {/* ================= SECTION : CONTRE INDICATIONS ================= */}
-            <SlideUp>
-              <section
-                id="contre-indications"
-                className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
-              >
-                <h2 className="text-3xl font-semibold text-primary text-center">
-                  Contre-indications & précautions
-                </h2>
-
-                <p className="mt-6 text-graywarm text-center max-w-2xl mx-auto">
-                  Le drainage lymphatique Renata França est une méthode
-                  puissante. Certaines situations demandent un avis médical
-                  préalable :
-                </p>
-
-                <ul className="mt-6 space-y-3 text-graywarm list-disc list-inside">
-                  <li>Insuffisance cardiaque ou rénale non stabilisée</li>
-                  <li>Phlébite / thrombose récente</li>
-                  <li>Infections aiguës, fièvre</li>
-                  <li>Cancer en cours de traitement (avis médical obligatoire)</li>
-                </ul>
-
-                <p className="mt-6 text-graywarm text-center">
-                  En cas de doute, je vous invite à me contacter avant la
-                  séance.
-                </p>
-              </section>
-            </SlideUp>
-
-            {/* ====================== SECTION : GALERIE ======================== */}
-            <SlideUp>
-              <section
-                id="galerie"
-                className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
-              >
-                <h2 className="text-3xl font-semibold text-primary text-center mb-8">
-                  Galerie du drainage Renata França
-                </h2>
-
-                <DrainageGallery />
-              </section>
-            </SlideUp>
-
-            {/* ====================== SECTION : FAQ ============================ */}
-            <SlideUp>
-              <section
-                id="faq"
-                className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
-              >
-                <h2 className="text-3xl font-semibold text-primary text-center">
-                  FAQ – Drainage lymphatique Renata França
-                </h2>
-
-                <div className="mt-10 space-y-6">
-                  <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
-                    <summary className="font-semibold text-primary cursor-pointer">
-                      Quels sont les effets dès la première séance ?
-                    </summary>
-                    <p className="mt-2 text-graywarm text-sm">
-                      Diminution de la rétention d'eau, ventre plus plat,
-                      jambes légères, sensation de dégonflement immédiate.
-                    </p>
-                  </details>
-
-                  <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
-                    <summary className="font-semibold text-primary cursor-pointer">
-                      Est-ce que la méthode est douloureuse ?
-                    </summary>
-                    <p className="mt-2 text-graywarm text-sm">
-                      Non. La pression est tonique mais jamais douloureuse et
-                      toujours adaptée à votre confort.
-                    </p>
-                  </details>
-
-                  <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
-                    <summary className="font-semibold text-primary cursor-pointer">
-                      Combien de séances sont recommandées ?
-                    </summary>
-                    <p className="mt-2 text-graywarm text-sm">
-                      Une séance suffit pour un effet immédiat. Une cure de 3 à
-                      5 séances optimise les résultats.
-                    </p>
-                  </details>
-
-                  <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
-                    <summary className="font-semibold text-primary cursor-pointer">
-                      Est-ce adapté en post-partum ?
-                    </summary>
-                    <p className="mt-2 text-graywarm text-sm">
-                      Oui, très recommandé pour éliminer la rétention d'eau,
-                      améliorer la digestion et réduire les gonflements.
-                    </p>
-                  </details>
-
-                  <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
-                    <summary className="font-semibold text-primary cursor-pointer">
-                      Faut-il boire beaucoup d'eau après la séance ?
-                    </summary>
-                    <p className="mt-2 text-graywarm text-sm">
-                      Oui, il est conseillé de bien s'hydrater pour accompagner
-                      la détoxification naturelle.
-                    </p>
-                  </details>
-                </div>
-              </section>
-            </SlideUp>
-
-            {/* ====================== CTA FINAL =============================== */}
-            <FadeIn>
-              <section className="bg-primary text-offwhite rounded-2xl shadow-sm p-8 md:p-10 text-center">
-                <h2 className="text-3xl font-semibold">
-                  Réserver votre séance
-                </h2>
-
-                <p className="mt-3 text-offwhite/90">
-                  Drainage lymphatique disponible à <strong>Sèvres</strong> et{" "}
-                  <strong>Paris 15</strong>.
-                </p>
-
-                <a
-                  href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
-                  target="_blank"
-                  className="mt-6 inline-block bg-offwhite text-primary px-10 py-4 rounded-lg hover:bg-light transition"
-                >
-                  Réserver une séance
-                </a>
-              </section>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== Bouton retour en haut ===== */}
-      {showBackToTop && (
+      {/* 🔝 Bouton retour en haut */}
+      {showBackTop && (
         <button
-          onClick={handleBackToTop}
-          className="fixed bottom-6 right-4 md:right-6 z-40 bg-primary text-offwhite w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-lg hover:bg-secondary transition"
-          aria-label="Revenir en haut de la page"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-24 md:bottom-6 right-6 z-50 bg-primary text-white w-12 h-12 rounded-full shadow-xl flex items-center justify-center text-xl hover:bg-secondary transition"
+          aria-label="Retour en haut"
         >
           ↑
         </button>
       )}
+
+      {/* 📌 Sticky CTA (mobile) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50">
+        <div className="bg-white/90 backdrop-blur-md border-t border-gray-200 px-4 py-3 flex items-center justify-between">
+          <div className="leading-tight">
+            <p className="text-sm font-semibold text-primary">Drainage Renata França</p>
+            <p className="text-xs text-graywarm">Paris 15 & Sèvres</p>
+          </div>
+          <a
+            href={DOCTOLIB_URL}
+            target="_blank"
+            className="bg-primary text-offwhite px-4 py-2 rounded-lg shadow-sm hover:bg-secondary transition text-sm font-medium"
+          >
+            RDV
+          </a>
+        </div>
+      </div>
+
+      {/* ========= HERO ========= */}
+      <FadeIn>
+        <section className="bg-offwhite py-16 px-6">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+            <div>
+              <p className="uppercase tracking-[0.25em] text-sm text-secondary mb-3">
+                Drainage lymphatique • Méthode Renata França
+              </p>
+
+              <h1 className="text-4xl md:text-5xl font-semibold text-primary leading-tight">
+                Légèreté, confort <br /> & silhouette visiblement affinée.
+              </h1>
+
+              <p className="mt-6 text-lg text-graywarm leading-relaxed">
+                En tant qu’ostéopathe, j’ai choisi d’intégrer le drainage lymphatique
+                <strong> Renata França</strong> pour son approche dynamique et
+                ses effets particulièrement appréciés : sensation de légèreté,
+                amélioration possible de la rétention d’eau, détente profonde
+                et confort corporel.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a
+                  href={DOCTOLIB_URL}
+                  target="_blank"
+                  className="bg-primary text-offwhite px-7 py-3 rounded-lg hover:bg-secondary transition"
+                >
+                  Prendre rendez-vous
+                </a>
+                <a
+                  href="#bienfaits"
+                  className="inline-flex items-center text-primary underline underline-offset-4 hover:text-secondary"
+                >
+                  Découvrir les bienfaits
+                </a>
+              </div>
+
+              <div className="mt-6 grid grid-cols-3 gap-3">
+                {[
+                  ["Sensation de légèreté", "dès la 1ʳᵉ séance"],
+                  ["Méthode tonique", "adaptée à vous"],
+                  ["Deux cabinets", "Paris 15 & Sèvres"],
+                ].map(([t, s]) => (
+                  <div key={t} className="rounded-xl border bg-white p-3">
+                    <p className="text-sm font-semibold text-primary">{t}</p>
+                    <p className="text-xs text-graywarm mt-1">{s}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative w-full h-80 md:h-[28rem] rounded-2xl overflow-hidden shadow-lg">
+              {/* ✅ Mets tes images ici : /public/drainage/hero.webp */}
+              <Image
+                src="/drainage/drainage_ventre.webp"
+                alt="Drainage lymphatique méthode Renata França"
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover"
+              />
+              {/* Petit voile premium */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
+            </div>
+          </div>
+        </section>
+      </FadeIn>
+
+      {/* ========= SOMMAIRE MOBILE (si tu veux garder ton composant) ========= */}
+      <section className="lg:hidden py-6 px-6 bg-[#F7F9FB] border-y border-light/50">
+        <div className="max-w-4xl mx-auto">
+          <MobileSummary
+            sections={SECTIONS}
+            activeId={activeSection}
+            smoothScroll={smoothScroll}
+          />
+        </div>
+      </section>
+
+      {/* ========= PRESENTATION ========= */}
+      <SlideUp>
+        <section id="presentation" className="py-20 px-6 bg-light">
+          <div className="max-w-5xl mx-auto">
+
+            {/* Titre */}
+            <div className="max-w-3xl mb-12">
+              <h2 className="text-3xl font-semibold text-primary">
+                La lymphe, c’est quoi ?
+              </h2>
+
+              <p className="mt-4 text-base text-graywarm leading-relaxed">
+                Le système lymphatique est un réseau essentiel à l’équilibre du corps.
+                Il participe à l’<strong>immunité</strong>, à l’
+                <strong>évacuation des liquides</strong>, à l’
+                <strong>élimination de certains déchets</strong> et au
+                <strong> confort digestif</strong>.
+              </p>
+            </div>
+
+            {/* Contenu */}
+            <div className="grid md:grid-cols-2 gap-10">
+
+              <div className="rounded-2xl border bg-white p-7 shadow-sm">
+                <p className="text-ms uppercase tracking-[0.25em] text-secondary">
+                  Quand la lymphe ralentit
+                </p>
+
+                <ul className="mt-4 text-base text-graywarm space-y-3 list-disc list-inside">
+                  <li>Sensation de jambes lourdes et rétention d’eau</li>
+                  <li>Gonflements, inconfort, fatigue</li>
+                  <li>Ballonnements et digestion plus lente</li>
+                  <li>Peau d’orange plus visible (cellulite)</li>
+                </ul>
+              </div>
+
+              <div className="rounded-2xl bg-primary/5 p-7">
+                <h3 className="text-xl font-semibold text-primary">
+                  Une méthode manuelle dynamique
+                </h3>
+
+                <p className="mt-3 text-base text-graywarm leading-relaxed">
+                  Le drainage lymphatique <strong>Renata França</strong> est une
+                  technique précise et rythmée, visant à stimuler la circulation
+                  lymphatique et à favoriser une <strong>sensation de légèreté</strong>
+                  et une meilleure aisance corporelle.
+                </p>
+
+                <p className="mt-4 text-base text-graywarm">
+                  Le travail se fait sur l’ensemble du corps :
+                  <strong> jambes, ventre, bras et dos</strong>.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </SlideUp>
+
+      {/* ========= BIENFAITS ========= */}
+      <SlideUp>
+        <section id="bienfaits" className="py-16 px-6 bg-offwhite">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto">
+              <h2 className="text-3xl font-semibold text-primary">
+                Bienfaits les plus recherchés
+              </h2>
+              <p className="mt-4 text-graywarm">
+                Les effets varient selon chacun. L’objectif est de favoriser le confort,
+                la légèreté et le bien-être global.
+              </p>
+            </div>
+
+            <div className="mt-10 grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "Jambes lourdes",
+                  text: "Aide à diminuer la sensation de lourdeur et la rétention d’eau.",
+                  icon: IconLegs,
+                },
+                {
+                  title: "Cellulite",
+                  text: "Peut contribuer à améliorer l’aspect peau d’orange et raffermir.",
+                  icon: IconCellulite,
+                },
+                {
+                  title: "Détoxification",
+                  text: "Aide l’organisme à éliminer certains déchets et toxines stockés.",
+                  icon: IconDetox,
+                },
+                {
+                  title: "Stress & fatigue",
+                  text: "Effet relaxant : détente, récupération, sensation de lâcher-prise.",
+                  icon: IconRelax,
+                },
+                {
+                  title: "Immunité",
+                  text: "Le système lymphatique étant lié à l’immunité, l’objectif est de soutenir ses fonctions.",
+                  icon: IconImmunity,
+                },
+                {
+                  title: "Digestion",
+                  text: "Peut aider à diminuer les ballonnements et améliorer le confort digestif.",
+                  icon: IconDigestion,
+                },
+                {
+                  title: "Cicatrisation / post-op",
+                  text: "Dans certains contextes, peut accompagner la récupération (selon avis médical).",
+                  icon: IconRecovery,
+                },
+                {
+                  title: "Grossesse",
+                  text: "Selon le terme, peut aider à soulager inconfort circulatoire et gonflements.",
+                  icon: IconPregnancy,
+                },
+                {
+                  title: "Fertilité / PMA",
+                  text: "Peut contribuer au bien-être global et à la gestion du stress (accompagnement).",
+                  icon: IconFertility,
+                },
+              ].map((b) => (
+                <FadeIn key={b.title}>
+                  <article className="group rounded-2xl border bg-white p-7 shadow-sm transition hover:shadow-lg">
+                    <div className="flex items-center gap-4">
+                      <div className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                        <b.icon className="w-6 h-6" />
+                      </div>
+
+                      <h3 className="text-xl font-semibold text-primary">
+                        {b.title}
+                      </h3>
+                    </div>
+
+                    <p className="mt-4 text-base text-graywarm leading-relaxed">
+                      {b.text}
+                    </p>
+                  </article>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+      </SlideUp>
+
+      {/* ========= CARROUSEL DRAINAGE ========= */}
+      <SlideUp>
+        <section className="py-16 px-6 bg-light">
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-3xl font-semibold text-primary">
+              Le drainage en images
+            </h2>
+
+            <p className="mt-4 text-graywarm max-w-2xl mx-auto">
+              Gestes précis, techniques manuelles dynamiques et approche respectueuse
+              du corps, adaptées à chaque zone.
+            </p>
+
+            <div className="mt-10">
+              <DrainageCarousel />
+            </div>
+          </div>
+        </section>
+      </SlideUp>
+
+
+      {/* ========= DEROULEMENT ========= */}
+      <SlideUp>
+        <section id="deroulement" className="py-16 px-6 bg-offwhite">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl font-semibold text-primary text-center">
+              Comment se déroule une séance ?
+            </h2>
+
+            <div className="mt-10 grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  step: "1. Échange",
+                  title: "Bilan & objectifs",
+                  text: "On définit ensemble vos attentes : confort, légèreté, rétention d’eau, récupération…",
+                },
+                {
+                  step: "2. Drainage",
+                  title: "Technique Renata França",
+                  text: "Manœuvres dynamiques et précises, adaptées à votre sensibilité.",
+                },
+                {
+                  step: "3. Conseils",
+                  title: "Après la séance",
+                  text: "Conseils simples pour optimiser votre confort et prolonger les effets de confort et de fluidité.",
+                },
+              ].map((c) => (
+                <FadeIn key={c.step}>
+                  <div className="bg-white rounded-2xl border p-6 shadow-sm">
+                    <p className="text-xs uppercase tracking-[0.25em] text-secondary">
+                      {c.step}
+                    </p>
+
+                    <h3 className="mt-2 text-xl font-semibold text-primary">
+                      {c.title}
+                    </h3>
+
+                    <p className="mt-3 text-base text-graywarm leading-relaxed">
+                      {c.text}
+                    </p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+
+            <div className="mt-10 rounded-2xl border bg-white p-6 shadow-sm">
+              <p className="text-sm text-graywarm leading-relaxed">
+                Beaucoup de patients décrivent une <strong>sensation de légèreté</strong> dès
+                la première séance. La fréquence idéale dépend de votre objectif et de votre ressenti.
+              </p>
+            </div>
+          </div>
+        </section>
+      </SlideUp>
+
+      {/* ========= POUR QUI ========= */}
+      <SlideUp>
+        <section id="pour-qui" className="py-16 px-6 bg-light">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
+            <div>
+              <h2 className="text-3xl font-semibold text-primary">
+                Pour qui est fait le drainage ?
+              </h2>
+              <p className="mt-4 text-graywarm leading-relaxed">
+                Le drainage lymphatique est souvent choisi pour le confort, l’esthétique et le bien-être.
+                Je l’adapte à votre situation et à votre sensibilité.
+              </p>
+
+              <div className="mt-8 grid sm:grid-cols-2 gap-4">
+                {[
+                  "Rétention d’eau & gonflements",
+                  "Jambes lourdes",
+                  "Cellulite / peau d’orange",
+                  "Périodes de fatigue / stress",
+                  "Confort digestif (ballonnements)",
+                  "Grossesse (selon situation)",
+                  "Récupération / post-op (avis médical)",
+                  "Accompagnement bien-être (PMA / fertilité)",
+                ].map((t) => (
+                  <div key={t} className="rounded-2xl border bg-white p-4 shadow-sm">
+                    <p className="text-sm font-medium text-primary">{t}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border bg-white shadow-sm overflow-hidden">
+              <div className="relative h-80">
+                {/* ✅ /public/drainage/hands.webp */}
+                <Image
+                  src="/drainage/drainage_jambe.webp"
+                  alt="Séance de drainage lymphatique"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="font-semibold text-primary">Objectif : confort & régularité</h3>
+                <p className="mt-2 text-sm text-graywarm leading-relaxed">
+                  Certaines personnes viennent ponctuellement (période de chaleur, fatigue,
+                  rétention), d’autres préfèrent un suivi régulier selon leurs besoins.
+                </p>
+                <div className="mt-5">
+                  <a
+                    href={DOCTOLIB_URL}
+                    target="_blank"
+                    className="inline-flex items-center justify-center bg-primary text-offwhite px-6 py-3 rounded-lg hover:bg-secondary transition w-full"
+                  >
+                    Prendre rendez-vous
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </SlideUp>
+
+      {/* ========= POURQUOI MOI ========= */}
+      <SlideUp>
+        <section id="pourquoi-moi" className="py-16 px-6 bg-offwhite">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl font-semibold text-primary text-center">
+              Pourquoi me consulter pour un drainage Renata França ?
+            </h2>
+
+            <div className="mt-10 grid md:grid-cols-2 gap-6 text-graywarm leading-relaxed">
+              {[
+                {
+                  title: "Approche précise & personnalisée",
+                  text: "En tant qu’ostéopathe DO, j’adapte la séance à votre morphologie, votre sensibilité et vos objectifs.",
+                },
+                {
+                  title: "Méthode Renata França",
+                  text: "Technique structurée, dynamique et reconnue, avec un objectif de légèreté et de bien-être.",
+                },
+                {
+                  title: "Explications claires",
+                  text: "Vous repartez avec des conseils simples (hydratation, rythme, sensations attendues) pour optimiser le confort.",
+                },
+                {
+                  title: "Deux cabinets accessibles",
+                  text: "Séances à Paris 15 et Sèvres, proches transports. Prise de RDV rapide sur Doctolib.",
+                },
+              ].map((c) => (
+                <FadeIn key={c.title}>
+                  <div className="p-6 rounded-2xl bg-white shadow-sm border">
+                    <h3 className="font-semibold text-primary text-lg">{c.title}</h3>
+                    <p className="mt-2 text-sm">{c.text}</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+      </SlideUp>
+
+      {/* ========= AVANT / APRÈS ========= */}
+      <SlideUp>
+        <section id="avant-apres" className="py-16 px-6 bg-light">
+          <div className="max-w-6xl mx-auto text-center">
+
+            <h2 className="text-3xl font-semibold text-primary">
+              Résultats Avant / Après
+            </h2>
+
+            <p className="mt-4 text-graywarm max-w-2xl mx-auto">
+              Illustrations visuelles à titre indicatif. Les résultats peuvent varier
+              selon les personnes, le contexte et la régularité des séances.
+            </p>
+
+            <div className="mt-10 grid md:grid-cols-2 gap-8">
+              {/* JAMBES */}
+              <div className="rounded-2xl bg-white p-6 shadow-sm border">
+                <Image
+                  src="/drainage/avant_apres_jambe.webp"
+                  alt="Drainage lymphatique jambes avant après"
+                  width={520}
+                  height={720}
+                  className="rounded-xl mx-auto"
+                />
+                <p className="mt-3 text-xs text-graywarm">
+                  Exemple visuel – sensation de légèreté et diminution des gonflements.
+                </p>
+              </div>
+
+              {/* VENTRE */}
+              <div className="rounded-2xl bg-white p-6 shadow-sm border">
+                <Image
+                  src="/drainage/avant_apres_ventre.webp"
+                  alt="Drainage lymphatique ventre avant après"
+                  width={520}
+                  height={720}
+                  className="rounded-xl mx-auto"
+                />
+                <p className="mt-3 text-xs text-graywarm">
+                  Exemple visuel – amélioration possible du confort abdominal.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-8 max-w-3xl mx-auto rounded-2xl border bg-white p-6 shadow-sm">
+              <p className="text-sm text-graywarm leading-relaxed">
+                ⚠️ Ces images ne constituent pas une promesse de résultat.
+                Le drainage lymphatique est une pratique de bien-être.
+                Les effets ressentis dépendent de chaque personne et de sa situation.
+              </p>
+            </div>
+
+          </div>
+        </section>
+      </SlideUp>
+
+
+      {/* ========= CONTRE-INDICATIONS ========= */}
+      <SlideUp>
+        <section id="contraindications" className="py-16 px-6 bg-offwhite">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-semibold text-primary text-center">
+              Contre-indications & précautions
+            </h2>
+
+            <p className="mt-6 text-graywarm text-center max-w-2xl mx-auto">
+              Le drainage est généralement bien toléré, mais certaines situations nécessitent
+              précaution ou avis médical préalable.
+              En cas de doute, contactez-moi avant de réserver.
+            </p>
+
+            <ul className="mt-8 space-y-3 text-graywarm list-disc list-inside text-sm">
+              <li>Fièvre importante, infection aiguë</li>
+              <li>Phlébite / suspicion de thrombose / risque thrombotique</li>
+              <li>Douleur inhabituelle, inflammation importante</li>
+              <li>Pathologie non stabilisée : avis médical recommandé</li>
+              <li>Post-op très récent : selon indication et avis du chirurgien</li>
+            </ul>
+
+            <div className="mt-8 rounded-2xl border bg-white p-6 shadow-sm">
+              <p className="text-sm text-graywarm">
+                📞 Si vous hésitez :{" "}
+                <a className="text-primary underline underline-offset-4" href="tel:+33672014539">
+                  06 72 01 45 39
+                </a>
+              </p>
+            </div>
+          </div>
+        </section>
+      </SlideUp>
+
+      {/* ========= FAQ ========= */}
+      <SlideUp>
+        <section id="faq" className="py-16 px-6 bg-light">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl font-semibold text-primary text-center">
+              FAQ
+            </h2>
+
+            <div className="mt-10 space-y-6">
+              {[
+                {
+                  q: "En combien de séances peut-on ressentir une différence ?",
+                  a: "Beaucoup de patients décrivent une sensation de légèreté dès la première séance. La fréquence dépend de l’objectif et du ressenti.",
+                },
+                {
+                  q: "Est-ce douloureux ?",
+                  a: "La technique est dynamique et tonique tout en restant confortable. J’adapte toujours l’intensité à votre sensibilité.",
+                },
+                {
+                  q: "Peut-on faire un drainage pendant la grossesse ?",
+                  a: "Selon le terme et votre situation, cela peut être envisagé pour améliorer le confort circulatoire. En cas de doute, un avis médical peut être recommandé.",
+                },
+                {
+                  q: "Quelle différence avec un massage classique ?",
+                  a: "Le drainage Renata França suit une logique de circulation (manœuvres spécifiques) et vise surtout une sensation de légèreté et de confort, au-delà de la simple détente.",
+                },
+                {
+                  q: "Que faire après la séance ?",
+                  a: "Hydratation, marche douce si possible, et écouter vos sensations. Je vous donne des conseils adaptés à votre cas.",
+                },
+              ].map((item) => (
+                <details key={item.q} className="bg-white border rounded-2xl p-5 shadow-sm">
+                  <summary className="font-semibold text-primary cursor-pointer">
+                    {item.q}
+                  </summary>
+                  <p className="mt-3 text-base text-graywarm leading-relaxed">
+                    {item.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      </SlideUp>
+
+      {/* ========= CTA FINAL ========= */}
+      <FadeIn>
+        <section id="cta" className="py-16 px-6 text-center bg-offwhite">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-semibold text-primary">
+              Prêt(e) à retrouver une sensation de légèreté ?
+            </h2>
+            <p className="mt-4 text-graywarm">
+              Réservez votre séance de drainage lymphatique Renata França en quelques clics. <br/>
+              Cabinets à <strong>Paris 15</strong> et <strong>Sèvres</strong>.
+            </p>
+            <p className="mt-2 text-sm text-graywarm">
+              Séance d’environ <strong>60 minutes</strong> – réservation en ligne sur Doctolib.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4 justify-center">
+              <a
+                href={DOCTOLIB_URL}
+                target="_blank"
+                className="bg-primary text-offwhite px-7 py-3 rounded-lg hover:bg-secondary transition"
+              >
+                Prendre rendez-vous
+              </a>
+              <a
+                href="/tarifs"
+                className="inline-flex items-center text-primary underline underline-offset-4 hover:text-secondary"
+              >
+                Voir les tarifs
+              </a>
+            </div>
+
+            <p className="mt-6 text-xs text-graywarm">
+              *Le drainage lymphatique est une pratique de bien-être. Les effets peuvent varier selon les personnes.
+              Ce contenu ne remplace pas un avis médical.
+            </p>
+          </div>
+        </section>
+      </FadeIn>
     </main>
   );
 }
