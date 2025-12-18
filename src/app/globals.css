@@ -22,16 +22,11 @@
 /* ===========================
    🌍 STYLE GLOBAL BODY
    =========================== */
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-  @apply text-[17px] leading-relaxed antialiased;
-}
+   body {
+     color: rgb(var(--foreground-rgb));
+     background-color: rgb(var(--background-start-rgb));
+     @apply text-[17px] leading-relaxed antialiased;
+   }
 
 /* ===========================
    📝 TITRES & TYPO
@@ -167,10 +162,30 @@ html {
   }
 }
 
+@media (max-width: 768px) {
+  .fade-hero {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+
 .animate-slide-in-right {
   animation: slideInRight 0.5s ease-in-out;
 }
 
 .animate-slide-in-left {
   animation: slideInLeft 0.5s ease-in-out;
+}
+
+.fade-hero,
+.fade-soft,
+.blur-in {
+  will-change: opacity, filter;
 }

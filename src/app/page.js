@@ -269,7 +269,7 @@ export default function Home() {
           </div>
 
           {/* IMAGE → SSR + fade CSS */}
-          <div className="fade-hero">
+          <div className="fade-hero md:fade-hero">
             <div className="relative">
               <div
                 aria-hidden="true"
@@ -284,6 +284,8 @@ export default function Home() {
                   height={600}
                   className="object-cover w-full h-full"
                   priority
+                  fetchPriority="high"
+                  decoding="async"
                   sizes="(max-width: 768px) 90vw, 600px"
                 />
               </div>
