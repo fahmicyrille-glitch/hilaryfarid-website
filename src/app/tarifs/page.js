@@ -23,15 +23,15 @@ export default function TarifsPage() {
       price: "50 €",
     },
     {
-      label:
-        "Cure de 5 séances de drainage lymphatique méthode Renata França (corps entier)",
-      price: "800 €",
-    },
-    {
       label: "Jours fériés et Dimanches - Consultation d'ostéopathie",
       price: "90 €",
     },
     { label: "Offre post-accouchement Maman + Bébé", price: "100 €" },
+    {
+      label:
+        "Cure de 5 séances de drainage lymphatique méthode Renata França (corps entier)",
+      price: "800 €",
+    },
   ];
 
   const [activeId, setActiveId] = useState("consultations");
