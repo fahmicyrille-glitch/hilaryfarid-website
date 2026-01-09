@@ -14,6 +14,19 @@ const SECTIONS = [
   { id: "cta", label: "Prendre rendez-vous" },
 ];
 
+const PROMO_START = new Date("2026-01-12T00:00:00");
+const PROMO_END = new Date("2026-02-28T23:59:59");
+
+const formatDateFR = (d) =>
+  d.toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" });
+
+const isPromoPriceActive = () => {
+  if (typeof window === "undefined") return false; // éviter mismatch SSR
+  const now = new Date();
+  return now >= PROMO_START && now <= PROMO_END;
+};
+
+
 export default function TarifsPage() {
   const tarifs = [
     { label: "Adulte - Consultation d'ostéopathie", price: "70 €" },
@@ -36,6 +49,7 @@ export default function TarifsPage() {
 
   const [activeId, setActiveId] = useState("consultations");
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [promoPriceActive, setPromoPriceActive] = useState(false);
 
   /* ================== SCROLLSPY CORRIGÉ ================== */
   useEffect(() => {
@@ -63,6 +77,7 @@ export default function TarifsPage() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
+    setPromoPriceActive(isPromoPriceActive());
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -318,23 +333,66 @@ export default function TarifsPage() {
                     </FadeIn>
                   ))}
                 </div>
-                {/* ===== DRAINAGE LYMPHATIQUE ===== */}
+                {/* ===== DRAINAGE LYMPHATIQUE (PROMO) ===== */}
                 <div className="border-b border-graywarm/30 pb-4 mt-6">
-                  <p className="text-graywarm text-base md:text-lg font-medium md:max-w-[70%]">
-                    Séance de drainage lymphatique méthode Renata França (corps entier)
-                  </p>
+                  <div className="flex flex-col gap-2">
+                    <p className="text-graywarm text-base md:text-lg font-medium md:max-w-[80%]">
+                      Séance de drainage lymphatique méthode Renata França (corps entier)
+                    </p>
 
-                  <div className="mt-3 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-base font-medium text-graywarm">Paris 15</span>
-                      <span className="text-primary font-semibold text-lg">150 €</span>
-                    </div>
+                    {/* Encadré promo */}
+                    {(
+                      <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4 md:p-5">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                          <div>
+                            <p className="text-primary font-semibold text-base md:text-lg">
+                              Offre à venir : 150 € au lieu de <span className="line-through opacity-60">180 €</span>
+                            </p>
+                            <p className="text-graywarm text-sm mt-1">
+                              Disponible pour toute séance du <span className="font-semibold">{formatDateFR(PROMO_START)}</span> jusqu’au{" "}
+                              <span className="font-semibold">{formatDateFR(PROMO_END)}</span> (Paris 15 & Sèvres)
+                            </p>
+                          </div>
 
-                    <div className="flex items-center justify-between">
-                      <span className="text-base font-medium text-graywarm">Sèvres</span>
-                      <span className="text-primary font-semibold text-lg">180 €</span>
-                    </div>
+                          <div className="flex items-center gap-2">
+                            <span className="inline-flex items-center rounded-full bg-primary text-offwhite px-3 py-1 text-sm font-semibold">
+                              -30 €
+                            </span>
+                            <span className="text-primary font-semibold text-2xl md:text-3xl">
+                              150 €
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
+
+                  {/* Prix par cabinet */}
+                  <div className="mt-3 space-y-2">
+                    {[
+                      { city: "Paris 15" },
+                      { city: "Sèvres" },
+                    ].map((c) => (
+                      <div key={c.city} className="flex items-center justify-between">
+                        <span className="text-base font-medium text-graywarm">{c.city}</span>
+
+                        {promoPriceActive ? (
+                          <span className="flex items-baseline gap-3">
+                            <span className="text-graywarm line-through text-sm md:text-base">180 €</span>
+                            <span className="text-primary font-semibold text-lg">150 €</span>
+                          </span>
+                        ) : (
+                          <span className="text-primary font-semibold text-lg">180 €</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  {promoPriceActive && (
+                    <p className="text-graywarm text-xs mt-3">
+                      * Offre non valable sur la cure de 5 séances.
+                    </p>
+                  )}
                 </div>
               </section>
             </SlideUp>
