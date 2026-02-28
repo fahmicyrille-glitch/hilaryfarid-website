@@ -6,7 +6,6 @@ import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import SEO from "@/components/SEO";
 import MobileSummary from "@/components/MobileSummary";
 
-
 const SECTIONS = [
   { id: "consultations", label: "Consultations & prestations" },
   { id: "note", label: "Informations importantes" },
@@ -15,17 +14,30 @@ const SECTIONS = [
 ];
 
 const PROMO_START = new Date("2026-01-12T00:00:00");
-const PROMO_END = new Date("2026-02-28T23:59:59");
+const PROMO_END = new Date("2026-02-27T23:59:59");
 
 const formatDateFR = (d) =>
-  d.toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" });
+  d.toLocaleDateString("fr-FR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
 
-const isPromoPriceActive = () => {
-  if (typeof window === "undefined") return false; // éviter mismatch SSR
-  const now = new Date();
-  return now >= PROMO_START && now <= PROMO_END;
+// Prix drainage
+const DRAINAGE_PROMO_PRICE = 150;
+const DRAINAGE_REGULAR_PRICES = {
+  "Paris 15": 160,
+  "Sèvres": 180,
 };
 
+// Option 2 : avant / pendant / après
+const getPromoState = () => {
+  if (typeof window === "undefined") return "after"; // éviter mismatch SSR
+  const now = new Date();
+  if (now < PROMO_START) return "before";
+  if (now > PROMO_END) return "after";
+  return "active";
+};
 
 export default function TarifsPage() {
   const tarifs = [
@@ -49,13 +61,12 @@ export default function TarifsPage() {
 
   const [activeId, setActiveId] = useState("consultations");
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [promoPriceActive, setPromoPriceActive] = useState(false);
+  const [promoState, setPromoState] = useState("after"); // before | active | after
 
-  /* ================== SCROLLSPY CORRIGÉ ================== */
+  /* ================== SCROLLSPY + PROMO STATE ================== */
   useEffect(() => {
     const handleScroll = () => {
       const trigger = window.innerHeight * 0.25; // zone haute du viewport
-
       let current = "consultations";
 
       SECTIONS.forEach((s) => {
@@ -64,8 +75,6 @@ export default function TarifsPage() {
 
         const rect = el.getBoundingClientRect();
 
-        // La section est considérée "active" si son top est au-dessus
-        // d'un quart de la hauteur de l'écran, et son bottom en-dessous.
         if (rect.top <= trigger && rect.bottom > trigger) {
           current = s.id;
         }
@@ -75,14 +84,24 @@ export default function TarifsPage() {
       setShowBackToTop(window.scrollY > 600);
     };
 
+    const updatePromo = () => {
+      setPromoState(getPromoState());
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+
     handleScroll();
-    setPromoPriceActive(isPromoPriceActive());
+    updatePromo();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Mise à jour auto (si la page reste ouverte)
+    const timer = setInterval(updatePromo, 60_000);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearInterval(timer);
+    };
   }, []);
-
-  /* ======================================================= */
+  /* ============================================================= */
 
   const smoothScroll = (e, id) => {
     e.preventDefault();
@@ -302,7 +321,6 @@ export default function TarifsPage() {
               smoothScroll={smoothScroll}
             />
 
-
             {/* ================= SECTION : TARIFS ================= */}
             <SlideUp>
               <section
@@ -318,7 +336,6 @@ export default function TarifsPage() {
                     <FadeIn key={i} delay={i * 0.05}>
                       <div className="border-b border-graywarm/30 pb-4">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-
                           {/* Intitulé */}
                           <p className="text-graywarm text-base md:text-lg font-medium md:max-w-[70%]">
                             {t.label}
@@ -333,33 +350,82 @@ export default function TarifsPage() {
                     </FadeIn>
                   ))}
                 </div>
+
                 {/* ===== DRAINAGE LYMPHATIQUE (PROMO) ===== */}
                 <div className="border-b border-graywarm/30 pb-4 mt-6">
                   <div className="flex flex-col gap-2">
                     <p className="text-graywarm text-base md:text-lg font-medium md:max-w-[80%]">
-                      Séance de drainage lymphatique méthode Renata França (corps entier)
+                      Séance de drainage lymphatique méthode Renata França (corps
+                      entier)
                     </p>
 
-                    {/* Encadré promo */}
-                    {(
+                    {/* AVANT LA PROMO */}
+                    {promoState === "before" && (
                       <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4 md:p-5">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                           <div>
                             <p className="text-primary font-semibold text-base md:text-lg">
-                              Offre à venir : 150 € au lieu de <span className="line-through opacity-60">180 €</span>
+                              Offre à venir : {DRAINAGE_PROMO_PRICE} € (Paris 15
+                              & Sèvres)
                             </p>
                             <p className="text-graywarm text-sm mt-1">
-                              Disponible pour toute séance du <span className="font-semibold">{formatDateFR(PROMO_START)}</span> jusqu’au{" "}
-                              <span className="font-semibold">{formatDateFR(PROMO_END)}</span> (Paris 15 & Sèvres)
+                              Disponible pour toute séance du{" "}
+                              <span className="font-semibold">
+                                {formatDateFR(PROMO_START)}
+                              </span>{" "}
+                              jusqu’au{" "}
+                              <span className="font-semibold">
+                                {formatDateFR(PROMO_END)}
+                              </span>
+                              .
+                              <br />
+                              Prix habituels : Paris 15{" "}
+                              <span className="font-semibold">
+                                {DRAINAGE_REGULAR_PRICES["Paris 15"]} €
+                              </span>{" "}
+                              • Sèvres{" "}
+                              <span className="font-semibold">
+                                {DRAINAGE_REGULAR_PRICES["Sèvres"]} €
+                              </span>
                             </p>
                           </div>
 
                           <div className="flex items-center gap-2">
                             <span className="inline-flex items-center rounded-full bg-primary text-offwhite px-3 py-1 text-sm font-semibold">
-                              -30 €
+                              Jusqu’à -30 €
                             </span>
                             <span className="text-primary font-semibold text-2xl md:text-3xl">
-                              150 €
+                              {DRAINAGE_PROMO_PRICE} €
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* PENDANT LA PROMO */}
+                    {promoState === "active" && (
+                      <div className="bg-primary/10 border border-primary rounded-2xl p-4 md:p-5">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                          <div>
+                            <p className="text-primary font-semibold text-base md:text-lg">
+                              Offre en cours : {DRAINAGE_PROMO_PRICE} € (Paris 15
+                              & Sèvres)
+                            </p>
+                            <p className="text-graywarm text-sm mt-1">
+                              Offre valable jusqu’au{" "}
+                              <span className="font-semibold">
+                                {formatDateFR(PROMO_END)}
+                              </span>
+                              .
+                            </p>
+                          </div>
+
+                          <div className="flex items-center gap-2">
+                            <span className="inline-flex items-center rounded-full bg-primary text-offwhite px-3 py-1 text-sm font-semibold">
+                              Jusqu’à -30 €
+                            </span>
+                            <span className="text-primary font-semibold text-2xl md:text-3xl">
+                              {DRAINAGE_PROMO_PRICE} €
                             </span>
                           </div>
                         </div>
@@ -369,26 +435,38 @@ export default function TarifsPage() {
 
                   {/* Prix par cabinet */}
                   <div className="mt-3 space-y-2">
-                    {[
-                      { city: "Paris 15" },
-                      { city: "Sèvres" },
-                    ].map((c) => (
-                      <div key={c.city} className="flex items-center justify-between">
-                        <span className="text-base font-medium text-graywarm">{c.city}</span>
+                    {["Paris 15", "Sèvres"].map((city) => {
+                      const regular = DRAINAGE_REGULAR_PRICES[city];
 
-                        {promoPriceActive ? (
-                          <span className="flex items-baseline gap-3">
-                            <span className="text-graywarm line-through text-sm md:text-base">180 €</span>
-                            <span className="text-primary font-semibold text-lg">150 €</span>
+                      return (
+                        <div
+                          key={city}
+                          className="flex items-center justify-between"
+                        >
+                          <span className="text-base font-medium text-graywarm">
+                            {city}
                           </span>
-                        ) : (
-                          <span className="text-primary font-semibold text-lg">180 €</span>
-                        )}
-                      </div>
-                    ))}
+
+                          {promoState === "active" ? (
+                            <span className="flex items-baseline gap-3">
+                              <span className="text-graywarm line-through text-sm md:text-base">
+                                {regular} €
+                              </span>
+                              <span className="text-primary font-semibold text-lg">
+                                {DRAINAGE_PROMO_PRICE} €
+                              </span>
+                            </span>
+                          ) : (
+                            <span className="text-primary font-semibold text-lg">
+                              {regular} €
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
 
-                  {promoPriceActive && (
+                  {promoState === "active" && (
                     <p className="text-graywarm text-xs mt-3">
                       * Offre non valable sur la cure de 5 séances.
                     </p>
@@ -462,9 +540,7 @@ export default function TarifsPage() {
                 id="cta"
                 className="bg-primary text-offwhite rounded-2xl shadow-sm p-10 text-center"
               >
-                <h2 className="text-3xl font-semibold">
-                  Prendre rendez-vous
-                </h2>
+                <h2 className="text-3xl font-semibold">Prendre rendez-vous</h2>
                 <p className="mt-3 text-offwhite/80">
                   Réservez directement votre consultation sur Doctolib.
                 </p>
@@ -485,9 +561,7 @@ export default function TarifsPage() {
       {/* ==== BOUTON RETOUR EN HAUT ==== */}
       {showBackToTop && (
         <button
-          onClick={() =>
-            window.scrollTo({ top: 0, behavior: "smooth" })
-          }
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="fixed bottom-6 right-4 md:right-6 z-40 bg-primary text-offwhite w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-lg hover:bg-secondary transition"
         >
           ↑
