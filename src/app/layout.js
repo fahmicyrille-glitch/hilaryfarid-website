@@ -19,14 +19,11 @@ const roboto = localFont({
   display: "swap",
 });
 
-/* ================================
-   METADATA GLOBALES
-================================ */
 export const metadata = {
   metadataBase: new URL("https://www.hilaryfarid-osteopathe.fr"),
   title: {
     default: "Hilary Farid – Ostéopathe DO à Sèvres & Paris 15",
-    template: "%s | Hilary Farid", // Format: "Ostéopathie | Hilary Farid"
+    template: "%s | Hilary Farid",
   },
   description:
     "Hilary Farid, ostéopathe D.O. à Sèvres et Paris 15. Approche douce pour adultes, nourrissons, femmes enceintes et sportifs. Drainage lymphatique Renata França.",
@@ -41,7 +38,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.webp", // Harmonisé avec tes autres pages
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Hilary Farid Ostéopathe Sèvres Paris 15"
@@ -61,22 +58,20 @@ export const metadata = {
   },
 };
 
-/* ================================
-   ROOT LAYOUT
-================================ */
 export default function RootLayout({ children }) {
   return (
     <html lang="fr" className={roboto.variable}>
       <head>
-        {/* PRELOAD IMAGE – Accélère le chargement de ton portrait sur l'accueil/à-propos */}
+        {/* PRELOAD IMAGE – Avec fetchPriority pour écraser la concurrence au chargement */}
         <link
           rel="preload"
           as="image"
           href="/Hilary.webp"
+          fetchpriority="high"
         />
 
-        {/* GOOGLE TAG MANAGER */}
-        <Script id="gtm-head" strategy="afterInteractive">
+        {/* GOOGLE TAG MANAGER - Chargé de manière moins agressive */}
+        <Script id="gtm-head" strategy="lazyOnload">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -89,7 +84,6 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className="bg-offwhite text-primary antialiased">
-        {/* GTM NOSCRIPT */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-MN4339H9"
@@ -97,12 +91,12 @@ export default function RootLayout({ children }) {
           ></iframe>
         </noscript>
 
-        {/* GOOGLE ANALYTICS */}
+        {/* GOOGLE ANALYTICS - lazyOnload libère le thread principal pour le score de performance */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-BWDXGTQJKT"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -111,7 +105,6 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
-        {/* SCHEMA ORG GLOBAL */}
         <Script
           id="ld-global-hilary-farid"
           type="application/ld+json"
@@ -143,7 +136,7 @@ export default function RootLayout({ children }) {
               ],
               sameAs: [
                 "https://www.doctolib.fr/osteopathe/sevres/hilary-farid",
-                "https://www.instagram.com/votre_compte" // Optionnel : ton insta ?
+                "https://www.instagram.com/hilaryfarid_osteo"
               ]
             })
           }}
@@ -154,7 +147,6 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
-
         <ScrollProgressBar />
       </body>
     </html>
