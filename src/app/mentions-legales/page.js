@@ -1,16 +1,11 @@
+// src/app/mentions-legales/page.js
 "use client";
 
 import { FadeIn } from "@/components/MotionWrapper";
 
 export default function MentionsLegalesPage() {
   return (
-    <main className="bg-offwhite min-h-screen py-16 md:py-24 px-6">
-      <SEO
-        title="Mentions légales | Hilary Farid – Ostéopathe"
-        description="Mentions légales du site hilaryfarid-osteopathe.fr"
-        canonical="https://www.hilaryfarid-osteopathe.fr/mentions-legales"
-      />
-
+    <main className="bg-offwhite min-h-screen py-16 md:py-24 px-6 text-graywarm leading-relaxed">
       <FadeIn>
         <div className="max-w-4xl mx-auto text-center mb-12">
           <h1 className="text-3xl md:text-5xl font-semibold text-primary">
@@ -22,7 +17,7 @@ export default function MentionsLegalesPage() {
         </div>
 
         <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-sm border border-light p-8 md:p-14">
-          <section className="space-y-8 text-base text-graywarm leading-relaxed">
+          <section className="space-y-8 text-base">
             <p>
               Conformément aux dispositions de la loi n°2004-575 du 21 juin 2004 pour la
               confiance dans l’économie numérique, il est précisé aux utilisateurs du site
