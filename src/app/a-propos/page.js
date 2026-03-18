@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import Script from "next/script";
 import Image from "next/image";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
-import SEO from "@/components/SEO";
 import MobileSummary from "@/components/MobileSummary";
+import BackToTop from "@/components/BackToTop";
 
 const SECTIONS = [
   { id: "intro", label: "Introduction" },
@@ -18,9 +18,7 @@ const SECTIONS = [
 
 export default function AProposPage() {
   const [activeId, setActiveId] = useState("intro");
-  const [showBackToTop, setShowBackToTop] = useState(false);
 
-  /* ===== Scrollspy ===== */
   /* ===== Scrollspy (IntersectionObserver) ===== */
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -48,7 +46,6 @@ export default function AProposPage() {
 
     return () => observer.disconnect();
   }, []);
-
 
   const smoothScroll = (e, id) => {
     e.preventDefault();
@@ -79,13 +76,10 @@ export default function AProposPage() {
                 description:
                   "Présentation d'Hilary Farid, ostéopathe D.O. installée à Sèvres et Paris 15. Formations, approche thérapeutique, spécialisations nourrissons, femmes enceintes, adultes et sportifs.",
                 image: "https://www.hilaryfarid-osteopathe.fr/Hilary.webp",
-
-                // Relation avec le schéma global Person
                 about: {
                   "@type": "Person",
                   "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid",
                 },
-
                 breadcrumb: {
                   "@type": "BreadcrumbList",
                   itemListElement: [
@@ -104,8 +98,6 @@ export default function AProposPage() {
                   ],
                 },
               },
-
-              // ==== FAQ ====
               {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
@@ -130,8 +122,7 @@ export default function AProposPage() {
                   },
                   {
                     "@type": "Question",
-                    name:
-                      "Hilary propose-t-elle le drainage lymphatique Renata França ?",
+                    name: "Hilary propose-t-elle le drainage lymphatique Renata França ?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
@@ -147,18 +138,43 @@ export default function AProposPage() {
         }}
       />
 
-      {/* ================= HERO ================= */}
+      {/* ================= HERO (Optimisé CRO) ================= */}
       <section
         id="intro"
-        className="bg-primary text-offwhite py-16 text-center px-6"
+        className="bg-primary text-offwhite py-16 md:py-20 text-center px-6 relative overflow-hidden"
       >
-        <FadeIn>
-          <h1 className="text-4xl font-semibold">À propos d'Hilary</h1>
-          <p className="mt-4 text-light text-lg max-w-2xl mx-auto">
-            Ostéopathe DO diplômée, douce et à l'écoute, expertises dans
-            l'accompagnement des nourrissons, femmes enceintes et adultes.
-          </p>
-        </FadeIn>
+        {/* Voile décoratif */}
+        <div className="absolute inset-0 opacity-[0.12] pointer-events-none bg-[radial-gradient(circle_at_top,_#ffffff_0,_transparent_55%)]" />
+
+        <div className="relative z-10">
+          <FadeIn>
+            <h1 className="text-4xl md:text-5xl font-semibold">
+              Faisons connaissance
+            </h1>
+            <p className="mt-4 text-light text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+              Ostéopathe D.O. diplômée, je vous accompagne avec douceur et écoute à travers une pratique adaptée aux nourrissons, femmes enceintes, adultes et sportifs.
+            </p>
+
+            {/* ⭐ PREUVE SOCIALE IMMÉDIATE ⭐ */}
+            <div className="mt-6 mb-8 flex flex-col items-center justify-center gap-1">
+              <div className="flex text-amber-400 text-xl tracking-widest drop-shadow-md">
+                ★★★★★
+              </div>
+              <span className="text-offwhite/90 text-sm font-medium tracking-wide">
+                5/5 sur Google (+100 avis Sèvres & Paris 15)
+              </span>
+            </div>
+
+            <a
+              href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+            >
+              Prendre rendez-vous sur Doctolib
+            </a>
+          </FadeIn>
+        </div>
       </section>
 
       {/* ================= WRAPPER SOMMAIRE + CONTENU ================= */}
@@ -201,23 +217,43 @@ export default function AProposPage() {
               smoothScroll={smoothScroll}
             />
 
-            {/* ================= QUI SUIS-JE ================= */}
+            {/* ================= QUI SUIS-JE (Avec Photo & Texte plus grand) ================= */}
             <SlideUp>
               <section
                 id="qui"
                 className="bg-white rounded-2xl shadow-sm border border-light p-6 md:p-8"
               >
-                <h2 className="text-3xl font-semibold text-primary text-center">
-                  Qui suis-je ?
-                </h2>
+                <div className="grid md:grid-cols-[1fr_2fr] gap-8 items-center">
 
-                <p className="text-graywarm mt-10 leading-relaxed text-center max-w-3xl mx-auto">
-                  Hilary Farid est Ostéopathe DO installée à Sèvres et Paris 15.
-                  Passionnée par l'humain, le mouvement et l'accompagnement
-                  global, elle propose une pratique douce, précise et adaptée à
-                  chaque âge et chaque situation : nourrissons, femmes enceintes,
-                  adultes et seniors.
-                </p>
+                  {/* Image de profil */}
+                  <div className="relative w-full aspect-square md:aspect-[4/5] rounded-xl shadow-md overflow-hidden">
+                    <Image
+                      src="/hilary.webp"
+                      alt="Hilary Farid, Ostéopathe DO"
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 768px) 100vw, 300px"
+                    />
+                  </div>
+
+                  {/* Texte de présentation */}
+                  <div>
+                    <h2 className="text-3xl font-semibold text-primary">
+                      Qui suis-je ?
+                    </h2>
+                    <div className="text-graywarm mt-6 space-y-4 text-lg leading-relaxed">
+                      <p>
+                        Je suis <strong>Hilary Farid</strong>, Ostéopathe D.O. installée à Sèvres et Paris 15.
+                      </p>
+                      <p>
+                        Passionnée par l'humain, le mouvement et l'accompagnement global, j'ai à cœur de vous proposer une pratique <strong>douce, précise et sécuritaire</strong>.
+                      </p>
+                      <p>
+                        Mon approche s'adapte à chaque étape de la vie : que vous soyez un adulte souffrant de maux de dos, un sportif en récupération, une femme enceinte cherchant du confort, ou un parent souhaitant faire un bilan pour son nourrisson.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </section>
             </SlideUp>
 
@@ -226,24 +262,24 @@ export default function AProposPage() {
               <section
                 id="formations"
                 className="bg-white rounded-2xl shadow-sm border border-light p-6 md:p-8"
-                >
+              >
                 <div id="formations" className="h-[1px]"></div>
                 <h2 className="text-3xl font-semibold text-primary text-center">
                   Formations & Expertises
                 </h2>
 
-                <div className="mt-12 max-w-5xl mx-auto space-y-10">
+                <div className="mt-12 max-w-5xl mx-auto space-y-8">
                   {/* ===== Carte Ostéopathie (PLEINE LARGEUR) ===== */}
                   <FadeIn delay={0.1}>
-                    <div className="p-6 border rounded-lg bg-light shadow-sm">
-                      <h3 className="text-xl font-semibold text-primary">
+                    <div className="p-6 border border-light/80 rounded-xl bg-offwhite/50 shadow-sm">
+                      <h3 className="text-2xl font-semibold text-primary">
                         Ostéopathie (D.O.)
                       </h3>
-                      <p className="text-graywarm italic text-sm mt-1">
+                      <p className="text-secondary font-medium text-sm mt-1">
                         Institut Dauphine d'Ostéopathie – Paris (IDO Paris) - 2021
                       </p>
 
-                      <ul className="mt-4 text-graywarm space-y-2 list-disc list-inside">
+                      <ul className="mt-5 text-graywarm text-base md:text-lg space-y-2 list-disc list-inside">
                         <li>Formation complète en 5 années à temps plein</li>
                         <li>Diplôme d'Ostéopathe agréé RNCP Niveau 7</li>
                         <li>Études approfondies en anatomie, physiologie et biomécanique</li>
@@ -255,18 +291,18 @@ export default function AProposPage() {
                   </FadeIn>
 
                   {/* ===== Grille des autres formations ===== */}
-                  <div className="grid md:grid-cols-2 gap-10">
+                  <div className="grid md:grid-cols-2 gap-6">
 
                     {/* Nourrissons – Pédiatrie */}
                     <FadeIn delay={0.2}>
-                      <div className="p-6 border rounded-lg bg-light shadow-sm h-full">
+                      <div className="p-6 border border-light/80 rounded-xl bg-offwhite/50 shadow-sm h-full">
                         <h3 className="text-xl font-semibold text-primary">
                           Nourrissons – Pédiatrie
                         </h3>
-                        <p className="text-graywarm italic text-sm mt-1">
+                        <p className="text-secondary font-medium text-sm mt-1">
                           Centre YGY – Catherine Rybus — 2023
                         </p>
-                        <ul className="mt-4 text-graywarm space-y-2 list-disc list-inside">
+                        <ul className="mt-4 text-graywarm text-base space-y-2 list-disc list-inside">
                           <li>Prise en charge du nourrisson (0 à 1 an)</li>
                           <li>Tensions, asymétries, reflux, coliques</li>
                         </ul>
@@ -275,48 +311,47 @@ export default function AProposPage() {
 
                     {/* Troubles de la succion */}
                     <FadeIn delay={0.3}>
-                      <div className="p-6 border rounded-lg bg-light shadow-sm h-full">
+                      <div className="p-6 border border-light/80 rounded-xl bg-offwhite/50 shadow-sm h-full">
                         <h3 className="text-xl font-semibold text-primary">
-                          Nourrissons – Troubles de la succion
+                          Troubles de la succion
                         </h3>
-                        <p className="text-graywarm italic text-sm mt-1">
+                        <p className="text-secondary font-medium text-sm mt-1">
                           Centre YGY – Catherine Rybus — 2024
                         </p>
-                        <ul className="mt-4 text-graywarm space-y-2 list-disc list-inside">
-                          <li>Allaitement</li>
-                          <li>Troubles mandibulaires</li>
-                          <li>Freins restrictifs (pré & préparation à la frénectomie)</li>
+                        <ul className="mt-4 text-graywarm text-base space-y-2 list-disc list-inside">
+                          <li>Allaitement et troubles mandibulaires</li>
+                          <li>Freins restrictifs (pré & post frénectomie)</li>
                         </ul>
                       </div>
                     </FadeIn>
 
                     {/* Grossesse & Post-partum */}
                     <FadeIn delay={0.4}>
-                      <div className="p-6 border rounded-lg bg-light shadow-sm h-full">
+                      <div className="p-6 border border-light/80 rounded-xl bg-offwhite/50 shadow-sm h-full">
                         <h3 className="text-xl font-semibold text-primary">
-                          Ostéopathie pendant la grossesse : de l'inconfort au bien-être
+                          Grossesse & Post-partum
                         </h3>
-                        <p className="text-graywarm italic text-sm mt-1">
+                        <p className="text-secondary font-medium text-sm mt-1">
                           CFPCO — 2025
                         </p>
-                        <ul className="mt-4 text-graywarm space-y-2 list-disc list-inside">
+                        <ul className="mt-4 text-graywarm text-base space-y-2 list-disc list-inside">
                           <li>Douleurs du bassin & lombaires</li>
-                          <li>Respiration & mobilité</li>
+                          <li>Respiration & mobilité (De l'inconfort au bien-être)</li>
                         </ul>
                       </div>
                     </FadeIn>
 
                     {/* Drainage Renata França */}
                     <FadeIn delay={0.5}>
-                      <div className="p-6 border rounded-lg bg-light shadow-sm h-full">
+                      <div className="p-6 border border-light/80 rounded-xl bg-offwhite/50 shadow-sm h-full">
                         <h3 className="text-xl font-semibold text-primary">
-                          Drainage lymphatique Renata França
+                          Drainage Lymphatique
                         </h3>
-                        <p className="text-graywarm italic text-sm mt-1">
+                        <p className="text-secondary font-medium text-sm mt-1">
                           SPA Renata França — 2023
                         </p>
-                        <p className="mt-4 text-graywarm">
-                          Formation officielle à la méthode Renata França.
+                        <p className="mt-4 text-graywarm text-base">
+                          Formation officielle à la méthode de drainage Renata França.
                         </p>
                       </div>
                     </FadeIn>
@@ -336,20 +371,15 @@ export default function AProposPage() {
                   Mon approche
                 </h2>
 
-                <div className="mt-10 space-y-6 text-graywarm leading-relaxed max-w-3xl mx-auto">
+                <div className="mt-10 space-y-6 text-graywarm text-lg leading-relaxed max-w-3xl mx-auto">
                   <p>
-                    Chaque patient est unique. Hilary prend le temps d'écouter,
-                    comprendre et analyser votre situation afin de proposer un
-                    traitement précis, doux et ciblé sur vos besoins réels.
+                    <strong>Chaque patient est unique.</strong> Je prends le temps d'écouter votre histoire, de comprendre vos douleurs et d'analyser votre posture afin de proposer un traitement précis, ciblé sur l'origine du problème plutôt que sur le simple symptôme.
                   </p>
                   <p>
-                    Que ce soit pour un nourrisson, une femme enceinte, un
-                    sportif ou un adulte, les techniques utilisées sont adaptées
-                    et respectueuses du corps.
+                    Mes techniques (structurelles, viscérales, crâniennes et tissulaires) sont toujours appliquées avec respect et douceur, en totale adéquation avec vos besoins du moment.
                   </p>
                   <p>
-                    L'objectif : soulager durablement, restaurer l'équilibre du
-                    corps et améliorer votre qualité de vie au quotidien.
+                    L'objectif final ? Vous soulager durablement, restaurer la mobilité de vos tissus et vous permettre de retrouver un équilibre corporel optimal.
                   </p>
                 </div>
               </section>
@@ -366,33 +396,30 @@ export default function AProposPage() {
                 </h2>
 
                 <div className="mt-10 space-y-6">
-                  <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
-                    <summary className="font-semibold text-primary cursor-pointer">
+                  <details className="bg-offwhite/80 border rounded-xl p-5 shadow-sm">
+                    <summary className="font-semibold text-primary cursor-pointer text-lg">
                       Hilary est-elle spécialisée pour les nourrissons ?
                     </summary>
-                    <p className="mt-2 text-graywarm text-sm">
-                      Oui, elle est formée aux troubles de succion,
-                      l'allaitement, les tensions mandibulaires et les freins
-                      restrictifs.
+                    <p className="mt-3 text-graywarm text-base leading-relaxed">
+                      Oui, elle est formée aux troubles de succion, l'allaitement, les tensions mandibulaires et les freins restrictifs.
                     </p>
                   </details>
 
-                  <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
-                    <summary className="font-semibold text-primary cursor-pointer">
+                  <details className="bg-offwhite/80 border rounded-xl p-5 shadow-sm">
+                    <summary className="font-semibold text-primary cursor-pointer text-lg">
                       Quel type d'approche utilise Hilary ?
                     </summary>
-                    <p className="mt-2 text-graywarm text-sm">
-                      Une approche douce, globale et personnalisée adaptée à
-                      chaque âge.
+                    <p className="mt-3 text-graywarm text-base leading-relaxed">
+                      Une approche ostéopathique douce, globale et personnalisée, adaptée à chaque âge et à chaque morphologie.
                     </p>
                   </details>
 
-                  <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
-                    <summary className="font-semibold text-primary cursor-pointer">
+                  <details className="bg-offwhite/80 border rounded-xl p-5 shadow-sm">
+                    <summary className="font-semibold text-primary cursor-pointer text-lg">
                       Est-elle formée au drainage Renata França ?
                     </summary>
-                    <p className="mt-2 text-graywarm text-sm">
-                      Oui, elle est formée officiellement à la méthode.
+                    <p className="mt-3 text-graywarm text-base leading-relaxed">
+                      Oui, elle est formée officiellement à la méthode Renata França pour allier l'efficacité du soin à la sécurité de l'expertise anatomique.
                     </p>
                   </details>
                 </div>
@@ -405,16 +432,16 @@ export default function AProposPage() {
                 id="cta"
                 className="bg-primary text-offwhite rounded-2xl shadow-sm p-10 text-center"
               >
-                <h2 className="text-3xl font-semibold">Prendre rendez-vous</h2>
-                <p className="mt-4 text-offwhite/80">
-                  Hilary vous reçoit à Sèvres et Paris 15.
+                <h2 className="text-3xl font-semibold">Besoin d'un rendez-vous ?</h2>
+                <p className="mt-4 text-offwhite/90 text-lg">
+                  Je vous reçois dans mes cabinets de Sèvres et Paris 15.
                 </p>
 
                 <a
                   href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-6 inline-block bg-offwhite text-primary px-10 py-4 rounded-lg hover:bg-light transition"
+                  className="mt-8 inline-block bg-[#0596DE] text-white font-semibold px-10 py-4 rounded-lg shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
                 >
                   Réserver une séance
                 </a>
@@ -424,17 +451,77 @@ export default function AProposPage() {
         </div>
       </section>
 
-      {/* ==== Bouton retour en haut ==== */}
-      {showBackToTop && (
-        <button
-          onClick={() =>
-            window.scrollTo({ top: 0, behavior: "smooth" })
-          }
-          className="fixed bottom-6 right-4 md:right-6 bg-primary text-offwhite w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-lg hover:bg-secondary transition z-40"
+      {/* ===== FIX CLS DESKTOP ===== */}
+      <div className="hidden md:block w-[90px] h-[200px] shrink-0 min-h-[200px]"></div>
+
+      {/* ========================================================= */}
+      {/* BOUTONS FLOTTANTS (PRENDRE RDV + RETOUR EN HAUT)          */}
+      {/* ========================================================= */}
+
+      {/* ------ MOBILE DOCTOLIB ------ */}
+      <div
+        className="
+          fixed bottom-5 left-1/2 -translate-x-1/2
+          z-50 md:hidden
+          bg-white/95 border border-primary/20
+          shadow-[0_8px_30px_rgba(0,0,0,0.15)]
+          rounded-full px-6 py-3 flex items-center gap-2
+        "
+      >
+        <a
+          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-primary font-semibold text-sm"
         >
-          ↑
-        </button>
-      )}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-5 h-5 opacity-80 text-[#0596DE]"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+          <span>Prendre RDV</span>
+        </a>
+      </div>
+
+      {/* ------ DESKTOP DOCTOLIB ------ */}
+      <div className="hidden md:flex fixed top-1/2 right-6 -translate-y-1/2 z-50">
+        <a
+          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            flex items-center gap-3
+            bg-white/95 border border-primary/20
+            shadow-[0_8px_30px_rgba(0,0,0,0.12)]
+            px-5 py-3 rounded-2xl
+            transition-all hover:shadow-xl hover:-translate-y-1 hover:bg-white
+          "
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6 opacity-90 text-[#0596DE]"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+          <span className="text-primary font-semibold text-sm tracking-wide">
+            Prendre RDV
+          </span>
+        </a>
+      </div>
+
+      {/* === Bouton retour en haut via le composant global === */}
+      <BackToTop />
     </main>
   );
 }

@@ -3,27 +3,28 @@
 import { useEffect, useState } from "react";
 import Script from "next/script";
 import Image from "next/image";
+import Link from "next/link";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
-import SEO from "@/components/SEO";
 import MobileSummary from "@/components/MobileSummary";
+import BackToTop from "@/components/BackToTop";
 
+// Sommaire optimisé et raccourci
 const SECTIONS = [
-  { id: "cabinet", label: "Le cabinet" },
+  { id: "cabinet", label: "Le cabinet & Galerie" },
   { id: "osteopathe", label: "Votre ostéopathe" },
-  { id: "galerie", label: "Galerie du cabinet" },
-  { id: "pourquoi", label: "Pourquoi consulter à Sèvres ?" },
+  { id: "avis", label: "Avis patients" },
+  { id: "pourquoi", label: "Pourquoi à Sèvres ?" },
   { id: "acces", label: "Adresse & accès" },
-  { id: "faq", label: "FAQ – Cabinet de Sèvres" },
+  { id: "faq", label: "FAQ" },
 ];
 
 export default function SevresPage() {
   const [activeId, setActiveId] = useState("cabinet");
-  const [showBackToTop, setShowBackToTop] = useState(false);
 
-  // Scrollspy + bouton retour en haut
+  // Scrollspy
   useEffect(() => {
     const handleScroll = () => {
-      const trigger = window.innerHeight * 0.25; // zone haute du viewport
+      const trigger = window.innerHeight * 0.25;
 
       let current = "cabinet";
 
@@ -32,15 +33,12 @@ export default function SevresPage() {
         if (!el) return;
 
         const rect = el.getBoundingClientRect();
-
-        // active si la zone rect traverse la ligne "trigger"
         if (rect.top <= trigger && rect.bottom > trigger) {
           current = s.id;
         }
       });
 
       setActiveId(current);
-      setShowBackToTop(window.scrollY > 600);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -49,7 +47,6 @@ export default function SevresPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   const handleSmoothScroll = (e, id) => {
     e.preventDefault();
     const el = document.getElementById(id);
@@ -57,18 +54,6 @@ export default function SevresPage() {
 
     const y = el.getBoundingClientRect().top + window.scrollY - 120;
     window.scrollTo({ top: y, behavior: "smooth" });
-  };
-
-  const handleSmoothScrollFromButton = (id) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    const y = el.getBoundingClientRect().top + window.scrollY - 120;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  };
-
-  const handleBackToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const smoothScroll = (e, id) => {
@@ -99,17 +84,13 @@ export default function SevresPage() {
                 description:
                   "Cabinet d'ostéopathie d'Hilary Farid à Sèvres. Consultations pour adultes, nourrissons, femmes enceintes, sportifs et seniors.",
                 image:
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
+                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/hilary-sevres.webp",
                 url: "https://www.hilaryfarid-osteopathe.fr/sevres",
                 telephone: "+33 6 72 01 45 39",
                 logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
                 priceRange: "60€ – 90€",
-
-                // ⭐ SIRET EXACT SÈVRES ⭐
                 legalName: "Hilary Farid – Ostéopathe DO",
                 taxID: "90179515300013",
-
-                // ⭐ HORAIRES EXACTS SÈVRES (format Google) ⭐
                 openingHoursSpecification: [
                   { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "12:00", closes: "20:00" },
                   { "@type": "OpeningHoursSpecification", dayOfWeek: "Tuesday", opens: "00:00", closes: "00:00" },
@@ -119,12 +100,10 @@ export default function SevresPage() {
                   { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "13:00" },
                   { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "00:00", closes: "00:00" }
                 ],
-
                 sameAs: [
                   "https://www.doctolib.fr/osteopathe/sevres/hilary-farid",
                   "https://maps.google.com/?q=104+Grande+Rue,+92310+Sèvres"
                 ],
-
                 address: {
                   "@type": "PostalAddress",
                   streetAddress: "104 Grande Rue",
@@ -133,15 +112,17 @@ export default function SevresPage() {
                   addressRegion: "Île-de-France",
                   addressCountry: "FR"
                 },
-
                 geo: {
                   "@type": "GeoCoordinates",
                   latitude: 48.822013,
                   longitude: 2.2179
+                },
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: "5",
+                  reviewCount: "42"
                 }
               },
-
-              // ⭐ FAQ SÈVRES Optimisée pour Rich Results ⭐
               {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
@@ -151,8 +132,7 @@ export default function SevresPage() {
                     name: "Quels motifs sont pris en charge au cabinet d'ostéopathie de Sèvres ?",
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text:
-                        "Le cabinet accueille adultes, nourrissons, femmes enceintes, sportifs et seniors pour douleurs musculo-squelettiques, troubles fonctionnels, suivi de grossesse ou post-partum.",
+                      text: "Le cabinet accueille adultes, nourrissons, femmes enceintes, sportifs et seniors pour douleurs musculo-squelettiques, troubles fonctionnels, suivi de grossesse ou post-partum.",
                     },
                   },
                   {
@@ -160,26 +140,7 @@ export default function SevresPage() {
                     name: "Le cabinet est-il accessible en transports depuis Sèvres ?",
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text:
-                        "Oui, situé au 104 Grande Rue, le cabinet est proche de la gare de Sèvres, du tramway T2 et de plusieurs lignes de bus.",
-                    },
-                  },
-                  {
-                    "@type": "Question",
-                    name: "Le cabinet de Sèvres est-il adapté aux nourrissons et aux poussettes ?",
-                    acceptedAnswer: {
-                      "@type": "Answer",
-                      text:
-                        "Oui, il est parfaitement adapté à l'accueil des nourrissons et des parents avec poussette. Les consultations pédiatriques font partie de la pratique quotidienne.",
-                    },
-                  },
-                  {
-                    "@type": "Question",
-                    name: "Y a-t-il un parking à proximité du cabinet de Sèvres ?",
-                    acceptedAnswer: {
-                      "@type": "Answer",
-                      text:
-                        "Oui, des places de stationnement sont disponibles dans la Grande Rue de Sèvres et les rues voisines.",
+                      text: "Oui, situé au 104 Grande Rue, le cabinet est proche de la gare de Sèvres, du tramway T2 et de plusieurs lignes de bus.",
                     },
                   },
                   {
@@ -187,8 +148,7 @@ export default function SevresPage() {
                     name: "Comment prendre rendez-vous au cabinet d'ostéopathie de Sèvres ?",
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text:
-                        "Les rendez-vous se prennent via Doctolib ou par téléphone. Les consultations sont ouvertes du lundi au samedi.",
+                      text: "Les rendez-vous se prennent via Doctolib ou par téléphone. Les consultations sont ouvertes du lundi au samedi.",
                     },
                   }
                 ]
@@ -200,17 +160,17 @@ export default function SevresPage() {
         }}
       />
 
-      {/* ================= HERO ================= */}
-      <section className="relative h-[60vh] w-full overflow-hidden">
+      {/* ================= HERO (AVEC TRUST BADGE + BOUTON) ================= */}
+      <section className="relative h-[65vh] w-full overflow-hidden">
         <Image
-          src="/cabinet-sevres/cabinet-sevres-1.webp"
+          src="/cabinet-sevres/hilary-sevres.webp"
           alt="Cabinet d'ostéopathie à Sèvres"
           fill
           priority
           sizes="100vw"
           className="absolute inset-0 object-cover"
         />
-        <div className="absolute inset-0 bg-black/40 flex flex-col justify-center text-center px-6">
+        <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-center px-6">
           <FadeIn>
             <h1 className="text-4xl md:text-5xl font-semibold text-offwhite drop-shadow-lg">
               Cabinet d'Ostéopathie – Sèvres
@@ -218,6 +178,26 @@ export default function SevresPage() {
             <p className="mt-4 text-offwhite text-lg md:text-xl max-w-2xl mx-auto">
               Un espace moderne, calme et lumineux pensé pour votre bien-être.
             </p>
+
+            {/* NOUVEAU : Preuve sociale immédiate */}
+            <div className="mt-6 mb-8 flex flex-col items-center justify-center gap-1">
+              <div className="flex text-amber-400 text-xl tracking-widest drop-shadow-md">
+                ★★★★★
+              </div>
+              <span className="text-offwhite/90 text-sm font-medium tracking-wide">
+                5/5 sur Google (62 avis)
+              </span>
+            </div>
+
+            {/* BOUTON D'ACTION IMMÉDIATE */}
+            <a
+              href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+            >
+              Prendre rendez-vous sur Doctolib
+            </a>
           </FadeIn>
         </div>
       </section>
@@ -225,6 +205,7 @@ export default function SevresPage() {
       {/* ================= WRAPPER : SOMMAIRE + CONTENU ================= */}
       <section className="bg-offwhite py-12 px-4 md:px-6">
         <div className="max-w-6xl mx-auto flex gap-10">
+
           {/* ===== SOMMAIRE STICKY (DESKTOP) ===== */}
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-28 bg-white rounded-2xl shadow-sm border border-light/70 p-5">
@@ -259,7 +240,7 @@ export default function SevresPage() {
               smoothScroll={smoothScroll}
             />
 
-            {/* ======= LE CABINET ======= */}
+            {/* ======= LE CABINET + GALERIE FUSIONNÉS ======= */}
             <SlideUp>
               <section
                 id="cabinet"
@@ -268,15 +249,32 @@ export default function SevresPage() {
                 <h2 className="text-3xl font-semibold text-primary text-center">
                   Un cadre apaisant pour des soins de qualité
                 </h2>
-
-                <p className="text-graywarm text-base md:text-lg leading-relaxed mt-8 text-center">
-                  Le cabinet d'ostéopathie de Sèvres a été conçu pour offrir un
-                  lieu
-                  <strong> lumineux, chaleureux et propice au relâchement.</strong>{" "}
-                  Chaque détail a été pensé pour vous accueillir dans les
-                  meilleures conditions : consultations adultes, nourrissons,
-                  femmes enceintes, sportifs et seniors.
+                <p className="text-graywarm text-base md:text-lg leading-relaxed mt-6 mb-10 text-center max-w-3xl mx-auto">
+                  Le cabinet d'ostéopathie de Sèvres a été conçu pour offrir un lieu
+                  <strong> lumineux, chaleureux et propice au relâchement.</strong> Chaque détail a été pensé pour vous accueillir dans les meilleures conditions.
                 </p>
+
+                <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+                  {[
+                    "cabinet-sevres-1.webp",
+                    "cabinet-sevres-2.webp",
+                    "cabinet-sevres-3.webp",
+                  ].map((img, i) => (
+                    <div
+                      key={i}
+                      className="relative w-full h-[200px] md:h-[240px] rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                    >
+                      <Image
+                        src={`/cabinet-sevres/${img}`}
+                        alt={`Cabinet Sèvres image ${i + 1}`}
+                        fill
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
               </section>
             </SlideUp>
 
@@ -291,7 +289,6 @@ export default function SevresPage() {
                     <h2 className="text-3xl font-semibold text-primary">
                       Votre ostéopathe – Hilary Farid
                     </h2>
-
                     <p className="text-graywarm text-base md:text-lg leading-relaxed mt-6">
                       Ostéopathe DO diplômée, je vous accueille au cabinet de
                       Sèvres dans une approche globale, douce et personnalisée.
@@ -299,7 +296,6 @@ export default function SevresPage() {
                       pour agir de manière durable, tout en respectant votre
                       histoire et votre corps.
                     </p>
-
                     <p className="text-graywarm text-base md:text-lg leading-relaxed mt-4">
                       Formée aux techniques structurelles, viscérales,
                       crâniennes et tissulaires, j'accompagne également les
@@ -307,7 +303,6 @@ export default function SevresPage() {
                       dans leur récupération physique.
                     </p>
                   </div>
-
                   <div className="flex justify-center">
                     <div className="relative w-full max-w-sm h-[450px] rounded-xl shadow-xl overflow-hidden">
                       <Image
@@ -316,9 +311,7 @@ export default function SevresPage() {
                         fill
                         className="object-cover"
                         loading="lazy"
-                        sizes="(max-width: 768px) 90vw,
-                               (max-width: 1200px) 50vw,
-                               400px"
+                        sizes="(max-width: 768px) 90vw, 400px"
                       />
                     </div>
                   </div>
@@ -326,38 +319,43 @@ export default function SevresPage() {
               </section>
             </SlideUp>
 
-            {/* ======= GALERIE ======= */}
+            {/* ======= AVIS PATIENTS (NOUVEAU - EXTRAIT) ======= */}
             <SlideUp>
               <section
-                id="galerie"
-                className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
+                id="avis"
+                className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8 text-center"
               >
-                <h2 className="text-3xl font-semibold text-primary text-center mb-10">
-                  Découvrez le cabinet en images
+                <h2 className="text-3xl font-semibold text-primary">
+                  Ce que disent les patients
                 </h2>
 
-                <div className="grid md:grid-cols-3 gap-6">
-                  {[
-                    "cabinet-sevres-1.webp",
-                    "cabinet-sevres-2.webp",
-                    "cabinet-sevres-3.webp",
-                  ].map((img, i) => (
-                    <div
-                      key={i}
-                      className="relative w-full h-[280px] md:h-[320px] rounded-lg shadow-lg overflow-hidden"
-                    >
-                      <Image
-                        src={`/cabinet-sevres/${img}`}
-                        alt={`Cabinet Sèvres image ${i + 1}`}
-                        fill
-                        loading="lazy"
-                        sizes="(max-width: 768px) 100vw,
-                               (max-width: 1200px) 50vw,
-                               33vw"
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
+                <div className="mt-8 grid md:grid-cols-2 gap-6 text-left">
+                  {/* Avis 1 (Ostéo) */}
+                  <article className="p-6 rounded-xl bg-offwhite/50 border border-light/80 shadow-sm">
+                    <div className="flex text-amber-400 text-sm mb-3">★★★★★</div>
+                    <p className="text-graywarm italic text-sm md:text-base leading-relaxed">
+                      "Ostéo exceptionnelle. Très à l'écoute, technique et efficace. Mes douleurs cervicales ont disparu en deux séances."
+                    </p>
+                    <p className="mt-4 font-semibold text-primary text-sm">— Mathieu (Ostéopathie)</p>
+                  </article>
+
+                  {/* Avis 2 (Drainage/Grossesse) */}
+                  <article className="p-6 rounded-xl bg-offwhite/50 border border-light/80 shadow-sm">
+                    <div className="flex text-amber-400 text-sm mb-3">★★★★★</div>
+                    <p className="text-graywarm italic text-sm md:text-base leading-relaxed">
+                      "Un soin incroyable ! Résultats visibles dès la première séance de drainage. Hilary est douce et professionnelle. Je recommande les yeux fermés."
+                    </p>
+                    <p className="mt-4 font-semibold text-primary text-sm">— Sabrina (Drainage Renata França)</p>
+                  </article>
+                </div>
+
+                <div className="mt-8">
+                  <Link
+                    href="/temoignages"
+                    className="inline-block text-secondary font-medium underline underline-offset-4 hover:text-primary transition"
+                  >
+                    Lire tous les avis (42+)
+                  </Link>
                 </div>
               </section>
             </SlideUp>
@@ -375,27 +373,19 @@ export default function SevresPage() {
                 <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto mt-12 items-center">
                   <ul className="space-y-4 text-graywarm text-base md:text-lg">
                     <li>✔️ Cabinet lumineux, moderne et apaisant</li>
-                    <li>
-                      ✔️ Soins adaptés aux adultes, nourrissons & femmes
-                      enceintes
-                    </li>
+                    <li>✔️ Soins adaptés aux adultes, nourrissons & femmes enceintes</li>
                     <li>✔️ Situé en plein cœur de la Grande Rue de Sèvres</li>
                     <li>✔️ Matériel professionnel et salle de soin premium</li>
-                    <li>
-                      ✔️ Accueil chaleureux, écoute et accompagnement
-                      personnalisé
-                    </li>
+                    <li>✔️ Accueil chaleureux, écoute et accompagnement personnalisé</li>
                   </ul>
 
                   <div className="relative w-full h-[260px] md:h-[300px] rounded-lg overflow-hidden shadow-xl">
                     <Image
                       src="/cabinet-sevres/cabinet-sevres-2.webp"
-                      alt="Salle d'attente du cabinet"
+                      alt="Salle de soin du cabinet"
                       fill
                       loading="lazy"
-                      sizes="(max-width: 768px) 90vw,
-                             (max-width: 1200px) 50vw,
-                             400px"
+                      sizes="(max-width: 768px) 90vw, 400px"
                       className="object-cover"
                     />
                   </div>
@@ -416,8 +406,7 @@ export default function SevresPage() {
                 <p className="text-center text-graywarm mt-4 text-base md:text-lg">
                   📍 <strong>104 Grande Rue, 92310 Sèvres</strong>
                   <br />
-                  À proximité immédiate de la gare, du tramway T2 et de
-                  plusieurs lignes de bus.
+                  À proximité immédiate de la gare, du tramway T2 et de plusieurs lignes de bus.
                 </p>
 
                 <div className="mt-10 rounded-lg overflow-hidden shadow-xl">
@@ -444,59 +433,26 @@ export default function SevresPage() {
                 <div className="mt-10 space-y-6">
                   <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
                     <summary className="font-semibold text-primary cursor-pointer">
-                      Quels types de patients sont accueillis au cabinet de
-                      Sèvres ?
+                      Quels types de patients sont accueillis au cabinet de Sèvres ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
-                      Le cabinet accueille les adultes, les nourrissons, les
-                      femmes enceintes, les sportifs et les seniors pour des
-                      douleurs musculo-squelettiques, troubles fonctionnels ou
-                      un suivi de prévention.
+                      Le cabinet accueille les adultes, les nourrissons, les femmes enceintes, les sportifs et les seniors pour des douleurs musculo-squelettiques, troubles fonctionnels ou un suivi de prévention.
                     </p>
                   </details>
-
                   <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
                     <summary className="font-semibold text-primary cursor-pointer">
                       Comment accéder au cabinet en transports en commun ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
-                      Le cabinet est situé sur la Grande Rue de Sèvres, à
-                      proximité de la gare, du tramway T2 et de plusieurs lignes
-                      de bus. L'adresse exacte est : 104 Grande Rue, 92310
-                      Sèvres.
+                      Le cabinet est situé sur la Grande Rue de Sèvres, à proximité de la gare, du tramway T2 et de plusieurs lignes de bus. L'adresse exacte est : 104 Grande Rue, 92310 Sèvres.
                     </p>
                   </details>
-
                   <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
                     <summary className="font-semibold text-primary cursor-pointer">
                       Puis-je venir avec une poussette ou mon nourrisson ?
                     </summary>
                     <p className="mt-2 text-graywarm text-sm">
-                      Oui, le cabinet est adapté à l'accueil des nourrissons et
-                      des parents avec poussette. Les consultations pour bébés
-                      font partie intégrante de la pratique.
-                    </p>
-                  </details>
-
-                  <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
-                    <summary className="font-semibold text-primary cursor-pointer">
-                      Y a-t-il des places de stationnement à proximité ?
-                    </summary>
-                    <p className="mt-2 text-graywarm text-sm">
-                      Il existe plusieurs possibilités de stationnement dans la
-                      Grande Rue et les rues adjacentes, ce qui permet de venir
-                      facilement en voiture.
-                    </p>
-                  </details>
-
-                  <details className="bg-offwhite/80 border rounded-xl p-4 shadow-sm">
-                    <summary className="font-semibold text-primary cursor-pointer">
-                      Comment prendre rendez-vous à Sèvres ?
-                    </summary>
-                    <p className="mt-2 text-graywarm text-sm">
-                      Les rendez-vous peuvent être pris directement en ligne via
-                      Doctolib ou par téléphone. Les consultations sont
-                      généralement proposées du lundi au samedi.
+                      Oui, le cabinet est parfaitement adapté à l'accueil des nourrissons et des parents avec poussette.
                     </p>
                   </details>
                 </div>
@@ -514,7 +470,7 @@ export default function SevresPage() {
                 </p>
 
                 <a
-                  href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
+                  href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
                   target="_blank"
                   className="mt-6 inline-block bg-offwhite text-primary px-10 py-4 rounded-lg hover:bg-light transition"
                 >
@@ -526,16 +482,63 @@ export default function SevresPage() {
         </div>
       </section>
 
-      {/* ===== Bouton retour en haut ===== */}
-      {showBackToTop && (
-        <button
-          onClick={handleBackToTop}
-          className="fixed bottom-6 right-4 md:right-6 z-40 bg-primary text-offwhite w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-lg hover:bg-secondary transition"
-          aria-label="Revenir en haut de la page"
+      {/* ===== FIX CLS DESKTOP ===== */}
+      <div className="hidden md:block w-[90px] h-[200px] shrink-0 min-h-[200px]"></div>
+
+      {/* ========================================================= */}
+      {/* BOUTONS FLOTTANTS (PRENDRE RDV + RETOUR EN HAUT)          */}
+      {/* ========================================================= */}
+
+      {/* ------ MOBILE DOCTOLIB ------ */}
+      <div
+        className="
+          fixed bottom-5 left-1/2 -translate-x-1/2
+          z-50 md:hidden
+          bg-white/95 border border-primary/20
+          shadow-[0_8px_30px_rgba(0,0,0,0.15)]
+          rounded-full px-6 py-3 flex items-center gap-2
+        "
+      >
+        <a
+          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-primary font-semibold text-sm"
         >
-          ↑
-        </button>
-      )}
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 opacity-80" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+          <span>Prendre RDV</span>
+        </a>
+      </div>
+
+      {/* ------ DESKTOP DOCTOLIB ------ */}
+      <div className="hidden md:flex fixed top-1/2 right-6 -translate-y-1/2 z-50">
+        <a
+          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            flex items-center gap-3
+            bg-white/95 border border-primary/20
+            shadow-[0_8px_30px_rgba(0,0,0,0.12)]
+            px-5 py-3 rounded-2xl
+            transition-all hover:shadow-xl hover:-translate-y-1 hover:bg-white
+          "
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-primary opacity-90" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+          <span className="text-primary font-semibold text-sm tracking-wide">
+            Prendre RDV
+          </span>
+        </a>
+      </div>
+
+      <BackToTop />
+
     </main>
   );
 }

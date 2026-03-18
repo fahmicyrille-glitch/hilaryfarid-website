@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { PHONE, PHONE_LINK, EMAIL } from "@/config/contact";
 import ContactForm from "@/components/ContactForm";
 import MobileSummary from "@/components/MobileSummary";
+import BackToTop from "@/components/BackToTop";
 
 // Framer Motion wrappers chargés dynamiquement (perf ++)
 const FadeIn = dynamic(
@@ -33,7 +34,6 @@ const SECTIONS = [
 
 export default function ContactPage() {
   const [activeId, setActiveId] = useState("coordonnees");
-  const [showBackToTop, setShowBackToTop] = useState(false);
 
   // Fonction générique de scroll
   const scrollToId = (id) => {
@@ -69,12 +69,8 @@ export default function ContactPage() {
       if (el) observer.observe(el);
     });
 
-    const onScroll = () => setShowBackToTop(window.scrollY > 600);
-    window.addEventListener("scroll", onScroll);
-
     return () => {
       observer.disconnect();
-      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
@@ -330,6 +326,16 @@ export default function ContactPage() {
             Une question, un besoin d'information ou un doute sur votre motif ?
             Je vous réponds avec écoute et bienveillance.
           </p>
+          <div className="mt-8">
+            <a
+              href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+            >
+              Prendre rendez-vous sur Doctolib
+            </a>
+          </div>
         </HeroMotion>
       </section>
 
@@ -386,28 +392,21 @@ export default function ContactPage() {
                   Doctolib pour prendre rendez-vous.
                 </p>
 
-                <ul className="space-y-3 text-graywarm mt-4">
+                <ul className="space-y-3 text-graywarm mt-6">
                   <li>
                     <span className="font-semibold text-primary">Téléphone :</span>{" "}
-                    <a href={`tel:${PHONE_LINK}`} className="hover:underline">
+                    <a href={`tel:${PHONE_LINK}`} className="hover:underline text-secondary font-medium">
                       {PHONE}
                     </a>
                   </li>
                   <li>
                     <span className="font-semibold text-primary">E-mail :</span>{" "}
-                    <a href={`mailto:${EMAIL}`} className="hover:underline">
+                    <a href={`mailto:${EMAIL}`} className="hover:underline text-secondary font-medium">
                       {EMAIL}
                     </a>
                   </li>
                 </ul>
 
-                <a
-                  href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
-                  target="_blank"
-                  className="mt-6 inline-block bg-primary text-offwhite px-8 py-3 rounded-lg hover:bg-secondary transition"
-                >
-                  Prendre rendez-vous sur Doctolib
-                </a>
               </section>
             </SlideUp>
 
@@ -422,7 +421,7 @@ export default function ContactPage() {
                 </h2>
 
                 <p className="text-graywarm mt-4 mb-6">
-                  Vous pouvez envoyer un message directement depuis ce formulaire.
+                  Vous pouvez m'envoyer un message directement depuis ce formulaire.
                   Je vous répondrai dès que possible.
                 </p>
 
@@ -442,16 +441,15 @@ export default function ContactPage() {
 
                 <div className="mt-6 space-y-6 text-graywarm">
                   <p>
-                    <strong>Cabinet de Sèvres</strong> <br />
+                    <strong className="text-primary">Cabinet de Sèvres</strong> <br />
                     104 Grande Rue, 92310 Sèvres
                   </p>
                   <p>
-                    <strong>Cabinet de Paris 15</strong> <br />
+                    <strong className="text-primary">Cabinet de Paris 15</strong> <br />
                     28 Rue Letellier, 75015 Paris
                   </p>
-                  <p className="text-sm">
-                    Les cabinets sont accessibles aux poussettes et adaptés aux
-                    consultations nourrissons.
+                  <p className="text-sm bg-light p-4 rounded-lg border border-primary/10">
+                    💡 Les cabinets sont accessibles aux poussettes et parfaitement adaptés aux consultations pour les nourrissons.
                   </p>
                 </div>
               </section>
@@ -479,11 +477,12 @@ export default function ContactPage() {
                       proximité
                     </p>
 
-                    <div className="mt-4 rounded-lg overflow-hidden shadow-xl">
+                    <div className="mt-4 rounded-lg overflow-hidden shadow-md border border-light">
                       <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2621.352230992681!2d2.2178991!3d48.8210789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67aa75a5a7d2b%3A0xa4bbd6f480c4e45f!2s104%20Grande%20Rue%2C%2092310%20S%C3%A8vres!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr"
                         className="w-full h-72 border-0"
                         loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
                       ></iframe>
                     </div>
                   </div>
@@ -498,11 +497,12 @@ export default function ContactPage() {
                       Métro Commerce • Émile-Zola • La Motte-Picquet – Grenelle
                     </p>
 
-                    <div className="mt-4 rounded-lg overflow-hidden shadow-xl">
+                    <div className="mt-4 rounded-lg overflow-hidden shadow-md border border-light">
                       <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.402089969294!2d2.2935342!3d48.8474188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6701a1b3b4a3b%3A0x0000000000000000!2s28%20Rue%20Letellier%2C%2075015%20Paris!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr"
                         className="w-full h-72 border-0"
                         loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
                       ></iframe>
                     </div>
                   </div>
@@ -559,14 +559,14 @@ export default function ContactPage() {
                 <h2 className="text-3xl font-semibold">
                   Besoin d'un rendez-vous ?
                 </h2>
-                <p className="mt-3 text-offwhite/80">
+                <p className="mt-3 text-offwhite/90">
                   Je vous accueille à Sèvres et Paris 15 du lundi au samedi.
                 </p>
 
                 <a
                   href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
                   target="_blank"
-                  className="mt-6 inline-block bg-offwhite text-primary px-10 py-4 rounded-lg hover:bg-light transition"
+                  className="mt-6 inline-block bg-offwhite text-[#0596DE] font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md"
                 >
                   Réserver sur Doctolib
                 </a>
@@ -576,18 +576,74 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* === Bouton retour en haut === */}
-      {showBackToTop && (
-        <button
-          onClick={() =>
-            window.scrollTo({ top: 0, behavior: "smooth" })
-          }
-          className="fixed bottom-6 right-4 md:right-6 z-40 bg-primary text-offwhite w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-lg hover:bg-secondary transition"
-          aria-label="Revenir en haut"
+      {/* ========================================================= */}
+      {/* BOUTONS FLOTTANTS (PRENDRE RDV + RETOUR EN HAUT)          */}
+      {/* ========================================================= */}
+
+      {/* ------ MOBILE DOCTOLIB ------ */}
+      <div
+        className="
+          fixed bottom-5 left-1/2 -translate-x-1/2
+          z-50 md:hidden
+          bg-white/95 border border-primary/20
+          shadow-[0_8px_30px_rgba(0,0,0,0.15)]
+          rounded-full px-6 py-3 flex items-center gap-2
+        "
+      >
+        <a
+          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-primary font-semibold text-sm"
         >
-          ↑
-        </button>
-      )}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-5 h-5 opacity-80 text-[#0596DE]"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+          <span>Prendre RDV</span>
+        </a>
+      </div>
+
+      {/* ------ DESKTOP DOCTOLIB ------ */}
+      <div className="hidden md:flex fixed top-1/2 right-6 -translate-y-1/2 z-50">
+        <a
+          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            flex items-center gap-3
+            bg-white/95 border border-primary/20
+            shadow-[0_8px_30px_rgba(0,0,0,0.12)]
+            px-5 py-3 rounded-2xl
+            transition-all hover:shadow-xl hover:-translate-y-1 hover:bg-white
+          "
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6 opacity-90 text-[#0596DE]"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+          <span className="text-primary font-semibold text-sm tracking-wide">
+            Prendre RDV
+          </span>
+        </a>
+      </div>
+
+      {/* === Bouton retour en haut via le composant global === */}
+      <BackToTop />
     </main>
   );
 }

@@ -20,34 +20,45 @@ const roboto = localFont({
 });
 
 /* ================================
-   METADATA
+   METADATA GLOBALES
 ================================ */
 export const metadata = {
   metadataBase: new URL("https://www.hilaryfarid-osteopathe.fr"),
   title: {
     default: "Hilary Farid – Ostéopathe DO à Sèvres & Paris 15",
-    template: "%s | Hilary Farid – Ostéopathe DO",
+    template: "%s | Hilary Farid", // Format: "Ostéopathie | Hilary Farid"
   },
   description:
-    "Hilary Farid, ostéopathe DO à Sèvres et Paris 15. Consultations pour adultes, nourrissons, femmes enceintes et sportifs.",
+    "Hilary Farid, ostéopathe D.O. à Sèvres et Paris 15. Approche douce pour adultes, nourrissons, femmes enceintes et sportifs. Drainage lymphatique Renata França.",
   icons: { icon: "/favicon.ico" },
   openGraph: {
     title: "Hilary Farid – Ostéopathe DO à Sèvres & Paris 15",
     description:
-      "Consultations d'ostéopathie et drainage lymphatique méthode Renata França à Sèvres et Paris 15.",
+      "Consultations d'ostéopathie douce et drainage lymphatique méthode Renata França.",
     url: "https://www.hilaryfarid-osteopathe.fr",
     siteName: "Hilary Farid – Ostéopathe DO",
     locale: "fr_FR",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.webp", // Harmonisé avec tes autres pages
         width: 1200,
         height: 630,
+        alt: "Hilary Farid Ostéopathe Sèvres Paris 15"
       },
     ],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 /* ================================
@@ -55,21 +66,17 @@ export const metadata = {
 ================================ */
 export default function RootLayout({ children }) {
   return (
-    <html lang="fr" className={roboto.className}>
+    <html lang="fr" className={roboto.variable}>
       <head>
-        <link rel="preload" as="style" href="/_next/static/css/app/layout.css" />
-
-        {/* PRELOAD IMAGE – accélère le LCP de l'image Hilary */}
+        {/* PRELOAD IMAGE – Accélère le chargement de ton portrait sur l'accueil/à-propos */}
         <link
           rel="preload"
           as="image"
-          href="/hilary.webp"
-          imageSrcSet="/hilary.webp 600w"
-          imageSizes="100vw"
+          href="/Hilary.webp"
         />
 
         {/* GOOGLE TAG MANAGER */}
-        <Script id="gtm-head" strategy="lazyOnload">
+        <Script id="gtm-head" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -79,85 +86,76 @@ export default function RootLayout({ children }) {
             })(window,document,'script','dataLayer','GTM-MN4339H9');
           `}
         </Script>
-        {/* END GTM */}
-
-        {/* GOOGLE ANALYTICS – Lazy */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-BWDXGTQJKT"
-          strategy="lazyOnload"
-        />
-        <Script
-          id="google-analytics"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-BWDXGTQJKT', { page_path: window.location.pathname });
-            `,
-          }}
-        />
       </head>
 
-      <body className={`${roboto.variable} bg-offwhite text-primary`}>
+      <body className="bg-offwhite text-primary antialiased">
+        {/* GTM NOSCRIPT */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MN4339H9"
+            height="0" width="0" style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
 
-        {/* GOOGLE TAG MANAGER (NOSCRIPT) */}
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MN4339H9"
-        height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe></noscript>
-        {/* END GTM NOSCRIPT */}
+        {/* GOOGLE ANALYTICS */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-BWDXGTQJKT"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BWDXGTQJKT');
+          `}
+        </Script>
 
-        {/* JSON-LD global */}
+        {/* SCHEMA ORG GLOBAL */}
         <Script
           id="ld-global-hilary-farid"
           type="application/ld+json"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(
-              {
-                "@context": "https://schema.org",
-                "@type": ["Person", "Physician"],
-                "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid",
-                name: "Hilary Farid",
-                jobTitle: "Ostéopathe D.O.",
-                image: "https://www.hilaryfarid-osteopathe.fr/Hilary.webp",
-                url: "https://www.hilaryfarid-osteopathe.fr",
-                telephone: "+33 6 72 01 45 39",
-                logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
-                medicalSpecialty: [
-                  "Osteopathy", "PregnancyCare", "SportsMedicine", "Pediatric"
-                ],
-                knowsAbout: [
-                  "Ostéopathie adulte",
-                  "Ostéopathie femme enceinte",
-                  "Ostéopathie nourrisson",
-                  "Ostéopathie pédiatrique",
-                  "Ostéopathie du sport"
-                ],
-                sameAs: [
-                  "https://www.doctolib.fr/osteopathe/sevres/hilary-farid",
-                  "https://www.google.com/maps/place/104+Grande+Rue,+92310+Sèvres",
-                  "https://www.google.com/maps/place/28+Rue+Letellier,+75015+Paris"
-                ]
-              },
-              null,
-              2
-            ),
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": ["Person", "Physician"],
+              "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid",
+              name: "Hilary Farid",
+              jobTitle: "Ostéopathe D.O.",
+              description: "Ostéopathe D.O. spécialisée en périnalité et drainage lymphatique Renata França à Sèvres et Paris 15.",
+              image: "https://www.hilaryfarid-osteopathe.fr/Hilary.webp",
+              url: "https://www.hilaryfarid-osteopathe.fr",
+              telephone: "+33 6 72 01 45 39",
+              address: [
+                {
+                  "@type": "PostalAddress",
+                  "streetAddress": "104 Grande Rue",
+                  "addressLocality": "Sèvres",
+                  "postalCode": "92310"
+                },
+                {
+                  "@type": "PostalAddress",
+                  "streetAddress": "28 Rue Letellier",
+                  "addressLocality": "Paris",
+                  "postalCode": "75015"
+                }
+              ],
+              sameAs: [
+                "https://www.doctolib.fr/osteopathe/sevres/hilary-farid",
+                "https://www.instagram.com/votre_compte" // Optionnel : ton insta ?
+              ]
+            })
           }}
         />
 
-        {/* HEADER */}
         <Header />
-
-        {/* PAGE CONTENT */}
-        <main>{children}</main>
-
-        {/* FOOTER */}
+        <main className="min-h-screen">
+          {children}
+        </main>
         <Footer />
 
-        {/* SCROLL PROGRESS BAR (React uniquement) */}
         <ScrollProgressBar />
-
       </body>
     </html>
   );

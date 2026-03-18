@@ -1,7 +1,8 @@
 // src/app/sitemap.js
 export default function sitemap() {
   const baseUrl = "https://www.hilaryfarid-osteopathe.fr";
-  const lastMod = "2025-01-01";
+  // On utilise la date du jour pour booster la "fraîcheur" SEO
+  const lastMod = new Date().toISOString().split('T')[0];
 
   return [
     {
@@ -14,25 +15,25 @@ export default function sitemap() {
       url: `${baseUrl}/osteopathie`,
       lastModified: lastMod,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.9, // Augmenté pour souligner le service phare
     },
     {
       url: `${baseUrl}/drainage`,
       lastModified: lastMod,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/sevres`,
       lastModified: lastMod,
       changeFrequency: "monthly",
-      priority: 0.7,
+      priority: 0.8, // Augmenté pour le SEO local
     },
     {
       url: `${baseUrl}/paris15`,
       lastModified: lastMod,
       changeFrequency: "monthly",
-      priority: 0.7,
+      priority: 0.8, // Augmenté pour le SEO local
     },
     {
       url: `${baseUrl}/temoignages`,
@@ -62,7 +63,13 @@ export default function sitemap() {
       url: `${baseUrl}/mentions-legales`,
       lastModified: lastMod,
       changeFrequency: "yearly",
-      priority: 0.3,
+      priority: 0.2,
+    },
+    {
+      url: `${baseUrl}/politique-confidentialite`,
+      lastModified: lastMod,
+      changeFrequency: "yearly",
+      priority: 0.2,
     },
   ];
 }

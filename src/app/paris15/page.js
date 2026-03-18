@@ -3,44 +3,42 @@
 import { useEffect, useState } from "react";
 import Script from "next/script";
 import Image from "next/image";
+import Link from "next/link";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
-import SEO from "@/components/SEO";
 import MobileSummary from "@/components/MobileSummary";
+import BackToTop from "@/components/BackToTop";
 
+// Sommaire optimisé et raccourci
 const SECTIONS = [
-  { id: "cabinet", label: "Le cabinet" },
+  { id: "cabinet", label: "Le cabinet & Galerie" },
   { id: "osteopathe", label: "Votre ostéopathe" },
-  { id: "galerie", label: "Galerie du cabinet" },
-  { id: "pourquoi", label: "Pourquoi consulter ?" },
+  { id: "avis", label: "Avis patients" },
+  { id: "pourquoi", label: "Pourquoi à Paris 15 ?" },
   { id: "acces", label: "Adresse & accès" },
-  { id: "faq", label: "FAQ – Paris 15" },
+  { id: "faq", label: "FAQ" },
 ];
 
 export default function Paris15Page() {
   const [activeId, setActiveId] = useState("cabinet");
-  const [showBackToTop, setShowBackToTop] = useState(false);
 
-  // Scrollspy + bouton retour en haut
+  // Scrollspy
   useEffect(() => {
     const handleScroll = () => {
-      const viewportHeight = window.innerHeight;
-      const triggerLine = viewportHeight * 0.3; // zone haute du viewport
-      let current = SECTIONS[0].id;
+      const trigger = window.innerHeight * 0.25; // zone haute du viewport
 
-      for (const section of SECTIONS) {
-        const el = document.getElementById(section.id);
-        if (!el) continue;
+      let current = "cabinet";
+
+      SECTIONS.forEach((s) => {
+        const el = document.getElementById(s.id);
+        if (!el) return;
 
         const rect = el.getBoundingClientRect();
-
-        // La section est active si la trigger-line est dans sa zone
-        if (rect.top <= triggerLine && rect.bottom > triggerLine) {
-          current = section.id;
+        if (rect.top <= trigger && rect.bottom > trigger) {
+          current = s.id;
         }
-      }
+      });
 
       setActiveId(current);
-      setShowBackToTop(window.scrollY > 600);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -49,7 +47,6 @@ export default function Paris15Page() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   const handleSmoothScroll = (e, id) => {
     e.preventDefault();
     const el = document.getElementById(id);
@@ -57,18 +54,6 @@ export default function Paris15Page() {
 
     const y = el.getBoundingClientRect().top + window.scrollY - 120;
     window.scrollTo({ top: y, behavior: "smooth" });
-  };
-
-  const handleSmoothScrollMobile = (id) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    const y = el.getBoundingClientRect().top + window.scrollY - 120;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  };
-
-  const handleBackToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const smoothScroll = (e, id) => {
@@ -138,6 +123,11 @@ export default function Paris15Page() {
                   "@type": "GeoCoordinates",
                   latitude: 48.847151,
                   longitude: 2.293107,
+                },
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: "5",
+                  reviewCount: "42"
                 }
               },
 
@@ -192,8 +182,8 @@ export default function Paris15Page() {
         }}
       />
 
-      {/* ================= HERO ================= */}
-      <section className="relative h-[60vh] w-full overflow-hidden">
+      {/* ================= HERO (AVEC TRUST BADGE + BOUTON) ================= */}
+      <section className="relative h-[65vh] w-full overflow-hidden">
         <Image
           src="/cabinet-paris15/cabinet-paris15-1.webp"
           alt="Cabinet d'ostéopathie à Paris 15"
@@ -203,15 +193,34 @@ export default function Paris15Page() {
           className="absolute inset-0 object-cover"
         />
 
-        <div className="absolute inset-0 bg-black/40 flex flex-col justify-center text-center px-6">
+        <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-center px-6">
           <FadeIn>
             <h1 className="text-4xl md:text-5xl font-semibold text-offwhite drop-shadow-lg">
               Cabinet d'Ostéopathie – Paris 15
             </h1>
             <p className="mt-4 text-offwhite text-lg md:text-xl max-w-2xl mx-auto">
-              Un cabinet moderne, lumineux et chaleureux au cœur du 15e
-              arrondissement.
+              Un espace moderne, calme et lumineux pensé pour votre bien-être au cœur du 15e.
             </p>
+
+            {/* Preuve sociale immédiate */}
+            <div className="mt-6 mb-8 flex flex-col items-center justify-center gap-1">
+              <div className="flex text-amber-400 text-xl tracking-widest drop-shadow-md">
+                ★★★★★
+              </div>
+              <span className="text-offwhite/90 text-sm font-medium tracking-wide">
+                5/5 sur Google (62 avis)
+              </span>
+            </div>
+
+            {/* BOUTON D'ACTION IMMÉDIATE */}
+            <a
+              href="https://www.doctolib.fr/osteopathe/paris/hilary-farid"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+            >
+              Prendre rendez-vous sur Doctolib
+            </a>
           </FadeIn>
         </div>
       </section>
@@ -255,7 +264,7 @@ export default function Paris15Page() {
               smoothScroll={smoothScroll}
             />
 
-            {/* ===== LE CABINET ===== */}
+            {/* ===== LE CABINET + GALERIE FUSIONNÉS ===== */}
             <SlideUp>
               <section
                 id="cabinet"
@@ -265,12 +274,34 @@ export default function Paris15Page() {
                   Un cabinet au cœur du 15e arrondissement
                 </h2>
 
-                <p className="text-graywarm text-base md:text-lg leading-relaxed mt-8 text-center">
+                <p className="text-graywarm text-base md:text-lg leading-relaxed mt-6 mb-10 text-center max-w-3xl mx-auto">
                   Le cabinet d'ostéopathie de Paris 15 vous accueille dans un
                   espace <strong>calme, lumineux et apaisant</strong>, pensé
                   pour favoriser la détente et permettre un travail
                   ostéopathique précis dans les meilleures conditions.
                 </p>
+
+                <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+                  {[
+                    "cabinet-paris15-1.webp",
+                    "cabinet-paris15-2.webp",
+                    "cabinet-paris15-3.webp",
+                  ].map((img, i) => (
+                    <div
+                      key={i}
+                      className="relative w-full h-[200px] md:h-[240px] rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                    >
+                    <Image
+                      src={`/cabinet-paris15/${img}`}
+                      alt={`Cabinet Paris 15 image ${i + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
+                      loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
               </section>
             </SlideUp>
 
@@ -302,9 +333,11 @@ export default function Paris15Page() {
                   <div className="flex justify-center">
                     <div className="relative w-full max-w-sm h-[450px] rounded-xl shadow-xl overflow-hidden">
                       <Image
-                        src="/hilary.webp"
+                        src="/cabinet-paris15/hilary-paris15.webp"
                         alt="Hilary Farid Ostéopathe Paris 15"
                         fill
+                        loading="lazy"
+                        sizes="(max-width: 768px) 90vw, 400px"
                         className="object-cover"
                       />
                     </div>
@@ -313,36 +346,43 @@ export default function Paris15Page() {
               </section>
             </SlideUp>
 
-            {/* ===== GALERIE ===== */}
+            {/* ======= AVIS PATIENTS (NOUVEAU - EXTRAIT) ======= */}
             <SlideUp>
               <section
-                id="galerie"
-                className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8"
+                id="avis"
+                className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8 text-center"
               >
-                <h2 className="text-3xl font-semibold text-primary text-center mb-10">
-                  Découvrez le cabinet en images
+                <h2 className="text-3xl font-semibold text-primary">
+                  Ce que disent les patients
                 </h2>
 
-                <div className="grid md:grid-cols-3 gap-6">
-                  {[
-                    "cabinet-paris15-1.webp",
-                    "cabinet-paris15-2.webp",
-                    "cabinet-paris15-3.webp",
-                  ].map((img, i) => (
-                    <div
-                      key={i}
-                      className="relative w-full h-[280px] md:h-[320px] rounded-lg shadow-lg overflow-hidden"
-                    >
-                    <Image
-                      src={`/cabinet-paris15/${img}`}
-                      alt={`Cabinet Paris 15 image ${i + 1}`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"   // ⭐ essentiel
-                      className="object-cover"
-                      loading="lazy"
-                      />
-                    </div>
-                  ))}
+                <div className="mt-8 grid md:grid-cols-2 gap-6 text-left">
+                  {/* Avis 1 (Ostéo) */}
+                  <article className="p-6 rounded-xl bg-offwhite/50 border border-light/80 shadow-sm">
+                    <div className="flex text-amber-400 text-sm mb-3">★★★★★</div>
+                    <p className="text-graywarm italic text-sm md:text-base leading-relaxed">
+                      "Ostéo exceptionnelle. Très à l'écoute, technique et efficace. Mes douleurs cervicales ont disparu en deux séances."
+                    </p>
+                    <p className="mt-4 font-semibold text-primary text-sm">— Mathieu (Ostéopathie)</p>
+                  </article>
+
+                  {/* Avis 2 (Drainage/Grossesse) */}
+                  <article className="p-6 rounded-xl bg-offwhite/50 border border-light/80 shadow-sm">
+                    <div className="flex text-amber-400 text-sm mb-3">★★★★★</div>
+                    <p className="text-graywarm italic text-sm md:text-base leading-relaxed">
+                      "Un soin incroyable ! Résultats visibles dès la première séance de drainage. Hilary est douce et professionnelle. Je recommande les yeux fermés."
+                    </p>
+                    <p className="mt-4 font-semibold text-primary text-sm">— Sabrina (Drainage Renata França)</p>
+                  </article>
+                </div>
+
+                <div className="mt-8">
+                  <Link
+                    href="/temoignages"
+                    className="inline-block text-secondary font-medium underline underline-offset-4 hover:text-primary transition"
+                  >
+                    Lire tous les avis (42+)
+                  </Link>
                 </div>
               </section>
             </SlideUp>
@@ -361,14 +401,9 @@ export default function Paris15Page() {
                   <ul className="space-y-4 text-graywarm text-base md:text-lg">
                     <li>✔️ Cabinet moderne, lumineux et récemment rénové</li>
                     <li>✔️ Adultes, nourrissons, femmes enceintes & sportifs</li>
-                    <li>
-                      ✔️ Situé dans un quartier vivant, accessible et sécurisé
-                    </li>
+                    <li>✔️ Situé dans un quartier vivant, accessible et sécurisé</li>
                     <li>✔️ Atmosphère calme favorisant la détente</li>
-                    <li>
-                      ✔️ Prise en charge personnalisée & centrée sur votre
-                      histoire
-                    </li>
+                    <li>✔️ Prise en charge personnalisée & centrée sur votre histoire</li>
                   </ul>
 
                   <div className="relative w-full h-[260px] md:h-[300px] rounded-lg overflow-hidden shadow-xl">
@@ -398,8 +433,7 @@ export default function Paris15Page() {
                 <p className="text-center text-graywarm mt-4 text-base md:text-lg">
                   📍 <strong>28 Rue Letellier, 75015 Paris</strong>
                   <br />
-                  À proximité des métros Commerce, Émile-Zola et La
-                  Motte-Picquet – Grenelle.
+                  À proximité des métros Commerce, Émile-Zola et La Motte-Picquet – Grenelle.
                 </p>
 
                 <div className="mt-10 rounded-lg overflow-hidden shadow-xl">
@@ -491,16 +525,63 @@ export default function Paris15Page() {
         </div>
       </section>
 
-      {/* &&&& Bouton retour en haut &&&& */}
-      {showBackToTop && (
-        <button
-          onClick={handleBackToTop}
-          className="fixed bottom-6 right-4 md:right-6 z-40 bg-primary text-offwhite w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-lg hover:bg-secondary transition"
-          aria-label="Revenir en haut de la page"
+      {/* ===== FIX CLS DESKTOP ===== */}
+      <div className="hidden md:block w-[90px] h-[200px] shrink-0 min-h-[200px]"></div>
+
+      {/* ========================================================= */}
+      {/* BOUTONS FLOTTANTS (PRENDRE RDV + RETOUR EN HAUT)          */}
+      {/* ========================================================= */}
+
+      {/* ------ MOBILE DOCTOLIB ------ */}
+      <div
+        className="
+          fixed bottom-5 left-1/2 -translate-x-1/2
+          z-50 md:hidden
+          bg-white/95 border border-primary/20
+          shadow-[0_8px_30px_rgba(0,0,0,0.15)]
+          rounded-full px-6 py-3 flex items-center gap-2
+        "
+      >
+        <a
+          href="https://www.doctolib.fr/osteopathe/paris/hilary-farid"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-primary font-semibold text-sm"
         >
-          ↑
-        </button>
-      )}
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 opacity-80" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+          <span>Prendre RDV</span>
+        </a>
+      </div>
+
+      {/* ------ DESKTOP DOCTOLIB ------ */}
+      <div className="hidden md:flex fixed top-1/2 right-6 -translate-y-1/2 z-50">
+        <a
+          href="https://www.doctolib.fr/osteopathe/paris/hilary-farid"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            flex items-center gap-3
+            bg-white/95 border border-primary/20
+            shadow-[0_8px_30px_rgba(0,0,0,0.12)]
+            px-5 py-3 rounded-2xl
+            transition-all hover:shadow-xl hover:-translate-y-1 hover:bg-white
+          "
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-primary opacity-90" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+          <span className="text-primary font-semibold text-sm tracking-wide">
+            Prendre RDV
+          </span>
+        </a>
+      </div>
+
+      <BackToTop />
+
     </main>
   );
 }

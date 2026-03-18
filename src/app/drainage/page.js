@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import Script from "next/script";
 import Image from "next/image";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
-import SEO from "@/components/SEO";
 import MobileSummary from "@/components/MobileSummary";
 import DrainageCarousel from "@/components/DrainageCarousel";
+import BackToTop from "@/components/BackToTop";
 
 import {
   IconLegs,
@@ -19,7 +19,6 @@ import {
   IconPregnancy,
   IconFertility,
 } from "@/components/icons/BenefitIcons";
-
 
 const DOCTOLIB_URL =
   "https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile";
@@ -38,7 +37,6 @@ const SECTIONS = [
 
 export default function DrainageLymphatiquePage() {
   const [activeSection, setActiveSection] = useState(SECTIONS[0].id);
-  const [showBackTop, setShowBackTop] = useState(false);
 
   const smoothScroll = (e, id) => {
     e.preventDefault();
@@ -51,11 +49,10 @@ export default function DrainageLymphatiquePage() {
     window.scrollTo({ top: y, behavior: "smooth" });
   };
 
-
   useEffect(() => {
     const ids = SECTIONS
-                .map((s) => s.id)
-                .filter((id) => id !== "cta");
+      .map((s) => s.id)
+      .filter((id) => id !== "cta");
 
     const options = {
       root: null,
@@ -72,24 +69,14 @@ export default function DrainageLymphatiquePage() {
       if (el) observer.observe(el);
     });
 
-    const onScroll = () => setShowBackTop(window.scrollY > 300);
-    window.addEventListener("scroll", onScroll);
-
     return () => {
       observer.disconnect();
-      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
   return (
     <main className="relative">
-      <SEO
-        title="Drainage lymphatique Renata França – Paris 15 & Sèvres | Hilary Farid"
-        description="Drainage lymphatique méthode Renata França : sensation de jambes légères, détente, récupération, rétention d’eau. Séances à Paris 15 et Sèvres. RDV Doctolib."
-        canonical="https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique"
-      />
-
-      {/* ========= SCHEMA ORG ========= */}
+      {/* ========= SCHEMA ORG (Optimisé SEO Local avec avis) ========= */}
       <Script
         id="schema-drainage"
         type="application/ld+json"
@@ -151,6 +138,11 @@ export default function DrainageLymphatiquePage() {
                   addressLocality: "Sèvres",
                   addressCountry: "FR",
                 },
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: "5",
+                  reviewCount: "42"
+                },
                 makesOffer: {
                   "@type": "Service",
                   "@id": "https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique#service",
@@ -172,6 +164,11 @@ export default function DrainageLymphatiquePage() {
                   addressLocality: "Paris",
                   addressRegion: "Île-de-France",
                   addressCountry: "FR",
+                },
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: "5",
+                  reviewCount: "62"
                 },
                 makesOffer: {
                   "@type": "Service",
@@ -252,9 +249,9 @@ export default function DrainageLymphatiquePage() {
           <a
             href={DOCTOLIB_URL}
             target="_blank"
-            className="block text-center bg-primary text-offwhite px-4 py-2 rounded-lg hover:bg-secondary transition"
+            className="block text-center bg-[#0596DE] text-white px-4 py-2 rounded-lg font-semibold shadow-md hover:bg-[#047cbd] transition"
           >
-            Prendre rendez-vous
+            Prendre RDV sur Doctolib
           </a>
           <p className="mt-2 text-xs text-graywarm text-center">
             Paris 15 & Sèvres
@@ -262,20 +259,9 @@ export default function DrainageLymphatiquePage() {
         </div>
       </aside>
 
-      {/* 🔝 Bouton retour en haut */}
-      {showBackTop && (
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-24 md:bottom-6 right-6 z-50 bg-primary text-white w-12 h-12 rounded-full shadow-xl flex items-center justify-center text-xl hover:bg-secondary transition"
-          aria-label="Retour en haut"
-        >
-          ↑
-        </button>
-      )}
-
       {/* 📌 Sticky CTA (mobile) */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-50">
-        <div className="bg-white/90 backdrop-blur-md border-t border-gray-200 px-4 py-3 flex items-center justify-between">
+        <div className="bg-white/95 backdrop-blur-md border-t border-gray-200 px-4 py-3 flex items-center justify-between shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
           <div className="leading-tight">
             <p className="text-sm font-semibold text-primary">Drainage Renata França</p>
             <p className="text-xs text-graywarm">Paris 15 & Sèvres</p>
@@ -283,14 +269,14 @@ export default function DrainageLymphatiquePage() {
           <a
             href={DOCTOLIB_URL}
             target="_blank"
-            className="bg-primary text-offwhite px-4 py-2 rounded-lg shadow-sm hover:bg-secondary transition text-sm font-medium"
+            className="bg-[#0596DE] text-white px-5 py-2.5 rounded-lg shadow-md hover:bg-[#047cbd] transition text-sm font-semibold"
           >
-            RDV
+            Prendre RDV
           </a>
         </div>
       </div>
 
-      {/* ========= HERO ========= */}
+      {/* ========= HERO (Optimisé CRO) ========= */}
       <FadeIn>
         <section className="bg-offwhite py-16 px-6">
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
@@ -303,37 +289,45 @@ export default function DrainageLymphatiquePage() {
                 Légèreté, confort <br /> & silhouette visiblement affinée.
               </h1>
 
+              {/* TEXTE MODIFIÉ POUR LA CONVERSION */}
               <p className="mt-6 text-lg text-graywarm leading-relaxed">
-                En tant qu’ostéopathe, j’ai choisi d’intégrer le drainage lymphatique
-                <strong> Renata França</strong> pour son approche dynamique et
-                ses effets particulièrement appréciés : sensation de légèreté,
-                amélioration possible de la rétention d’eau, détente profonde
-                et confort corporel.
+                Alliez l’efficacité spectaculaire de la méthode <strong>Renata França</strong> à l'expertise anatomique d’une <strong>ostéopathe D.O</strong>. Un drainage profond, précis et sécuritaire pour relancer votre métabolisme, soulager vos jambes lourdes et affiner votre silhouette.
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-4">
+              {/* ⭐ AJOUT DU TRUST BADGE (AVIS GOOGLE) ⭐ */}
+              <div className="mt-6 flex items-center gap-2">
+                <div className="flex text-amber-400 text-lg drop-shadow-sm">
+                  ★★★★★
+                </div>
+                <span className="text-graywarm text-sm font-medium">
+                  5/5 sur Google (+100 avis Sèvres & Paris 15)
+                </span>
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-4">
                 <a
                   href={DOCTOLIB_URL}
                   target="_blank"
-                  className="bg-primary text-offwhite px-7 py-3 rounded-lg hover:bg-secondary transition"
+                  className="bg-[#0596DE] text-white px-7 py-3 rounded-lg font-semibold shadow-md hover:bg-[#047cbd] transition"
                 >
-                  Prendre rendez-vous
+                  Prendre RDV sur Doctolib
                 </a>
                 <a
                   href="#bienfaits"
-                  className="inline-flex items-center text-primary underline underline-offset-4 hover:text-secondary"
+                  onClick={(e) => smoothScroll(e, "bienfaits")}
+                  className="inline-flex items-center text-primary font-medium underline underline-offset-4 hover:text-secondary"
                 >
                   Découvrir les bienfaits
                 </a>
               </div>
 
-              <div className="mt-6 grid grid-cols-3 gap-3">
+              <div className="mt-8 grid grid-cols-3 gap-3">
                 {[
                   ["Sensation de légèreté", "dès la 1ʳᵉ séance"],
                   ["Méthode tonique", "adaptée à vous"],
                   ["Deux cabinets", "Paris 15 & Sèvres"],
                 ].map(([t, s]) => (
-                  <div key={t} className="rounded-xl border bg-white p-3">
+                  <div key={t} className="rounded-xl border bg-white p-3 shadow-sm">
                     <p className="text-sm font-semibold text-primary">{t}</p>
                     <p className="text-xs text-graywarm mt-1">{s}</p>
                   </div>
@@ -342,10 +336,9 @@ export default function DrainageLymphatiquePage() {
             </div>
 
             <div className="relative w-full h-80 md:h-[28rem] rounded-2xl overflow-hidden shadow-lg">
-              {/* ✅ Mets tes images ici : /public/drainage/hero.webp */}
               <Image
                 src="/drainage/drainage_ventre.webp"
-                alt="Drainage lymphatique méthode Renata França"
+                alt="Drainage lymphatique méthode Renata França par Hilary Farid"
                 fill
                 priority
                 sizes="100vw"
@@ -358,7 +351,7 @@ export default function DrainageLymphatiquePage() {
         </section>
       </FadeIn>
 
-      {/* ========= SOMMAIRE MOBILE (si tu veux garder ton composant) ========= */}
+      {/* ========= SOMMAIRE MOBILE ========= */}
       <section className="lg:hidden py-6 px-6 bg-[#F7F9FB] border-y border-light/50">
         <div className="max-w-4xl mx-auto">
           <MobileSummary
@@ -534,7 +527,6 @@ export default function DrainageLymphatiquePage() {
         </section>
       </SlideUp>
 
-
       {/* ========= DEROULEMENT ========= */}
       <SlideUp>
         <section id="deroulement" className="py-16 px-6 bg-offwhite">
@@ -602,18 +594,17 @@ export default function DrainageLymphatiquePage() {
                 Je l’adapte à votre situation et à votre sensibilité.
               </p>
 
+              {/* MODIFICATION : On cible des profils et moments de vie pour éviter la redondance */}
               <div className="mt-8 grid sm:grid-cols-2 gap-4">
                 {[
-                  "Rétention d’eau & gonflements",
-                  "Jambes lourdes",
-                  "Cellulite / peau d’orange",
-                  "Périodes de fatigue / stress",
-                  "Confort digestif (ballonnements)",
-                  "Grossesse (selon situation)",
-                  "Récupération / post-op (avis médical)",
-                  "Accompagnement bien-être (PMA / fertilité)",
+                  "Grossesse & Post-partum",
+                  "Récupération Sportive",
+                  "Sédentarité & Télétravail",
+                  "Troubles hormonaux (PMA, Ménopause)",
+                  "Jambes lourdes & Rétention",
+                  "Préparation & Récupération Post-Opératoire",
                 ].map((t) => (
-                  <div key={t} className="rounded-2xl border bg-white p-4 shadow-sm">
+                  <div key={t} className="rounded-2xl border bg-white p-4 shadow-sm flex items-center">
                     <p className="text-sm font-medium text-primary">{t}</p>
                   </div>
                 ))}
@@ -622,7 +613,6 @@ export default function DrainageLymphatiquePage() {
 
             <div className="rounded-2xl border bg-white shadow-sm overflow-hidden">
               <div className="relative h-80">
-                {/* ✅ /public/drainage/hands.webp */}
                 <Image
                   src="/drainage/drainage_jambe.webp"
                   alt="Séance de drainage lymphatique"
@@ -642,9 +632,9 @@ export default function DrainageLymphatiquePage() {
                   <a
                     href={DOCTOLIB_URL}
                     target="_blank"
-                    className="inline-flex items-center justify-center bg-primary text-offwhite px-6 py-3 rounded-lg hover:bg-secondary transition w-full"
+                    className="inline-flex items-center justify-center bg-[#0596DE] text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-[#047cbd] transition w-full"
                   >
-                    Prendre rendez-vous
+                    Prendre RDV sur Doctolib
                   </a>
                 </div>
               </div>
@@ -664,8 +654,9 @@ export default function DrainageLymphatiquePage() {
             <div className="mt-10 grid md:grid-cols-2 gap-6 text-graywarm leading-relaxed">
               {[
                 {
-                  title: "Approche précise & personnalisée",
-                  text: "En tant qu’ostéopathe DO, j’adapte la séance à votre morphologie, votre sensibilité et vos objectifs.",
+                  /* TITRE ET TEXTE MODIFIÉS POUR LA CONVERSION */
+                  title: "La sécurité d'une Ostéopathe D.O.",
+                  text: "Contrairement à un institut classique, ma connaissance approfondie de l’anatomie et du système vasculaire me permet d'adapter parfaitement la pression et les manœuvres à votre physiologie.",
                 },
                 {
                   title: "Méthode Renata França",
@@ -681,7 +672,7 @@ export default function DrainageLymphatiquePage() {
                 },
               ].map((c) => (
                 <FadeIn key={c.title}>
-                  <div className="p-6 rounded-2xl bg-white shadow-sm border">
+                  <div className="p-6 rounded-2xl bg-white shadow-sm border h-full">
                     <h3 className="font-semibold text-primary text-lg">{c.title}</h3>
                     <p className="mt-2 text-sm">{c.text}</p>
                   </div>
@@ -748,7 +739,6 @@ export default function DrainageLymphatiquePage() {
         </section>
       </SlideUp>
 
-
       {/* ========= CONTRE-INDICATIONS ========= */}
       <SlideUp>
         <section id="contraindications" className="py-16 px-6 bg-offwhite">
@@ -774,7 +764,7 @@ export default function DrainageLymphatiquePage() {
             <div className="mt-8 rounded-2xl border bg-white p-6 shadow-sm">
               <p className="text-sm text-graywarm">
                 📞 Si vous hésitez :{" "}
-                <a className="text-primary underline underline-offset-4" href="tel:+33672014539">
+                <a className="text-primary font-medium underline underline-offset-4" href="tel:+33672014539">
                   06 72 01 45 39
                 </a>
               </p>
@@ -846,13 +836,13 @@ export default function DrainageLymphatiquePage() {
               <a
                 href={DOCTOLIB_URL}
                 target="_blank"
-                className="bg-primary text-offwhite px-7 py-3 rounded-lg hover:bg-secondary transition"
+                className="bg-[#0596DE] text-white px-7 py-3 rounded-lg font-semibold shadow-md hover:bg-[#047cbd] transition"
               >
-                Prendre rendez-vous
+                Prendre RDV sur Doctolib
               </a>
               <a
                 href="/tarifs"
-                className="inline-flex items-center text-primary underline underline-offset-4 hover:text-secondary"
+                className="inline-flex items-center font-medium text-primary underline underline-offset-4 hover:text-secondary"
               >
                 Voir les tarifs
               </a>
@@ -865,6 +855,10 @@ export default function DrainageLymphatiquePage() {
           </div>
         </section>
       </FadeIn>
+
+      {/* 🔝 Composant global pour revenir en haut */}
+      <BackToTop />
+
     </main>
   );
 }

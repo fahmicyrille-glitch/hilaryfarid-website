@@ -1,10 +1,11 @@
+"use client"
+
 // src/app/page.js
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import { FadeInNoShift } from "@/components/MotionWrapper";
 import BackToTop from "@/components/BackToTop";
-
 
 /* 🚀 ANIMATION CSS SSR-SAFE (ZÉRO CLS) */
 const fadeCss = `
@@ -17,23 +18,6 @@ const fadeCss = `
   animation: fadeInHero .8s ease-out .1s forwards;
 }
 `;
-
-export const metadata = {
-  title:
-    "Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO | Ostéopathie & Drainage lymphatique Renata França",
-  description:
-    "Ostéopathe DO à Sèvres (92310) et Paris 15 (75015), Hilary Farid prend en charge adultes, nourrissons, femmes enceintes et sportifs. Ostéopathie douce, précise et drainage lymphatique Renata França. Rendez-vous rapides sur Doctolib.",
-    alternates: {
-      canonical: "https://www.hilaryfarid-osteopathe.fr/",
-    },
-  openGraph: {
-    title: "Ostéopathe Sèvres & Paris 15 – Hilary Farid Ostéopathe DO",
-    description:
-      "Consultations d'ostéopathie et drainage lymphatique Renata França à Sèvres & Paris 15. Adultes, nourrissons, femmes enceintes et sportifs.",
-    url: "https://www.hilaryfarid-osteopathe.fr/",
-    images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
-  },
-};
 
 export default function Home() {
   return (
@@ -204,99 +188,124 @@ export default function Home() {
         }}
       />
 
-      {/* ================= HERO SECTION ================= */}
-      <section className="bg-primary text-offwhite relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center relative z-10">
+      {/* ================= HERO SECTION (OPTIMISÉE EXPERTISES DUALES) ================= */}
+      <section className="bg-primary text-offwhite relative overflow-hidden pb-24 md:pb-32">
+        <div className="absolute inset-0 opacity-[0.12] pointer-events-none bg-[radial-gradient(circle_at_top,_#ffffff_0,_transparent_55%)]" />
 
-          {/* TEXT → SSR + fade CSS */}
+        <div className="max-w-6xl mx-auto px-6 pt-16 md:pt-20 grid md:grid-cols-2 gap-10 items-center relative z-10">
+
           <div className="fade-hero">
-            <p className="uppercase tracking-[0.2em] text-xs md:text-sm text-light">
-              Ostéopathe D.O – Sèvres & Paris 15
-            </p>
-
-            <h1 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">
-              Soulager vos douleurs,
-              <br />
-              retrouver de la mobilité,
-              <br />
-              respirer enfin mieux
+            <h1 className="uppercase tracking-[0.2em] text-xs md:text-sm text-light">
+              Ostéopathe D.O & Praticienne Renata França
             </h1>
 
+            {/* Le H2 avec le magnifique contraste foncé */}
+            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#1E293B]">
+              Ostéopathie douce &<br />
+              Drainage Lymphatique
+            </h2>
+
             <p className="mt-5 text-base md:text-lg text-offwhite/90">
-              Hilary Farid, <strong>ostéopathe à Sèvres et Paris 15</strong>, accompagne les{" "}
-              <strong>adultes, nourrissons, femmes enceintes</strong> et sportifs
-              avec une approche douce et personnalisée.
+              Hilary Farid vous accompagne à Sèvres et Paris 15 avec une prise en charge globale : soulagez vos douleurs grâce à <strong>l'ostéopathie</strong>, et retrouvez légèreté et vitalité avec la méthode <strong>Renata França</strong>.
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-2 text-xs md:text-sm text-primary">
-
-              <span className="bg-white/100 rounded-full px-6 py-1.5">
-                Expertise nourrissons & grossesse
+            {/* ⭐ PREUVE SOCIALE ⭐ */}
+            <div className="mt-6 mb-2 flex items-center gap-2">
+              <div className="flex text-amber-400 text-lg drop-shadow-md">★★★★★</div>
+              <span className="text-offwhite/90 text-sm font-medium">
+                5/5 sur Google (+100 avis)
               </span>
-
-              <span className="bg-white/90 rounded-full px-6 py-1.5">
-                Drainage lymphatique Renata França
-              </span>
-
-              <span className="bg-white/80 rounded-full px-6 py-1.5">
-                Deux cabinets : Sèvres & Paris 15
-              </span>
-
             </div>
 
-
+            {/* BOUTONS D'ACTION */}
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-offwhite text-primary px-7 py-3 rounded-full font-semibold text-sm md:text-base shadow-md hover:bg-light hover:text-primary transition"
+                className="inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
               >
-                Prendre rendez-vous sur Doctolib
+                Prendre RDV Doctolib
               </a>
 
               <Link
-                href="/osteopathie"
-                className="border border-offwhite/70 text-offwhite px-6 py-3 rounded-full text-sm md:text-base hover:bg-offwhite/10 transition"
+                href="/drainage"
+                className="inline-flex items-center px-6 py-3 rounded-full text-sm md:text-base text-offwhite border border-offwhite/50 bg-white/10 hover:bg-white/20 transition-colors"
               >
-                Comprendre l'ostéopathie
+                Le Drainage Renata
               </Link>
             </div>
 
-            <p className="mt-4 text-xs md:text-sm text-offwhite/80">
-              Séances sur rendez-vous à Sèvres et Paris 15 – prise en charge par de nombreuses mutuelles.
+            <p className="mt-5 text-xs text-offwhite/70">
+              Prise en charge ostéopathique possible par les mutuelles.
             </p>
           </div>
 
-          {/* IMAGE → SSR + fade CSS */}
           <div className="fade-hero md:fade-hero">
             <div className="relative">
-              <div
-                aria-hidden="true"
-                className="absolute -inset-4 bg-offwhite/10 rounded-3xl blur-xl"
-              />
-
+              <div aria-hidden="true" className="absolute -inset-4 bg-offwhite/10 rounded-3xl blur-xl" />
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-offwhite/30 aspect-square">
                 <Image
                   src="/hilary.webp"
-                  alt="Hilary Farid, ostéopathe à Sèvres et Paris 15"
-                  width={600}
-                  height={600}
-                  className="object-cover w-full h-full"
+                  alt="Hilary Farid, ostéopathe et praticienne Renata França à Sèvres et Paris 15"
+                  fill
                   priority
                   fetchPriority="high"
                   decoding="async"
                   sizes="(max-width: 768px) 90vw, 600px"
+                  className="object-cover object-top w-full h-full"
                 />
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
+      {/* ================= NOUVELLE SECTION : LES 2 EXPERTISES (Cartes 100% Cliquables) ================= */}
+      <section className="relative z-20 -mt-16 md:-mt-24 max-w-6xl mx-auto px-6 pb-16">
+        <FadeInNoShift>
+          <div className="grid md:grid-cols-2 gap-6 md:gap-10">
+
+            {/* Carte Ostéopathie - Maintenant un gros lien cliquable avec hover effect (group) */}
+            <Link
+              href="/osteopathie"
+              className="group bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-light/50 flex flex-col h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+                <span className="text-3xl">🦴</span>
+              </div>
+              <h3 className="text-2xl font-bold text-primary mb-4">Ostéopathie D.O</h3>
+              <p className="text-graywarm mb-6 flex-grow">
+                Une approche douce et personnalisée pour soulager vos douleurs articulaires, musculaires, et vos troubles digestifs ou liés au stress. Prise en charge des adultes, nourrissons, femmes enceintes et sportifs.
+              </p>
+              <span className="font-semibold text-primary underline underline-offset-4 group-hover:text-secondary flex items-center gap-2">
+                Découvrir l'ostéopathie <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </span>
+            </Link>
+
+            {/* Carte Drainage Renata França - Maintenant un gros lien cliquable */}
+            <Link
+              href="/drainage"
+              className="group bg-[#FAF6F3] rounded-3xl p-8 md:p-10 shadow-xl border border-[#E8D8CE] flex flex-col h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                <span className="text-3xl">✨</span>
+              </div>
+              <h3 className="text-2xl font-bold text-[#1E293B] mb-4">Drainage lymphatique Renata França</h3>
+              <p className="text-graywarm mb-6 flex-grow">
+                Un massage manuel tonique et exclusif aux résultats immédiats. Idéal pour lutter contre la rétention d'eau, obtenir des jambes légères, un ventre dégonflé et relancer le métabolisme.
+              </p>
+              <span className="font-semibold text-[#1E293B] underline underline-offset-4 group-hover:text-primary flex items-center gap-2">
+                Tout savoir sur le drainage <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </span>
+            </Link>
+
+          </div>
+        </FadeInNoShift>
+      </section>
+
       {/* ================= SECTION : Pourquoi consulter ? ================= */}
-      <section className="py-16 md:py-20 bg-offwhite">
+      <section className="py-10 md:py-16 bg-offwhite">
         <FadeInNoShift>
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-semibold text-primary text-center">
@@ -305,15 +314,12 @@ export default function Home() {
             <p className="mt-4 text-center text-graywarm max-w-3xl mx-auto">
               L'ostéopathie aide à soulager de nombreux troubles fonctionnels,
               que ce soit après un faux mouvement, une grossesse,
-              une pratique sportive intensive, un trop-plein de stress,
-              ou simplement dans le cadre d'un bilan ostéopathique.
-              Ce bilan permet d'évaluer les tensions et dysfonctionnements
-              éventuels afin d'accompagner le corps vers un meilleur équilibre.
+              une pratique sportive intensive, ou un trop-plein de stress.
             </p>
 
-            <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+            <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <FadeInNoShift delay={0.1}>
-                <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80">
+                <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 h-full">
                   <h3 className="font-semibold text-primary">Douleurs & posture</h3>
                   <p className="mt-2 text-sm text-graywarm">
                     Maux de dos, nuque, épaules, sciatiques, blocages, tensions
@@ -323,135 +329,47 @@ export default function Home() {
               </FadeInNoShift>
 
               <FadeInNoShift delay={0.2}>
-                <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80">
+                <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 h-full">
                   <h3 className="font-semibold text-primary">Nourrissons & enfants</h3>
                   <p className="mt-2 text-sm text-graywarm">
-                    Plagiocéphalie, coliques, reflux, troubles du sommeil…
+                    Plagiocéphalie, coliques, reflux, troubles du sommeil, pleurs inexpliqués…
                   </p>
                 </div>
               </FadeInNoShift>
 
               <FadeInNoShift delay={0.3}>
-                <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80">
+                <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 h-full">
                   <h3 className="font-semibold text-primary">Grossesse & post-partum</h3>
                   <p className="mt-2 text-sm text-graywarm">
-                    Lombalgies, bassin, sciatique, confort respiratoire…
+                    Lombalgies, préparation du bassin, sciatique, confort respiratoire…
                   </p>
                 </div>
               </FadeInNoShift>
 
               <FadeInNoShift delay={0.4}>
-                <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80">
-                  <h3 className="font-semibold text-primary">Digestion, stress & sommeil</h3>
+                <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 h-full">
+                  <h3 className="font-semibold text-primary">Digestion & stress</h3>
                   <p className="mt-2 text-sm text-graywarm">
-                    Troubles digestifs, anxiété, sommeil agité…
+                    Troubles digestifs, ballonnements, anxiété, sommeil agité, fatigue…
                   </p>
-                </div>
-              </FadeInNoShift>
-
-              <FadeInNoShift delay={0.5}>
-                <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 min-w-[230px]">
-                  <h3 className="font-semibold text-primary">Bilan ostéopathique</h3>
-                  <p className="mt-2 text-sm text-graywarm">
-                    Prévenir l'apparition de douleurs, anticiper torticolis ou
-                    lombalgies, et faire le point sur l'équilibre général du corps.
-                  </p>
-                </div>
-              </FadeInNoShift>
-
-            </div>
-
-            <p className="mt-8 text-center text-base md:text-lg text-graywarm">
-              Pour plus de détails, consultez{" "}
-              <Link
-                href="/osteopathie"
-                className="text-primary underline underline-offset-4 hover:text-secondary"
-              >
-                l'ostéopathie
-              </Link>{" "}
-              ou les{" "}
-              <Link
-                href="/tarifs"
-                className="text-primary underline underline-offset-4 hover:text-secondary"
-              >
-                tarifs
-              </Link>.
-            </p>
-          </div>
-        </FadeInNoShift>
-      </section>
-
-      {/* ================= SECTION : Ostéo + Drainage ================= */}
-      <section className="py-16 md:py-20 bg-light">
-        <FadeInNoShift>
-          <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-[1.2fr,1fr] gap-10 items-center">
-
-            <div>
-              <h2 className="text-3xl md:text-4xl font-semibold text-primary">
-                Une prise en charge globale du corps
-              </h2>
-              <p className="mt-4 text-graywarm">
-                Chaque séance commence par un temps d'échange afin de comprendre
-                l'origine du déséquilibre.
-              </p>
-              <p className="mt-3 text-graywarm">
-                En complément, Hilary propose le{" "}
-                <strong>drainage lymphatique Renata França</strong>.
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-4">
-                <Link
-                  href="/osteopathie"
-                  className="text-secondary underline underline-offset-4 hover:text-primary"
-                >
-                  Découvrir l'ostéopathie
-                </Link>
-
-                <Link
-                  href="/drainage"
-                  className="text-secondary underline underline-offset-4 hover:text-primary"
-                >
-                  En savoir plus sur le drainage
-                </Link>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <FadeInNoShift delay={0.1}>
-                <div className="p-4 rounded-xl bg-white shadow-sm border border-light/80">
-                  <p className="text-sm text-graywarm">
-                    « Mon objectif : que vous repartiez avec moins de douleurs,
-                    plus de mobilité, écouté(e) et accompagné(e) dans votre prise
-                    en charge globale. »
-                  </p>
-                  <p className="mt-2 text-xs text-primary font-semibold">
-                    — Hilary Farid, Ostéopathe DO
-                  </p>
-                </div>
-              </FadeInNoShift>
-
-              <FadeInNoShift delay={0.2}>
-                <div className="p-4 rounded-xl bg-white shadow-sm border border-light/80 text-sm text-graywarm">
-                  <p>⏱ Séance : ~45 minutes</p>
-                  <p>📍 Cabinets à Sèvres & Paris 15</p>
-                  <p>👶 Dès la naissance</p>
                 </div>
               </FadeInNoShift>
             </div>
-
           </div>
         </FadeInNoShift>
       </section>
 
       {/* ================= SECTION : Cabinets ================= */}
-      <section className="py-16 md:py-20 bg-offwhite relative">
+      <section className="py-16 md:py-20 bg-light relative">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-semibold text-primary text-center">
-            Cabinets d'ostéopathie à Sèvres et Paris 15
+            Nos cabinets de consultation
           </h2>
+          <p className="mt-4 text-center text-graywarm">
+            Séances d'ostéopathie et de drainage lymphatique à Sèvres et Paris 15.
+          </p>
 
           <div className="mt-12 grid md:grid-cols-2 gap-10">
-
             {/* --------- CARTE SÈVRES --------- */}
             <Link
               href="/sevres"
@@ -460,36 +378,27 @@ export default function Home() {
               <div className="grid grid-cols-3 gap-2 mb-5 rounded-xl overflow-hidden">
                 <Image
                   src="/cabinet-sevres/cabinet-sevres-1.webp"
-                  width={350}
-                  height={200}
+                  width={350} height={200}
                   alt="Cabinet d'ostéopathie à Sèvres – salle de consultation"
                   className="object-cover h-28 w-full"
                   loading="lazy"
-                  sizes="(max-width: 768px) 100vw,
-                         (max-width: 1200px) 50vw,
-                         33vw"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <Image
                   src="/cabinet-sevres/cabinet-sevres-2.webp"
-                  width={350}
-                  height={200}
+                  width={350} height={200}
                   alt="Cabinet d'ostéopathie à Sèvres – table de soin"
                   className="object-cover h-28 w-full"
                   loading="lazy"
-                  sizes="(max-width: 768px) 100vw,
-                         (max-width: 1200px) 50vw,
-                         33vw"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <Image
                   src="/cabinet-sevres/cabinet-sevres-3.webp"
-                  width={350}
-                  height={200}
+                  width={350} height={200}
                   alt="Cabinet d'ostéopathie à Sèvres – salle d'attente"
                   className="object-cover h-28 w-full"
                   loading="lazy"
-                  sizes="(max-width: 768px) 100vw,
-                         (max-width: 1200px) 50vw,
-                         33vw"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
 
@@ -517,36 +426,27 @@ export default function Home() {
               <div className="grid grid-cols-3 gap-2 mb-5 rounded-xl overflow-hidden">
                 <Image
                   src="/cabinet-paris15/cabinet-paris15-1.webp"
-                  width={350}
-                  height={200}
+                  width={350} height={200}
                   alt="Cabinet d'ostéopathie à Paris 15 – salle de consultation"
                   className="object-cover h-28 w-full"
                   loading="lazy"
-                  sizes="(max-width: 768px) 100vw,
-                         (max-width: 1200px) 50vw,
-                         33vw"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <Image
                   src="/cabinet-paris15/cabinet-paris15-2.webp"
-                  width={350}
-                  height={200}
+                  width={350} height={200}
                   alt="Cabinet d'ostéopathie à Paris 15 – table de soin"
                   className="object-cover h-28 w-full"
                   loading="lazy"
-                  sizes="(max-width: 768px) 100vw,
-                         (max-width: 1200px) 50vw,
-                         33vw"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <Image
                   src="/cabinet-paris15/cabinet-paris15-3.webp"
-                  width={350}
-                  height={200}
+                  width={350} height={200}
                   alt="Cabinet d'ostéopathie à Paris 15 – salle d'attente"
                   className="object-cover h-28 w-full"
                   loading="lazy"
-                  sizes="(max-width: 768px) 100vw,
-                         (max-width: 1200px) 50vw,
-                         33vw"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
 
@@ -565,7 +465,6 @@ export default function Home() {
                 Voir le cabinet →
               </span>
             </Link>
-
           </div>
         </div>
       </section>
@@ -574,10 +473,10 @@ export default function Home() {
       <section className="py-16 md:py-20 bg-primary text-offwhite text-center">
         <FadeInNoShift>
           <h2 className="text-3xl md:text-4xl font-semibold">
-            Prêt(e) à soulager vos douleurs ?
+            Prêt(e) à prendre soin de vous ?
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-offwhite/90">
-            Une première séance permet déjà de faire le point.
+            Une première séance permet déjà de faire le point, que ce soit pour des douleurs ou pour un drainage.
           </p>
           <a
             href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
@@ -585,13 +484,10 @@ export default function Home() {
             rel="noreferrer"
             className="mt-8 inline-block bg-offwhite text-primary px-10 py-4 rounded-full font-semibold shadow-md hover:bg-light hover:text-primary transition"
           >
-            Réserver votre séance sur Doctolib
+            Réserver sur Doctolib
           </a>
         </FadeInNoShift>
       </section>
-
-      {/* ===== FIX CLS DESKTOP */}
-      <div className="hidden md:block w-[90px] h-[200px] shrink-0 min-h-[200px]"></div>
 
       {/* ------ MOBILE DOCTOLIB ------ */}
       <div
@@ -620,7 +516,6 @@ export default function Home() {
             <rect x="3" y="4" width="18" height="18" rx="2" />
             <path d="M16 2v4M8 2v4M3 10h18" />
           </svg>
-
           <span>Prendre RDV</span>
         </a>
       </div>
@@ -650,7 +545,6 @@ export default function Home() {
             <rect x="3" y="4" width="18" height="18" rx="2" />
             <path d="M16 2v4M8 2v4M3 10h18" />
           </svg>
-
           <span className="text-primary font-semibold text-sm tracking-wide">
             Prendre RDV
           </span>

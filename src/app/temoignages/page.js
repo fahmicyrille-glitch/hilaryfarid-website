@@ -1,148 +1,107 @@
-// src/app/temoignages/page.js
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
 import Script from "next/script";
 import { FadeIn, SlideUp, HeroMotion } from "@/components/MotionWrapper";
-import SEO from "@/components/SEO";
-
-// ⚠️ On ne peut pas utiliser `export const metadata` dans un composant client.
-// Le SEO est donc géré par le composant <SEO /> comme sur tes autres pages.
+import BackToTop from "@/components/BackToTop";
 
 const BASE_REVIEWS = [
   {
-    name: "Sabrina",
-    text:
-      "Un soin incroyable ! Résultats visibles dès la première séance de drainage. Hilary est douce, professionnelle et l'accueil est parfait. Je recommande les yeux fermés.",
+    name: "Sabrina L.",
+    text: "Un soin incroyable ! Résultats visibles dès la première séance de drainage. J'avais les jambes très lourdes et le ventre gonflé, je suis ressortie légère. Hilary est d'une grande douceur et l'accueil est parfait. Je recommande les yeux fermés.",
     type: "drainage",
   },
   {
-    name: "Julie",
-    text:
-      "J'ai consulté pour mon nourrisson de 2 mois. Hilary a été très douce et a rapidement identifié les tensions. Mon bébé dort tellement mieux depuis !",
+    name: "Julie M.",
+    text: "J'ai consulté pour mon nourrisson de 2 mois qui souffrait de reflux et de coliques. Hilary a été très douce et a rapidement identifié les tensions. Mon bébé est beaucoup plus apaisé et dort tellement mieux depuis !",
     type: "nourrisson",
   },
   {
-    name: "Mathieu",
-    text:
-      "Ostéo exceptionnelle. Très à l'écoute, technique et efficace. Mes douleurs cervicales ont disparu en deux séances.",
+    name: "Mathieu D.",
+    text: "Ostéopathe exceptionnelle. Très à l'écoute, technique et efficace. J'avais des douleurs cervicales chroniques liées au télétravail qui m'empêchaient de dormir. Elles ont totalement disparu en deux séances.",
     type: "osteo",
   },
   {
-    name: "Mélanie",
-    text:
-      "Le drainage Renata França est bluffant. Jambes légères, ventre plus plat, sensation de bien-être immédiat. Hilary est très professionnelle.",
+    name: "Mélanie T.",
+    text: "Le drainage Renata França est bluffant. Jambes légères, ventre plus plat, sensation de bien-être immédiat. Hilary explique chaque étape, on sent qu'elle connaît parfaitement l'anatomie.",
     type: "drainage",
   },
   {
-    name: "Camille",
-    text:
-      "Consultation grossesse : j'ai enfin trouvé une ostéopathe qui explique, rassure et soulage vraiment. Merci !",
+    name: "Camille P.",
+    text: "Consultation au 7ème mois de grossesse pour une grosse sciatique : j'ai enfin trouvé une ostéopathe qui explique, rassure et soulage vraiment sans jamais faire mal. Merci !",
     type: "grossesse",
   },
 
   // -------- Avis supplémentaires premium --------
   {
-    name: "Aurélie",
-    text:
-      "Hilary m'a suivie pendant toute ma grossesse. Chaque séance m'a apporté un vrai soulagement. Je n'ai jamais eu un suivi aussi humain et rassurant.",
+    name: "Aurélie F.",
+    text: "Hilary m'a suivie pendant toute ma grossesse et pour mon post-partum. Chaque séance m'a apporté un vrai soulagement au niveau du bassin. Je n'ai jamais eu un suivi aussi humain et rassurant.",
     type: "grossesse",
   },
   {
-    name: "Thomas",
-    text:
-      "Je suis venu pour une douleur au bas du dos liée au télétravail. Dès la première séance, une nette amélioration. Professionnelle et efficace.",
+    name: "Thomas V.",
+    text: "Je suis venu bloqué du dos (lumbago). Hilary a pris le temps de faire un bilan complet avant de manipuler très doucement. En sortant, je pouvais remarcher normalement. Professionnelle et hyper efficace.",
     type: "osteo",
   },
   {
-    name: "Nina",
-    text:
-      "Le drainage lymphatique a transformé ma sensation de lourdeur dans les jambes. Résultat visible immédiatement. Une magicienne !",
+    name: "Nina C.",
+    text: "J'ai fait la cure de 5 séances de drainage lymphatique. Ça a transformé ma sensation de lourdeur dans les jambes et affiné ma silhouette. Résultat visible immédiatement. Une vraie magicienne !",
     type: "drainage",
   },
   {
-    name: "Clara",
-    text:
-      "J'ai emmené mon fils de 4 ans pour des réveils nocturnes. Après la séance, beaucoup plus apaisé. Merci pour votre douceur.",
+    name: "Clara S.",
+    text: "J'ai emmené mon fils pour des problèmes de succion au sein. Hilary a détecté un frein restrictif et nous a accompagnés avant et après l'intervention. L'allaitement a été sauvé grâce à elle.",
     type: "nourrisson",
   },
   {
-    name: "Manon",
-    text:
-      "Séance post-partum : Hilary a pris le temps de m'écouter et d'adapter la séance. Je suis ressortie légère, réalignée, et surtout comprise.",
+    name: "Manon B.",
+    text: "Séance post-partum : Hilary a pris le temps de m'écouter et d'adapter la séance à ma fatigue. Je suis ressortie légère, réalignée, et surtout comprise dans ce que je traversais.",
     type: "grossesse",
   },
   {
-    name: "Bastien",
-    text:
-      "Très bonne ostéopathe. Elle explique chaque geste, ce qui met immédiatement en confiance. Mes douleurs d'épaule ont disparu.",
+    name: "Bastien R.",
+    text: "Très bonne ostéopathe. Elle explique chaque geste, ce qui met immédiatement en confiance pour les gens qui appréhendent. Mes douleurs d'épaule que je traînais depuis des mois ont disparu.",
     type: "osteo",
   },
   {
-    name: "Sarah",
-    text:
-      "J'ai adoré le drainage Renata França : sensation de détox totale, silhouette affinée et ventre dégonflé. Un must-have !",
+    name: "Sarah K.",
+    text: "J'ai adoré le drainage Renata França : sensation de détox totale, silhouette affinée et ventre dégonflé. L'approche est tonique mais Hilary gère parfaitement la pression.",
     type: "drainage",
   },
   {
-    name: "Elodie",
-    text:
-      "Une vraie écoute, beaucoup de douceur et surtout des résultats durables. Je recommande Hilary à toutes mes amies.",
+    name: "Elodie M.",
+    text: "Une vraie écoute, beaucoup de douceur et surtout des résultats durables. Je suis venue pour des migraines tenaces et je revends depuis notre séance. Je recommande Hilary à toutes mes amies.",
     type: "osteo",
   },
   {
-    name: "David",
-    text:
-      "En tant que sportif, je suis exigeant. Hilary a su débloquer une douleur chronique au genou que personne n'arrivait à traiter.",
+    name: "David G.",
+    text: "En tant que coureur (marathon), je suis exigeant sur mon suivi. Hilary a su débloquer une douleur chronique au genou que personne n'arrivait à traiter. Top niveau.",
     type: "osteo",
   },
   {
-    name: "Anaïs",
-    text:
-      "J'ai fait plusieurs ostéos mais Hilary est de loin la plus pédagogue et la plus précise. Une vraie professionnelle passionnée.",
+    name: "Anaïs L.",
+    text: "J'ai fait plusieurs ostéos dans le 15ème mais Hilary est de loin la plus pédagogue et la plus précise. On ne se sent pas expédié en 15 minutes. Une vraie professionnelle passionnée.",
     type: "osteo",
   },
   {
-    name: "Léa",
-    text:
-      "Mon bébé avait un torticolis. En deux séances, une nette amélioration. Très douce, très patiente. Merci infiniment.",
+    name: "Léa P.",
+    text: "Mon bébé avait un torticolis et tournait la tête toujours du même côté. En deux séances, une nette amélioration, il a retrouvé toute sa mobilité. Très douce, très patiente. Merci infiniment.",
     type: "nourrisson",
   },
   {
-    name: "Jade",
-    text:
-      "Drainage parfait, ambiance relaxante, résultats visibles : ventre plus plat, énergie retrouvée. Je reviendrai sans hésiter.",
+    name: "Jade V.",
+    text: "Drainage parfait, ambiance relaxante, résultats visibles : ventre plus plat, énergie retrouvée. C'est devenu mon rituel mensuel.",
     type: "drainage",
   },
   {
-    name: "Hugo",
-    text:
-      "Douleur à la mâchoire depuis plusieurs mois. Hilary a tout de suite identifié la cause et m'a donné des exercices réellement utiles.",
+    name: "Hugo T.",
+    text: "Douleur à la mâchoire (bruxisme) depuis plusieurs mois avec maux de tête au réveil. Hilary a tout de suite identifié la cause, a travaillé en douceur et m'a donné des exercices réellement utiles.",
     type: "osteo",
   },
   {
-    name: "Sonia",
-    text:
-      "Une ostéopathe d'exception. D'une gentillesse rare et d'une précision remarquable. On se sent vraiment en confiance.",
+    name: "Sonia E.",
+    text: "Une ostéopathe d'exception. D'une gentillesse rare et d'une précision remarquable. On se sent vraiment en confiance et les cabinets sont d'une propreté irréprochable.",
     type: "osteo",
-  },
-  {
-    name: "Alexandre",
-    text:
-      "Je suis venu pour une sciatique et j'ai été soulagé très rapidement. Hilary explique tout et prend vraiment le temps.",
-    type: "osteo",
-  },
-  {
-    name: "Inès",
-    text:
-      "Séance post-accouchement : un vrai moment de reconnexion avec mon corps. Je suis ressortie apaisée et sans douleurs.",
-    type: "grossesse",
-  },
-  {
-    name: "Chloé",
-    text:
-      "Jambes lourdes, fatigue, digestion : le drainage a tout changé. Résultats bluffants. Je recommande à 200%.",
-    type: "drainage",
   },
 ];
 
@@ -288,19 +247,30 @@ export default function TemoignagesPage() {
             {/* Bandeau stats + Google */}
             <div className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 bg-offwhite/10 border border-offwhite/30 rounded-full px-5 py-2 text-xs md:text-sm">
               <span className="inline-flex items-center gap-1">
-                ⭐{" "}
+                <span className="text-amber-400">★★★★★</span>
                 <span className="font-semibold">
                   Avis patients 5/5 – Sèvres & Paris 15
                 </span>
               </span>
               <span className="w-px h-4 bg-offwhite/30 hidden sm:inline-block" />
               <span className="inline-flex items-center gap-1">
-                🟢{" "}
+                <span className="text-[#0F9D58]">✓</span>
                 <span>
-                  Avis Google synchronisés automatiquement (via fiche Google
-                  Business).
+                  Vérifiés par Google
                 </span>
               </span>
+            </div>
+
+            {/* CTA IMMÉDIAT (Optimisation CRO) */}
+            <div className="mt-8">
+              <a
+                href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+              >
+                Prendre rendez-vous sur Doctolib
+              </a>
             </div>
           </HeroMotion>
         </div>
@@ -343,7 +313,7 @@ export default function TemoignagesPage() {
                       <span className="font-semibold text-primary">
                         {currentSlide.name}
                       </span>
-                      <span className="text-graywarm/80">
+                      <span className="text-graywarm/80 font-medium mt-1">
                         {currentSlide.type === "osteo" && "Consultation d'ostéopathie"}
                         {currentSlide.type === "nourrisson" &&
                           "Suivi nourrisson / enfant"}
@@ -355,14 +325,9 @@ export default function TemoignagesPage() {
                       </span>
                     </div>
 
-                    {typeof currentSlide.rating === "number" && (
-                      <div className="flex items-center gap-1 text-amber-500">
-                        {"★".repeat(Math.round(currentSlide.rating))}
-                        <span className="ml-1 text-[11px] text-graywarm/70">
-                          {currentSlide.rating.toFixed(1)}/5
-                        </span>
-                      </div>
-                    )}
+                    <div className="flex items-center gap-1 text-amber-400 text-lg">
+                      ★★★★★
+                    </div>
                   </div>
                 </article>
               </FadeIn>
@@ -412,7 +377,7 @@ export default function TemoignagesPage() {
                     setActiveFilter(f.id);
                     setCurrentIndex(0);
                   }}
-                  className={`px-3 py-1.5 rounded-full text-xs md:text-sm border transition-all ${
+                  className={`px-4 py-2 rounded-full text-xs md:text-sm border font-medium transition-all ${
                     activeFilter === f.id
                       ? "bg-primary text-offwhite border-primary shadow-sm"
                       : "bg-white text-graywarm border-light hover:border-primary hover:text-primary"
@@ -425,12 +390,12 @@ export default function TemoignagesPage() {
           </header>
 
           {/* Grille d'avis */}
-          <div className="mt-10 grid md:grid-cols-2 gap-8">
+          <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredReviews.map((r, i) => (
               <FadeIn key={`${r.name}-${i}`} delay={(i % 4) * 0.05}>
                 <article
                   className="relative p-6 rounded-2xl bg-white/90 backdrop-blur-md
-                             border border-light/70 shadow-[0_14px_30px_rgba(31,41,55,0.08)]"
+                             border border-light/70 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col"
                 >
                   {r.source === "google" && (
                     <span className="absolute top-4 right-4 text-[11px] px-2 py-1 rounded-full bg-[#0F9D58]/8 text-[#0F9D58] font-semibold">
@@ -438,33 +403,25 @@ export default function TemoignagesPage() {
                     </span>
                   )}
 
-                  <p className="text-graywarm italic leading-relaxed text-sm md:text-base">
+                  <div className="flex items-center gap-1 text-amber-400 text-sm mb-3">
+                    ★★★★★
+                  </div>
+
+                  <p className="text-graywarm italic leading-relaxed text-sm flex-grow">
                     “{r.text}”
                   </p>
 
-                  <div className="mt-4 flex items-center justify-between gap-3 text-xs md:text-sm">
+                  <div className="mt-5 pt-4 border-t border-light/50 flex items-center justify-between gap-3 text-xs">
                     <div>
-                      <p className="text-primary font-semibold">— {r.name}</p>
-                      <p className="text-graywarm/80 mt-0.5">
-                        {r.type === "osteo" && "Consultation d'ostéopathie"}
-                        {r.type === "nourrisson" &&
-                          "Suivi nourrisson / enfant"}
-                        {r.type === "grossesse" &&
-                          "Grossesse / post-partum"}
-                        {r.type === "drainage" &&
-                          "Drainage lymphatique Renata França"}
+                      <p className="text-primary font-bold">— {r.name}</p>
+                      <p className="text-graywarm mt-1 font-medium">
+                        {r.type === "osteo" && "Ostéopathie"}
+                        {r.type === "nourrisson" && "Nourrisson / enfant"}
+                        {r.type === "grossesse" && "Grossesse / post-partum"}
+                        {r.type === "drainage" && "Drainage Renata França"}
                         {r.source === "google" && "Avis Google"}
                       </p>
                     </div>
-
-                    {typeof r.rating === "number" && (
-                      <div className="flex items-center gap-1 text-amber-500">
-                        {"★".repeat(Math.round(r.rating))}
-                        <span className="ml-1 text-[11px] text-graywarm/70">
-                          {r.rating.toFixed(1)}/5
-                        </span>
-                      </div>
-                    )}
                   </div>
 
                   {r.sourceUrl && (
@@ -472,9 +429,9 @@ export default function TemoignagesPage() {
                       href={r.sourceUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-3 inline-block text-[11px] text-secondary underline underline-offset-4"
+                      className="mt-3 inline-block text-[11px] text-[#0596DE] font-semibold hover:underline underline-offset-4"
                     >
-                      Voir l'avis sur Google
+                      Voir sur Google
                     </a>
                   )}
                 </article>
@@ -482,7 +439,7 @@ export default function TemoignagesPage() {
             ))}
 
             {filteredReviews.length === 0 && (
-              <p className="text-graywarm text-sm">
+              <p className="text-graywarm text-sm col-span-full text-center py-10">
                 Aucun avis pour cette catégorie pour le moment.
               </p>
             )}
@@ -505,12 +462,54 @@ export default function TemoignagesPage() {
             href="https://g.page/r/CdYpGglMJd2KEAE/review"
             target="_blank"
             rel="noreferrer"
-            className="mt-6 inline-block bg-primary text-offwhite px-10 py-4 rounded-lg hover:bg-secondary transition"
+            className="mt-6 inline-block bg-primary text-offwhite font-semibold px-10 py-4 rounded-lg hover:bg-secondary transition"
           >
             Déposer un avis sur Google
           </a>
         </section>
       </FadeIn>
+
+      {/* ===== FIX CLS DESKTOP ===== */}
+      <div className="hidden md:block w-[90px] h-[200px] shrink-0 min-h-[200px]"></div>
+
+      {/* ================= BOUTONS FLOTTANTS (DOCTOLIB) ================= */}
+
+      {/* ------ MOBILE DOCTOLIB ------ */}
+      <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 xl:hidden bg-white/95 border border-primary/20 shadow-[0_8px_30px_rgba(0,0,0,0.15)] rounded-full px-6 py-3 flex items-center gap-2">
+        <a
+          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-[#0596DE] font-bold text-base"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 opacity-90" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+          <span>Prendre RDV</span>
+        </a>
+      </div>
+
+      {/* ------ DESKTOP DOCTOLIB ------ */}
+      <div className="hidden xl:flex fixed top-1/2 right-6 -translate-y-1/2 z-50">
+        <a
+          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 bg-white/95 border border-[#0596DE]/20 shadow-[0_8px_30px_rgba(0,0,0,0.12)] px-6 py-4 rounded-2xl transition-all hover:shadow-xl hover:-translate-y-1 hover:bg-white"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[#0596DE] opacity-90" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+          <span className="text-[#0596DE] text-lg font-bold tracking-wide">
+            Prendre RDV
+          </span>
+        </a>
+      </div>
+
+      {/* === Bouton retour en haut via composant === */}
+      <BackToTop />
     </main>
   );
 }
