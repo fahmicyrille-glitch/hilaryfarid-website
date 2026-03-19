@@ -830,7 +830,7 @@ export default function DrainageLymphatiquePage() {
               Cabinets à <strong>Paris 15</strong> et <strong>Sèvres</strong>.
             </p>
             <p className="mt-2 text-sm text-graywarm">
-              Séance d’environ <strong>60 minutes</strong> – réservation en ligne sur Doctolib.
+              Séance d’environ <strong>90 minutes</strong> – réservation en ligne sur Doctolib.
             </p>
             <div className="mt-8 flex flex-wrap gap-4 justify-center">
               <a

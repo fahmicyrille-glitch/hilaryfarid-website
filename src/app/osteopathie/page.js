@@ -452,7 +452,7 @@ export default function OsteopathiePage() {
 
             <div className="mt-10 bg-white/60 backdrop-blur-sm border border-light/80 rounded-xl p-5 max-w-md mx-auto text-center shadow-sm">
               <p className="text-graywarm text-base">
-                ⏱ Une séance d'ostéopathie dure en moyenne <strong className="text-primary font-bold">45 minutes</strong>.
+                ⏱ Une séance d'ostéopathie dure en moyenne <strong className="text-primary font-bold">55 minutes</strong>.
               </p>
             </div>
           </div>
