@@ -50,7 +50,7 @@ export default function Header() {
     ["Accueil", "/"],
     ["Ostéopathie", "/osteopathie"],
     ["Drainage", "/drainage"],
-    ["Conseil Visio", "/visio", true], // <-- Le "true" active le badge
+    //["Conseil Visio", "/visio", true], // <-- Le "true" active le badge
     ["Tarifs", "/tarifs"],
     ["Sèvres", "/sevres"],
     ["Paris 15", "/paris15"],
