@@ -70,7 +70,7 @@ export default function RootLayout({ children }) {
           rel="preload"
           as="image"
           href="/Hilary.webp"
-          fetchpriority="high"
+          fetchPriority="high"
         />
 
         {/* GOOGLE TAG MANAGER - Chargé de manière moins agressive */}

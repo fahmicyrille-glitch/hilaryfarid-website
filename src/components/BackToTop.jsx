@@ -23,7 +23,11 @@ export default function BackToTop() {
     <button
       onClick={handleBackToTop}
       className="
-        fixed bottom-6 right-4 md:right-6 z-40
+        fixed z-40
+        /* POSITION MOBILE : tout en haut de la pile (au-dessus du tél) */
+        bottom-40 right-4
+        /* POSITION DESKTOP : en bas à droite classique */
+        md:bottom-8 md:right-8
         bg-primary text-offwhite
         w-10 h-10 rounded-full shadow-lg
         flex items-center justify-center
