@@ -74,15 +74,12 @@ export default function Footer() {
             </p>
 
             {/* Bouton doctolib */}
-            <a
-              href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-block bg-primary text-offwhite px-6 py-2 rounded-lg
-              hover:bg-secondary transition duration-300"
+            <button
+              type="button"
+              className="trigger-booking-modal mt-4 inline-block bg-primary text-offwhite px-6 py-2 rounded-lg hover:bg-secondary transition duration-300"
             >
               Prendre rendez-vous sur Doctolib
-            </a>
+            </button>
 
             {/* Liens Google Maps */}
             <div className="mt-5 text-graywarm text-sm space-y-2">

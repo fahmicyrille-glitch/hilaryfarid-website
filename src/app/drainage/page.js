@@ -20,9 +20,6 @@ import {
   IconFertility,
 } from "@/components/icons/BenefitIcons";
 
-const DOCTOLIB_URL =
-  "https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile";
-
 const SECTIONS = [
   { id: "presentation", label: "La lymphe, c’est quoi ?" },
   { id: "bienfaits", label: "Bienfaits" },
@@ -246,13 +243,12 @@ export default function DrainageLymphatiquePage() {
         </ul>
 
         <div className="mt-4 pt-4 border-t border-gray-200">
-          <a
-            href={DOCTOLIB_URL}
-            target="_blank"
-            className="block text-center bg-[#0596DE] text-white px-4 py-2 rounded-lg font-semibold shadow-md hover:bg-[#047cbd] transition"
+          <button
+            type="button"
+            className="trigger-booking-modal block w-full text-center bg-[#0596DE] text-white px-4 py-2 rounded-lg font-semibold shadow-md hover:bg-[#047cbd] transition"
           >
             Prendre RDV sur Doctolib
-          </a>
+          </button>
           <p className="mt-2 text-xs text-graywarm text-center">
             Paris 15 & Sèvres
           </p>
@@ -266,13 +262,12 @@ export default function DrainageLymphatiquePage() {
             <p className="text-sm font-semibold text-primary">Drainage Renata França</p>
             <p className="text-xs text-graywarm">Paris 15 & Sèvres</p>
           </div>
-          <a
-            href={DOCTOLIB_URL}
-            target="_blank"
-            className="bg-[#0596DE] text-white px-5 py-2.5 rounded-lg shadow-md hover:bg-[#047cbd] transition text-sm font-semibold"
+          <button
+            type="button"
+            className="trigger-booking-modal bg-[#0596DE] text-white px-5 py-2.5 rounded-lg shadow-md hover:bg-[#047cbd] transition text-sm font-semibold"
           >
             Prendre RDV
-          </a>
+          </button>
         </div>
       </div>
 
@@ -305,13 +300,12 @@ export default function DrainageLymphatiquePage() {
               </div>
 
               <div className="mt-6 flex flex-wrap gap-4">
-                <a
-                  href={DOCTOLIB_URL}
-                  target="_blank"
-                  className="bg-[#0596DE] text-white px-7 py-3 rounded-lg font-semibold shadow-md hover:bg-[#047cbd] transition"
+                <button
+                  type="button"
+                  className="trigger-booking-modal bg-[#0596DE] text-white px-7 py-3 rounded-lg font-semibold shadow-md hover:bg-[#047cbd] transition"
                 >
                   Prendre RDV sur Doctolib
-                </a>
+                </button>
                 <a
                   href="#bienfaits"
                   onClick={(e) => smoothScroll(e, "bienfaits")}
@@ -629,13 +623,12 @@ export default function DrainageLymphatiquePage() {
                   rétention), d’autres préfèrent un suivi régulier selon leurs besoins.
                 </p>
                 <div className="mt-5">
-                  <a
-                    href={DOCTOLIB_URL}
-                    target="_blank"
-                    className="inline-flex items-center justify-center bg-[#0596DE] text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-[#047cbd] transition w-full"
+                  <button
+                    type="button"
+                    className="trigger-booking-modal inline-flex items-center justify-center bg-[#0596DE] text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-[#047cbd] transition w-full"
                   >
                     Prendre RDV sur Doctolib
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -833,13 +826,12 @@ export default function DrainageLymphatiquePage() {
               Séance d’environ <strong>90 minutes</strong> – réservation en ligne sur Doctolib.
             </p>
             <div className="mt-8 flex flex-wrap gap-4 justify-center">
-              <a
-                href={DOCTOLIB_URL}
-                target="_blank"
-                className="bg-[#0596DE] text-white px-7 py-3 rounded-lg font-semibold shadow-md hover:bg-[#047cbd] transition"
+              <button
+                type="button"
+                className="trigger-booking-modal bg-[#0596DE] text-white px-7 py-3 rounded-lg font-semibold shadow-md hover:bg-[#047cbd] transition"
               >
                 Prendre RDV sur Doctolib
-              </a>
+              </button>
               <a
                 href="/tarifs"
                 className="inline-flex items-center font-medium text-primary underline underline-offset-4 hover:text-secondary"

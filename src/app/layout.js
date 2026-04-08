@@ -3,6 +3,9 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
+import BookingModal from "@/components/BookingModal";
+import FloatingBookingButtons from "@/components/FloatingBookingButtons";
+import FloatingPhoneButton from "@/components/FloatingPhoneButton";
 import Script from "next/script";
 import localFont from "next/font/local";
 
@@ -149,6 +152,9 @@ export default function RootLayout({ children }) {
         </main>
         <Footer />
         <ScrollProgressBar />
+        <FloatingBookingButtons />
+        <FloatingPhoneButton />
+        <BookingModal />
       </body>
     </html>
   );

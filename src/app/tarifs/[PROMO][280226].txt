@@ -469,13 +469,12 @@ export default function TarifsPage() {
                   Réservez directement votre consultation sur Doctolib.
                 </p>
 
-                <a
-                  href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
-                  target="_blank"
-                  className="mt-6 inline-block bg-offwhite text-primary px-10 py-4 rounded-lg hover:bg-light transition"
+                <button
+                  type="button"
+                  className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
                 >
-                  Réserver sur Doctolib
-                </a>
+                  Prendre RDV Doctolib
+                </button>
               </section>
             </FadeIn>
           </div>

@@ -52,11 +52,6 @@ export default function TarifsPage() {
       price: "90 €",
     },
     { label: "Offre post-accouchement Maman + Bébé", price: "100 €" },
-    {
-      label:
-        "Cure de 5 séances de drainage lymphatique méthode Renata França (corps entier)",
-      price: "800 €",
-    },
   ];
 
   const [activeId, setActiveId] = useState("consultations");
@@ -235,6 +230,7 @@ export default function TarifsPage() {
               {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/tarifs#faq",
                 mainEntity: [
                   {
                     "@type": "Question",
@@ -294,14 +290,12 @@ export default function TarifsPage() {
               </span>
             </div>
 
-            <a
-              href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+            <button
+              type="button"
+              className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
             >
-              Prendre rendez-vous sur Doctolib
-            </a>
+              Prendre RDV Doctolib
+            </button>
           </FadeIn>
         </div>
       </section>
@@ -343,7 +337,7 @@ export default function TarifsPage() {
               smoothScroll={smoothScroll}
             />
 
-            {/* ================= SECTION : TARIFS ================= */}
+            {/* ================= SECTION : TARIFS OSTÉO ================= */}
             <SlideUp>
               <section
                 id="consultations"
@@ -358,12 +352,9 @@ export default function TarifsPage() {
                     <FadeIn key={i} delay={i * 0.05}>
                       <div className="border-b border-graywarm/30 pb-4 hover:bg-offwhite/30 transition-colors px-2 rounded-lg">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                          {/* Intitulé */}
                           <p className="text-graywarm text-base md:text-lg font-medium md:max-w-[70%]">
                             {t.label}
                           </p>
-
-                          {/* Prix */}
                           <p className="text-primary font-bold text-xl mt-1 md:mt-0">
                             {t.price}
                           </p>
@@ -373,7 +364,7 @@ export default function TarifsPage() {
                   ))}
                 </div>
 
-                {/* ===== DRAINAGE LYMPHATIQUE (PROMO) ===== */}
+                {/* ===== DRAINAGE LYMPHATIQUE (PROMO + CURE) ===== */}
                 <h2 className="text-3xl font-semibold text-primary text-center mt-16 mb-10">
                   Drainage Lymphatique Renata França
                 </h2>
@@ -381,7 +372,7 @@ export default function TarifsPage() {
                 <div className="border border-primary/20 rounded-2xl p-6 bg-offwhite/50 shadow-sm">
                   <div className="flex flex-col gap-4">
                     <p className="text-primary font-semibold text-lg md:text-xl">
-                      Séance de drainage lymphatique méthode Renata França (corps entier)
+                      Séance de drainage lymphatique corps entier (90 min)
                     </p>
 
                     {/* AVANT LA PROMO */}
@@ -489,11 +480,29 @@ export default function TarifsPage() {
                     })}
                   </div>
 
-                  {promoState === "active" && (
-                    <p className="text-graywarm text-xs mt-3 italic text-center">
-                      * Offre non valable sur la cure de 5 séances.
-                    </p>
-                  )}
+                  {/* ===== CURE DE 5 SÉANCES (DÉPLACÉE ICI) ===== */}
+                  <div className="mt-8 pt-8 border-t border-graywarm/20">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between px-2">
+                      <div>
+                        <p className="text-primary font-bold text-lg md:text-xl">
+                          Cure de 5 séances (corps entier)
+                        </p>
+                        <p className="text-graywarm text-sm mt-1">
+                          Recommandé pour des résultats durables et un suivi métabolique.
+                        </p>
+                      </div>
+                      <p className="text-primary font-bold text-2xl md:text-3xl mt-2 md:mt-0">
+                        800 €
+                      </p>
+                    </div>
+                    <div className="mt-4 bg-primary/5 rounded-xl p-3 text-center">
+                      <p className="text-xs text-graywarm italic">
+                        * Cure valable 12 mois. Paiement en plusieurs fois au cabinet.
+                        {promoState === "active" && " Non cumulable avec l'offre promotionnelle en cours."}
+                      </p>
+                    </div>
+                  </div>
+
                 </div>
               </section>
             </SlideUp>
@@ -509,7 +518,7 @@ export default function TarifsPage() {
                   <div>
                     <h3 className="text-xl font-semibold text-primary mb-2">Informations importantes</h3>
                     <p className="text-graywarm text-sm leading-relaxed">
-                      Une facture vous sera systématiquement délivrée en fin de consultation pour votre mutuelle.
+                      Une facture vous sera systématiquement délivrée en fin de consultation pour votre mutuelle. Le règlement s'effectue au cabinet à la fin de chaque séance.
                     </p>
                   </div>
                 </div>
@@ -532,7 +541,7 @@ export default function TarifsPage() {
                       Les tarifs sont-ils identiques dans les deux cabinets ?
                     </summary>
                     <p className="mt-3 text-graywarm text-base leading-relaxed">
-                      Oui pour l'ostéopathie ! Les tarifs des consultations d'ostéopathie sont strictement identiques à Sèvres et Paris 15. En revanche, le tarif du drainage lymphatique (hors période de promotion) varie selon le cabinet.
+                      Oui pour l'ostéopathie ! Les tarifs des consultations d'ostéopathie sont strictement identiques à Sèvres et Paris 15. En revanche, le tarif du drainage lymphatique (hors période de promotion) varie selon le cabinet en raison des charges locales.
                     </p>
                   </details>
 
@@ -550,7 +559,7 @@ export default function TarifsPage() {
                       Le drainage Renata França est-il remboursé par la mutuelle ?
                     </summary>
                     <p className="mt-3 text-graywarm text-base leading-relaxed">
-                      Non, le drainage lymphatique méthode Renata França est considéré comme un soin de confort et de bien-être non médicalisé. Il n'est donc pas pris en charge par les mutuelles, contrairement aux séances d'ostéopathie pures.
+                      Non, le drainage lymphatique méthode Renata França est considéré comme un soin de confort et de bien-être. Il n'est donc pas pris en charge par les mutuelles santé classiques, contrairement aux séances d'ostéopathie.
                     </p>
                   </details>
                 </div>
@@ -568,83 +577,17 @@ export default function TarifsPage() {
                   Réservez directement votre consultation sur Doctolib à Sèvres ou Paris 15.
                 </p>
 
-                <a
-                  href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-8 inline-flex items-center gap-2 bg-[#0596DE] text-white px-10 py-4 rounded-lg font-bold shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1 text-center"
+                <button
+                  type="button"
+                  className="trigger-booking-modal mt-8 inline-flex items-center justify-center gap-2 bg-offwhite text-[#0596DE] font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md text-center"
                 >
                   Réserver sur Doctolib
-                </a>
+                </button>
               </section>
             </FadeIn>
           </div>
         </div>
       </section>
-
-      {/* ================= BOUTONS FLOTTANTS (DOCTOLIB) ================= */}
-
-      {/* ------ MOBILE DOCTOLIB ------ */}
-      <div
-        className="
-          fixed bottom-5 left-1/2 -translate-x-1/2
-          z-50 md:hidden
-          bg-white/95 border border-primary/20
-          shadow-[0_8px_30px_rgba(0,0,0,0.15)]
-          rounded-full px-6 py-3 flex items-center gap-2
-        "
-      >
-        <a
-          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-primary font-semibold text-sm"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5 opacity-80 text-[#0596DE]"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <path d="M16 2v4M8 2v4M3 10h18" />
-          </svg>
-          <span>Prendre RDV</span>
-        </a>
-      </div>
-
-      {/* ------ DESKTOP DOCTOLIB ------ */}
-      <div className="hidden md:flex fixed top-1/2 right-6 -translate-y-1/2 z-50">
-        <a
-          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="
-            flex items-center gap-3
-            bg-white/95 border border-[#0596DE]/20
-            shadow-[0_8px_30px_rgba(0,0,0,0.12)]
-            px-5 py-3 rounded-2xl
-            transition-all hover:shadow-xl hover:-translate-y-1 hover:bg-white
-          "
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6 opacity-90 text-[#0596DE]"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <path d="M16 2v4M8 2v4M3 10h18" />
-          </svg>
-          <span className="text-[#0596DE] font-bold text-lg tracking-wide">
-            Prendre RDV
-          </span>
-        </a>
-      </div>
 
       {/* ==== BOUTON RETOUR EN HAUT ==== */}
       <BackToTop />

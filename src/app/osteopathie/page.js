@@ -150,14 +150,12 @@ export default function OsteopathiePage() {
               </div>
 
               <div className="mt-6 flex flex-wrap gap-4 items-center">
-                <a
-                  href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-[#0596DE] text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+                <button
+                  type="button"
+                  className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
                 >
-                  Prendre rendez-vous
-                </a>
+                  Prendre RDV Doctolib
+                </button>
                 <Link
                   href="/tarifs"
                   className="inline-flex items-center text-primary text-lg font-medium underline underline-offset-4 hover:text-secondary"
@@ -626,14 +624,12 @@ export default function OsteopathiePage() {
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-5 justify-center items-center">
-              <a
-                href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
-                target="_blank"
-                rel="noreferrer"
-                className="w-full sm:w-auto bg-[#0596DE] text-white px-8 py-4 rounded-full text-lg font-bold shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1 text-center"
+              <button
+                type="button"
+                className="trigger-booking-modal w-full sm:w-auto bg-[#0596DE] text-white px-8 py-4 rounded-full text-lg font-bold shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1 text-center"
               >
                 Prendre rendez-vous
-              </a>
+              </button>
               <Link
                 href="/contact"
                 className="w-full sm:w-auto inline-flex justify-center items-center px-8 py-4 rounded-full text-lg font-bold text-primary bg-white border border-light/80 shadow-sm hover:bg-offwhite transition-colors"
@@ -644,42 +640,6 @@ export default function OsteopathiePage() {
           </div>
         </section>
       </FadeIn>
-
-      {/* ================= BOUTONS FLOTTANTS (DOCTOLIB) ================= */}
-
-      {/* ------ MOBILE DOCTOLIB ------ */}
-      <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 xl:hidden bg-white/95 border border-primary/20 shadow-[0_8px_30px_rgba(0,0,0,0.15)] rounded-full px-6 py-3 flex items-center gap-2">
-        <a
-          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-[#0596DE] font-bold text-base"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 opacity-90" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <path d="M16 2v4M8 2v4M3 10h18" />
-          </svg>
-          <span>Prendre RDV</span>
-        </a>
-      </div>
-
-      {/* ------ DESKTOP DOCTOLIB ------ */}
-      <div className="hidden xl:flex fixed top-1/2 right-6 -translate-y-1/2 z-50">
-        <a
-          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-3 bg-white/95 border border-[#0596DE]/20 shadow-[0_8px_30px_rgba(0,0,0,0.12)] px-6 py-4 rounded-2xl transition-all hover:shadow-xl hover:-translate-y-1 hover:bg-white"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[#0596DE] opacity-90" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <path d="M16 2v4M8 2v4M3 10h18" />
-          </svg>
-          <span className="text-[#0596DE] text-lg font-bold tracking-wide">
-            Prendre RDV
-          </span>
-        </a>
-      </div>
 
       {/* === Bouton retour en haut via composant === */}
       <BackToTop />

@@ -263,14 +263,12 @@ export default function TemoignagesPage() {
 
             {/* CTA IMMÉDIAT (Optimisation CRO) */}
             <div className="mt-8">
-              <a
-                href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
-              >
-                Prendre rendez-vous sur Doctolib
-              </a>
+            <button
+              type="button"
+              className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+            >
+              Prendre RDV Doctolib
+            </button>
             </div>
           </HeroMotion>
         </div>
@@ -468,46 +466,7 @@ export default function TemoignagesPage() {
           </a>
         </section>
       </FadeIn>
-
-      {/* ===== FIX CLS DESKTOP ===== */}
-      <div className="hidden md:block w-[90px] h-[200px] shrink-0 min-h-[200px]"></div>
-
-      {/* ================= BOUTONS FLOTTANTS (DOCTOLIB) ================= */}
-
-      {/* ------ MOBILE DOCTOLIB ------ */}
-      <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 xl:hidden bg-white/95 border border-primary/20 shadow-[0_8px_30px_rgba(0,0,0,0.15)] rounded-full px-6 py-3 flex items-center gap-2">
-        <a
-          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-[#0596DE] font-bold text-base"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 opacity-90" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <path d="M16 2v4M8 2v4M3 10h18" />
-          </svg>
-          <span>Prendre RDV</span>
-        </a>
-      </div>
-
-      {/* ------ DESKTOP DOCTOLIB ------ */}
-      <div className="hidden xl:flex fixed top-1/2 right-6 -translate-y-1/2 z-50">
-        <a
-          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-3 bg-white/95 border border-[#0596DE]/20 shadow-[0_8px_30px_rgba(0,0,0,0.12)] px-6 py-4 rounded-2xl transition-all hover:shadow-xl hover:-translate-y-1 hover:bg-white"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[#0596DE] opacity-90" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <path d="M16 2v4M8 2v4M3 10h18" />
-          </svg>
-          <span className="text-[#0596DE] text-lg font-bold tracking-wide">
-            Prendre RDV
-          </span>
-        </a>
-      </div>
-
+      
       {/* === Bouton retour en haut via composant === */}
       <BackToTop />
     </main>

@@ -219,14 +219,12 @@ export default function Home() {
 
             {/* BOUTONS D'ACTION */}
             <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+              <button
+                type="button"
+                className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
               >
                 Prendre RDV Doctolib
-              </a>
+              </button>
 
               <Link
                 href="/drainage"
@@ -478,78 +476,14 @@ export default function Home() {
           <p className="mt-4 max-w-2xl mx-auto text-offwhite/90">
             Une première séance permet déjà de faire le point, que ce soit pour des douleurs ou pour un drainage.
           </p>
-          <a
-            href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
-            target="_blank"
-            rel="noreferrer"
-            className="mt-8 inline-block bg-offwhite text-primary px-10 py-4 rounded-full font-semibold shadow-md hover:bg-light hover:text-primary transition"
+          <button
+            type="button"
+            className="trigger-booking-modal mt-8 inline-block bg-offwhite text-[#0596DE] font-bold px-10 py-4 rounded-full shadow-md hover:bg-light transition"
           >
             Réserver sur Doctolib
-          </a>
+          </button>
         </FadeInNoShift>
       </section>
-
-      {/* ------ MOBILE DOCTOLIB ------ */}
-      <div
-        className="
-          fixed bottom-5 left-1/2 -translate-x-1/2
-          z-50 md:hidden
-          bg-white/95 border border-primary/20
-          shadow-[0_8px_30px_rgba(0,0,0,0.15)]
-          rounded-full px-6 py-3 flex items-center gap-2
-        "
-      >
-        <a
-          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-primary font-semibold text-sm"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5 opacity-80"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <path d="M16 2v4M8 2v4M3 10h18" />
-          </svg>
-          <span>Prendre RDV</span>
-        </a>
-      </div>
-
-      {/* ------ DESKTOP DOCTOLIB ------ */}
-      <div className="hidden md:flex fixed top-1/2 right-6 -translate-y-1/2 z-50">
-        <a
-          href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="
-            flex items-center gap-3
-            bg-white/95 border border-primary/20
-            shadow-[0_8px_30px_rgba(0,0,0,0.12)]
-            px-5 py-3 rounded-2xl
-            transition-all hover:shadow-xl hover:-translate-y-1 hover:bg-white
-          "
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6 text-primary opacity-90"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <path d="M16 2v4M8 2v4M3 10h18" />
-          </svg>
-          <span className="text-primary font-semibold text-sm tracking-wide">
-            Prendre RDV
-          </span>
-        </a>
-      </div>
 
       <BackToTop />
 

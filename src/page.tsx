@@ -18,14 +18,12 @@ export default function Home() {
             </p>
 
             <div className="mt-6 flex justify-center gap-4">
-              <a
-                href="https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/places?specialityId=10&telehealth=false&bookingFunnelSource=profile"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-secondary text-offwhite px-6 py-3 rounded-md hover:bg-light hover:text-primary transition"
+              <button
+                type="button"
+                className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
               >
-                Prendre rendez-vous
-              </a>
+                Prendre RDV Doctolib
+              </button>
               <a
                 href="/osteopathie"
                 className="underline underline-offset-4 hover:text-light"
