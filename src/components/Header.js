@@ -167,6 +167,7 @@ export default function Header() {
             className="md:hidden flex items-center p-2 text-primary focus:outline-none"
             onClick={toggleMenu}
             aria-expanded={open}
+            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           >
             {!open ? (
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor">

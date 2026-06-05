@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#9E8C7F",      // Titre, boutons
-        secondary: "#C09A7D",    // Hover boutons / accents
+        secondary: "#7B5A3E",    // Accents – accessible (contraste 5.5:1 sur fond clair)
         light: "#F4EEE8",        // Fonds très clairs
         offwhite: "#FFFBF7",     // Fond page
         graywarm: "#6B645F",     // Texte courant lisible
