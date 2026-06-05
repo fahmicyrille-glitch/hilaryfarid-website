@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Script from "next/script";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
@@ -58,6 +57,7 @@ export default function OsteopathiePage() {
             ["Motifs fréquents", "motifs"],
             ["Déroulement d'une séance", "deroulement"],
             ["Pourquoi me consulter ?", "pourquoi-consulter"],
+            ["Pages spécialisées", "specialites"],
             ["Risques & contre-indications", "risques"],
             ["FAQ", "faq"],
           ].map(([label, id]) => (
@@ -77,45 +77,33 @@ export default function OsteopathiePage() {
         </ul>
       </aside>
 
-      {/* ========= SCHEMA ORG ========= */}
-      <Script
-        id="schema-osteopathie"
+      {/* JSON-LD inline — dans le HTML initial */}
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            [
-              {
-                "@context": "https://schema.org",
-                "@type": "MedicalWebPage",
-                "@id": "https://www.hilaryfarid-osteopathe.fr/osteopathie#page",
-                url: "https://www.hilaryfarid-osteopathe.fr/osteopathie",
-                name: "Ostéopathie – Hilary Farid Ostéopathe DO",
-                description:
-                  "Ostéopathie douce et globale pour adultes, nourrissons, femmes enceintes, enfants et sportifs. Spécialisée en pédiatrie et troubles de la succion.",
-                about: {
-                  "@type": "MedicalSpecialty",
-                  name: "Osteopathy"
-                }
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "Service",
-                "@id": "https://www.hilaryfarid-osteopathe.fr/osteopathie#service",
-                serviceType: "Ostéopathie",
-                provider: {
-                  "@type": "Person",
-                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid"
-                },
-                description:
-                  "Consultations d'ostéopathie pour adultes, bébés, femmes enceintes, sportifs et seniors. Approche douce et personnalisée.",
-                areaServed: ["Sèvres", "Paris 15"],
-                audience: ["Adult", "Infant", "PregnantWomen", "Athlete", "Child"]
-              }
-            ],
-            null,
-            2
-          ),
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "MedicalWebPage",
+              "@id": "https://www.hilaryfarid-osteopathe.fr/osteopathie#page",
+              url: "https://www.hilaryfarid-osteopathe.fr/osteopathie",
+              name: "Ostéopathie – Hilary Farid Ostéopathe DO",
+              description:
+                "Ostéopathie douce et globale pour adultes, nourrissons, femmes enceintes, enfants et sportifs. Spécialisée en périnatalité et troubles de la succion.",
+              about: { "@type": "MedicalSpecialty", name: "Osteopathy" },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "@id": "https://www.hilaryfarid-osteopathe.fr/osteopathie#service",
+              serviceType: "Ostéopathie",
+              provider: { "@type": "Person", "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid" },
+              description:
+                "Consultations d'ostéopathie pour adultes, bébés, femmes enceintes, sportifs et seniors. Approche douce et personnalisée.",
+              areaServed: ["Sèvres", "Paris 15"],
+              audience: ["Adult", "Infant", "PregnantWomen", "Athlete", "Child"],
+            },
+          ])
         }}
       />
 
@@ -504,6 +492,55 @@ export default function OsteopathiePage() {
                 </p>
               </div>
 
+            </div>
+          </div>
+        </section>
+      </SlideUp>
+
+      {/* ========= SPÉCIALITÉS DÉTAILLÉES ========= */}
+      <SlideUp>
+        <section id="specialites" className="py-14 px-6 bg-white xl:pl-80">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-semibold text-primary text-center">
+              Pages spécialisées
+            </h2>
+            <p className="mt-3 text-center text-graywarm max-w-2xl mx-auto">
+              Consultez les pages dédiées à chaque spécialité pour des informations détaillées et des réponses à vos questions spécifiques.
+            </p>
+            <div className="mt-8 grid sm:grid-cols-3 gap-5">
+              {[
+                {
+                  titre: "Ostéopathie Nourrisson",
+                  href: "/osteopathie/nourrisson",
+                  desc: "Coliques, reflux, plagiocéphalie, torticolis, freins restrictifs. Formation Centre YGY.",
+                  icon: "👶",
+                },
+                {
+                  titre: "Grossesse & Post-partum",
+                  href: "/osteopathie/femme-enceinte",
+                  desc: "Lombalgies, sciatique, préparation à l'accouchement, récupération post-partum. Formation CFPCO.",
+                  icon: "🤰",
+                },
+                {
+                  titre: "Ostéopathie du Sport",
+                  href: "/osteopathie/sport",
+                  desc: "Prévention, récupération, tendinites, entorses. Pour amateurs et compétiteurs.",
+                  icon: "🏃",
+                },
+              ].map(({ titre, href, desc, icon }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="block bg-offwhite rounded-2xl border border-light/60 p-6 hover:border-secondary/40 hover:shadow-md transition-all group"
+                >
+                  <span className="text-3xl mb-3 block">{icon}</span>
+                  <p className="font-bold text-primary text-lg group-hover:text-secondary transition-colors">{titre}</p>
+                  <p className="text-sm text-graywarm mt-2 leading-relaxed">{desc}</p>
+                  <span className="mt-3 inline-flex items-center text-xs font-semibold text-secondary">
+                    En savoir plus →
+                  </span>
+                </Link>
+              ))}
             </div>
           </div>
         </section>

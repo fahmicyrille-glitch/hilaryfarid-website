@@ -1,73 +1,95 @@
 // src/app/sitemap.js
 export default function sitemap() {
   const baseUrl = "https://www.hilaryfarid-osteopathe.fr";
-  // On utilise la date du jour pour booster la "fraîcheur" SEO
-  const lastMod = new Date().toISOString().split('T')[0];
 
   return [
     {
       url: `${baseUrl}/`,
-      lastModified: lastMod,
+      lastModified: "2025-06-01",
       changeFrequency: "monthly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/osteopathie`,
-      lastModified: lastMod,
+      lastModified: "2025-05-01",
       changeFrequency: "monthly",
-      priority: 0.9, // Augmenté pour souligner le service phare
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/drainage`,
-      lastModified: lastMod,
+      lastModified: "2025-05-01",
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/sevres`,
-      lastModified: lastMod,
+      lastModified: "2025-06-01",
       changeFrequency: "monthly",
-      priority: 0.8, // Augmenté pour le SEO local
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/paris15`,
-      lastModified: lastMod,
+      lastModified: "2025-06-01",
       changeFrequency: "monthly",
-      priority: 0.8, // Augmenté pour le SEO local
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/temoignages`,
-      lastModified: lastMod,
+      lastModified: "2025-06-01",
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/a-propos`,
-      lastModified: lastMod,
+      url: `${baseUrl}/tarifs`,
+      lastModified: "2025-04-01",
       changeFrequency: "yearly",
-      priority: 0.5,
+      priority: 0.7,
     },
     {
-      url: `${baseUrl}/tarifs`,
-      lastModified: lastMod,
+      url: `${baseUrl}/a-propos`,
+      lastModified: "2025-01-01",
       changeFrequency: "yearly",
       priority: 0.5,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: lastMod,
+      lastModified: "2025-01-01",
       changeFrequency: "yearly",
       priority: 0.5,
     },
     {
+      url: `${baseUrl}/osteopathie/nourrisson`,
+      lastModified: "2025-06-01",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/osteopathie/femme-enceinte`,
+      lastModified: "2025-06-01",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/osteopathie/sport`,
+      lastModified: "2025-06-01",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/drainage/bienfaits`,
+      lastModified: "2025-06-01",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/mentions-legales`,
-      lastModified: lastMod,
+      lastModified: "2025-01-01",
       changeFrequency: "yearly",
       priority: 0.2,
     },
     {
       url: `${baseUrl}/politique-confidentialite`,
-      lastModified: lastMod,
+      lastModified: "2025-01-01",
       changeFrequency: "yearly",
       priority: 0.2,
     },

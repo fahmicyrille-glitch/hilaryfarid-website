@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Script from "next/script";
 import Image from "next/image";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import MobileSummary from "@/components/MobileSummary";
@@ -73,156 +72,98 @@ export default function DrainageLymphatiquePage() {
 
   return (
     <main className="relative">
-      {/* ========= SCHEMA ORG (Optimisé SEO Local avec avis) ========= */}
-      <Script
-        id="schema-drainage"
+      {/* JSON-LD inline — dans le HTML initial */}
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            [
-              {
-                "@context": "https://schema.org",
-                "@type": "MedicalWebPage",
-                "@id": "https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique#page",
-                url: "https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique",
-                name: "Drainage lymphatique Renata França – Hilary Farid",
-                description:
-                  "Drainage lymphatique méthode Renata França : bien-être, sensation de légèreté, amélioration possible de la rétention d’eau. Séances à Paris 15 et Sèvres.",
-                breadcrumb: {
-                  "@type": "BreadcrumbList",
-                  itemListElement: [
-                    {
-                      "@type": "ListItem",
-                      position: 1,
-                      name: "Accueil",
-                      item: "https://www.hilaryfarid-osteopathe.fr",
-                    },
-                    {
-                      "@type": "ListItem",
-                      position: 2,
-                      name: "Drainage lymphatique",
-                      item: "https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique",
-                    },
-                  ],
-                },
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "Service",
-                "@id": "https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique#service",
-                serviceType: "Drainage lymphatique (méthode Renata França)",
-                provider: {
-                  "@type": "Person",
-                  "@id": "https://www.hilaryfarid-osteopathe.fr#hilary-farid",
-                },
-                areaServed: ["Paris 15", "Sèvres"],
-                description:
-                  "Séance de drainage lymphatique méthode Renata França réalisée par Hilary Farid, ostéopathe DO. Objectifs : sensation de légèreté, confort circulatoire, détente.",
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "LocalBusiness",
-                "@id": "https://www.hilaryfarid-osteopathe.fr/sevres#business",
-                name: "Cabinet – Sèvres",
-                telephone: "+33 6 72 01 45 39",
-                logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
-                image: "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
-                address: {
-                  "@type": "PostalAddress",
-                  streetAddress: "104 Grande Rue",
-                  postalCode: "92310",
-                  addressLocality: "Sèvres",
-                  addressCountry: "FR",
-                },
-                aggregateRating: {
-                  "@type": "AggregateRating",
-                  ratingValue: "5",
-                  reviewCount: "42"
-                },
-                makesOffer: {
-                  "@type": "Service",
-                  "@id": "https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique#service",
-                },
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "LocalBusiness",
-                "@id": "https://www.hilaryfarid-osteopathe.fr/paris15#business",
-                name: "Cabinet – Paris 15",
-                telephone: "+33 6 72 01 45 39",
-                logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
-                image:
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
-                address: {
-                  "@type": "PostalAddress",
-                  streetAddress: "28 Rue Letellier",
-                  postalCode: "75015",
-                  addressLocality: "Paris",
-                  addressRegion: "Île-de-France",
-                  addressCountry: "FR",
-                },
-                aggregateRating: {
-                  "@type": "AggregateRating",
-                  ratingValue: "5",
-                  reviewCount: "62"
-                },
-                makesOffer: {
-                  "@type": "Service",
-                  "@id": "https://www.hilaryfarid-osteopathe.fr/drainage-lymphatique#service",
-                },
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                mainEntity: [
-                  {
-                    "@type": "Question",
-                    name: "En combien de séances peut-on ressentir une différence ?",
-                    acceptedAnswer: {
-                      "@type": "Answer",
-                      text:
-                        "Beaucoup de patients décrivent une sensation de légèreté dès la première séance. Le nombre de séances dépend de l’objectif et du ressenti.",
-                    },
-                  },
-                  {
-                    "@type": "Question",
-                    name: "Le drainage lymphatique Renata França est-il douloureux ?",
-                    acceptedAnswer: {
-                      "@type": "Answer",
-                      text:
-                        "La technique est dynamique et tonique tout en restant confortable. L’intensité est toujours adaptée à votre sensibilité.",
-                    },
-                  },
-                  {
-                    "@type": "Question",
-                    name: "Peut-on faire un drainage pendant la grossesse ?",
-                    acceptedAnswer: {
-                      "@type": "Answer",
-                      text:
-                        "Selon le terme et votre situation, cela peut être envisagé pour améliorer le confort circulatoire. Un avis médical peut être recommandé en cas de doute.",
-                    },
-                  },
-                  {
-                    "@type": "Question",
-                    name: "Quelles sont les contre-indications principales ?",
-                    acceptedAnswer: {
-                      "@type": "Answer",
-                      text:
-                        "Fièvre/infection aiguë, phlébite/risque thrombotique, pathologies non stabilisées, chirurgie très récente selon avis médical. En cas de doute, contactez-moi avant de réserver.",
-                    },
-                  },
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "MedicalWebPage",
+              "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#page",
+              url: "https://www.hilaryfarid-osteopathe.fr/drainage",
+              name: "Drainage Renata França – Hilary Farid Ostéopathe DO",
+              description:
+                "Drainage Renata França : bien-être, sensation de légèreté, amélioration possible de la rétention d’eau. Séances à Paris 15 et Sèvres. Technique manuelle différente du drainage lymphatique médical remboursé.",
+              breadcrumb: {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.hilaryfarid-osteopathe.fr" },
+                  { "@type": "ListItem", position: 2, name: "Drainage Renata França", item: "https://www.hilaryfarid-osteopathe.fr/drainage" },
                 ],
               },
-            ],
-            null,
-            2
-          ),
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#service",
+              serviceType: "Drainage Renata França (méthode Renata França)",
+              provider: { "@type": "Person", "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid" },
+              areaServed: ["Paris 15", "Sèvres"],
+              description:
+                "Séance de drainage Renata França réalisée par Hilary Farid, ostéopathe DO. Technique manuelle spécifique, différente du drainage lymphatique médical. Objectifs : sensation de légèreté, confort circulatoire, détente.",
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-sevres",
+              name: "Cabinet – Sèvres",
+              telephone: "+33672014539",
+              logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
+              image: "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
+              address: { "@type": "PostalAddress", streetAddress: "104 Grande Rue", postalCode: "92310", addressLocality: "Sèvres", addressCountry: "FR" },
+              aggregateRating: { "@type": "AggregateRating", ratingValue: "5", reviewCount: "62" },
+              makesOffer: { "@type": "Service", "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#service" },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-paris15",
+              name: "Cabinet – Paris 15",
+              telephone: "+33672014539",
+              logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
+              image: "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
+              address: { "@type": "PostalAddress", streetAddress: "28 Rue Letellier", postalCode: "75015", addressLocality: "Paris", addressRegion: "Île-de-France", addressCountry: "FR" },
+              aggregateRating: { "@type": "AggregateRating", ratingValue: "5", reviewCount: "62" },
+              makesOffer: { "@type": "Service", "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#service" },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "En combien de séances peut-on ressentir une différence avec le drainage Renata França ?",
+                  acceptedAnswer: { "@type": "Answer", text: "Beaucoup de patients décrivent une sensation de légèreté dès la première séance. Le nombre de séances dépend de l’objectif et du ressenti." },
+                },
+                {
+                  "@type": "Question",
+                  name: "Le drainage Renata França est-il douloureux ?",
+                  acceptedAnswer: { "@type": "Answer", text: "La technique est dynamique et tonique tout en restant confortable. L’intensité est toujours adaptée à votre sensibilité." },
+                },
+                {
+                  "@type": "Question",
+                  name: "Le drainage Renata França est-il remboursé par la Sécurité sociale ?",
+                  acceptedAnswer: { "@type": "Answer", text: "Non. Le drainage Renata França est une pratique de bien-être, différente du drainage lymphatique médical prescrit par un médecin et remboursé par la Sécurité sociale. Il n’est pas remboursé." },
+                },
+                {
+                  "@type": "Question",
+                  name: "Peut-on faire un drainage Renata França pendant la grossesse ?",
+                  acceptedAnswer: { "@type": "Answer", text: "Selon le terme et votre situation, cela peut être envisagé pour améliorer le confort circulatoire. Un avis médical peut être recommandé en cas de doute." },
+                },
+                {
+                  "@type": "Question",
+                  name: "Quelles sont les contre-indications principales ?",
+                  acceptedAnswer: { "@type": "Answer", text: "Fièvre/infection aiguë, phlébite/risque thrombotique, pathologies non stabilisées, chirurgie très récente selon avis médical. En cas de doute, contactez-moi avant de réserver." },
+                },
+              ],
+            },
+          ])
         }}
       />
 
       {/* 🔥 STICKY SIDEBAR SOMMAIRE (desktop) */}
-      <aside className="hidden lg:block fixed left-6 top-40 w-56 bg-white/80 backdrop-blur-md shadow-lg border border-gray-200 rounded-xl p-4 z-40">
+      <aside className="hidden xl:block fixed left-6 top-40 w-56 bg-white/80 backdrop-blur-md shadow-lg border border-gray-200 rounded-xl p-4 z-40">
         <h3 className="text-sm font-semibold text-primary mb-2">Sommaire</h3>
         <ul className="space-y-2 text-sm">
           {SECTIONS.map((s) => (
@@ -273,7 +214,7 @@ export default function DrainageLymphatiquePage() {
 
       {/* ========= HERO (Optimisé CRO) ========= */}
       <FadeIn>
-        <section className="bg-offwhite py-16 px-6">
+        <section className="bg-offwhite py-16 px-6 xl:pl-72">
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
             <div>
               <p className="uppercase tracking-[0.25em] text-sm text-secondary mb-3">
@@ -332,7 +273,7 @@ export default function DrainageLymphatiquePage() {
             <div className="relative w-full h-80 md:h-[28rem] rounded-2xl overflow-hidden shadow-lg">
               <Image
                 src="/drainage/drainage_ventre.webp"
-                alt="Drainage lymphatique méthode Renata França par Hilary Farid"
+                alt="Drainage Renata França par Hilary Farid ostéopathe à Sèvres et Paris 15"
                 fill
                 priority
                 sizes="100vw"
@@ -346,7 +287,7 @@ export default function DrainageLymphatiquePage() {
       </FadeIn>
 
       {/* ========= SOMMAIRE MOBILE ========= */}
-      <section className="lg:hidden py-6 px-6 bg-[#F7F9FB] border-y border-light/50">
+      <section className="xl:hidden py-6 px-6 bg-[#F7F9FB] border-y border-light/50">
         <div className="max-w-4xl mx-auto">
           <MobileSummary
             sections={SECTIONS}
@@ -358,7 +299,7 @@ export default function DrainageLymphatiquePage() {
 
       {/* ========= PRESENTATION ========= */}
       <SlideUp>
-        <section id="presentation" className="py-20 px-6 bg-light">
+        <section id="presentation" className="py-20 px-6 xl:pl-72 bg-light">
           <div className="max-w-5xl mx-auto">
 
             {/* Titre */}
@@ -398,7 +339,7 @@ export default function DrainageLymphatiquePage() {
                 </h3>
 
                 <p className="mt-3 text-base text-graywarm leading-relaxed">
-                  Le drainage lymphatique <strong>Renata França</strong> est une
+                  Le drainage <strong>Renata França</strong> est une
                   technique précise et rythmée, visant à stimuler la circulation
                   lymphatique et à favoriser une <strong>sensation de légèreté</strong>
                   et une meilleure aisance corporelle.
@@ -418,7 +359,7 @@ export default function DrainageLymphatiquePage() {
 
       {/* ========= BIENFAITS ========= */}
       <SlideUp>
-        <section id="bienfaits" className="py-16 px-6 bg-offwhite">
+        <section id="bienfaits" className="py-16 px-6 xl:pl-72 bg-offwhite">
           <div className="max-w-6xl mx-auto">
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl font-semibold text-primary">
@@ -430,7 +371,16 @@ export default function DrainageLymphatiquePage() {
               </p>
             </div>
 
-            <div className="mt-10 grid md:grid-cols-3 gap-6">
+            <div className="mt-6 text-center">
+              <a
+                href="/drainage/bienfaits"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-secondary underline underline-offset-4 hover:text-primary transition-colors"
+              >
+                Guide complet des bienfaits →
+              </a>
+            </div>
+
+            <div className="mt-8 grid md:grid-cols-3 gap-6">
               {[
                 {
                   title: "Jambes lourdes",
@@ -503,7 +453,7 @@ export default function DrainageLymphatiquePage() {
 
       {/* ========= CARROUSEL DRAINAGE ========= */}
       <SlideUp>
-        <section className="py-16 px-6 bg-light">
+        <section className="py-16 px-6 xl:pl-72 bg-light">
           <div className="max-w-6xl mx-auto text-center">
             <h2 className="text-3xl font-semibold text-primary">
               Le drainage en images
@@ -523,7 +473,7 @@ export default function DrainageLymphatiquePage() {
 
       {/* ========= DEROULEMENT ========= */}
       <SlideUp>
-        <section id="deroulement" className="py-16 px-6 bg-offwhite">
+        <section id="deroulement" className="py-16 px-6 xl:pl-72 bg-offwhite">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-semibold text-primary text-center">
               Comment se déroule une séance ?
@@ -577,14 +527,14 @@ export default function DrainageLymphatiquePage() {
 
       {/* ========= POUR QUI ========= */}
       <SlideUp>
-        <section id="pour-qui" className="py-16 px-6 bg-light">
+        <section id="pour-qui" className="py-16 px-6 xl:pl-72 bg-light">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
             <div>
               <h2 className="text-3xl font-semibold text-primary">
                 Pour qui est fait le drainage ?
               </h2>
               <p className="mt-4 text-graywarm leading-relaxed">
-                Le drainage lymphatique est souvent choisi pour le confort, l’esthétique et le bien-être.
+                Le drainage Renata França est souvent choisi pour le confort, l’esthétique et le bien-être.
                 Je l’adapte à votre situation et à votre sensibilité.
               </p>
 
@@ -609,7 +559,7 @@ export default function DrainageLymphatiquePage() {
               <div className="relative h-80">
                 <Image
                   src="/drainage/drainage_jambe.webp"
-                  alt="Séance de drainage lymphatique"
+                  alt="Séance de drainage Renata França sur les jambes – cabinet Hilary Farid"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -638,7 +588,7 @@ export default function DrainageLymphatiquePage() {
 
       {/* ========= POURQUOI MOI ========= */}
       <SlideUp>
-        <section id="pourquoi-moi" className="py-16 px-6 bg-offwhite">
+        <section id="pourquoi-moi" className="py-16 px-6 xl:pl-72 bg-offwhite">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-semibold text-primary text-center">
               Pourquoi me consulter pour un drainage Renata França ?
@@ -678,7 +628,7 @@ export default function DrainageLymphatiquePage() {
 
       {/* ========= AVANT / APRÈS ========= */}
       <SlideUp>
-        <section id="avant-apres" className="py-16 px-6 bg-light">
+        <section id="avant-apres" className="py-16 px-6 xl:pl-72 bg-light">
           <div className="max-w-6xl mx-auto text-center">
 
             <h2 className="text-3xl font-semibold text-primary">
@@ -695,10 +645,11 @@ export default function DrainageLymphatiquePage() {
               <div className="rounded-2xl bg-white p-6 shadow-sm border">
                 <Image
                   src="/drainage/avant_apres_jambe.webp"
-                  alt="Drainage lymphatique jambes avant après"
+                  alt="Drainage Renata França jambes avant après – résultats Hilary Farid"
                   width={520}
                   height={720}
-                  className="rounded-xl mx-auto"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="rounded-xl mx-auto w-full h-auto"
                 />
                 <p className="mt-3 text-xs text-graywarm">
                   Exemple visuel – sensation de légèreté et diminution des gonflements.
@@ -709,10 +660,11 @@ export default function DrainageLymphatiquePage() {
               <div className="rounded-2xl bg-white p-6 shadow-sm border">
                 <Image
                   src="/drainage/avant_apres_ventre.webp"
-                  alt="Drainage lymphatique ventre avant après"
+                  alt="Drainage Renata França ventre avant après – résultats Hilary Farid"
                   width={520}
                   height={720}
-                  className="rounded-xl mx-auto"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="rounded-xl mx-auto w-full h-auto"
                 />
                 <p className="mt-3 text-xs text-graywarm">
                   Exemple visuel – amélioration possible du confort abdominal.
@@ -723,7 +675,7 @@ export default function DrainageLymphatiquePage() {
             <div className="mt-8 max-w-3xl mx-auto rounded-2xl border bg-white p-6 shadow-sm">
               <p className="text-sm text-graywarm leading-relaxed">
                 ⚠️ Ces images ne constituent pas une promesse de résultat.
-                Le drainage lymphatique est une pratique de bien-être.
+                Le drainage Renata França est une pratique de bien-être.
                 Les effets ressentis dépendent de chaque personne et de sa situation.
               </p>
             </div>
@@ -734,7 +686,7 @@ export default function DrainageLymphatiquePage() {
 
       {/* ========= CONTRE-INDICATIONS ========= */}
       <SlideUp>
-        <section id="contraindications" className="py-16 px-6 bg-offwhite">
+        <section id="contraindications" className="py-16 px-6 xl:pl-72 bg-offwhite">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-semibold text-primary text-center">
               Contre-indications & précautions
@@ -768,7 +720,7 @@ export default function DrainageLymphatiquePage() {
 
       {/* ========= FAQ ========= */}
       <SlideUp>
-        <section id="faq" className="py-16 px-6 bg-light">
+        <section id="faq" className="py-16 px-6 xl:pl-72 bg-light">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-semibold text-primary text-center">
               FAQ
@@ -813,7 +765,7 @@ export default function DrainageLymphatiquePage() {
 
       {/* ========= CTA FINAL ========= */}
       <FadeIn>
-        <section id="cta" className="py-16 px-6 text-center bg-offwhite">
+        <section id="cta" className="py-16 px-6 xl:pl-72 text-center bg-offwhite">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-semibold text-primary">
               Prêt(e) à retrouver une sensation de légèreté ?
@@ -841,7 +793,7 @@ export default function DrainageLymphatiquePage() {
             </div>
 
             <p className="mt-6 text-xs text-graywarm">
-              *Le drainage lymphatique est une pratique de bien-être. Les effets peuvent varier selon les personnes.
+              *Le drainage Renata França est une pratique de bien-être. Les effets peuvent varier selon les personnes.
               Ce contenu ne remplace pas un avis médical.
             </p>
           </div>

@@ -3,9 +3,9 @@
 // src/app/page.js
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 import { FadeInNoShift } from "@/components/MotionWrapper";
 import BackToTop from "@/components/BackToTop";
+import { OPENING_HOURS } from "@/config/siteConfig";
 
 /* 🚀 ANIMATION CSS SSR-SAFE (ZÉRO CLS) */
 const fadeCss = `
@@ -19,6 +19,108 @@ const fadeCss = `
 }
 `;
 
+const HOME_SCHEMAS = [
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "@id": "https://www.hilaryfarid-osteopathe.fr/#webpage",
+    url: "https://www.hilaryfarid-osteopathe.fr/",
+    name: "Hilary Farid – Ostéopathe DO à Sèvres & Paris 15",
+    description:
+      "Ostéopathie adulte, nourrisson, femme enceinte et sportif. Drainage Renata França. Deux cabinets : Sèvres & Paris 15.",
+    mainEntity: {
+      "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Physician",
+    "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid",
+    name: "Hilary Farid",
+    image: "https://www.hilaryfarid-osteopathe.fr/Hilary.webp",
+    jobTitle: "Ostéopathe D.O.",
+    telephone: "+33672014539",
+    logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
+    email: "hilaryfarid.osteopathe@gmail.com",
+    url: "https://www.hilaryfarid-osteopathe.fr/",
+    medicalSpecialty: [
+      "Osteopathy",
+      "PregnancyCare",
+      "Pediatric",
+      "SportsMedicine",
+    ],
+    worksFor: [
+      { "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-sevres" },
+      { "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-paris15" },
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      reviewCount: "100",
+      bestRating: "5",
+      worstRating: "5",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-sevres",
+    name: "Cabinet d'ostéopathie – Sèvres",
+    image: [
+      "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
+      "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-2.webp",
+      "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-3.webp",
+    ],
+    telephone: "+33672014539",
+    logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
+    priceRange: "€€",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "104 Grande Rue",
+      addressLocality: "Sèvres",
+      postalCode: "92310",
+      addressCountry: "FR",
+    },
+    identifier: { "@type": "PropertyValue", name: "SIRET", value: "90179515300013" },
+    legalName: "SIREN 901795153",
+    openingHoursSpecification: OPENING_HOURS,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      reviewCount: "62",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-paris15",
+    name: "Cabinet d'ostéopathie – Paris 15",
+    image: [
+      "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
+      "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-2.webp",
+      "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-3.webp",
+    ],
+    telephone: "+33672014539",
+    logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
+    priceRange: "€€",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "28 Rue Letellier",
+      addressLocality: "Paris",
+      postalCode: "75015",
+      addressCountry: "FR",
+    },
+    identifier: { "@type": "PropertyValue", name: "SIRET", value: "90179515300021" },
+    legalName: "SIREN 901795153",
+    openingHoursSpecification: OPENING_HOURS,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      reviewCount: "62",
+    },
+  },
+];
+
 export default function Home() {
   return (
     <main>
@@ -26,183 +128,31 @@ export default function Home() {
       {/* Inject CSS SSR-safe animation */}
       <style>{fadeCss}</style>
 
-      {/* ======== MedicalWebPage + Physician + LocalBusiness ======== */}
-      <Script
-        id="ld-home-medicalwebpage"
+      {/* JSON-LD inline — dans le HTML initial dès le rendu serveur */}
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            [
-              {
-                "@context": "https://schema.org",
-                "@type": "MedicalWebPage",
-                "@id": "https://www.hilaryfarid-osteopathe.fr/#webpage",
-                url: "https://www.hilaryfarid-osteopathe.fr/",
-                name: "Hilary Farid – Ostéopathe DO à Sèvres & Paris 15",
-                description:
-                  "Ostéopathie adulte, nourrisson, femme enceinte et sportif. Drainage lymphatique Renata França. Deux cabinets : Sèvres & Paris 15.",
-                mainEntity: {
-                  "@id": "https://www.hilaryfarid-osteopathe.fr/#physician",
-                },
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "Physician",
-                "@id": "https://www.hilaryfarid-osteopathe.fr/#physician",
-                name: "Hilary Farid",
-                image: "https://www.hilaryfarid-osteopathe.fr/Hilary.webp",
-                jobTitle: "Ostéopathe D.O.",
-                telephone: "+33 6 72 01 45 39",
-                logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
-                email: "contact@hilaryfarid-osteopathe.fr",
-                url: "https://www.hilaryfarid-osteopathe.fr/",
-                medicalSpecialty: [
-                  "Osteopathy",
-                  "PregnancyCare",
-                  "Pediatric",
-                  "SportsMedicine",
-                ],
-                worksFor: [
-                  { "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-sevres" },
-                  { "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-paris15" },
-                ],
-                aggregateRating: {
-                  "@type": "AggregateRating",
-                  ratingValue: "5",
-                  ratingCount: "42",
-                  bestRating: "5",
-                  worstRating: "5",
-                },
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "LocalBusiness",
-                "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-sevres",
-                name: "Cabinet d'ostéopathie – Sèvres",
-                image: [
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-2.webp",
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-3.webp",
-                ],
-                telephone: "+33 6 72 01 45 39",
-                logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
-                priceRange: "€€",
-                address: {
-                  "@type": "PostalAddress",
-                  streetAddress: "104 Grande Rue",
-                  addressLocality: "Sèvres",
-                  postalCode: "92310",
-                  addressCountry: "FR",
-                },
-                identifier: {
-                  "@type": "PropertyValue",
-                  name: "SIRET",
-                  value: "90179515300013",
-                },
-                legalName: "SIREN 901795153",
-                openingHoursSpecification: [
-                  {
-                    "@type": "OpeningHoursSpecification",
-                    dayOfWeek: "Friday",
-                    opens: "09:00",
-                    closes: "20:00",
-                  },
-                  {
-                    "@type": "OpeningHoursSpecification",
-                    dayOfWeek: "Saturday",
-                    opens: "10:00",
-                    closes: "13:00",
-                  },
-                  {
-                    "@type": "OpeningHoursSpecification",
-                    dayOfWeek: "Monday",
-                    opens: "12:00",
-                    closes: "20:00",
-                  },
-                  {
-                    "@type": "OpeningHoursSpecification",
-                    dayOfWeek: "Wednesday",
-                    opens: "15:00",
-                    closes: "20:00",
-                  },
-                ],
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "LocalBusiness",
-                "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-paris15",
-                name: "Cabinet d'ostéopathie – Paris 15",
-                image: [
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-2.webp",
-                  "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-3.webp",
-                ],
-                telephone: "+33 6 72 01 45 39",
-                logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
-                priceRange: "€€",
-                address: {
-                  "@type": "PostalAddress",
-                  streetAddress: "28 Rue Letellier",
-                  addressLocality: "Paris",
-                  postalCode: "75015",
-                  addressCountry: "FR",
-                },
-                identifier: {
-                  "@type": "PropertyValue",
-                  name: "SIRET",
-                  value: "90179515300021",
-                },
-                legalName: "SIREN 901795153",
-                openingHoursSpecification: [
-                  {
-                    "@type": "OpeningHoursSpecification",
-                    dayOfWeek: "Friday",
-                    opens: "09:00",
-                    closes: "20:00",
-                  },
-                  {
-                    "@type": "OpeningHoursSpecification",
-                    dayOfWeek: "Saturday",
-                    opens: "10:00",
-                    closes: "13:00",
-                  },
-                  {
-                    "@type": "OpeningHoursSpecification",
-                    dayOfWeek: "Monday",
-                    opens: "12:00",
-                    closes: "20:00",
-                  },
-                  {
-                    "@type": "OpeningHoursSpecification",
-                    dayOfWeek: "Wednesday",
-                    opens: "15:00",
-                    closes: "20:00",
-                  },
-                ],
-              },
-            ],
-            null,
-            2
-          ),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_SCHEMAS) }}
       />
 
-      {/* ================= HERO SECTION (OPTIMISÉE EXPERTISES DUALES) ================= */}
+      {/* ================= HERO SECTION ================= */}
       <section className="bg-primary text-offwhite relative overflow-hidden pb-24 md:pb-32">
         <div className="absolute inset-0 opacity-[0.12] pointer-events-none bg-[radial-gradient(circle_at_top,_#ffffff_0,_transparent_55%)]" />
 
         <div className="max-w-6xl mx-auto px-6 pt-16 md:pt-20 grid md:grid-cols-2 gap-10 items-center relative z-10">
 
           <div className="fade-hero">
-            <h1 className="uppercase tracking-[0.2em] text-xs md:text-sm text-light">
-              Ostéopathe D.O & Praticienne Renata França
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-offwhite">
+              Ostéopathe D.O.<br />
+              à Sèvres &amp; Paris 15
             </h1>
 
-            {/* Le H2 avec le magnifique contraste foncé */}
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#1E293B]">
-              Ostéopathie douce &<br />
-              Drainage Lymphatique
+            <p className="mt-3 uppercase tracking-[0.15em] text-xs md:text-sm text-offwhite/70">
+              Praticienne Renata França certifiée
+            </p>
+
+            <h2 className="mt-5 text-xl md:text-2xl font-semibold text-offwhite/90 leading-snug">
+              Ostéopathie douce &amp;<br />
+              Drainage Renata França
             </h2>
 
             <p className="mt-5 text-base md:text-lg text-offwhite/90">
@@ -230,7 +180,7 @@ export default function Home() {
                 href="/drainage"
                 className="inline-flex items-center px-6 py-3 rounded-full text-sm md:text-base text-offwhite border border-offwhite/50 bg-white/10 hover:bg-white/20 transition-colors"
               >
-                Le Drainage Renata
+                Le Drainage Renata França
               </Link>
             </div>
 
@@ -259,12 +209,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ================= NOUVELLE SECTION : LES 2 EXPERTISES (Cartes 100% Cliquables) ================= */}
+      {/* ================= LES 2 EXPERTISES ================= */}
       <section className="relative z-20 -mt-16 md:-mt-24 max-w-6xl mx-auto px-6 pb-16">
         <FadeInNoShift>
           <div className="grid md:grid-cols-2 gap-6 md:gap-10">
 
-            {/* Carte Ostéopathie - Maintenant un gros lien cliquable avec hover effect (group) */}
+            {/* Carte Ostéopathie */}
             <Link
               href="/osteopathie"
               className="group bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-light/50 flex flex-col h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
@@ -281,7 +231,7 @@ export default function Home() {
               </span>
             </Link>
 
-            {/* Carte Drainage Renata França - Maintenant un gros lien cliquable */}
+            {/* Carte Drainage Renata França */}
             <Link
               href="/drainage"
               className="group bg-[#FAF6F3] rounded-3xl p-8 md:p-10 shadow-xl border border-[#E8D8CE] flex flex-col h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
@@ -289,12 +239,12 @@ export default function Home() {
               <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm">
                 <span className="text-3xl">✨</span>
               </div>
-              <h3 className="text-2xl font-bold text-[#1E293B] mb-4">Drainage lymphatique Renata França</h3>
+              <h3 className="text-2xl font-bold text-[#1E293B] mb-4">Drainage Renata França</h3>
               <p className="text-graywarm mb-6 flex-grow">
                 Un massage manuel tonique et exclusif aux résultats immédiats. Idéal pour lutter contre la rétention d'eau, obtenir des jambes légères, un ventre dégonflé et relancer le métabolisme.
               </p>
               <span className="font-semibold text-[#1E293B] underline underline-offset-4 group-hover:text-primary flex items-center gap-2">
-                Tout savoir sur le drainage <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                Tout savoir sur le drainage Renata <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </span>
             </Link>
 
@@ -318,7 +268,7 @@ export default function Home() {
             <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <FadeInNoShift delay={0.1}>
                 <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 h-full">
-                  <h3 className="font-semibold text-primary">Douleurs & posture</h3>
+                  <h3 className="font-semibold text-primary">Douleurs &amp; posture</h3>
                   <p className="mt-2 text-sm text-graywarm">
                     Maux de dos, nuque, épaules, sciatiques, blocages, tensions
                     récurrentes, migraines…
@@ -328,7 +278,7 @@ export default function Home() {
 
               <FadeInNoShift delay={0.2}>
                 <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 h-full">
-                  <h3 className="font-semibold text-primary">Nourrissons & enfants</h3>
+                  <h3 className="font-semibold text-primary">Nourrissons &amp; enfants</h3>
                   <p className="mt-2 text-sm text-graywarm">
                     Plagiocéphalie, coliques, reflux, troubles du sommeil, pleurs inexpliqués…
                   </p>
@@ -337,7 +287,7 @@ export default function Home() {
 
               <FadeInNoShift delay={0.3}>
                 <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 h-full">
-                  <h3 className="font-semibold text-primary">Grossesse & post-partum</h3>
+                  <h3 className="font-semibold text-primary">Grossesse &amp; post-partum</h3>
                   <p className="mt-2 text-sm text-graywarm">
                     Lombalgies, préparation du bassin, sciatique, confort respiratoire…
                   </p>
@@ -346,7 +296,7 @@ export default function Home() {
 
               <FadeInNoShift delay={0.4}>
                 <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 h-full">
-                  <h3 className="font-semibold text-primary">Digestion & stress</h3>
+                  <h3 className="font-semibold text-primary">Digestion &amp; stress</h3>
                   <p className="mt-2 text-sm text-graywarm">
                     Troubles digestifs, ballonnements, anxiété, sommeil agité, fatigue…
                   </p>
@@ -364,7 +314,7 @@ export default function Home() {
             Nos cabinets de consultation
           </h2>
           <p className="mt-4 text-center text-graywarm">
-            Séances d'ostéopathie et de drainage lymphatique à Sèvres et Paris 15.
+            Séances d'ostéopathie et de drainage Renata França à Sèvres et Paris 15.
           </p>
 
           <div className="mt-12 grid md:grid-cols-2 gap-10">
@@ -377,7 +327,7 @@ export default function Home() {
                 <Image
                   src="/cabinet-sevres/cabinet-sevres-1.webp"
                   width={350} height={200}
-                  alt="Cabinet d'ostéopathie à Sèvres – salle de consultation"
+                  alt="Salle de consultation du cabinet d'ostéopathie à Sèvres – Hilary Farid"
                   className="object-cover h-28 w-full"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -385,7 +335,7 @@ export default function Home() {
                 <Image
                   src="/cabinet-sevres/cabinet-sevres-2.webp"
                   width={350} height={200}
-                  alt="Cabinet d'ostéopathie à Sèvres – table de soin"
+                  alt="Table de soin ostéopathie au cabinet de Sèvres – Hilary Farid"
                   className="object-cover h-28 w-full"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -393,7 +343,7 @@ export default function Home() {
                 <Image
                   src="/cabinet-sevres/cabinet-sevres-3.webp"
                   width={350} height={200}
-                  alt="Cabinet d'ostéopathie à Sèvres – salle d'attente"
+                  alt="Salle d'attente du cabinet d'ostéopathie Sèvres – Hilary Farid"
                   className="object-cover h-28 w-full"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -425,7 +375,7 @@ export default function Home() {
                 <Image
                   src="/cabinet-paris15/cabinet-paris15-1.webp"
                   width={350} height={200}
-                  alt="Cabinet d'ostéopathie à Paris 15 – salle de consultation"
+                  alt="Salle de consultation du cabinet d'ostéopathie Paris 15 – Hilary Farid"
                   className="object-cover h-28 w-full"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -433,7 +383,7 @@ export default function Home() {
                 <Image
                   src="/cabinet-paris15/cabinet-paris15-2.webp"
                   width={350} height={200}
-                  alt="Cabinet d'ostéopathie à Paris 15 – table de soin"
+                  alt="Table de soin ostéopathie au cabinet Paris 15 – Hilary Farid"
                   className="object-cover h-28 w-full"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -441,7 +391,7 @@ export default function Home() {
                 <Image
                   src="/cabinet-paris15/cabinet-paris15-3.webp"
                   width={350} height={200}
-                  alt="Cabinet d'ostéopathie à Paris 15 – salle d'attente"
+                  alt="Salle d'attente du cabinet d'ostéopathie Paris 15 – Hilary Farid"
                   className="object-cover h-28 w-full"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -474,7 +424,7 @@ export default function Home() {
             Prêt(e) à prendre soin de vous ?
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-offwhite/90">
-            Une première séance permet déjà de faire le point, que ce soit pour des douleurs ou pour un drainage.
+            Une première séance permet déjà de faire le point, que ce soit pour des douleurs ou pour un drainage Renata França.
           </p>
           <button
             type="button"

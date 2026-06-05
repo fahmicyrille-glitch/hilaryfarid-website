@@ -49,7 +49,7 @@ export default function Header() {
   const links = [
     ["Accueil", "/"],
     ["Ostéopathie", "/osteopathie"],
-    ["Drainage", "/drainage"],
+    ["Drainage Renata", "/drainage"],
     //["Conseil Visio", "/visio", true], // <-- Le "true" active le badge
     ["Tarifs", "/tarifs"],
     ["Sèvres", "/sevres"],

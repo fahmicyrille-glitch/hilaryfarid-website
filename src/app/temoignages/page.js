@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import Script from "next/script";
 import { FadeIn, SlideUp, HeroMotion } from "@/components/MotionWrapper";
 import BackToTop from "@/components/BackToTop";
 
@@ -45,7 +44,7 @@ const BASE_REVIEWS = [
   },
   {
     name: "Nina C.",
-    text: "J'ai fait la cure de 5 séances de drainage lymphatique. Ça a transformé ma sensation de lourdeur dans les jambes et affiné ma silhouette. Résultat visible immédiatement. Une vraie magicienne !",
+    text: "J'ai fait la cure de 5 séances de drainage Renata França. Ça a transformé ma sensation de lourdeur dans les jambes et affiné ma silhouette. Résultat visible immédiatement. Une vraie magicienne !",
     type: "drainage",
   },
   {
@@ -188,36 +187,35 @@ export default function TemoignagesPage() {
 
   return (
     <main>
-      {/* --------- ReviewPage Schema (basé sur les avis manuels pour rester stable) --------- */}
-      <Script
-        id="ld-reviewpage-temoignages"
+      {/* --------- ReviewPage Schema inline (SSR) --------- */}
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            {
-              "@context": "https://schema.org",
-              "@type": "ReviewPage",
-              "@id":
-                "https://www.hilaryfarid-osteopathe.fr/temoignages#reviews",
-              url: "https://www.hilaryfarid-osteopathe.fr/temoignages",
-              name: "Avis & témoignages – Hilary Farid Ostéopathe DO",
-              description:
-                "Découvrez les avis patients sur les consultations d'ostéopathie et drainage lymphatique à Sèvres et Paris 15.",
-              review: BASE_REVIEWS.map((r) => ({
-                "@type": "Review",
-                author: { "@type": "Person", name: r.name },
-                reviewBody: r.text,
-                itemReviewed: {
-                  "@type": "Physician",
-                  name: "Hilary Farid",
-                  medicalSpecialty: "Osteopathy",
-                },
-              })),
-            },
-            null,
-            2
-          ),
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ReviewPage",
+            "@id": "https://www.hilaryfarid-osteopathe.fr/temoignages#reviews",
+            url: "https://www.hilaryfarid-osteopathe.fr/temoignages",
+            name: "Avis & témoignages – Hilary Farid Ostéopathe DO",
+            description:
+              "Découvrez les avis patients sur les consultations d'ostéopathie et drainage Renata França à Sèvres et Paris 15.",
+            review: BASE_REVIEWS.map((r) => ({
+              "@type": "Review",
+              author: { "@type": "Person", name: r.name },
+              reviewBody: r.text,
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: "5",
+                bestRating: "5",
+              },
+              itemReviewed: {
+                "@type": "Physician",
+                "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid",
+                name: "Hilary Farid",
+                medicalSpecialty: "Osteopathy",
+              },
+            })),
+          }),
         }}
       />
 
@@ -362,7 +360,7 @@ export default function TemoignagesPage() {
               </h2>
               <p className="mt-2 text-graywarm text-sm md:text-base">
                 Filtrez les témoignages par type de consultation : ostéopathie,
-                nourrisson, grossesse ou drainage lymphatique.
+                nourrisson, grossesse ou drainage Renata França.
               </p>
             </div>
 

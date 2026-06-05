@@ -5,18 +5,24 @@ import { usePathname } from "next/navigation";
 export default function FloatingBookingButtons() {
   const pathname = usePathname();
 
-  // On vérifie si on est sur la page drainage pour masquer le bouton mobile
-  const isDrainagePage = pathname === "/drainage";
+  // Pages avec leur propre barre sticky mobile → on masque le bouton flottant global
+  const hasCustomMobileCta = [
+    "/drainage",
+    "/osteopathie/nourrisson",
+    "/osteopathie/femme-enceinte",
+    "/osteopathie/sport",
+    "/drainage/bienfaits",
+  ].includes(pathname);
 
   return (
     <>
       {/* =========================================
           MOBILE DOCTOLIB
-          Masqué sur /drainage pour éviter les doublons
+          Masqué sur les pages avec barre sticky dédiée
       ========================================= */}
       <div
         className={`
-          ${isDrainagePage ? "hidden" : "fixed md:hidden"}
+          ${hasCustomMobileCta ? "hidden" : "fixed md:hidden"}
           bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-[320px]
         `}
       >

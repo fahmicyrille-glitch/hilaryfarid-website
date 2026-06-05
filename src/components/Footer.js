@@ -30,7 +30,7 @@ export default function Footer() {
               {[
                 ["Accueil", "/"],
                 ["Ostéopathie", "/osteopathie"],
-                ["Drainage", "/drainage"],
+                ["Drainage Renata", "/drainage"],
                 ["Tarifs", "/tarifs"],
                 ["Témoignages", "/temoignages"],
                 ["Sèvres", "/sevres"],

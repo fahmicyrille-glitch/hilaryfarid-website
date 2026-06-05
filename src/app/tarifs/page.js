@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Script from "next/script";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import MobileSummary from "@/components/MobileSummary";
 import BackToTop from "@/components/BackToTop";
@@ -108,14 +107,11 @@ export default function TarifsPage() {
 
   return (
     <main className="relative">
-      {/* ===== JSON-LD ===== */}
-      <Script
-        id="schema-tarifs"
+      {/* JSON-LD inline — dans le HTML initial */}
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            [
+          __html: JSON.stringify([
               /* ========================================================= */
               /* =============== MEDICAL WEB PAGE ======================== */
               /* ========================================================= */
@@ -210,13 +206,13 @@ export default function TarifsPage() {
                   itemListElement: [
                     {
                       "@type": "Offer",
-                      name: "Séance drainage lymphatique corps entier",
+                      name: "Séance drainage Renata França corps entier",
                       price: "150",
                       priceCurrency: "EUR",
                     },
                     {
                       "@type": "Offer",
-                      name: "Cure 5 séances drainage lymphatique",
+                      name: "Cure 5 séances drainage Renata França",
                       price: "800",
                       priceCurrency: "EUR",
                     },
@@ -238,7 +234,7 @@ export default function TarifsPage() {
                     acceptedAnswer: {
                       "@type": "Answer",
                       text:
-                        "Oui, le tarif du drainage lymphatique peut différer entre les cabinets de Paris 15 et de Sèvres. Les tarifs d’ostéopathie sont identiques dans les deux cabinets.",
+                        "Oui, le tarif du drainage Renata França peut différer entre les cabinets de Paris 15 et de Sèvres. Les tarifs d’ostéopathie sont identiques dans les deux cabinets.",
                     },
                   },
                   {
@@ -261,10 +257,7 @@ export default function TarifsPage() {
                   },
                 ],
               },
-            ],
-            null,
-            2
-          ),
+          ])
         }}
       />
 
@@ -372,7 +365,7 @@ export default function TarifsPage() {
                 <div className="border border-primary/20 rounded-2xl p-6 bg-offwhite/50 shadow-sm">
                   <div className="flex flex-col gap-4">
                     <p className="text-primary font-semibold text-lg md:text-xl">
-                      Séance de drainage lymphatique corps entier (90 min)
+                      Séance de drainage Renata França corps entier (90 min)
                     </p>
 
                     {/* AVANT LA PROMO */}
@@ -541,7 +534,7 @@ export default function TarifsPage() {
                       Les tarifs sont-ils identiques dans les deux cabinets ?
                     </summary>
                     <p className="mt-3 text-graywarm text-base leading-relaxed">
-                      Oui pour l'ostéopathie ! Les tarifs des consultations d'ostéopathie sont strictement identiques à Sèvres et Paris 15. En revanche, le tarif du drainage lymphatique (hors période de promotion) varie selon le cabinet en raison des charges locales.
+                      Oui pour l'ostéopathie ! Les tarifs des consultations d'ostéopathie sont strictement identiques à Sèvres et Paris 15. En revanche, le tarif du drainage Renata França (hors période de promotion) varie selon le cabinet en raison des charges locales.
                     </p>
                   </details>
 
@@ -559,7 +552,7 @@ export default function TarifsPage() {
                       Le drainage Renata França est-il remboursé par la mutuelle ?
                     </summary>
                     <p className="mt-3 text-graywarm text-base leading-relaxed">
-                      Non, le drainage lymphatique méthode Renata França est considéré comme un soin de confort et de bien-être. Il n'est donc pas pris en charge par les mutuelles santé classiques, contrairement aux séances d'ostéopathie.
+                      Non, le drainage Renata França est une pratique de bien-être, différente du drainage lymphatique médical prescrit et remboursé par la Sécurité sociale. Il n'est pas pris en charge par les mutuelles santé classiques, contrairement aux séances d'ostéopathie.
                     </p>
                   </details>
                 </div>
