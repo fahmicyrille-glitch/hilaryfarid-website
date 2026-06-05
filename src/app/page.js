@@ -330,7 +330,7 @@ export default function Home() {
                   alt="Salle de consultation du cabinet d'ostéopathie à Sèvres – Hilary Farid"
                   className="object-cover h-28 w-full"
                   loading="lazy"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 640px) 33vw, 120px"
                 />
                 <Image
                   src="/cabinet-sevres/cabinet-sevres-2.webp"
@@ -338,7 +338,7 @@ export default function Home() {
                   alt="Table de soin ostéopathie au cabinet de Sèvres – Hilary Farid"
                   className="object-cover h-28 w-full"
                   loading="lazy"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 640px) 33vw, 120px"
                 />
                 <Image
                   src="/cabinet-sevres/cabinet-sevres-3.webp"
@@ -346,7 +346,7 @@ export default function Home() {
                   alt="Salle d'attente du cabinet d'ostéopathie Sèvres – Hilary Farid"
                   className="object-cover h-28 w-full"
                   loading="lazy"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 640px) 33vw, 120px"
                 />
               </div>
 
@@ -378,7 +378,7 @@ export default function Home() {
                   alt="Salle de consultation du cabinet d'ostéopathie Paris 15 – Hilary Farid"
                   className="object-cover h-28 w-full"
                   loading="lazy"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 640px) 33vw, 120px"
                 />
                 <Image
                   src="/cabinet-paris15/cabinet-paris15-2.webp"
@@ -386,7 +386,7 @@ export default function Home() {
                   alt="Table de soin ostéopathie au cabinet Paris 15 – Hilary Farid"
                   className="object-cover h-28 w-full"
                   loading="lazy"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 640px) 33vw, 120px"
                 />
                 <Image
                   src="/cabinet-paris15/cabinet-paris15-3.webp"
@@ -394,7 +394,7 @@ export default function Home() {
                   alt="Salle d'attente du cabinet d'ostéopathie Paris 15 – Hilary Farid"
                   className="object-cover h-28 w-full"
                   loading="lazy"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 640px) 33vw, 120px"
                 />
               </div>
 
