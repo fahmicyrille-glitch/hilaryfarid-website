@@ -187,18 +187,31 @@ export default function TemoignagesPage() {
 
   return (
     <main>
-      {/* --------- ReviewPage Schema inline (SSR) --------- */}
+      {/* --------- Review Schema inline (SSR) --------- */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "ReviewPage",
-            "@id": "https://www.hilaryfarid-osteopathe.fr/temoignages#reviews",
-            url: "https://www.hilaryfarid-osteopathe.fr/temoignages",
-            name: "Avis & témoignages – Hilary Farid Ostéopathe DO",
-            description:
-              "Découvrez les avis patients sur les consultations d'ostéopathie et drainage Renata França à Sèvres et Paris 15.",
+            "@type": "LocalBusiness",
+            name: "Hilary Farid – Ostéopathe DO Sèvres & Paris 15",
+            url: "https://www.hilaryfarid-osteopathe.fr",
+            image: "https://www.hilaryfarid-osteopathe.fr/hilary.webp",
+            telephone: "+33672014539",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "104 Grande Rue",
+              addressLocality: "Sèvres",
+              postalCode: "92310",
+              addressCountry: "FR",
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "5",
+              bestRating: "5",
+              worstRating: "1",
+              reviewCount: String(BASE_REVIEWS.length),
+            },
             review: BASE_REVIEWS.map((r) => ({
               "@type": "Review",
               author: { "@type": "Person", name: r.name },
@@ -207,12 +220,6 @@ export default function TemoignagesPage() {
                 "@type": "Rating",
                 ratingValue: "5",
                 bestRating: "5",
-              },
-              itemReviewed: {
-                "@type": "Physician",
-                "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid",
-                name: "Hilary Farid",
-                medicalSpecialty: "Osteopathy",
               },
             })),
           }),
