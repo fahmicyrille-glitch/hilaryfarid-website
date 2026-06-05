@@ -10,6 +10,9 @@ const nextConfig = {
     // ⚡ Empêche Next de transpiler en ES5 → supprime le "Ancien JS"
     forceSwcTransforms: true,
 
+    // ⚡ Utilise le browserslist de package.json pour SWC → supprime polyfills ES5
+    browsersListForSwc: true,
+
     // ❌ PPR désactivé → casse le LCP sur projets avec Hero image
     ppr: false,
   },
