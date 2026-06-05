@@ -14,7 +14,7 @@ export const metadata = {
     url: "https://www.hilaryfarid-osteopathe.fr/a-propos",
     images: [
       {
-        url: "/Hilary.webp",
+        url: "/hilary.webp",
         width: 1200,
         height: 630,
         alt: "Hilary Farid, Ostéopathe D.O. à Sèvres et Paris 15",

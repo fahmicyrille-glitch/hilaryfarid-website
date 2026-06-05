@@ -215,7 +215,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr" className={roboto.variable}>
       <head>
-        <link rel="preload" as="image" href="/Hilary.webp" fetchPriority="high" />
+        <link rel="preload" as="image" href="/hilary.webp" fetchPriority="high" />
 
         {/* ── JSON-LD inline (dans le HTML initial, lisible par Google dès le crawl) ──
             3 entités : Person/Physician + 2x MedicalBusiness/LocalBusiness          */}

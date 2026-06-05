@@ -37,7 +37,7 @@ const HOME_SCHEMAS = [
     "@type": "Physician",
     "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid",
     name: "Hilary Farid",
-    image: "https://www.hilaryfarid-osteopathe.fr/Hilary.webp",
+    image: "https://www.hilaryfarid-osteopathe.fr/hilary.webp",
     jobTitle: "Ostéopathe D.O.",
     telephone: "+33672014539",
     logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",

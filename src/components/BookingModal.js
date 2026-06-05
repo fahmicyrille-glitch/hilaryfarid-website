@@ -80,6 +80,7 @@ export default function BookingModal() {
         {/* Bouton Fermer */}
         <button
           onClick={() => setIsOpen(false)}
+          aria-label="Fermer"
           className="absolute top-4 right-4 text-gray-400 hover:text-primary transition"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
