@@ -319,35 +319,47 @@ export default function OsteopathieNourrissonPage() {
         </section>
       </SlideUp>
 
-      {/* ========= LIENS INTER-PAGES ========= */}
-      <section className="py-10 px-6 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-graywarm text-xs font-bold uppercase tracking-wider mb-5">Autres spécialités</p>
-          <div className="grid sm:grid-cols-3 gap-4">
+      {/* ========= PAGES SPÉCIALISÉES ========= */}
+      <section className="py-16 md:py-20 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-semibold text-primary text-center">
+            Pages spécialisées
+          </h2>
+          <p className="mt-3 text-center text-graywarm max-w-2xl mx-auto">
+            Consultez les pages dédiées à chaque spécialité pour des informations détaillées et des réponses à vos questions spécifiques.
+          </p>
+          <div className="mt-8 grid sm:grid-cols-3 gap-5">
             {[
-              [
-                "Femme enceinte & Post-partum",
-                "/osteopathie/femme-enceinte",
-                "Accompagnement de la grossesse et récupération après l'accouchement.",
-              ],
-              [
-                "Ostéopathie du Sport",
-                "/osteopathie/sport",
-                "Prévention, récupération et performance pour tous les sportifs.",
-              ],
-              [
-                "Drainage Renata França",
-                "/drainage",
-                "Technique manuelle douce pour jambes légères et bien-être.",
-              ],
-            ].map(([titre, href, texte]) => (
+              {
+                titre: "Grossesse & Post-partum",
+                href: "/osteopathie/femme-enceinte",
+                desc: "Lombalgies, sciatique, préparation à l'accouchement, récupération post-partum. Formation CFPCO.",
+                icon: "🤰",
+              },
+              {
+                titre: "Ostéopathie du Sport",
+                href: "/osteopathie/sport",
+                desc: "Prévention, récupération, tendinites, entorses. Pour amateurs et compétiteurs.",
+                icon: "🏃",
+              },
+              {
+                titre: "Drainage Renata França",
+                href: "/drainage",
+                desc: "Technique manuelle douce pour jambes légères, détox et bien-être profond.",
+                icon: "💧",
+              },
+            ].map(({ titre, href, desc, icon }) => (
               <Link
                 key={href}
                 href={href}
-                className="block bg-offwhite rounded-2xl border border-light/60 p-5 hover:border-secondary/40 hover:shadow-md transition-all"
+                className="block bg-offwhite rounded-2xl border border-light/60 p-6 hover:border-secondary/40 hover:shadow-md transition-all group"
               >
-                <p className="font-semibold text-primary text-base">{titre}</p>
-                <p className="text-sm text-graywarm mt-1">{texte}</p>
+                <span className="text-3xl mb-3 block">{icon}</span>
+                <p className="font-bold text-primary text-lg group-hover:text-secondary transition-colors">{titre}</p>
+                <p className="text-sm text-graywarm mt-2 leading-relaxed">{desc}</p>
+                <span className="mt-3 inline-flex items-center text-xs font-semibold text-secondary">
+                  En savoir plus →
+                </span>
               </Link>
             ))}
           </div>

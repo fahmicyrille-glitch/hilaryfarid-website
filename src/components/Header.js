@@ -10,6 +10,8 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const [mobileExpanded, setMobileExpanded] = useState(null);
   const pathname = usePathname();
 
   /* ==== Scroll shadow ==== */
@@ -45,12 +47,15 @@ export default function Header() {
   const isActive = (href) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-  // LISTE DES LIENS (On ajoute un 3ème paramètre `true` pour le lien "Nouveau")
   const links = [
     ["Accueil", "/"],
-    ["Ostéopathie", "/osteopathie"],
+    ["Ostéopathie", "/osteopathie", false, [
+      ["👶 Nourrisson", "/osteopathie/nourrisson"],
+      ["🤰 Grossesse & Post-partum", "/osteopathie/femme-enceinte"],
+      ["🏃 Sport", "/osteopathie/sport"],
+    ]],
     ["Drainage Renata", "/drainage"],
-    //["Conseil Visio", "/visio", true], // <-- Le "true" active le badge
+    //["Conseil Visio", "/visio", true],
     ["Tarifs", "/tarifs"],
     ["Sèvres", "/sevres"],
     ["Paris 15", "/paris15"],
@@ -88,22 +93,52 @@ export default function Header() {
           </button>
         </div>
         <nav className="flex-1 flex flex-col items-center justify-center gap-5 text-primary font-semibold text-lg overflow-y-auto py-8">
-          {links.map(([label, href, isNew]) => (
-            <Link
-              key={href}
-              href={href}
-              onClick={() => setOpen(false)}
-              className={`${isActive(href) ? "text-primary" : "text-graywarm"} relative inline-block`}
-            >
-              {label}
-              {/* BADGE MOBILE */}
-              {isNew && (
-                <span className="absolute -top-3 -right-6 bg-secondary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm">
-                  NEW
-                </span>
-              )}
-            </Link>
-          ))}
+          {links.map(([label, href, isNew, subLinks]) =>
+            subLinks ? (
+              <div key={href} className="flex flex-col items-center gap-2">
+                <button
+                  onClick={() => setMobileExpanded(mobileExpanded === href ? null : href)}
+                  className={`${isActive(href) ? "text-primary" : "text-graywarm"} inline-flex items-center gap-1`}
+                >
+                  {label}
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" className={`transition-transform ${mobileExpanded === href ? "rotate-180" : ""}`}>
+                    <path d="M6 9l6 6 6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                {mobileExpanded === href && (
+                  <div className="flex flex-col items-center gap-3 mt-1">
+                    <Link href={href} onClick={() => { setOpen(false); setMobileExpanded(null); }} className={`text-base font-medium ${isActive(href) && pathname === href ? "text-primary" : "text-graywarm"}`}>
+                      Tous les soins
+                    </Link>
+                    {subLinks.map(([subLabel, subHref]) => (
+                      <Link
+                        key={subHref}
+                        href={subHref}
+                        onClick={() => { setOpen(false); setMobileExpanded(null); }}
+                        className={`text-base font-medium ${isActive(subHref) ? "text-primary" : "text-graywarm"}`}
+                      >
+                        {subLabel}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                className={`${isActive(href) ? "text-primary" : "text-graywarm"} relative inline-block`}
+              >
+                {label}
+                {isNew && (
+                  <span className="absolute -top-3 -right-6 bg-secondary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm">
+                    NEW
+                  </span>
+                )}
+              </Link>
+            )
+          )}
         </nav>
       </div>
     );
@@ -144,22 +179,52 @@ export default function Header() {
 
           {/* MENU DESKTOP */}
           <nav className="hidden md:flex items-center gap-x-3 lg:gap-x-5 text-primary font-medium px-2" aria-label="Menu principal">
-            {links.map(([label, href, isNew]) => (
-              <Link
-                key={href}
-                href={href}
-                /* On ajoute "mr-4" (margin-right) si c'est "NEW" pour ne pas coller au bouton Tarifs */
-                className={`${getMenuItemClass(href)} ${isNew ? "mr-4" : ""}`}
-              >
-                {label}
-                {/* BADGE DESKTOP CORRIGÉ */}
-                {isNew && (
-                  <span className="absolute -top-2 -right-5 bg-secondary text-white text-[8px] leading-none font-bold px-1.5 py-1 rounded-full shadow-sm">
-                    NEW
-                  </span>
-                )}
-              </Link>
-            ))}
+            {links.map(([label, href, isNew, subLinks]) =>
+              subLinks ? (
+                <div
+                  key={href}
+                  className="relative"
+                  onMouseEnter={() => setOpenDropdown(href)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  <Link
+                    href={href}
+                    className={`${getMenuItemClass(href)} inline-flex items-center gap-0.5`}
+                  >
+                    {label}
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="ml-0.5 opacity-60">
+                      <path d="M6 9l6 6 6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </Link>
+                  {openDropdown === href && (
+                    <div className="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-light/60 py-2 min-w-[220px] z-50">
+                      {subLinks.map(([subLabel, subHref]) => (
+                        <Link
+                          key={subHref}
+                          href={subHref}
+                          className={`block px-4 py-2 text-sm transition-colors ${isActive(subHref) ? "text-primary font-semibold bg-light/60" : "text-graywarm hover:text-primary hover:bg-light/50"}`}
+                        >
+                          {subLabel}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`${getMenuItemClass(href)} ${isNew ? "mr-4" : ""}`}
+                >
+                  {label}
+                  {isNew && (
+                    <span className="absolute -top-2 -right-5 bg-secondary text-white text-[8px] leading-none font-bold px-1.5 py-1 rounded-full shadow-sm">
+                      NEW
+                    </span>
+                  )}
+                </Link>
+              )
+            )}
           </nav>
 
           {/* BOUTON MOBILE */}
