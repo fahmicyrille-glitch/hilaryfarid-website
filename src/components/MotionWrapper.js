@@ -35,20 +35,12 @@ export function SlideUp({ children, delay = 0 }) {
 }
 
 /**
- * HeroMotion — utilisé pour le HERO, 0 shift + rendu SSR immédiat
- * → Très important pour améliorer ton LCP
+ * HeroMotion — CSS animation pure (pas de Framer Motion)
+ * → Visible dès le 1er frame CSS, aucune dépendance à l'hydratation JS
+ * → Corrige le délai LCP de 2560ms causé par initial:{opacity:0} Framer Motion
  */
 export function HeroMotion({ children }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      style={{ willChange: "opacity" }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className="fade-hero">{children}</div>;
 }
 
 /**

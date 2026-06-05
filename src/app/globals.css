@@ -88,14 +88,14 @@ html {
    🚀 ANIMATIONS CSS (remplacement optimisé de Framer Motion)
    =================================================================== */
 
-/* ✔ Fade Hero — utilisé dans page.js pour un rendu SSR + 0 CLS */
+/* ✔ Fade Hero — CSS pure, visible dès le 1er frame (LCP-safe) */
 @keyframes fadeInHero {
-  from { opacity: 0; }
+  from { opacity: 0.01; }
   to   { opacity: 1; }
 }
 .fade-hero {
-  opacity: 0;
-  animation: fadeInHero 0.8s ease-out 0.1s forwards;
+  opacity: 0.01;
+  animation: fadeInHero 0.8s ease-out forwards;
 }
 
 /* ✔ Fade Soft — équivalent de FadeInNoShift */
