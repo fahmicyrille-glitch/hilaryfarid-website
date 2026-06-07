@@ -573,8 +573,6 @@ export const articles = [
       },
     ],
   },
-];
-
   {
     slug: "osteopathie-femme-enceinte-grossesse",
     title: "Ostéopathie pendant la grossesse : bienfaits, sécurité et quand consulter",
@@ -748,6 +746,7 @@ export const articles = [
       },
     ],
   },
+];
 
 export function getArticleBySlug(slug) {
   return articles.find((a) => a.slug === slug) || null;
