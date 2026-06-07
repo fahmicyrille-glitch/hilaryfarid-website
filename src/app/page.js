@@ -417,6 +417,46 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ================= BLOG TEASER ================= */}
+      <section className="py-16 md:py-20 px-6 bg-offwhite">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-semibold text-primary">
+              Articles & conseils santé
+            </h2>
+            <p className="mt-3 text-graywarm max-w-2xl mx-auto">
+              Nourrisson, grossesse, freins restrictifs, drainage Renata França — des ressources pour mieux comprendre votre santé.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-5">
+            {[
+              { title: "Freins restrictifs chez le nourrisson", category: "Nourrisson", slug: "freins-restrictifs-nourrisson", color: "bg-blue-50 text-blue-700 border-blue-100" },
+              { title: "Plagiocéphalie : que faire ?", category: "Nourrisson", slug: "plagiocephalie-nourrisson-osteopathe", color: "bg-blue-50 text-blue-700 border-blue-100" },
+              { title: "Drainage Renata França : bienfaits", category: "Drainage", slug: "drainage-renata-franca-methode", color: "bg-teal-50 text-teal-700 border-teal-100" },
+            ].map(({ title, category, slug, color }) => (
+              <Link
+                key={slug}
+                href={`/blog/${slug}`}
+                className="group block bg-white rounded-2xl border border-light/60 overflow-hidden hover:border-secondary/40 hover:shadow-md transition-all"
+              >
+                <div className={`${color.split(" ")[0]} border-b ${color.split(" ")[2]} px-4 py-2`}>
+                  <span className={`${color.split(" ")[1]} text-xs font-bold uppercase tracking-wider`}>{category}</span>
+                </div>
+                <div className="p-5">
+                  <p className="font-bold text-primary text-sm group-hover:text-secondary transition-colors leading-snug">{title}</p>
+                  <span className="mt-3 inline-flex items-center text-xs font-semibold text-secondary">Lire →</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/blog" className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-primary/30 text-primary font-semibold hover:bg-primary/5 transition-colors">
+              Voir tous les articles →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ================= CTA finale ================= */}
       <section className="py-16 md:py-20 bg-primary text-offwhite text-center">
         <FadeInNoShift>

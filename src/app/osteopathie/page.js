@@ -512,13 +512,25 @@ export default function OsteopathiePage() {
                 {
                   titre: "Ostéopathie Nourrisson",
                   href: "/osteopathie/nourrisson",
-                  desc: "Coliques, reflux, plagiocéphalie, torticolis, freins restrictifs. Formation Centre YGY.",
+                  desc: "Coliques, reflux, torticolis, troubles de la succion. Formation Centre YGY.",
                   icon: "👶",
+                },
+                {
+                  titre: "Freins restrictifs",
+                  href: "/osteopathie/freins-restrictifs",
+                  desc: "Frein de langue, frein de lèvre : accompagnement avant et après frénectomie.",
+                  icon: "👅",
+                },
+                {
+                  titre: "Plagiocéphalie",
+                  href: "/osteopathie/plagiocephalie",
+                  desc: "Tête plate positionnelle : traitement ostéopathique doux et précoce avant 4 mois.",
+                  icon: "🧠",
                 },
                 {
                   titre: "Grossesse & Post-partum",
                   href: "/osteopathie/femme-enceinte",
-                  desc: "Lombalgies, sciatique, préparation à l'accouchement, récupération post-partum. Formation CFPCO.",
+                  desc: "Lombalgies, sciatique, préparation à l'accouchement, récupération post-partum.",
                   icon: "🤰",
                 },
                 {

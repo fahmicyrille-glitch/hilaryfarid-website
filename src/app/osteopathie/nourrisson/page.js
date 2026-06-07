@@ -328,19 +328,25 @@ export default function OsteopathieNourrissonPage() {
           <p className="mt-3 text-center text-graywarm max-w-2xl mx-auto">
             Consultez les pages dédiées à chaque spécialité pour des informations détaillées et des réponses à vos questions spécifiques.
           </p>
-          <div className="mt-8 grid sm:grid-cols-3 gap-5">
+          <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
+              {
+                titre: "Freins restrictifs",
+                href: "/osteopathie/freins-restrictifs",
+                desc: "Frein de langue, frein de lèvre : accompagnement ostéopathique avant et après frénectomie.",
+                icon: "👅",
+              },
+              {
+                titre: "Plagiocéphalie",
+                href: "/osteopathie/plagiocephalie",
+                desc: "Tête plate positionnelle : traitement doux et précoce, idéalement avant 4 mois.",
+                icon: "🧠",
+              },
               {
                 titre: "Grossesse & Post-partum",
                 href: "/osteopathie/femme-enceinte",
-                desc: "Lombalgies, sciatique, préparation à l'accouchement, récupération post-partum. Formation CFPCO.",
+                desc: "Lombalgies, sciatique, préparation à l'accouchement, récupération post-partum.",
                 icon: "🤰",
-              },
-              {
-                titre: "Ostéopathie du Sport",
-                href: "/osteopathie/sport",
-                desc: "Prévention, récupération, tendinites, entorses. Pour amateurs et compétiteurs.",
-                icon: "🏃",
               },
               {
                 titre: "Drainage Renata França",

@@ -32,6 +32,7 @@ export default function Footer() {
                 ["Ostéopathie", "/osteopathie"],
                 ["Drainage Renata", "/drainage"],
                 ["Tarifs", "/tarifs"],
+                ["Blog", "/blog"],
                 ["Témoignages", "/temoignages"],
                 ["Sèvres", "/sevres"],
                 ["Paris 15", "/paris15"],
