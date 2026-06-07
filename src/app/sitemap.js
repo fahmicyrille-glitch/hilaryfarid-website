@@ -82,6 +82,48 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/osteopathie/freins-restrictifs`,
+      lastModified: "2026-06-07",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/osteopathie/plagiocephalie`,
+      lastModified: "2026-06-07",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: "2026-06-07",
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/blog/freins-restrictifs-nourrisson`,
+      lastModified: "2026-06-07",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/blog/plagiocephalie-nourrisson-osteopathe`,
+      lastModified: "2026-06-07",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/blog/drainage-renata-franca-methode`,
+      lastModified: "2026-06-07",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/blog/coliques-nourrisson-osteopathie`,
+      lastModified: "2026-06-07",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/mentions-legales`,
       lastModified: "2025-01-01",
       changeFrequency: "yearly",

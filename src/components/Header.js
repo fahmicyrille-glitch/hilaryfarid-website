@@ -51,6 +51,8 @@ export default function Header() {
     ["Accueil", "/"],
     ["Ostéopathie", "/osteopathie", false, [
       ["👶 Nourrisson", "/osteopathie/nourrisson"],
+      ["👅 Freins restrictifs", "/osteopathie/freins-restrictifs"],
+      ["🧠 Plagiocéphalie", "/osteopathie/plagiocephalie"],
       ["🤰 Grossesse & Post-partum", "/osteopathie/femme-enceinte"],
       ["🏃 Sport", "/osteopathie/sport"],
     ]],
@@ -60,6 +62,7 @@ export default function Header() {
     ["Sèvres", "/sevres"],
     ["Paris 15", "/paris15"],
     ["Témoignages", "/temoignages"],
+    ["Blog", "/blog"],
     ["Bio", "/a-propos"],
     ["Contact", "/contact"],
   ];

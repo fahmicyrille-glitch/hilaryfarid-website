@@ -1,0 +1,233 @@
+import Link from "next/link";
+import { articles, getArticleBySlug, getAllSlugs } from "@/data/articles";
+import { notFound } from "next/navigation";
+
+export async function generateStaticParams() {
+  return getAllSlugs().map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }) {
+  const article = getArticleBySlug(params.slug);
+  if (!article) return {};
+  return {
+    title: `${article.title} | Hilary Farid`,
+    description: article.description,
+    alternates: { canonical: `https://www.hilaryfarid-osteopathe.fr/blog/${article.slug}` },
+    openGraph: {
+      title: article.title,
+      description: article.description,
+      url: `https://www.hilaryfarid-osteopathe.fr/blog/${article.slug}`,
+      images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
+      type: "article",
+      publishedTime: article.date,
+    },
+  };
+}
+
+const categoryColors = {
+  Nourrisson: { bg: "bg-blue-50", text: "text-blue-700", border: "border-blue-100" },
+  Drainage: { bg: "bg-teal-50", text: "text-teal-700", border: "border-teal-100" },
+  Grossesse: { bg: "bg-rose-50", text: "text-rose-700", border: "border-rose-100" },
+  Sport: { bg: "bg-orange-50", text: "text-orange-700", border: "border-orange-100" },
+};
+
+function formatDate(dateStr) {
+  return new Date(dateStr).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+}
+
+function renderSection(section, i) {
+  switch (section.type) {
+    case "intro":
+      return (
+        <p key={i} className="text-xl text-graywarm leading-relaxed border-l-4 border-secondary pl-5 py-1 my-8 font-medium">
+          {section.text}
+        </p>
+      );
+    case "h2":
+      return (
+        <h2 key={i} className="text-2xl md:text-3xl font-bold text-primary mt-12 mb-4">
+          {section.text}
+        </h2>
+      );
+    case "h3":
+      return (
+        <h3 key={i} className="text-xl font-bold text-primary mt-8 mb-3">
+          {section.text}
+        </h3>
+      );
+    case "p":
+      return (
+        <p key={i} className="text-graywarm leading-relaxed my-4">
+          {section.text}
+        </p>
+      );
+    case "ul":
+      return (
+        <ul key={i} className="my-4 space-y-2">
+          {section.items.map((item, j) => (
+            <li key={j} className="flex items-start gap-3 text-graywarm">
+              <span className="text-secondary mt-1 shrink-0">✓</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      );
+    case "callout":
+      return (
+        <div key={i} className="my-8 bg-primary/5 rounded-2xl p-6 border border-primary/10 flex items-start gap-4">
+          <span className="text-3xl shrink-0">{section.icon}</span>
+          <div>
+            {section.title && <p className="font-bold text-primary mb-2">{section.title}</p>}
+            <p className="text-graywarm leading-relaxed">{section.text}</p>
+          </div>
+        </div>
+      );
+    case "faq":
+      return (
+        <div key={i} className="my-12">
+          <h2 className="text-2xl font-bold text-primary mb-6">Questions fréquentes</h2>
+          <div className="space-y-4">
+            {section.items.map(({ q, a }, j) => (
+              <details key={j} className="group bg-offwhite rounded-2xl border border-light/60 overflow-hidden">
+                <summary className="cursor-pointer px-6 py-4 font-semibold text-primary flex justify-between items-center gap-4 list-none">
+                  <span>{q}</span>
+                  <span className="shrink-0 text-secondary text-xl group-open:rotate-45 transition-transform">+</span>
+                </summary>
+                <div className="px-6 pb-5 text-graywarm leading-relaxed">{a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      );
+    default:
+      return null;
+  }
+}
+
+export default function ArticlePage({ params }) {
+  const article = getArticleBySlug(params.slug);
+  if (!article) notFound();
+
+  const colors = categoryColors[article.category] || categoryColors.Nourrisson;
+  const related = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    datePublished: article.date,
+    author: {
+      "@type": "Person",
+      "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid",
+      name: "Hilary Farid",
+      jobTitle: "Ostéopathe D.O.",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Hilary Farid – Ostéopathe D.O.",
+      url: "https://www.hilaryfarid-osteopathe.fr",
+    },
+    mainEntityOfPage: `https://www.hilaryfarid-osteopathe.fr/blog/${article.slug}`,
+  };
+
+  return (
+    <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+
+      {/* Breadcrumb */}
+      <nav aria-label="Fil d'Ariane" className="bg-offwhite border-b border-light/50 px-6 py-3">
+        <div className="max-w-3xl mx-auto text-sm text-graywarm flex items-center gap-2 flex-wrap">
+          <Link href="/" className="hover:text-primary transition-colors">Accueil</Link>
+          <span className="opacity-40">/</span>
+          <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
+          <span className="opacity-40">/</span>
+          <span className="text-primary font-medium line-clamp-1">{article.title}</span>
+        </div>
+      </nav>
+
+      {/* Article header */}
+      <header className="bg-offwhite py-12 px-6 border-b border-light/50">
+        <div className="max-w-3xl mx-auto">
+          <div className="flex items-center gap-3 mb-4">
+            <span className={`${colors.bg} ${colors.text} text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${colors.border}`}>
+              {article.category}
+            </span>
+            <span className="text-graywarm text-sm">{article.readTime} de lecture</span>
+            <span className="text-graywarm text-sm">·</span>
+            <time dateTime={article.date} className="text-graywarm text-sm">{formatDate(article.date)}</time>
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold text-primary leading-tight">
+            {article.title}
+          </h1>
+          <p className="mt-4 text-graywarm text-lg leading-relaxed">{article.excerpt}</p>
+          <div className="mt-6 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">HF</div>
+            <div>
+              <p className="text-sm font-semibold text-primary">Hilary Farid</p>
+              <p className="text-xs text-graywarm">Ostéopathe D.O. — Sèvres & Paris 15</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Article body */}
+      <article className="py-12 px-6 bg-white">
+        <div className="max-w-3xl mx-auto prose-custom">
+          {article.sections.map((section, i) => renderSection(section, i))}
+        </div>
+      </article>
+
+      {/* CTA box */}
+      <section className="py-12 px-6 bg-primary/5">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl font-bold text-primary">Prendre rendez-vous</h2>
+          <p className="mt-3 text-graywarm">Consultations à <strong>Sèvres (92310)</strong> et <strong>Paris 15 (75015)</strong>.</p>
+          <div className="mt-6 flex flex-wrap gap-4 justify-center">
+            <button type="button" className="trigger-booking-modal bg-[#0596DE] text-white px-8 py-3 rounded-full font-bold shadow-md hover:bg-[#047cbd] transition-all">
+              RDV Doctolib
+            </button>
+            <Link href="/tarifs" className="inline-flex items-center px-8 py-3 rounded-full font-semibold text-primary bg-white border border-light/80 hover:bg-offwhite transition-colors">
+              Voir les tarifs
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Related articles */}
+      {related.length > 0 && (
+        <section className="py-12 px-6 bg-white">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-xl font-bold text-primary mb-6">Articles similaires</h2>
+            <div className="grid sm:grid-cols-3 gap-5">
+              {related.map((a) => {
+                const c = categoryColors[a.category] || categoryColors.Nourrisson;
+                return (
+                  <Link key={a.slug} href={`/blog/${a.slug}`} className="group block bg-offwhite rounded-2xl border border-light/60 overflow-hidden hover:border-secondary/40 hover:shadow-md transition-all">
+                    <div className={`${c.bg} ${c.border} border-b px-4 py-2`}>
+                      <span className={`${c.text} text-xs font-bold uppercase tracking-wider`}>{a.category}</span>
+                    </div>
+                    <div className="p-5">
+                      <p className="font-bold text-primary text-sm group-hover:text-secondary transition-colors leading-snug">{a.title}</p>
+                      <span className="mt-3 inline-flex items-center text-xs font-semibold text-secondary">Lire →</span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Back to blog */}
+      <div className="py-8 px-6 bg-white border-t border-light/40 text-center">
+        <Link href="/blog" className="text-secondary font-semibold hover:underline">
+          ← Retour au blog
+        </Link>
+      </div>
+    </main>
+  );
+}
