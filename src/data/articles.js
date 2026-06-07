@@ -575,6 +575,180 @@ export const articles = [
   },
 ];
 
+  {
+    slug: "osteopathie-femme-enceinte-grossesse",
+    title: "Ostéopathie pendant la grossesse : bienfaits, sécurité et quand consulter",
+    description:
+      "Lombalgies, sciatique, pubalgies, reflux, troubles du sommeil… L'ostéopathie soulage les inconforts de la grossesse et prépare le corps à l'accouchement. Ce qu'il faut savoir, trimestre par trimestre.",
+    excerpt:
+      "La grossesse transforme le corps en profondeur. L'ostéopathie accompagne ces changements à chaque trimestre : soulagement des douleurs, préparation à l'accouchement, récupération post-partum. Hilary Farid vous explique tout.",
+    date: "2026-06-07",
+    category: "Grossesse",
+    categoryColor: "rose",
+    readTime: "6 min",
+    sections: [
+      {
+        type: "intro",
+        text: "La grossesse est une période extraordinaire — et physiquement exigeante. En neuf mois, le corps s'adapte en permanence : centre de gravité qui se déplace, ligaments qui se relâchent sous l'effet de la relaxine, posture qui évolue semaine après semaine. L'ostéopathie accompagne ces transformations pour soulager les inconforts, prévenir les compensations douloureuses et préparer le corps à l'accouchement.",
+      },
+      {
+        type: "h2",
+        text: "Pourquoi consulter pendant la grossesse ?",
+      },
+      {
+        type: "p",
+        text: "Les douleurs pendant la grossesse sont fréquentes mais ne sont pas une fatalité. L'ostéopathie intervient sur les causes mécaniques de ces inconforts — tensions ligamentaires, blocages articulaires, compensations posturales — sans médicaments, en douceur et en toute sécurité.",
+      },
+      {
+        type: "h2",
+        text: "Les troubles traités à chaque trimestre",
+      },
+      {
+        type: "h3",
+        text: "1er trimestre (1–12 semaines)",
+      },
+      {
+        type: "ul",
+        items: [
+          "Nausées et vomissements : libération des tensions diaphragmatiques et vagales",
+          "Fatigue intense et tensions cervicales liées aux changements hormonaux",
+          "Lombalgies débutantes : prise en charge préventive avant que les compensations s'installent",
+          "Bilan ostéopathique de début de grossesse (recommandé à tous)",
+        ],
+      },
+      {
+        type: "h3",
+        text: "2ème trimestre (13–26 semaines)",
+      },
+      {
+        type: "ul",
+        items: [
+          "Lombalgies et douleurs dorsales : le ventre s'arrondit, le centre de gravité se déplace",
+          "Sciatique gravidique : compression du nerf sciatique par les tensions des muscles fessiers et pelvi-trochantériens",
+          "Pubalgies (douleurs du pubis) : déstabilisation de la symphyse pubienne sous l'effet de la relaxine",
+          "Reflux gastro-œsophagien : le fond de l'utérus comprime progressivement l'estomac",
+          "Crampes et fourmillements dans les jambes",
+        ],
+      },
+      {
+        type: "h3",
+        text: "3ème trimestre (27–40 semaines)",
+      },
+      {
+        type: "ul",
+        items: [
+          "Douleurs du bassin et du sacrum : préparation ligamentaire intense",
+          "Sciatique et névralgies crurales",
+          "Troubles du sommeil liés aux tensions musculo-squelettiques",
+          "Préparation ostéopathique à l'accouchement : mobilité du bassin, assouplissement des ligaments sacro-iliaques et du périnée",
+          "Présentation du siège : certaines techniques peuvent favoriser la rotation spontanée (en complément des autres approches)",
+        ],
+      },
+      {
+        type: "callout",
+        icon: "⚕️",
+        title: "Sécurité pendant la grossesse",
+        text: "L'ostéopathie est sans danger pendant la grossesse lorsqu'elle est pratiquée par un ostéopathe formé à la périnatalité. Aucune manipulation à haute vélocité (thrust) n'est réalisée. Les techniques utilisées sont douces : mobilisations articulaires lentes, techniques myofasciales, travail viscéral adapté. Hilary est formée spécifiquement à l'ostéopathie périnatale (CFPCO).",
+      },
+      {
+        type: "h2",
+        text: "La préparation ostéopathique à l'accouchement",
+      },
+      {
+        type: "p",
+        text: "À partir du 8ème mois, une ou deux séances de préparation à l'accouchement sont particulièrement bénéfiques. L'objectif est de :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Optimiser la mobilité du bassin osseux (articulations sacro-iliaques, symphyse pubienne, sacrum) pour faciliter l'engagement et la descente du bébé",
+          "Libérer les tensions des ligaments utéro-sacrés et ronds qui suspendent l'utérus",
+          "Travailler sur la souplesse du périnée pour faciliter l'expulsion",
+          "Préparer le diaphragme et les muscles abdominaux à l'effort de poussée",
+          "Réduire le stress et améliorer la connexion au corps avant l'accouchement",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Et après l'accouchement ? Le post-partum",
+      },
+      {
+        type: "p",
+        text: "L'accouchement sollicite intensément le corps — qu'il soit vaginal ou par césarienne. Une séance de bilan post-partum est recommandée entre 6 et 8 semaines après la naissance (après l'accord du gynécologue ou de la sage-femme) :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Traitement des séquelles de l'accouchement : tensions du coccyx, cicatrice d'épisiotomie, lombalgies résiduelles",
+          "Après une césarienne : libération de la cicatrice et des adhérences abdominales, tensions pelviennes",
+          "Rééquilibrage du bassin et des articulations sacro-iliaques",
+          "Amélioration du drainage pour réduire l'œdème résiduel (en complément du drainage Renata França)",
+          "Accompagnement du retour de la mobilité abdominale et de la sangle périnéale",
+        ],
+      },
+      {
+        type: "callout",
+        icon: "💧",
+        title: "Drainage Renata França en complément",
+        text: "Le drainage Renata França est un excellent complément à l'ostéopathie en post-partum : il réduit les œdèmes résiduels, améliore la circulation lymphatique et accompagne la récupération physique et émotionnelle. À partir de 15 jours après un accouchement vaginal, ou avec l'accord médical après césarienne.",
+      },
+      {
+        type: "h2",
+        text: "La formation spécifique de Hilary",
+      },
+      {
+        type: "p",
+        text: "Hilary Farid a suivi une formation spécialisée en ostéopathie périnatale au CFPCO (Centre de Formation en Périnatalité et Concept Ostéopathique), qui forme spécifiquement les ostéopathes à la prise en charge de la femme enceinte, du post-partum et du nourrisson. Cette formation inclut la préparation ostéopathique à l'accouchement et les techniques adaptées à chaque trimestre.",
+      },
+      {
+        type: "h2",
+        text: "Combien de séances pendant la grossesse ?",
+      },
+      {
+        type: "p",
+        text: "Il n'y a pas de protocole figé. En général, on recommande :",
+      },
+      {
+        type: "ul",
+        items: [
+          "1 séance en début de grossesse (bilan et prévention)",
+          "1 séance en milieu de grossesse si des inconforts apparaissent",
+          "1 à 2 séances de préparation à l'accouchement au 8ème–9ème mois",
+          "1 séance de bilan post-partum à 6–8 semaines après la naissance",
+        ],
+      },
+      {
+        type: "p",
+        text: "En cas de douleurs importantes (sciatique sévère, pubalgies invalidantes), un suivi plus rapproché peut être mis en place.",
+      },
+      {
+        type: "faq",
+        items: [
+          {
+            q: "L'ostéopathie est-elle sans danger pendant le premier trimestre ?",
+            a: "Oui, à condition que l'ostéopathe soit formé à la périnatalité et utilise des techniques adaptées. Au premier trimestre, les manipulations à haute vélocité sont évitées par précaution. Les techniques douces (myofasciales, fonctionnelles, viscérales) sont sans risque.",
+          },
+          {
+            q: "Peut-on faire de l'ostéopathie si on a eu des fausses couches ?",
+            a: "Oui, et cela peut même être recommandé pour préparer le corps à mener la grossesse à terme. Hilary adapte son approche à votre historique et à votre situation spécifique. Signalez toujours vos antécédents lors du bilan initial.",
+          },
+          {
+            q: "L'ostéopathie peut-elle aider à retourner un bébé en siège ?",
+            a: "L'ostéopathie peut libérer les tensions ligamentaires et musculaires du bassin qui restreignent la rotation spontanée du bébé. Elle favorise les conditions mécaniques optimales pour que le bébé se retourne — mais ne fait pas tourner le bébé elle-même. Elle est complémentaire à la version par manœuvre externe (VME) pratiquée par l'obstétricien.",
+          },
+          {
+            q: "Ma sage-femme doit-elle être informée que je consulte un ostéopathe ?",
+            a: "C'est fortement recommandé. Une bonne coordination entre votre ostéopathe, votre sage-femme et votre gynécologue garantit une prise en charge optimale et cohérente. Hilary peut aussi être amenée à vous orienter si elle détecte quelque chose nécessitant un avis médical.",
+          },
+          {
+            q: "À partir de quand après l'accouchement peut-on consulter ?",
+            a: "Pour une séance de bilan post-partum, on attend généralement 6 à 8 semaines après un accouchement vaginal, ou l'aval du médecin ou gynécologue après une césarienne. Pour des douleurs aiguës (coccyx, lombalgie intense), une consultation plus tôt est possible — évaluation au cas par cas.",
+          },
+        ],
+      },
+    ],
+  },
+
 export function getArticleBySlug(slug) {
   return articles.find((a) => a.slug === slug) || null;
 }

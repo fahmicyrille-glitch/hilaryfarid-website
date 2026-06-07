@@ -124,6 +124,12 @@ export default function sitemap() {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/blog/osteopathie-femme-enceinte-grossesse`,
+      lastModified: "2026-06-07",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/mentions-legales`,
       lastModified: "2025-01-01",
       changeFrequency: "yearly",
