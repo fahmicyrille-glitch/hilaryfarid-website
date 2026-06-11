@@ -102,7 +102,7 @@ export default function BlogPage() {
           <h2 className="text-2xl font-bold text-primary">Une question ? Prenez RDV</h2>
           <p className="mt-3 text-graywarm">Consultations à Sèvres (92310) et Paris 15 (75015).</p>
           <div className="mt-6 flex flex-wrap gap-4 justify-center">
-            <button type="button" className="trigger-booking-modal bg-[#0596DE] text-white px-8 py-3 rounded-full font-bold shadow-md hover:bg-[#047cbd] transition-all">
+            <button type="button" className="trigger-booking-modal bg-doctolib text-white px-8 py-3 rounded-full font-bold shadow-md hover:bg-doctolib-dark transition-all">
               Prendre RDV Doctolib
             </button>
             <Link href="/osteopathie" className="inline-flex items-center px-8 py-3 rounded-full font-bold text-primary bg-white border border-light/80 hover:bg-offwhite transition-colors">

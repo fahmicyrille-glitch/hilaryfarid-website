@@ -55,19 +55,21 @@ export default function DrainageCarousel() {
 
   return (
     <div className="relative max-w-4xl mx-auto">
-      <div className="relative overflow-hidden rounded-2xl bg-[#F6F3EF] shadow-lg">
+      {/* Cadre à hauteur fixe : les images portrait (800×1000) et paysage
+          (900×600) s'affichent à la même taille, sans déborder */}
+      <div className="relative overflow-hidden rounded-2xl bg-[#F6F3EF] shadow-lg h-[340px] md:h-[460px]">
         <div
           key={index}
-          className={`flex justify-center transition-all duration-500 ease-in-out
+          className={`absolute inset-0 transition-all duration-500 ease-in-out
             ${direction === "right" ? "animate-slide-in-right" : "animate-slide-in-left"}
           `}
         >
           <Image
             src={img.src}
             alt={img.alt}
-            width={img.w}
-            height={img.h}
-            className="max-w-full h-auto"
+            fill
+            sizes="(max-width: 768px) 100vw, 896px"
+            className="object-contain"
             priority={index === 0}
           />
         </div>
@@ -90,13 +92,19 @@ export default function DrainageCarousel() {
         ›
       </button>
 
-      {/* DOTS */}
+      {/* DOTS (cliquables) */}
       <div className="flex justify-center gap-2 mt-4">
-        {IMAGES.map((_, i) => (
-          <span
+        {IMAGES.map((image, i) => (
+          <button
             key={i}
-            className={`h-2 w-2 rounded-full transition ${
-              i === index ? "bg-primary scale-110" : "bg-gray-300"
+            type="button"
+            aria-label={`Voir : ${image.alt}`}
+            onClick={() => {
+              setDirection(i > index ? "right" : "left");
+              setIndex(i);
+            }}
+            className={`h-2.5 rounded-full transition-all ${
+              i === index ? "w-6 bg-primary" : "w-2.5 bg-gray-300 hover:bg-primary/50"
             }`}
           />
         ))}

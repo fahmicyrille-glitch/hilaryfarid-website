@@ -1,9 +1,9 @@
 // src/app/drainage/layout.js
 
 export const metadata = {
-  title: "Drainage Renata França Sèvres & Paris 15 ⭐ Jambes Légères - Hilary Farid",
+  title: { absolute: "Drainage Renata França Sèvres & Paris 15 ⭐ Jambes Légères" },
   description:
-    "Drainage lymphatique Renata França par Hilary Farid (Ostéopathe certifiée). Retrouvez des jambes légères et un ventre plat. Idéal rétention d'eau et détox. RDV à Sèvres & Paris 15.",
+    "Drainage Renata França par Hilary Farid, ostéopathe certifiée. Jambes légères, ventre dégonflé, rétention d'eau. RDV à Sèvres & Paris 15.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/drainage",
   },

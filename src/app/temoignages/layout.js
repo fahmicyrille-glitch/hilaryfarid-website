@@ -1,9 +1,9 @@
 // src/app/temoignages/layout.js
 
 export const metadata = {
-  title: "Avis Patients (5/5) ⭐ Ostéopathe Sèvres & Paris 15 - Hilary Farid",
+  title: "Avis Patients (5/5) ⭐ Ostéopathe Sèvres & Paris 15",
   description:
-    "Découvrez plus de 100 avis vérifiés (note 5/5) sur Hilary Farid, ostéopathe D.O. à Sèvres et Paris 15. Spécialisée nourrissons, grossesse et drainage Renata França.",
+    "Plus de 100 avis 5/5 sur Hilary Farid, ostéopathe D.O. à Sèvres et Paris 15 : nourrissons, grossesse et drainage Renata França.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/temoignages",
   },

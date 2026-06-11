@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Bienfaits du Drainage Renata França | Hilary Farid D.O.",
+  title: "Bienfaits du Drainage Renata França",
   description:
-    "Guide complet des bienfaits du drainage Renata França : jambes légères, cellulite, détox, immunité, grossesse, post-op. Séances à Paris 15 et Sèvres par Hilary Farid ostéopathe.",
+    "Bienfaits du drainage Renata França : jambes légères, cellulite, détox, immunité, grossesse, post-op. Séances à Paris 15 et Sèvres.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/drainage/bienfaits",
   },

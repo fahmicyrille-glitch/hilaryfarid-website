@@ -12,7 +12,7 @@ export default function FloatingPhoneButton() {
     <a
       href="tel:+33672014539"
       onClick={trackPhoneClick}
-      className="fixed bottom-24 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#0596DE] text-white shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 hover:bg-[#047cbd] md:bottom-8 md:right-24"
+      className="fixed bottom-24 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-doctolib text-white shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 hover:bg-doctolib-dark md:bottom-8 md:right-24"
       aria-label="Appeler Hilary Farid"
     >
       {/* Icône de téléphone animée */}

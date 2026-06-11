@@ -1,9 +1,9 @@
 // src/app/tarifs/layout.js
 
 export const metadata = {
-  title: "Tarifs & Remboursements Mutuelle ⭐ Ostéopathe Sèvres & Paris 15",
+  title: "Tarifs Ostéopathie & Drainage ⭐ Sèvres & Paris 15",
   description:
-    "Consultez les tarifs d'ostéopathie (adulte, nourrisson, grossesse) et drainage Renata França à Sèvres et Paris 15. Séances remboursées par la majorité des mutuelles.",
+    "Tarifs des consultations d'ostéopathie (adulte, nourrisson, grossesse) et du drainage Renata França à Sèvres et Paris 15. Remboursement mutuelles.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/tarifs",
   },

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import MobileSummary from "@/components/MobileSummary";
 import BackToTop from "@/components/BackToTop";
+import { IconCheck, IconMapPin } from "@/components/icons/UiIcons";
 
 const SECTIONS = [
   { id: "cabinet", label: "Le cabinet & Galerie" },
@@ -160,7 +161,7 @@ export default function SevresPage() {
             </div>
             <button
               type="button"
-              className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+              className="trigger-booking-modal inline-flex items-center gap-2 bg-doctolib text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-doctolib-dark transition-all transform hover:-translate-y-1"
             >
               Prendre RDV Doctolib
             </button>
@@ -292,11 +293,11 @@ export default function SevresPage() {
                 <h2 className="text-3xl font-semibold text-primary text-center">Pourquoi consulter à Sèvres ?</h2>
                 <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto mt-12 items-center">
                   <ul className="space-y-4 text-graywarm text-base md:text-lg">
-                    <li>✔️ Cabinet lumineux, moderne et apaisant</li>
-                    <li>✔️ Soins adaptés aux adultes, nourrissons &amp; femmes enceintes</li>
-                    <li>✔️ Situé en plein cœur de la Grande Rue de Sèvres</li>
-                    <li>✔️ Matériel professionnel et salle de soin premium</li>
-                    <li>✔️ Accueil chaleureux, écoute et accompagnement personnalisé</li>
+                    <li className="flex items-start gap-2"><IconCheck className="w-5 h-5 text-secondary shrink-0 mt-1" />Cabinet lumineux, moderne et apaisant</li>
+                    <li className="flex items-start gap-2"><IconCheck className="w-5 h-5 text-secondary shrink-0 mt-1" />Soins adaptés aux adultes, nourrissons &amp; femmes enceintes</li>
+                    <li className="flex items-start gap-2"><IconCheck className="w-5 h-5 text-secondary shrink-0 mt-1" />Situé en plein cœur de la Grande Rue de Sèvres</li>
+                    <li className="flex items-start gap-2"><IconCheck className="w-5 h-5 text-secondary shrink-0 mt-1" />Matériel professionnel et salle de soin premium</li>
+                    <li className="flex items-start gap-2"><IconCheck className="w-5 h-5 text-secondary shrink-0 mt-1" />Accueil chaleureux, écoute et accompagnement personnalisé</li>
                   </ul>
                   <div className="relative w-full h-[260px] md:h-[300px] rounded-lg overflow-hidden shadow-xl">
                     <Image
@@ -317,7 +318,7 @@ export default function SevresPage() {
               <section id="acces" className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8">
                 <h2 className="text-3xl font-semibold text-primary text-center">Adresse &amp; accès</h2>
                 <p className="text-center text-graywarm mt-4 text-base md:text-lg">
-                  📍 <strong>104 Grande Rue, 92310 Sèvres</strong>
+                  <IconMapPin className="w-5 h-5 text-primary inline-block align-text-bottom mr-1" /><strong>104 Grande Rue, 92310 Sèvres</strong>
                   <br />
                   À proximité immédiate de la gare, du tramway T2 et de plusieurs lignes de bus.
                 </p>
@@ -365,7 +366,7 @@ export default function SevresPage() {
                 <p className="mt-3 text-offwhite/90">Consultations disponibles du lundi au samedi.</p>
                 <button
                   type="button"
-                  className="trigger-booking-modal mt-6 inline-block bg-offwhite text-[#0596DE] font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md"
+                  className="trigger-booking-modal mt-6 inline-block bg-offwhite text-doctolib font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md"
                 >
                   Réserver sur Doctolib
                 </button>

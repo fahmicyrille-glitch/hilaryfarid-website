@@ -32,8 +32,8 @@ export default function MentionsLegalesPage() {
               <p>
                 <strong>Hilary Farid</strong><br />
                 Ostéopathe D.O.<br />
-                Téléphone : <a href="tel:+33672014539" className="text-[#0596DE] font-medium hover:underline underline-offset-4">06 72 01 45 39</a><br />
-                Email : <a href="mailto:hilaryfarid.osteopathe@gmail.com" className="text-[#0596DE] font-medium hover:underline underline-offset-4">hilaryfarid.osteopathe@gmail.com</a>
+                Téléphone : <a href="tel:+33672014539" className="text-doctolib font-medium hover:underline underline-offset-4">06 72 01 45 39</a><br />
+                Email : <a href="mailto:hilaryfarid.osteopathe@gmail.com" className="text-doctolib font-medium hover:underline underline-offset-4">hilaryfarid.osteopathe@gmail.com</a>
               </p>
             </div>
 
@@ -56,7 +56,7 @@ export default function MentionsLegalesPage() {
                 <strong>Vercel Inc.</strong><br />
                 440 N Barranca Ave #4133<br />
                 Covina, CA 91723 – États-Unis<br />
-                Site web : <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-[#0596DE] font-medium hover:underline underline-offset-4">https://vercel.com</a>
+                Site web : <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-doctolib font-medium hover:underline underline-offset-4">https://vercel.com</a>
               </p>
             </div>
 

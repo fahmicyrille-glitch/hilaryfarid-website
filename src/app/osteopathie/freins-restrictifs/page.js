@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import BackToTop from "@/components/BackToTop";
+import { IconPhone } from "@/components/icons/UiIcons";
 
 export default function FreinsRestrictifsPage() {
   const faq = [
@@ -98,7 +99,7 @@ export default function FreinsRestrictifsPage() {
               <div className="mt-7 flex flex-wrap gap-4">
                 <button
                   type="button"
-                  className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+                  className="trigger-booking-modal inline-flex items-center gap-2 bg-doctolib text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-doctolib-dark transition-all transform hover:-translate-y-1"
                 >
                   Prendre RDV pour mon bébé
                 </button>
@@ -283,7 +284,7 @@ export default function FreinsRestrictifsPage() {
             <div className="mt-8 flex flex-wrap gap-4 justify-center">
               <button
                 type="button"
-                className="trigger-booking-modal bg-[#0596DE] text-white px-8 py-4 rounded-full font-bold shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+                className="trigger-booking-modal bg-doctolib text-white px-8 py-4 rounded-full font-bold shadow-xl hover:bg-doctolib-dark transition-all transform hover:-translate-y-1"
               >
                 Prendre RDV
               </button>
@@ -324,11 +325,11 @@ export default function FreinsRestrictifsPage() {
 
       {/* ===== STICKY MOBILE CTA ===== */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-light/60 shadow-lg px-4 py-3 flex gap-3">
-        <button type="button" className="trigger-booking-modal flex-1 bg-[#0596DE] text-white py-3 rounded-full font-bold text-sm shadow-md">
+        <button type="button" className="trigger-booking-modal flex-1 bg-doctolib text-white py-3 rounded-full font-bold text-sm shadow-md">
           Prendre RDV
         </button>
         <a href="tel:+33672014539" className="flex-1 flex items-center justify-center gap-2 bg-primary/10 text-primary py-3 rounded-full font-bold text-sm border border-primary/20">
-          📞 Appeler
+          <IconPhone className="w-4 h-4" /> Appeler
         </a>
       </div>
 

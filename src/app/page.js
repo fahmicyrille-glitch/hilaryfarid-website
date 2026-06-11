@@ -1,11 +1,24 @@
-"use client"
-
-// src/app/page.js
+// src/app/page.js — Server Component (SEO + perf)
 import Image from "next/image";
 import Link from "next/link";
 import { FadeInNoShift } from "@/components/MotionWrapper";
 import BackToTop from "@/components/BackToTop";
-import { OPENING_HOURS } from "@/config/siteConfig";
+import GoogleReviewsCarousel from "@/components/GoogleReviewsCarousel";
+import StatsBand from "@/components/StatsBand";
+import { fetchGoogleReviews } from "@/lib/googleReviews";
+import {
+  OPENING_HOURS,
+  GLOBAL_REVIEW_COUNT,
+  RENATA_OFFICIAL_URL,
+} from "@/config/siteConfig";
+import {
+  IconBone,
+  IconDroplets,
+  IconMapPin,
+  IconBadgeCheck,
+} from "@/components/icons/UiIcons";
+
+export const revalidate = 21600; // 6h — rafraîchit les avis Google
 
 /* 🚀 ANIMATION CSS SSR-SAFE (ZÉRO CLS) */
 const fadeCss = `
@@ -56,7 +69,7 @@ const HOME_SCHEMAS = [
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "5",
-      reviewCount: "100",
+      reviewCount: GLOBAL_REVIEW_COUNT,
       bestRating: "5",
       worstRating: "5",
     },
@@ -121,7 +134,41 @@ const HOME_SCHEMAS = [
   },
 ];
 
-export default function Home() {
+// Avis de secours (affichés uniquement si l'API Google n'est pas configurée,
+// sans aucun branding Google)
+const FALLBACK_REVIEWS = [
+  {
+    name: "Sabrina L.",
+    text: "Un soin incroyable ! Résultats visibles dès la première séance de drainage. J'avais les jambes très lourdes et le ventre gonflé, je suis ressortie légère.",
+    context: "Drainage Renata França",
+  },
+  {
+    name: "Julie M.",
+    text: "J'ai consulté pour mon nourrisson de 2 mois qui souffrait de reflux et de coliques. Mon bébé est beaucoup plus apaisé et dort tellement mieux depuis !",
+    context: "Ostéopathie nourrisson",
+  },
+  {
+    name: "Mathieu D.",
+    text: "Très à l'écoute, technique et efficace. Mes douleurs cervicales chroniques liées au télétravail ont totalement disparu en deux séances.",
+    context: "Ostéopathie adulte",
+  },
+];
+
+export default async function Home() {
+  let googleReviews = [];
+  let googleStats = null;
+  try {
+    const { reviews, stats } = await fetchGoogleReviews();
+    googleReviews = reviews;
+    googleStats = stats;
+  } catch {
+    // Pas d'avis Google disponibles → fallback silencieux
+  }
+
+  const reviewCountLabel = googleStats?.total
+    ? `+${googleStats.total} avis`
+    : `+${GLOBAL_REVIEW_COUNT} avis`;
+
   return (
     <main>
 
@@ -146,9 +193,16 @@ export default function Home() {
               à Sèvres &amp; Paris 15
             </h1>
 
-            <p className="mt-3 uppercase tracking-[0.15em] text-xs md:text-sm text-offwhite/70">
-              Praticienne Renata França certifiée
-            </p>
+            {/* Badge certification vérifiable */}
+            <a
+              href={RENATA_OFFICIAL_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex items-center gap-2 bg-offwhite/10 border border-offwhite/30 rounded-full px-4 py-1.5 text-xs md:text-sm text-offwhite/90 hover:bg-offwhite/20 transition-colors"
+            >
+              <IconBadgeCheck className="w-4 h-4 text-amber-300" />
+              Praticienne certifiée Renata França
+            </a>
 
             <h2 className="mt-5 text-xl md:text-2xl font-semibold text-offwhite/90 leading-snug">
               Ostéopathie douce &amp;<br />
@@ -163,7 +217,7 @@ export default function Home() {
             <div className="mt-6 mb-2 flex items-center gap-2">
               <div className="flex text-amber-400 text-lg drop-shadow-md">★★★★★</div>
               <span className="text-offwhite/90 text-sm font-medium">
-                5/5 sur Google (+100 avis)
+                5/5 sur Google ({reviewCountLabel})
               </span>
             </div>
 
@@ -171,9 +225,9 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap gap-4">
               <button
                 type="button"
-                className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+                className="trigger-booking-modal inline-flex items-center gap-2 bg-doctolib text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-doctolib-dark transition-all transform hover:-translate-y-1"
               >
-                Prendre RDV Doctolib
+                Prendre rendez-vous
               </button>
 
               <Link
@@ -184,7 +238,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <p className="mt-5 text-xs text-offwhite/70">
+            <p className="mt-5 text-xs text-offwhite/90">
               Prise en charge ostéopathique possible par les mutuelles.
             </p>
           </div>
@@ -194,14 +248,15 @@ export default function Home() {
               <div aria-hidden="true" className="absolute -inset-4 bg-offwhite/10 rounded-3xl blur-xl" />
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-offwhite/30 aspect-square">
                 <Image
-                  src="/hilary.webp"
+                  src="/noResize_hilary.webp"
                   alt="Hilary Farid, ostéopathe et praticienne Renata França à Sèvres et Paris 15"
                   fill
                   priority
                   fetchPriority="high"
                   decoding="async"
+                  quality={85}
                   sizes="(max-width: 768px) 90vw, 600px"
-                  className="object-cover object-top w-full h-full"
+                  className="object-cover object-top w-full h-full hero-zoom"
                 />
               </div>
             </div>
@@ -219,8 +274,8 @@ export default function Home() {
               href="/osteopathie"
               className="group bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-light/50 flex flex-col h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
-              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
-                <span className="text-3xl">🦴</span>
+              <div className="w-14 h-14 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
+                <IconBone className="w-7 h-7" />
               </div>
               <h3 className="text-2xl font-bold text-primary mb-4">Ostéopathie D.O</h3>
               <p className="text-graywarm mb-6 flex-grow">
@@ -234,22 +289,29 @@ export default function Home() {
             {/* Carte Drainage Renata França */}
             <Link
               href="/drainage"
-              className="group bg-[#FAF6F3] rounded-3xl p-8 md:p-10 shadow-xl border border-[#E8D8CE] flex flex-col h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              className="group bg-cream rounded-3xl p-8 md:p-10 shadow-xl border border-cream-border flex flex-col h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
-              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm">
-                <span className="text-3xl">✨</span>
+              <div className="w-14 h-14 bg-white text-secondary rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                <IconDroplets className="w-7 h-7" />
               </div>
-              <h3 className="text-2xl font-bold text-[#1E293B] mb-4">Drainage Renata França</h3>
+              <h3 className="text-2xl font-bold text-ink mb-4">Drainage Renata França</h3>
               <p className="text-graywarm mb-6 flex-grow">
                 Un massage manuel tonique et exclusif aux résultats immédiats. Idéal pour lutter contre la rétention d'eau, obtenir des jambes légères, un ventre dégonflé et relancer le métabolisme.
               </p>
-              <span className="font-semibold text-[#1E293B] underline underline-offset-4 group-hover:text-primary flex items-center gap-2">
+              <span className="font-semibold text-ink underline underline-offset-4 group-hover:text-primary flex items-center gap-2">
                 Tout savoir sur le drainage Renata <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </span>
             </Link>
 
           </div>
         </FadeInNoShift>
+      </section>
+
+      {/* ================= CHIFFRES CLÉS (count-up au scroll) ================= */}
+      <section className="py-12 md:py-16 bg-offwhite border-y border-light/60">
+        <div className="max-w-5xl mx-auto px-6">
+          <StatsBand />
+        </div>
       </section>
 
       {/* ================= SECTION : Pourquoi consulter ? ================= */}
@@ -307,8 +369,44 @@ export default function Home() {
         </FadeInNoShift>
       </section>
 
+      {/* ================= AVIS GOOGLE (2 cabinets) ================= */}
+      <section className="py-16 md:py-20 bg-light">
+        <div className="max-w-6xl mx-auto px-6">
+          <FadeInNoShift>
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-semibold text-primary">
+                Ce que disent les patients
+              </h2>
+              <div className="mt-4 flex items-center justify-center gap-2">
+                <span className="flex text-amber-400 text-xl">★★★★★</span>
+                <span className="text-graywarm font-medium">
+                  {googleStats?.rating ?? "5"}/5 · {reviewCountLabel} · Sèvres &amp; Paris 15
+                </span>
+              </div>
+            </div>
+
+            <GoogleReviewsCarousel reviews={googleReviews} fallback={FALLBACK_REVIEWS} />
+
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <button
+                type="button"
+                className="trigger-booking-modal inline-flex items-center gap-2 bg-doctolib text-white px-8 py-3.5 rounded-full font-semibold shadow-lg hover:bg-doctolib-dark transition-all transform hover:-translate-y-0.5"
+              >
+                Prendre rendez-vous
+              </button>
+              <Link
+                href="/temoignages"
+                className="inline-flex items-center gap-2 text-primary font-semibold underline underline-offset-4 hover:text-secondary"
+              >
+                Tous les témoignages →
+              </Link>
+            </div>
+          </FadeInNoShift>
+        </div>
+      </section>
+
       {/* ================= SECTION : Cabinets ================= */}
-      <section className="py-16 md:py-20 bg-light relative">
+      <section className="py-16 md:py-20 bg-offwhite relative">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-semibold text-primary text-center">
             Nos cabinets de consultation
@@ -351,8 +449,8 @@ export default function Home() {
               </div>
 
               <div className="relative h-8">
-                <span className="absolute top-4 right-4 bg-primary text-offwhite text-xs px-3 py-1 rounded-full shadow-sm">
-                  📍 Sèvres
+                <span className="absolute top-4 right-4 inline-flex items-center gap-1 bg-primary text-offwhite text-xs px-3 py-1 rounded-full shadow-sm">
+                  <IconMapPin className="w-3.5 h-3.5" /> Sèvres
                 </span>
               </div>
 
@@ -399,8 +497,8 @@ export default function Home() {
               </div>
 
               <div className="relative h-8">
-                <span className="absolute top-4 right-4 bg-primary text-offwhite text-xs px-3 py-1 rounded-full shadow-sm">
-                  📍 Paris 15
+                <span className="absolute top-4 right-4 inline-flex items-center gap-1 bg-primary text-offwhite text-xs px-3 py-1 rounded-full shadow-sm">
+                  <IconMapPin className="w-3.5 h-3.5" /> Paris 15
                 </span>
               </div>
 
@@ -458,20 +556,25 @@ export default function Home() {
       </section>
 
       {/* ================= CTA finale ================= */}
-      <section className="py-16 md:py-20 bg-primary text-offwhite text-center">
+      <section className="py-16 md:py-20 px-6 bg-light">
         <FadeInNoShift>
-          <h2 className="text-3xl md:text-4xl font-semibold">
-            Prêt(e) à prendre soin de vous ?
-          </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-offwhite/90">
-            Une première séance permet déjà de faire le point, que ce soit pour des douleurs ou pour un drainage Renata França.
-          </p>
-          <button
-            type="button"
-            className="trigger-booking-modal mt-8 inline-block bg-offwhite text-[#0596DE] font-bold px-10 py-4 rounded-full shadow-md hover:bg-light transition"
-          >
-            Réserver sur Doctolib
-          </button>
+          <div className="max-w-4xl mx-auto bg-cream border border-cream-border rounded-3xl shadow-md text-center p-10 md:p-14">
+            <h2 className="text-3xl md:text-4xl font-semibold text-primary">
+              Prêt(e) à prendre soin de vous ?
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-graywarm">
+              Une première séance permet déjà de faire le point, que ce soit pour des douleurs ou pour un drainage Renata França.
+            </p>
+            <button
+              type="button"
+              className="trigger-booking-modal mt-8 inline-block bg-doctolib text-white font-bold px-10 py-4 rounded-full shadow-lg hover:bg-doctolib-dark transition-all transform hover:-translate-y-0.5"
+            >
+              Prendre rendez-vous
+            </button>
+            <p className="mt-4 text-sm text-graywarm">
+              En ligne sur Doctolib ou par téléphone — c'est vous qui choisissez.
+            </p>
+          </div>
         </FadeInNoShift>
       </section>
 

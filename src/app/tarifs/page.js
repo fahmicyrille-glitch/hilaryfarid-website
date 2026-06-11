@@ -1,9 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import MobileSummary from "@/components/MobileSummary";
 import BackToTop from "@/components/BackToTop";
+import Faq from "@/components/Faq";
+import { IconInfo, IconMapPin, IconGift } from "@/components/icons/UiIcons";
 
 const SECTIONS = [
   { id: "consultations", label: "Consultations & prestations" },
@@ -285,7 +288,7 @@ export default function TarifsPage() {
 
             <button
               type="button"
-              className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+              className="trigger-booking-modal inline-flex items-center gap-2 bg-doctolib text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-doctolib-dark transition-all transform hover:-translate-y-1"
             >
               Prendre RDV Doctolib
             </button>
@@ -416,7 +419,8 @@ export default function TarifsPage() {
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                           <div>
                             <p className="text-primary font-semibold text-base md:text-lg flex items-center gap-2">
-                              <span>🔥</span> Offre en cours : {DRAINAGE_PROMO_PRICE} € (Paris 15 & Sèvres)
+                              <span className="inline-flex items-center rounded-full bg-secondary text-offwhite px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide">Promo</span>
+                              Offre en cours : {DRAINAGE_PROMO_PRICE} € (Paris 15 & Sèvres)
                             </p>
                             <p className="text-graywarm text-sm mt-1">
                               Offre valable jusqu’au{" "}
@@ -451,7 +455,7 @@ export default function TarifsPage() {
                           className="flex items-center justify-between pb-2 border-b border-light/50 last:border-0 last:pb-0"
                         >
                           <span className="text-base font-medium text-graywarm flex items-center gap-2">
-                            📍 Cabinet de {city}
+                            <IconMapPin className="w-4 h-4 text-primary" /> Cabinet de {city}
                           </span>
 
                           {promoState === "active" ? (
@@ -496,6 +500,25 @@ export default function TarifsPage() {
                     </div>
                   </div>
 
+                  {/* ===== CARTE CADEAU ===== */}
+                  <div className="mt-8 pt-8 border-t border-graywarm/20">
+                    <Link
+                      href="/carte-cadeau"
+                      className="group flex items-center justify-between gap-4 rounded-xl bg-cream border border-cream-border p-4 hover:shadow-md transition-all"
+                    >
+                      <span className="flex items-center gap-3">
+                        <span className="w-10 h-10 rounded-xl bg-white text-secondary flex items-center justify-center shadow-sm shrink-0">
+                          <IconGift className="w-5 h-5" />
+                        </span>
+                        <span>
+                          <span className="block font-semibold text-ink">Offrez une séance</span>
+                          <span className="block text-sm text-graywarm">Carte cadeau drainage Renata França</span>
+                        </span>
+                      </span>
+                      <span className="text-secondary font-semibold group-hover:translate-x-1 transition-transform shrink-0">→</span>
+                    </Link>
+                  </div>
+
                 </div>
               </section>
             </SlideUp>
@@ -507,7 +530,9 @@ export default function TarifsPage() {
                 className="bg-white rounded-2xl shadow-sm border border-light p-6 md:p-8"
               >
                 <div className="flex items-start gap-4">
-                  <span className="text-3xl mt-1">💡</span>
+                  <span className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-1">
+                    <IconInfo className="w-6 h-6" />
+                  </span>
                   <div>
                     <h3 className="text-xl font-semibold text-primary mb-2">Informations importantes</h3>
                     <p className="text-graywarm text-sm leading-relaxed">
@@ -528,33 +553,24 @@ export default function TarifsPage() {
                   FAQ – Tarifs & Remboursements
                 </h2>
 
-                <div className="mt-10 space-y-6">
-                  <details className="bg-offwhite/70 border rounded-xl p-5 shadow-sm">
-                    <summary className="font-semibold text-primary cursor-pointer text-lg">
-                      Les tarifs sont-ils identiques dans les deux cabinets ?
-                    </summary>
-                    <p className="mt-3 text-graywarm text-base leading-relaxed">
-                      Oui pour l'ostéopathie ! Les tarifs des consultations d'ostéopathie sont strictement identiques à Sèvres et Paris 15. En revanche, le tarif du drainage Renata França (hors période de promotion) varie selon le cabinet en raison des charges locales.
-                    </p>
-                  </details>
-
-                  <details className="bg-offwhite/70 border rounded-xl p-5 shadow-sm">
-                    <summary className="font-semibold text-primary cursor-pointer text-lg">
-                      Les consultations d'ostéopathie sont-elles remboursées ?
-                    </summary>
-                    <p className="mt-3 text-graywarm text-base leading-relaxed">
-                      Oui, la grande majorité des mutuelles prennent en charge tout ou partie des séances d'ostéopathie (forfait annuel ou par séance). Une facture détaillée vous sera envoyée par e-mail après chaque consultation pour faciliter vos démarches de remboursement.
-                    </p>
-                  </details>
-
-                  <details className="bg-offwhite/70 border rounded-xl p-5 shadow-sm">
-                    <summary className="font-semibold text-primary cursor-pointer text-lg">
-                      Le drainage Renata França est-il remboursé par la mutuelle ?
-                    </summary>
-                    <p className="mt-3 text-graywarm text-base leading-relaxed">
-                      Non, le drainage Renata França est une pratique de bien-être, différente du drainage lymphatique médical prescrit et remboursé par la Sécurité sociale. Il n'est pas pris en charge par les mutuelles santé classiques, contrairement aux séances d'ostéopathie.
-                    </p>
-                  </details>
+                <div className="mt-10">
+                  <Faq
+                    tone="offwhite"
+                    items={[
+                      {
+                        q: "Les tarifs sont-ils identiques dans les deux cabinets ?",
+                        a: "Oui pour l'ostéopathie ! Les tarifs des consultations d'ostéopathie sont strictement identiques à Sèvres et Paris 15. En revanche, le tarif du drainage Renata França (hors période de promotion) varie selon le cabinet en raison des charges locales.",
+                      },
+                      {
+                        q: "Les consultations d'ostéopathie sont-elles remboursées ?",
+                        a: "Oui, la grande majorité des mutuelles prennent en charge tout ou partie des séances d'ostéopathie (forfait annuel ou par séance). Une facture détaillée vous sera envoyée par e-mail après chaque consultation pour faciliter vos démarches de remboursement.",
+                      },
+                      {
+                        q: "Le drainage Renata França est-il remboursé par la mutuelle ?",
+                        a: "Non, le drainage Renata França est une pratique de bien-être, différente du drainage lymphatique médical prescrit et remboursé par la Sécurité sociale. Il n'est pas pris en charge par les mutuelles santé classiques, contrairement aux séances d'ostéopathie.",
+                      },
+                    ]}
+                  />
                 </div>
               </section>
             </SlideUp>
@@ -572,7 +588,7 @@ export default function TarifsPage() {
 
                 <button
                   type="button"
-                  className="trigger-booking-modal mt-8 inline-flex items-center justify-center gap-2 bg-offwhite text-[#0596DE] font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md text-center"
+                  className="trigger-booking-modal mt-8 inline-flex items-center justify-center gap-2 bg-offwhite text-doctolib font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md text-center"
                 >
                   Réserver sur Doctolib
                 </button>

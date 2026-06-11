@@ -167,7 +167,7 @@ export default function AProposPage() {
 
             <button
               type="button"
-              className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+              className="trigger-booking-modal inline-flex items-center gap-2 bg-doctolib text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-doctolib-dark transition-all transform hover:-translate-y-1"
             >
               Prendre RDV Doctolib
             </button>
@@ -437,7 +437,7 @@ export default function AProposPage() {
 
                 <button
                   type="button"
-                  className="trigger-booking-modal mt-8 inline-block bg-offwhite text-[#0596DE] font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md"
+                  className="trigger-booking-modal mt-8 inline-block bg-offwhite text-doctolib font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md"
                 >
                   Réserver une séance
                 </button>

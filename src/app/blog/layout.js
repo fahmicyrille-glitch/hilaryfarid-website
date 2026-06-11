@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Blog Ostéopathie & Drainage Renata França | Conseils — Hilary Farid",
+  title: "Blog Ostéopathie & Drainage Renata França",
   description:
-    "Articles de conseils sur l'ostéopathie nourrisson, la grossesse, le drainage Renata França et la santé naturelle. Par Hilary Farid, ostéopathe D.O. à Sèvres et Paris 15.",
+    "Conseils sur l'ostéopathie nourrisson, la grossesse et le drainage Renata França, par Hilary Farid, ostéopathe D.O. à Sèvres et Paris 15.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/blog",
   },

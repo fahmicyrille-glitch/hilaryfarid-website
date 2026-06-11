@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Ostéopathie du Sport Sèvres & Paris 15 | Hilary Farid D.O.",
+  title: "Ostéopathie du Sport Sèvres & Paris 15",
   description:
-    "Ostéopathe du sport à Paris 15 et Sèvres. Récupération, prévention des blessures, tendinites, entorses, douleurs lombaires du sportif. Pour amateurs et compétiteurs. RDV Doctolib.",
+    "Ostéopathe du sport à Paris 15 et Sèvres : récupération, prévention, tendinites, entorses, douleurs lombaires. Pour amateurs et compétiteurs.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/osteopathie/sport",
   },

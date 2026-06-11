@@ -2,27 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Script from "next/script";
-import dynamic from "next/dynamic";
 import { PHONE, PHONE_LINK, EMAIL } from "@/config/contact";
 import ContactForm from "@/components/ContactForm";
 import MobileSummary from "@/components/MobileSummary";
 import BackToTop from "@/components/BackToTop";
-
-// Framer Motion wrappers chargés dynamiquement (perf ++)
-const FadeIn = dynamic(
-  () => import("@/components/MotionWrapper").then((m) => m.FadeIn),
-  { ssr: false }
-);
-
-const SlideUp = dynamic(
-  () => import("@/components/MotionWrapper").then((m) => m.SlideUp),
-  { ssr: false }
-);
-
-const HeroMotion = dynamic(
-  () => import("@/components/MotionWrapper").then((m) => m.HeroMotion),
-  { ssr: false }
-);
+// Import direct (SSR) : avec ssr:false, le hero — et donc le h1 — était
+// absent du HTML initial, invisible pour Google
+import { FadeIn, SlideUp, HeroMotion } from "@/components/MotionWrapper";
 
 const SECTIONS = [
   { id: "coordonnees", label: "Coordonnées" },
@@ -329,7 +315,7 @@ export default function ContactPage() {
           <div className="mt-8">
           <button
             type="button"
-            className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+            className="trigger-booking-modal inline-flex items-center gap-2 bg-doctolib text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-doctolib-dark transition-all transform hover:-translate-y-1"
           >
             Prendre RDV Doctolib
           </button>
@@ -447,7 +433,7 @@ export default function ContactPage() {
                     28 Rue Letellier, 75015 Paris
                   </p>
                   <p className="text-sm bg-light p-4 rounded-lg border border-primary/10">
-                    💡 Les cabinets sont accessibles aux poussettes et parfaitement adaptés aux consultations pour les nourrissons.
+                    Bon à savoir : les cabinets sont accessibles aux poussettes et parfaitement adaptés aux consultations pour les nourrissons.
                   </p>
                 </div>
               </section>
@@ -563,7 +549,7 @@ export default function ContactPage() {
 
                 <button
                   type="button"
-                  className="trigger-booking-modal mt-6 inline-block bg-offwhite text-[#0596DE] font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md"
+                  className="trigger-booking-modal mt-6 inline-block bg-offwhite text-doctolib font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md"
                 >
                   Réserver sur Doctolib
                 </button>

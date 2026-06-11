@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Conseil Anti-Douleur en Visio ⭐ Ergonomie & Posture - Hilary Farid",
+  title: "Conseil Anti-Douleur en Visio ⭐ Ergonomie & Posture",
   description:
-    "Consultation en visioconférence avec Hilary Farid, Ostéopathe D.O. Analyse de votre posture en télétravail, conseils post-partum et exercices d'auto-soulagement.",
+    "Consultation en visio avec Hilary Farid, ostéopathe D.O. : posture en télétravail, conseils post-partum et exercices d'auto-soulagement.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/visio",
   },

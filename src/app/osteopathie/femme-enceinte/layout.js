@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Ostéopathie Femme Enceinte & Post-partum | Hilary Farid D.O.",
+  title: "Ostéopathie Femme Enceinte & Post-partum",
   description:
-    "Ostéopathe spécialisée grossesse à Paris 15 et Sèvres. Lombalgies, sciatique, bassin, nausées, préparation à l'accouchement et suivi post-partum. Formation CFPCO. RDV Doctolib.",
+    "Ostéopathe spécialisée grossesse à Paris 15 et Sèvres : lombalgies, sciatique, bassin, préparation à l'accouchement et post-partum. Formation CFPCO.",
   alternates: {
     canonical:
       "https://www.hilaryfarid-osteopathe.fr/osteopathie/femme-enceinte",

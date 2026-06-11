@@ -31,7 +31,7 @@ export default function FloatingBookingButtons() {
           className="
             trigger-booking-modal
             w-full flex items-center justify-center gap-3
-            bg-[#0596DE] text-white
+            bg-doctolib text-white
             px-6 py-4 rounded-full
             shadow-[0_8px_25px_rgba(5,150,222,0.4)]
             active:scale-95 transition-transform duration-200
@@ -65,7 +65,7 @@ export default function FloatingBookingButtons() {
           className="
             trigger-booking-modal
             flex items-center gap-3
-            bg-[#0596DE] text-white
+            bg-doctolib text-white
             px-5 py-4 rounded-2xl
             shadow-[0_8px_30px_rgba(5,150,222,0.3)]
             transition-all duration-300 ease-out

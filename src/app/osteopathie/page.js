@@ -116,7 +116,7 @@ export default function OsteopathiePage() {
                 Ostéopathie douce & globale
               </p>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight text-[#1E293B]">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight text-ink">
                 Soulager vos douleurs,<br /> retrouver mobilité & confort.
               </h1>
 
@@ -140,7 +140,7 @@ export default function OsteopathiePage() {
               <div className="mt-6 flex flex-wrap gap-4 items-center">
                 <button
                   type="button"
-                  className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+                  className="trigger-booking-modal inline-flex items-center gap-2 bg-doctolib text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-doctolib-dark transition-all transform hover:-translate-y-1"
                 >
                   Prendre RDV Doctolib
                 </button>
@@ -458,7 +458,7 @@ export default function OsteopathiePage() {
               {/* Box 1 */}
               <div className="p-8 rounded-2xl bg-white shadow-sm border border-light/40 hover:border-secondary/30 transition-colors">
                 <div className="w-14 h-14 bg-light/50 rounded-full flex items-center justify-center mb-5 text-2xl">🤝</div>
-                <h3 className="font-bold text-[#1E293B] text-xl">Une approche douce et sécurisante</h3>
+                <h3 className="font-bold text-ink text-xl">Une approche douce et sécurisante</h3>
                 <p className="mt-4 text-base">
                   Diplômée de l'Institut Dauphine d'Ostéopathie (IDO Paris), je suis formée aux techniques structurelles, viscérales, crâniennes et tissulaires. J'adapte chaque geste à votre confort.
                 </p>
@@ -468,8 +468,8 @@ export default function OsteopathiePage() {
               <div className="p-8 rounded-2xl bg-gradient-to-br from-white to-light/30 shadow-md border border-secondary/20 relative overflow-hidden">
                 <div className="absolute -right-4 -top-4 text-7xl opacity-10">👶</div>
                 <div className="w-14 h-14 bg-secondary/10 rounded-full flex items-center justify-center mb-5 text-2xl">🎓</div>
-                <h3 className="font-bold text-[#1E293B] text-xl">Ultra-spécialisée Périnatalité</h3>
-                <p className="mt-4 text-base text-[#1E293B]/90 leading-relaxed">
+                <h3 className="font-bold text-ink text-xl">Ultra-spécialisée Périnatalité</h3>
+                <p className="mt-4 text-base text-ink/90 leading-relaxed">
                   Formations expertes en continu : <strong>Centre YGY</strong> (Catherine Rybus) pour les nourrissons, les troubles de la succion et les freins restrictifs. <strong>CFPCO</strong> pour l'accompagnement spécifique de la femme enceinte.
                 </p>
               </div>
@@ -477,7 +477,7 @@ export default function OsteopathiePage() {
               {/* Box 3 */}
               <div className="p-8 rounded-2xl bg-white shadow-sm border border-light/40 hover:border-secondary/30 transition-colors">
                 <div className="w-14 h-14 bg-light/50 rounded-full flex items-center justify-center mb-5 text-2xl">📋</div>
-                <h3 className="font-bold text-[#1E293B] text-xl">Un suivi clair & personnalisé</h3>
+                <h3 className="font-bold text-ink text-xl">Un suivi clair & personnalisé</h3>
                 <p className="mt-4 text-base">
                   Le but n'est pas seulement de faire "craquer". Vous repartez avec une explication claire de votre schéma corporel, des conseils ciblés et un vrai plan d'accompagnement.
                 </p>
@@ -486,7 +486,7 @@ export default function OsteopathiePage() {
               {/* Box 4 */}
               <div className="p-8 rounded-2xl bg-white shadow-sm border border-light/40 hover:border-secondary/30 transition-colors">
                 <div className="w-14 h-14 bg-light/50 rounded-full flex items-center justify-center mb-5 text-2xl">📍</div>
-                <h3 className="font-bold text-[#1E293B] text-xl">Deux cabinets accessibles</h3>
+                <h3 className="font-bold text-ink text-xl">Deux cabinets accessibles</h3>
                 <p className="mt-4 text-base">
                   Des cabinets récents et chaleureux à Sèvres et Paris 15, très bien desservis par les transports. L'accès avec une poussette y est grandement facilité.
                 </p>
@@ -610,7 +610,7 @@ export default function OsteopathiePage() {
 
             <div className="mt-12 space-y-5">
               <details className="group bg-white border border-light/80 rounded-2xl shadow-sm [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex items-center justify-between font-bold text-[#1E293B] text-lg cursor-pointer p-6 md:p-8">
+                <summary className="flex items-center justify-between font-bold text-ink text-lg cursor-pointer p-6 md:p-8">
                   <span>Quand consulter un ostéopathe ?</span>
                   <span className="transition group-open:rotate-180">
                     <svg fill="none" height="24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
@@ -622,7 +622,7 @@ export default function OsteopathiePage() {
               </details>
 
               <details className="group bg-white border border-light/80 rounded-2xl shadow-sm [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex items-center justify-between font-bold text-[#1E293B] text-lg cursor-pointer p-6 md:p-8">
+                <summary className="flex items-center justify-between font-bold text-ink text-lg cursor-pointer p-6 md:p-8">
                   <span>L'ostéopathie est-elle adaptée aux nourrissons ?</span>
                   <span className="transition group-open:rotate-180">
                     <svg fill="none" height="24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
@@ -634,7 +634,7 @@ export default function OsteopathiePage() {
               </details>
 
               <details className="group bg-white border border-light/80 rounded-2xl shadow-sm [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex items-center justify-between font-bold text-[#1E293B] text-lg cursor-pointer p-6 md:p-8">
+                <summary className="flex items-center justify-between font-bold text-ink text-lg cursor-pointer p-6 md:p-8">
                   <span>Est-ce que l'ostéopathie aide pendant la grossesse ?</span>
                   <span className="transition group-open:rotate-180">
                     <svg fill="none" height="24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
@@ -646,7 +646,7 @@ export default function OsteopathiePage() {
               </details>
 
               <details className="group bg-white border border-light/80 rounded-2xl shadow-sm [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex items-center justify-between font-bold text-[#1E293B] text-lg cursor-pointer p-6 md:p-8">
+                <summary className="flex items-center justify-between font-bold text-ink text-lg cursor-pointer p-6 md:p-8">
                   <span>Combien de séances sont nécessaires ?</span>
                   <span className="transition group-open:rotate-180">
                     <svg fill="none" height="24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
@@ -665,7 +665,7 @@ export default function OsteopathiePage() {
       <FadeIn>
         <section className="py-20 px-6 text-center xl:pl-80 bg-white">
           <div className="max-w-3xl mx-auto bg-primary/5 rounded-3xl p-10 md:p-14 border border-primary/10">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1E293B]">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink">
               Vous hésitez encore à consulter ?
             </h2>
             <p className="mt-5 text-graywarm text-lg leading-relaxed">
@@ -675,7 +675,7 @@ export default function OsteopathiePage() {
             <div className="mt-10 flex flex-col sm:flex-row gap-5 justify-center items-center">
               <button
                 type="button"
-                className="trigger-booking-modal w-full sm:w-auto bg-[#0596DE] text-white px-8 py-4 rounded-full text-lg font-bold shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1 text-center"
+                className="trigger-booking-modal w-full sm:w-auto bg-doctolib text-white px-8 py-4 rounded-full text-lg font-bold shadow-xl hover:bg-doctolib-dark transition-all transform hover:-translate-y-1 text-center"
               >
                 Prendre rendez-vous
               </button>

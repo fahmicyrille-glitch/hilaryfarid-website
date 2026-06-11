@@ -117,7 +117,7 @@ export default function OsteopathieNourrissonPage() {
               <div className="mt-7 flex flex-wrap gap-4">
                 <button
                   type="button"
-                  className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+                  className="trigger-booking-modal inline-flex items-center gap-2 bg-doctolib text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-doctolib-dark transition-all transform hover:-translate-y-1"
                 >
                   Prendre RDV pour mon bébé
                 </button>
@@ -233,7 +233,7 @@ export default function OsteopathieNourrissonPage() {
               <div className="mt-8">
                 <button
                   type="button"
-                  className="trigger-booking-modal bg-[#0596DE] text-white px-7 py-3.5 rounded-full font-semibold shadow-lg hover:bg-[#047cbd] transition-all"
+                  className="trigger-booking-modal bg-doctolib text-white px-7 py-3.5 rounded-full font-semibold shadow-lg hover:bg-doctolib-dark transition-all"
                 >
                   Prendre RDV
                 </button>
@@ -303,7 +303,7 @@ export default function OsteopathieNourrissonPage() {
                   key={q}
                   className="group bg-white border border-light/80 rounded-2xl shadow-sm [&_summary::-webkit-details-marker]:hidden"
                 >
-                  <summary className="flex items-center justify-between font-bold text-[#1E293B] text-base cursor-pointer p-6">
+                  <summary className="flex items-center justify-between font-bold text-ink text-base cursor-pointer p-6">
                     <span>{q}</span>
                     <span className="transition group-open:rotate-180 shrink-0 ml-4">
                       <svg fill="none" height="20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="20">
@@ -385,7 +385,7 @@ export default function OsteopathieNourrissonPage() {
             <div className="mt-8 flex flex-wrap gap-4 justify-center">
               <button
                 type="button"
-                className="trigger-booking-modal bg-[#0596DE] text-white px-8 py-4 rounded-full font-bold shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+                className="trigger-booking-modal bg-doctolib text-white px-8 py-4 rounded-full font-bold shadow-xl hover:bg-doctolib-dark transition-all transform hover:-translate-y-1"
               >
                 Prendre RDV Doctolib
               </button>
@@ -404,13 +404,13 @@ export default function OsteopathieNourrissonPage() {
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-light/60 shadow-lg px-4 py-3 flex gap-3">
         <button
           type="button"
-          className="trigger-booking-modal flex-1 bg-[#0596DE] text-white py-3 rounded-full font-bold text-sm shadow-md"
+          className="trigger-booking-modal flex-1 bg-doctolib text-white py-3 rounded-full font-bold text-sm shadow-md"
         >
           Prendre RDV
         </button>
         <a
           href="tel:+33672014539"
-          className="flex items-center justify-center gap-2 px-4 py-3 rounded-full font-bold text-sm border border-[#0596DE] text-[#0596DE]"
+          className="flex items-center justify-center gap-2 px-4 py-3 rounded-full font-bold text-sm border border-[#0596DE] text-doctolib"
         >
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
           Appeler

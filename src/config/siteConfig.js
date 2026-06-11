@@ -14,6 +14,8 @@ export const OPENING_HOURS = [
   { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday",  opens: "10:00", closes: "13:00" },
 ];
 
+export const RENATA_OFFICIAL_URL = "https://renatafranca.com";
+
 // Chiffres d'avis — à mettre à jour lors de chaque palier significatif
 export const SEVRES_RATING  = { ratingValue: "5", reviewCount: "62" };
 export const PARIS15_RATING = { ratingValue: "5", reviewCount: "62" };

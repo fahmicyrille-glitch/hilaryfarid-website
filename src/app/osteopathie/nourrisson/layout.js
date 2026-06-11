@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Ostéopathie Nourrisson Sèvres & Paris 15 | Hilary Farid D.O.",
+  title: "Ostéopathie Nourrisson Sèvres & Paris 15",
   description:
-    "Ostéopathe spécialisée nourrisson à Paris 15 et Sèvres. Coliques, reflux, plagiocéphalie, frein restrictif, torticolis. Techniques ultra-douces. Formation Centre YGY. RDV Doctolib.",
+    "Ostéopathe spécialisée nourrisson à Paris 15 et Sèvres : coliques, reflux, plagiocéphalie, freins restrictifs, torticolis. Techniques ultra-douces.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/osteopathie/nourrisson",
   },

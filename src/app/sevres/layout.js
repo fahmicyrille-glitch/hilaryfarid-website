@@ -1,9 +1,9 @@
 // src/app/sevres/layout.js
 
 export const metadata = {
-  title: "Ostéopathe Sèvres (92310) ⭐ Cabinet Grande Rue - Hilary Farid",
+  title: "Ostéopathe Sèvres (92310) ⭐ Cabinet Grande Rue",
   description:
-    "Cabinet d'ostéopathie à Sèvres, 104 Grande Rue. Expertise nourrissons, grossesse, sportifs et adultes. Proche Tram T2. Prenez RDV en ligne avec Hilary Farid, Ostéopathe D.O.",
+    "Cabinet d'ostéopathie au 104 Grande Rue à Sèvres. Nourrissons, grossesse, sportifs, adultes. Proche tram T2. RDV en ligne avec Hilary Farid.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/sevres",
   },

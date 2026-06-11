@@ -7,11 +7,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#9E8C7F",      // Titre, boutons
-        secondary: "#7B5A3E",    // Accents – accessible (contraste 5.5:1 sur fond clair)
-        light: "#F4EEE8",        // Fonds très clairs
-        offwhite: "#FFFBF7",     // Fond page
-        graywarm: "#6B645F",     // Texte courant lisible
+        primary: "#7A685B",        // Taupe profond – AA (≥4.5:1 sur offwhite), titres & boutons
+        "primary-soft": "#9E8C7F", // Ancien primary – usages décoratifs (fonds, halos)
+        secondary: "#7B5A3E",      // Accents – accessible (contraste 5.5:1 sur fond clair)
+        light: "#F4EEE8",          // Fonds très clairs
+        offwhite: "#FFFBF7",       // Fond page
+        graywarm: "#6B645F",       // Texte courant lisible
+        doctolib: "#0596DE",       // Réservé aux CTA Doctolib
+        "doctolib-dark": "#047CBD",
+        cream: "#FAF6F3",          // Fond carte drainage
+        "cream-border": "#E8D8CE",
+        ink: "#1E293B",            // Texte sombre cartes drainage
       },
 
       // === ANIMATIONS GLOBALES ===

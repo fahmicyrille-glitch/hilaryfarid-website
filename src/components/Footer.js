@@ -1,6 +1,13 @@
 // src/components/Footer.js
 import Link from "next/link";
-import { PHONE, PHONE_LINK, EMAIL } from "@/config/contact";
+import { PHONE, PHONE_LINK } from "@/config/contact";
+import {
+  IconMapPin,
+  IconPhone,
+  IconMail,
+  IconClock,
+  IconBadgeCheck,
+} from "@/components/icons/UiIcons";
 
 export default function Footer() {
   return (
@@ -10,10 +17,10 @@ export default function Footer() {
     >
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* 3 colonnes */}
-        <div className="grid md:grid-cols-3 gap-10 text-primary">
+        {/* 4 colonnes */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 text-primary">
 
-          {/* Colonne 1 */}
+          {/* Colonne 1 — Marque */}
           <div>
             <h3 className="text-xl font-semibold">Hilary Farid</h3>
             <p className="text-graywarm mt-2 leading-relaxed">
@@ -21,16 +28,22 @@ export default function Footer() {
               Spécialisée nourrissons, grossesse, post-accouchement et drainage
               lymphatique méthode Renata França.
             </p>
+
+            <p className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-secondary">
+              <IconBadgeCheck className="w-5 h-5 shrink-0" />
+              Praticienne certifiée Renata França
+            </p>
           </div>
 
-          {/* Colonne 2 */}
+          {/* Colonne 2 — Navigation */}
           <div>
             <h4 className="font-semibold text-lg">Navigation</h4>
             <ul className="mt-3 space-y-2 text-graywarm">
               {[
                 ["Accueil", "/"],
                 ["Ostéopathie", "/osteopathie"],
-                ["Drainage Renata", "/drainage"],
+                ["Drainage Renata França", "/drainage"],
+                ["Carte cadeau", "/carte-cadeau"],
                 ["Tarifs", "/tarifs"],
                 ["Blog", "/blog"],
                 ["Témoignages", "/temoignages"],
@@ -53,33 +66,52 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Colonne 3 */}
+          {/* Colonne 3 — Horaires
+              Les horaires diffèrent entre Sèvres et Paris 15 → on renvoie vers
+              les disponibilités en temps réel plutôt que d'afficher une grille fausse. */}
+          <div>
+            <h4 className="font-semibold text-lg flex items-center gap-2">
+              <IconClock className="w-5 h-5" /> Horaires
+            </h4>
+            <p className="mt-3 text-graywarm text-sm leading-relaxed">
+              Consultations du lundi au samedi. Les jours et horaires diffèrent
+              entre les cabinets de Sèvres et de Paris 15.
+            </p>
+            <button
+              type="button"
+              className="trigger-booking-modal mt-3 text-sm font-semibold text-primary underline underline-offset-4 hover:text-secondary transition-colors"
+            >
+              Voir les créneaux disponibles →
+            </button>
+            <p className="mt-3 text-xs text-graywarm leading-relaxed">
+              Réservation en ligne 24h/24 sur Doctolib.
+            </p>
+          </div>
+
+          {/* Colonne 4 — Contact */}
           <div>
             <h4 className="font-semibold text-lg">Contact</h4>
-            <p className="text-graywarm mt-2 leading-relaxed">
-              Téléphone :{" "}
+            <div className="mt-3 space-y-2 text-graywarm">
               <a
                 href={`tel:${PHONE_LINK}`}
-                className="text-primary hover:underline"
+                className="flex items-center gap-2 text-primary hover:underline"
               >
-                {PHONE}
+                <IconPhone className="w-4 h-4 shrink-0" /> {PHONE}
               </a>
-              <br />
-              E-mail :{" "}
-              <a
-                href={`mailto:${EMAIL}`}
-                className="text-primary hover:underline"
+              <Link
+                href="/contact"
+                className="flex items-center gap-2 text-primary hover:underline"
               >
-                {EMAIL}
-              </a>
-            </p>
+                <IconMail className="w-4 h-4 shrink-0" /> Formulaire de contact
+              </Link>
+            </div>
 
             {/* Bouton doctolib */}
             <button
               type="button"
               className="trigger-booking-modal mt-4 inline-block bg-primary text-offwhite px-6 py-2 rounded-lg hover:bg-secondary transition duration-300"
             >
-              Prendre rendez-vous sur Doctolib
+              Prendre rendez-vous
             </button>
 
             {/* Liens Google Maps */}
@@ -87,16 +119,18 @@ export default function Footer() {
               <a
                 href="https://www.google.com/maps/place/104+Grande+Rue,+92310+Sèvres"
                 target="_blank"
-                className="block hover:text-primary hover:underline"
+                rel="noreferrer"
+                className="flex items-center gap-2 hover:text-primary hover:underline"
               >
-                📍 Cabinet de Sèvres
+                <IconMapPin className="w-4 h-4 shrink-0" /> Cabinet de Sèvres
               </a>
               <a
                 href="https://www.google.com/maps/place/28+Rue+Letellier,+75015+Paris"
                 target="_blank"
-                className="block hover:text-primary hover:underline"
+                rel="noreferrer"
+                className="flex items-center gap-2 hover:text-primary hover:underline"
               >
-                📍 Cabinet Paris 15
+                <IconMapPin className="w-4 h-4 shrink-0" /> Cabinet Paris 15
               </a>
             </div>
           </div>

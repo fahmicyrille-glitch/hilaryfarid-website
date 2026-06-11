@@ -3,6 +3,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { FadeIn, SlideUp, HeroMotion } from "@/components/MotionWrapper";
 import BackToTop from "@/components/BackToTop";
+import { GLOBAL_REVIEW_COUNT } from "@/config/siteConfig";
 
 const BASE_REVIEWS = [
   {
@@ -106,6 +107,7 @@ const BASE_REVIEWS = [
 
 const FILTERS = [
   { id: "all", label: "Tous les avis" },
+  { id: "google", label: "Avis Google" },
   { id: "osteo", label: "Ostéopathie" },
   { id: "nourrisson", label: "Nourrisson / enfant" },
   { id: "grossesse", label: "Grossesse & post-partum" },
@@ -127,23 +129,24 @@ export default function TemoignagesPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ---- Récupération des avis Google (à brancher sur ton API interne) ----
+  // ---- Récupération des avis Google des DEUX cabinets (Sèvres + Paris 15) ----
   useEffect(() => {
     const fetchGoogleReviews = async () => {
       try {
-        // A TOI de créer /api/google-reviews côté server (Google Places API)
         const res = await fetch("/api/google-reviews");
         if (!res.ok) return;
 
         const data = await res.json();
-        // On s'attend à data.reviews = [{ author, text, rating, sourceUrl }]
+        // data.reviews = [{ author, text, rating, relativeTime, sourceUrl, cabinet, cabinetLabel }]
         const mapped =
           data?.reviews?.map((r) => ({
             name: r.author || "Avis Google",
             text: r.text,
             rating: r.rating,
+            relativeTime: r.relativeTime,
             sourceUrl: r.sourceUrl,
-            type: "osteo", // ou "google", mais on le met dans Ostéo pour l'affichage
+            cabinetLabel: r.cabinetLabel,
+            type: "google",
             source: "google",
           })) ?? [];
 
@@ -210,18 +213,8 @@ export default function TemoignagesPage() {
               ratingValue: "5",
               bestRating: "5",
               worstRating: "1",
-              reviewCount: String(BASE_REVIEWS.length),
+              reviewCount: GLOBAL_REVIEW_COUNT,
             },
-            review: BASE_REVIEWS.map((r) => ({
-              "@type": "Review",
-              author: { "@type": "Person", name: r.name },
-              reviewBody: r.text,
-              reviewRating: {
-                "@type": "Rating",
-                ratingValue: "5",
-                bestRating: "5",
-              },
-            })),
           }),
         }}
       />
@@ -270,7 +263,7 @@ export default function TemoignagesPage() {
             <div className="mt-8">
             <button
               type="button"
-              className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+              className="trigger-booking-modal inline-flex items-center gap-2 bg-doctolib text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-doctolib-dark transition-all transform hover:-translate-y-1"
             >
               Prendre RDV Doctolib
             </button>
@@ -324,7 +317,9 @@ export default function TemoignagesPage() {
                           "Grossesse / post-partum"}
                         {currentSlide.type === "drainage" &&
                           "Drainage lymphatique Renata França"}
-                        {currentSlide.type === "google" && "Avis Google"}
+                        {currentSlide.type === "google" &&
+                          `Avis Google – ${currentSlide.cabinetLabel || "Cabinet"}`}
+                        {currentSlide.relativeTime && ` · ${currentSlide.relativeTime}`}
                       </span>
                     </div>
 
@@ -422,7 +417,9 @@ export default function TemoignagesPage() {
                         {r.type === "nourrisson" && "Nourrisson / enfant"}
                         {r.type === "grossesse" && "Grossesse / post-partum"}
                         {r.type === "drainage" && "Drainage Renata França"}
-                        {r.source === "google" && "Avis Google"}
+                        {r.type === "google" &&
+                          `Avis Google – ${r.cabinetLabel || "Cabinet"}`}
+                        {r.relativeTime && ` · ${r.relativeTime}`}
                       </p>
                     </div>
                   </div>
@@ -432,7 +429,7 @@ export default function TemoignagesPage() {
                       href={r.sourceUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-3 inline-block text-[11px] text-[#0596DE] font-semibold hover:underline underline-offset-4"
+                      className="mt-3 inline-block text-[11px] text-doctolib font-semibold hover:underline underline-offset-4"
                     >
                       Voir sur Google
                     </a>

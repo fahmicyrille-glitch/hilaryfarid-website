@@ -106,7 +106,6 @@ const SCHEMA_PERSON = {
   ],
   sameAs: [
     "https://www.doctolib.fr/osteopathe/sevres/hilary-farid",
-    "https://www.instagram.com/hilaryfarid_osteo",
   ],
 };
 
@@ -201,7 +200,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr" className={roboto.variable}>
       <head>
-        <link rel="preload" as="image" href="/hilary.webp" fetchPriority="high" />
+        {/* Le preload de l'image hero est géré par next/image (priority) —
+            un <link rel="preload"> manuel provoquerait un double téléchargement */}
 
         {/* ── JSON-LD inline (dans le HTML initial, lisible par Google dès le crawl) ──
             3 entités : Person/Physician + 2x MedicalBusiness/LocalBusiness          */}
@@ -229,6 +229,10 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className="bg-offwhite text-primary antialiased">
+        {/* Sans JS, les sections .reveal doivent rester visibles */}
+        <noscript>
+          <style>{`.reveal{opacity:1 !important;transform:none !important;filter:none !important;}`}</style>
+        </noscript>
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-MN4339H9"

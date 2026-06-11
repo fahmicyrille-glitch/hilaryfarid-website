@@ -1,9 +1,9 @@
 // src/app/osteopathie/layout.js
 
 export const metadata = {
-  title: "Ostéopathie Sèvres & Paris 15 ⭐ Nourrisson, Grossesse, Sport",
+  title: { absolute: "Ostéopathie Sèvres & Paris 15 ⭐ Nourrisson, Grossesse, Sport" },
   description:
-    "Ostéopathe D.O. à Sèvres et Paris 15 spécialisée en périnatalité (nourrisson, femme enceinte) et sport. Approche douce pour soulager vos douleurs et retrouver votre mobilité.",
+    "Ostéopathe D.O. à Sèvres et Paris 15, spécialisée périnatalité (nourrisson, femme enceinte) et sport. Approche douce pour soulager vos douleurs.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/osteopathie",
   },

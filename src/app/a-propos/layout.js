@@ -1,9 +1,9 @@
 // src/app/a-propos/layout.js
 
 export const metadata = {
-  title: "Hilary Farid ⭐ Ostéopathe D.O. Spécialisée Périnatalité & Drainage",
+  title: { absolute: "Hilary Farid ⭐ Ostéopathe D.O. Périnatalité & Drainage" },
   description:
-    "Découvrez l'approche thérapeutique d'Hilary Farid, Ostéopathe D.O. à Sèvres et Paris 15. Experte en nourrissons (freins de langue), suivi de grossesse et méthode Renata França.",
+    "Hilary Farid, ostéopathe D.O. à Sèvres et Paris 15 : parcours, formations, expertise nourrisson (freins de langue), grossesse et méthode Renata França.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/a-propos",
   },

@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Plagiocéphalie Positionnelle : Ostéopathe Nourrisson Sèvres & Paris 15 | Hilary Farid",
+  title: { absolute: "Plagiocéphalie : Ostéopathe Nourrisson Sèvres & Paris 15" },
   description:
-    "Tête plate, aplatissement crânien positionnel du nourrisson : l'ostéopathie aide dès les premières semaines. Résultats remarquables avant 4 mois. Cabinet à Sèvres (92310) et Paris 15 (75015).",
+    "Tête plate du nourrisson : l'ostéopathie aide dès les premières semaines, avec les meilleurs résultats avant 4 mois. Cabinets à Sèvres et Paris 15.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/osteopathie/plagiocephalie",
   },

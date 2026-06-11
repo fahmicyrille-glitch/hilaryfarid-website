@@ -6,6 +6,9 @@ import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import MobileSummary from "@/components/MobileSummary";
 import DrainageCarousel from "@/components/DrainageCarousel";
 import BackToTop from "@/components/BackToTop";
+import BeforeAfterSlider from "@/components/BeforeAfterSlider";
+import Faq from "@/components/Faq";
+import { IconPhone, IconAlert } from "@/components/icons/UiIcons";
 
 import {
   IconLegs,
@@ -186,7 +189,7 @@ export default function DrainageLymphatiquePage() {
         <div className="mt-4 pt-4 border-t border-gray-200">
           <button
             type="button"
-            className="trigger-booking-modal block w-full text-center bg-[#0596DE] text-white px-4 py-2 rounded-lg font-semibold shadow-md hover:bg-[#047cbd] transition"
+            className="trigger-booking-modal block w-full text-center bg-doctolib text-white px-4 py-2 rounded-lg font-semibold shadow-md hover:bg-doctolib-dark transition"
           >
             Prendre RDV sur Doctolib
           </button>
@@ -205,7 +208,7 @@ export default function DrainageLymphatiquePage() {
           </div>
           <button
             type="button"
-            className="trigger-booking-modal bg-[#0596DE] text-white px-5 py-2.5 rounded-lg shadow-md hover:bg-[#047cbd] transition text-sm font-semibold"
+            className="trigger-booking-modal bg-doctolib text-white px-5 py-2.5 rounded-lg shadow-md hover:bg-doctolib-dark transition text-sm font-semibold"
           >
             Prendre RDV
           </button>
@@ -243,7 +246,7 @@ export default function DrainageLymphatiquePage() {
               <div className="mt-6 flex flex-wrap gap-4">
                 <button
                   type="button"
-                  className="trigger-booking-modal bg-[#0596DE] text-white px-7 py-3 rounded-lg font-semibold shadow-md hover:bg-[#047cbd] transition"
+                  className="trigger-booking-modal bg-doctolib text-white px-7 py-3 rounded-lg font-semibold shadow-md hover:bg-doctolib-dark transition"
                 >
                   Prendre RDV sur Doctolib
                 </button>
@@ -575,7 +578,7 @@ export default function DrainageLymphatiquePage() {
                 <div className="mt-5">
                   <button
                     type="button"
-                    className="trigger-booking-modal inline-flex items-center justify-center bg-[#0596DE] text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-[#047cbd] transition w-full"
+                    className="trigger-booking-modal inline-flex items-center justify-center bg-doctolib text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-doctolib-dark transition w-full"
                   >
                     Prendre RDV sur Doctolib
                   </button>
@@ -640,17 +643,21 @@ export default function DrainageLymphatiquePage() {
               selon les personnes, le contexte et la régularité des séances.
             </p>
 
-            <div className="mt-10 grid md:grid-cols-2 gap-8">
+            <p className="mt-2 text-sm font-medium text-secondary">
+              Faites glisser le curseur pour comparer ✦
+            </p>
+
+            <div className="mt-10 grid md:grid-cols-2 gap-8 items-start">
               {/* JAMBES */}
               <div className="rounded-2xl bg-white p-6 shadow-sm border">
-                <Image
-                  src="/drainage/avant_apres_jambe.webp"
-                  alt="Drainage Renata França jambes avant après – résultats Hilary Farid"
-                  width={520}
-                  height={720}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="rounded-xl mx-auto w-full h-auto"
-                />
+                <div className="max-w-[340px] mx-auto">
+                  <BeforeAfterSlider
+                    before="/drainage/ba_jambe_avant.png"
+                    after="/drainage/ba_jambe_apres.png"
+                    alt="Drainage Renata França jambes – résultats Hilary Farid"
+                    aspect={432 / 1060}
+                  />
+                </div>
                 <p className="mt-3 text-xs text-graywarm">
                   Exemple visuel – sensation de légèreté et diminution des gonflements.
                 </p>
@@ -658,14 +665,14 @@ export default function DrainageLymphatiquePage() {
 
               {/* VENTRE */}
               <div className="rounded-2xl bg-white p-6 shadow-sm border">
-                <Image
-                  src="/drainage/avant_apres_ventre.webp"
-                  alt="Drainage Renata França ventre avant après – résultats Hilary Farid"
-                  width={520}
-                  height={720}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="rounded-xl mx-auto w-full h-auto"
-                />
+                <div className="max-w-[420px] mx-auto">
+                  <BeforeAfterSlider
+                    before="/drainage/ba_ventre_avant.png"
+                    after="/drainage/ba_ventre_apres.png"
+                    alt="Drainage Renata França ventre – résultats Hilary Farid"
+                    aspect={432 / 648}
+                  />
+                </div>
                 <p className="mt-3 text-xs text-graywarm">
                   Exemple visuel – amélioration possible du confort abdominal.
                 </p>
@@ -673,10 +680,11 @@ export default function DrainageLymphatiquePage() {
             </div>
 
             <div className="mt-8 max-w-3xl mx-auto rounded-2xl border bg-white p-6 shadow-sm">
-              <p className="text-sm text-graywarm leading-relaxed">
-                ⚠️ Ces images ne constituent pas une promesse de résultat.
+              <p className="text-sm text-graywarm leading-relaxed flex items-start gap-2 text-left">
+                <IconAlert className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
+                <span>Ces images ne constituent pas une promesse de résultat.
                 Le drainage Renata França est une pratique de bien-être.
-                Les effets ressentis dépendent de chaque personne et de sa situation.
+                Les effets ressentis dépendent de chaque personne et de sa situation.</span>
               </p>
             </div>
 
@@ -707,8 +715,9 @@ export default function DrainageLymphatiquePage() {
             </ul>
 
             <div className="mt-8 rounded-2xl border bg-white p-6 shadow-sm">
-              <p className="text-sm text-graywarm">
-                📞 Si vous hésitez :{" "}
+              <p className="text-sm text-graywarm flex items-center gap-2">
+                <IconPhone className="w-4 h-4 text-primary shrink-0" />
+                Si vous hésitez :{" "}
                 <a className="text-primary font-medium underline underline-offset-4" href="tel:+33672014539">
                   06 72 01 45 39
                 </a>
@@ -726,38 +735,31 @@ export default function DrainageLymphatiquePage() {
               FAQ
             </h2>
 
-            <div className="mt-10 space-y-6">
-              {[
-                {
-                  q: "En combien de séances peut-on ressentir une différence ?",
-                  a: "Beaucoup de patients décrivent une sensation de légèreté dès la première séance. La fréquence dépend de l’objectif et du ressenti.",
-                },
-                {
-                  q: "Est-ce douloureux ?",
-                  a: "La technique est dynamique et tonique tout en restant confortable. J’adapte toujours l’intensité à votre sensibilité.",
-                },
-                {
-                  q: "Peut-on faire un drainage pendant la grossesse ?",
-                  a: "Selon le terme et votre situation, cela peut être envisagé pour améliorer le confort circulatoire. En cas de doute, un avis médical peut être recommandé.",
-                },
-                {
-                  q: "Quelle différence avec un massage classique ?",
-                  a: "Le drainage Renata França suit une logique de circulation (manœuvres spécifiques) et vise surtout une sensation de légèreté et de confort, au-delà de la simple détente.",
-                },
-                {
-                  q: "Que faire après la séance ?",
-                  a: "Hydratation, marche douce si possible, et écouter vos sensations. Je vous donne des conseils adaptés à votre cas.",
-                },
-              ].map((item) => (
-                <details key={item.q} className="bg-white border rounded-2xl p-5 shadow-sm">
-                  <summary className="font-semibold text-primary cursor-pointer">
-                    {item.q}
-                  </summary>
-                  <p className="mt-3 text-base text-graywarm leading-relaxed">
-                    {item.a}
-                  </p>
-                </details>
-              ))}
+            <div className="mt-10">
+              <Faq
+                items={[
+                  {
+                    q: "En combien de séances peut-on ressentir une différence ?",
+                    a: "Beaucoup de patients décrivent une sensation de légèreté dès la première séance. La fréquence dépend de l’objectif et du ressenti.",
+                  },
+                  {
+                    q: "Est-ce douloureux ?",
+                    a: "La technique est dynamique et tonique tout en restant confortable. J’adapte toujours l’intensité à votre sensibilité.",
+                  },
+                  {
+                    q: "Peut-on faire un drainage pendant la grossesse ?",
+                    a: "Selon le terme et votre situation, cela peut être envisagé pour améliorer le confort circulatoire. En cas de doute, un avis médical peut être recommandé.",
+                  },
+                  {
+                    q: "Quelle différence avec un massage classique ?",
+                    a: "Le drainage Renata França suit une logique de circulation (manœuvres spécifiques) et vise surtout une sensation de légèreté et de confort, au-delà de la simple détente.",
+                  },
+                  {
+                    q: "Que faire après la séance ?",
+                    a: "Hydratation, marche douce si possible, et écouter vos sensations. Je vous donne des conseils adaptés à votre cas.",
+                  },
+                ]}
+              />
             </div>
           </div>
         </section>
@@ -780,7 +782,7 @@ export default function DrainageLymphatiquePage() {
             <div className="mt-8 flex flex-wrap gap-4 justify-center">
               <button
                 type="button"
-                className="trigger-booking-modal bg-[#0596DE] text-white px-7 py-3 rounded-lg font-semibold shadow-md hover:bg-[#047cbd] transition"
+                className="trigger-booking-modal bg-doctolib text-white px-7 py-3 rounded-lg font-semibold shadow-md hover:bg-doctolib-dark transition"
               >
                 Prendre RDV sur Doctolib
               </button>

@@ -1,9 +1,9 @@
 // src/app/paris15/layout.js
 
 export const metadata = {
-  title: "Ostéopathe Paris 15 ⭐ Cabinet Rue Letellier - Hilary Farid",
+  title: "Ostéopathe Paris 15 ⭐ Cabinet Rue Letellier",
   description:
-    "Cabinet d'ostéopathie à Paris 15 (75015), 28 Rue Letellier. Expertise nourrissons, grossesse, sportifs et adultes. Proche Métro Commerce & La Motte-Picquet. Prenez RDV avec Hilary Farid, Ostéopathe D.O.",
+    "Cabinet d'ostéopathie au 28 rue Letellier, Paris 15. Nourrissons, grossesse, sportifs, adultes. Proche métro Commerce et La Motte-Picquet.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/paris15",
   },

@@ -82,6 +82,12 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/carte-cadeau`,
+      lastModified: "2026-06-11",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/osteopathie/freins-restrictifs`,
       lastModified: "2026-06-07",
       changeFrequency: "monthly",

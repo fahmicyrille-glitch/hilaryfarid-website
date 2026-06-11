@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import MobileSummary from "@/components/MobileSummary";
 import BackToTop from "@/components/BackToTop";
+import { IconCheck, IconMapPin } from "@/components/icons/UiIcons";
 
 const SECTIONS = [
   { id: "cabinet", label: "Le cabinet & Galerie" },
@@ -168,7 +169,7 @@ export default function Paris15Page() {
             </div>
             <button
               type="button"
-              className="trigger-booking-modal inline-flex items-center gap-2 bg-[#0596DE] text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-[#047cbd] transition-all transform hover:-translate-y-1"
+              className="trigger-booking-modal inline-flex items-center gap-2 bg-doctolib text-white px-8 py-4 rounded-full font-semibold text-sm md:text-base shadow-xl hover:bg-doctolib-dark transition-all transform hover:-translate-y-1"
             >
               Prendre RDV Doctolib
             </button>
@@ -305,11 +306,11 @@ export default function Paris15Page() {
                 <h2 className="text-3xl font-semibold text-primary text-center">Pourquoi consulter à Paris 15 ?</h2>
                 <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto mt-12 items-center">
                   <ul className="space-y-4 text-graywarm text-base md:text-lg">
-                    <li>✔️ Cabinet moderne, lumineux et récemment rénové</li>
-                    <li>✔️ Adultes, nourrissons, femmes enceintes &amp; sportifs</li>
-                    <li>✔️ Situé dans un quartier vivant, accessible et sécurisé</li>
-                    <li>✔️ Atmosphère calme favorisant la détente</li>
-                    <li>✔️ Prise en charge personnalisée &amp; centrée sur votre histoire</li>
+                    <li className="flex items-start gap-2"><IconCheck className="w-5 h-5 text-secondary shrink-0 mt-1" />Cabinet moderne, lumineux et récemment rénové</li>
+                    <li className="flex items-start gap-2"><IconCheck className="w-5 h-5 text-secondary shrink-0 mt-1" />Adultes, nourrissons, femmes enceintes &amp; sportifs</li>
+                    <li className="flex items-start gap-2"><IconCheck className="w-5 h-5 text-secondary shrink-0 mt-1" />Situé dans un quartier vivant, accessible et sécurisé</li>
+                    <li className="flex items-start gap-2"><IconCheck className="w-5 h-5 text-secondary shrink-0 mt-1" />Atmosphère calme favorisant la détente</li>
+                    <li className="flex items-start gap-2"><IconCheck className="w-5 h-5 text-secondary shrink-0 mt-1" />Prise en charge personnalisée &amp; centrée sur votre histoire</li>
                   </ul>
                   <div className="relative w-full h-[260px] md:h-[300px] rounded-lg overflow-hidden shadow-xl">
                     <Image
@@ -330,7 +331,7 @@ export default function Paris15Page() {
               <section id="acces" className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8">
                 <h2 className="text-3xl font-semibold text-primary text-center">Adresse &amp; accès</h2>
                 <p className="text-center text-graywarm mt-4 text-base md:text-lg">
-                  📍 <strong>28 Rue Letellier, 75015 Paris</strong>
+                  <IconMapPin className="w-5 h-5 text-primary inline-block align-text-bottom mr-1" /><strong>28 Rue Letellier, 75015 Paris</strong>
                   <br />
                   À proximité des métros Commerce, Émile-Zola et La Motte-Picquet – Grenelle.
                 </p>
@@ -384,7 +385,7 @@ export default function Paris15Page() {
                 <p className="mt-3 text-offwhite/90">Consultations sur rendez-vous du lundi au samedi.</p>
                 <button
                   type="button"
-                  className="trigger-booking-modal mt-6 inline-block bg-offwhite text-[#0596DE] font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md"
+                  className="trigger-booking-modal mt-6 inline-block bg-offwhite text-doctolib font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md"
                 >
                   Réserver sur Doctolib
                 </button>
