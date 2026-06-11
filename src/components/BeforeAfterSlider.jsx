@@ -43,7 +43,9 @@ export default function BeforeAfterSlider({ before, after, alt, aspect = 432 / 1
   return (
     <div
       ref={containerRef}
-      className="relative w-full overflow-hidden rounded-xl select-none touch-none cursor-ew-resize"
+      // pan-y : le scroll vertical reste possible quand le doigt est sur
+      // l'image ; seul le glissement horizontal pilote le comparateur
+      className="relative w-full overflow-hidden rounded-xl select-none [touch-action:pan-y] cursor-ew-resize"
       style={{ aspectRatio: `${aspect}` }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}

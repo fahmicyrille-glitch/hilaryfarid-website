@@ -5,7 +5,8 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { IconChevronDown, IconCalendar } from "@/components/icons/UiIcons";
+import { IconChevronDown, IconCalendar, IconPhone } from "@/components/icons/UiIcons";
+import { PHONE, PHONE_LINK } from "@/config/contact";
 
 /*
   Navigation resserrée : 6 entrées + CTA "Prendre RDV".
@@ -143,80 +144,124 @@ export default function Header() {
         aria-modal="true"
         aria-label="Menu mobile"
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-graywarm/30">
-          <span className="text-primary font-semibold text-lg">Menu – Hilary Farid</span>
-          <button onClick={toggleMenu} className="text-3xl text-primary" aria-label="Fermer le menu">
-            &times;
+        {/* Barre du haut — même hauteur que le header pour une transition douce */}
+        <div className="h-[72px] shrink-0 flex items-center justify-between px-5 border-b border-graywarm/20">
+          <span className="flex items-center gap-2.5">
+            <span className="relative w-9 h-9 shrink-0">
+              <Image
+                src="/hilary-logo.svg"
+                alt=""
+                fill
+                sizes="36px"
+                className="object-contain rounded-full"
+              />
+            </span>
+            <span className="text-primary font-semibold">Hilary Farid</span>
+          </span>
+          <button
+            onClick={toggleMenu}
+            className="w-10 h-10 flex items-center justify-center rounded-full text-primary hover:bg-light transition"
+            aria-label="Fermer le menu"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M5 5l14 14M19 5L5 19" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
           </button>
         </div>
-        {/* m-auto (et non justify-center) : centre quand ça tient, et reste
-            scrollable depuis le haut quand un groupe déplié dépasse l'écran */}
-        <nav className="flex-1 overflow-y-auto py-8 flex flex-col text-primary font-semibold text-lg">
-          <div className="m-auto flex flex-col items-center gap-5">
+
+        {/* Liste de navigation — alignée à gauche, séparateurs fins */}
+        <nav className="flex-1 overflow-y-auto px-5 py-2">
           <Link
             href="/"
             onClick={closeMobile}
-            className={`${pathname === "/" ? "text-primary" : "text-graywarm"} relative inline-block`}
+            className={`block py-4 border-b border-light text-[17px] font-semibold ${
+              pathname === "/" ? "text-primary" : "text-graywarm"
+            }`}
           >
             Accueil
           </Link>
+
           {NAV.map((item) =>
             item.sub ? (
-              <div key={item.label} className="flex flex-col items-center gap-2">
+              <div key={item.label} className="border-b border-light">
                 <button
                   onClick={() =>
                     setMobileExpanded(mobileExpanded === item.label ? null : item.label)
                   }
-                  className={`${isItemActive(item) ? "text-primary" : "text-graywarm"} inline-flex items-center gap-1`}
+                  aria-expanded={mobileExpanded === item.label}
+                  className={`w-full flex items-center justify-between py-4 text-[17px] font-semibold ${
+                    isItemActive(item) ? "text-primary" : "text-graywarm"
+                  }`}
                 >
                   {item.label}
-                  <IconChevronDown
-                    className={`w-3.5 h-3.5 transition-transform ${
+                  <span
+                    className={`w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center transition-transform duration-300 ${
                       mobileExpanded === item.label ? "rotate-180" : ""
                     }`}
-                  />
+                  >
+                    <IconChevronDown className="w-3.5 h-3.5" />
+                  </span>
                 </button>
-                {mobileExpanded === item.label && (
-                  <div className="flex flex-col items-center gap-3 mt-1">
-                    {item.sub.map(([subLabel, subHref]) => (
-                      <Link
-                        key={subHref}
-                        href={subHref}
-                        onClick={closeMobile}
-                        className={`text-base font-medium ${
-                          bestSubMatch(item.sub) === subHref ? "text-primary" : "text-graywarm"
-                        }`}
-                      >
-                        {subLabel}
-                      </Link>
-                    ))}
+
+                {/* Sous-liens : dépliage animé (grid-rows), indentés */}
+                <div
+                  className="grid transition-[grid-template-rows] duration-300 ease-out"
+                  style={{
+                    gridTemplateRows: mobileExpanded === item.label ? "1fr" : "0fr",
+                  }}
+                >
+                  <div className="overflow-hidden">
+                    <div className="pb-3 flex flex-col">
+                      {item.sub.map(([subLabel, subHref]) => (
+                        <Link
+                          key={subHref}
+                          href={subHref}
+                          onClick={closeMobile}
+                          className={`py-2.5 pl-4 border-l-2 text-[15px] font-medium transition-colors ${
+                            bestSubMatch(item.sub) === subHref
+                              ? "border-primary text-primary"
+                              : "border-light text-graywarm"
+                          }`}
+                        >
+                          {subLabel}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             ) : (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={closeMobile}
-                className={`${isItemActive(item) ? "text-primary" : "text-graywarm"} relative inline-block`}
+                className={`block py-4 border-b border-light text-[17px] font-semibold ${
+                  isItemActive(item) ? "text-primary" : "text-graywarm"
+                }`}
               >
                 {item.label}
               </Link>
             )
           )}
-          </div>
         </nav>
 
-        {/* CTA conversion en bas du menu mobile */}
-        <div className="px-6 pb-8 pt-2">
+        {/* CTA conversion — fixés en bas, hors zone de scroll */}
+        <div className="shrink-0 px-5 pt-3 pb-[max(1.25rem,env(safe-area-inset-bottom))] border-t border-graywarm/20 bg-offwhite space-y-2.5">
           <button
             type="button"
             onClick={closeMobile}
-            className="trigger-booking-modal w-full flex items-center justify-center gap-2 bg-doctolib text-white font-bold px-6 py-4 rounded-full shadow-lg hover:bg-doctolib-dark transition"
+            className="trigger-booking-modal w-full flex items-center justify-center gap-2 bg-doctolib text-white font-bold px-6 py-3.5 rounded-full shadow-lg hover:bg-doctolib-dark transition"
           >
             <IconCalendar className="w-5 h-5" />
             Prendre rendez-vous
           </button>
+          <a
+            href={`tel:${PHONE_LINK}`}
+            className="w-full flex items-center justify-center gap-2 border border-primary/30 text-primary font-semibold px-6 py-3 rounded-full hover:bg-primary/5 transition"
+          >
+            <IconPhone className="w-4 h-4" />
+            {PHONE}
+          </a>
         </div>
       </div>
     );
