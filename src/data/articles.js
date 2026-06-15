@@ -9,6 +9,7 @@ export const articles = [
       "Frein de langue, frein de lèvre : comment l'ostéopathie aide votre bébé avant et après la frénectomie. Allaitement difficile, succion, clics.",
     excerpt:
       "Les freins restrictifs (langue, lèvre, joue) peuvent rendre l'allaitement douloureux et perturber la succion. Découvrez comment l'ostéopathie prépare et accompagne votre bébé avant et après la section.",
+    image: "/osteopathie/nour.webp",
     date: "2026-06-07",
     category: "Nourrisson",
     categoryColor: "blue",
@@ -168,6 +169,7 @@ export const articles = [
       "Tête plate du nourrisson : comprendre la plagiocéphalie positionnelle et le rôle précoce de l'ostéopathie. Avant 4 mois, résultats remarquables.",
     excerpt:
       "La plagiocéphalie positionnelle touche près d'un nourrisson sur deux. Contrairement aux idées reçues, une prise en charge précoce par l'ostéopathie peut permettre une correction significative sans casque.",
+    image: "/osteopathie/nour.webp",
     date: "2026-06-07",
     category: "Nourrisson",
     categoryColor: "blue",
@@ -312,6 +314,7 @@ export const articles = [
       "Drainage Renata França : origines, bienfaits, déroulement d'une séance et différence avec le drainage médical remboursé. Le guide avant votre RDV.",
     excerpt:
       "Créée par la thérapeute brésilienne Renata França, cette méthode de massage drainant révolutionne le bien-être des jambes lourdes, de la rétention d'eau et de la récupération. Mais c'est quoi exactement ?",
+    image: "/drainage/drainage_ventre.webp",
     date: "2026-06-07",
     category: "Drainage",
     categoryColor: "teal",
@@ -457,6 +460,7 @@ export const articles = [
       "Pleurs inconsolables, ventre dur, jambes repliées : les coliques épuisent les parents. Causes, rôle de l'ostéopathe et quand consulter.",
     excerpt:
       "Les coliques du nourrisson concernent 20 % des bébés. Épuisantes pour les parents, elles répondent souvent très bien à l'ostéopathie — parfois en une à deux séances. Voici pourquoi et comment.",
+    image: "/osteopathie/nour.webp",
     date: "2026-06-07",
     category: "Nourrisson",
     categoryColor: "blue",
@@ -580,6 +584,7 @@ export const articles = [
       "Lombalgies, sciatique, reflux… L'ostéopathie soulage les inconforts de la grossesse et prépare à l'accouchement. Le guide trimestre par trimestre.",
     excerpt:
       "La grossesse transforme le corps en profondeur. L'ostéopathie accompagne ces changements à chaque trimestre : soulagement des douleurs, préparation à l'accouchement, récupération post-partum. Hilary Farid vous explique tout.",
+    image: "/osteopathie/FE.webp",
     date: "2026-06-07",
     category: "Grossesse",
     categoryColor: "rose",

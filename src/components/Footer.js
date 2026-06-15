@@ -1,6 +1,7 @@
 // src/components/Footer.js
 import Link from "next/link";
 import { PHONE, PHONE_LINK } from "@/config/contact";
+import { HOURS_DISPLAY_SEVRES, HOURS_DISPLAY_PARIS15 } from "@/config/siteConfig";
 import {
   IconMapPin,
   IconPhone,
@@ -66,26 +67,46 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Colonne 3 — Horaires
-              Les horaires diffèrent entre Sèvres et Paris 15 → on renvoie vers
-              les disponibilités en temps réel plutôt que d'afficher une grille fausse. */}
+          {/* Colonne 3 — Horaires par cabinet */}
           <div>
             <h4 className="font-semibold text-lg flex items-center gap-2">
               <IconClock className="w-5 h-5" /> Horaires
             </h4>
-            <p className="mt-3 text-graywarm text-sm leading-relaxed">
-              Consultations du lundi au samedi. Les jours et horaires diffèrent
-              entre les cabinets de Sèvres et de Paris 15.
-            </p>
+
+            {/* Sèvres */}
+            <div className="mt-3 flex items-center gap-1.5">
+              <IconMapPin className="w-4 h-4 text-secondary shrink-0" />
+              <p className="text-base font-bold text-primary">Sèvres</p>
+            </div>
+            <ul className="mt-1 space-y-0.5 text-sm text-graywarm">
+              {HOURS_DISPLAY_SEVRES.map(({ day, hours }) => (
+                <li key={day} className={`flex justify-between gap-3 ${hours === "Fermé" ? "opacity-40" : ""}`}>
+                  <span>{day}</span>
+                  <span className="font-medium text-primary">{hours}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Paris 15 */}
+            <div className="mt-4 pt-3 border-t border-light/60 flex items-center gap-1.5">
+              <IconMapPin className="w-4 h-4 text-secondary shrink-0" />
+              <p className="text-base font-bold text-primary">Paris 15</p>
+            </div>
+            <ul className="mt-1 space-y-0.5 text-sm text-graywarm">
+              {HOURS_DISPLAY_PARIS15.map(({ day, hours }) => (
+                <li key={day} className={`flex justify-between gap-3 ${hours === "Fermé" ? "opacity-40" : ""}`}>
+                  <span>{day}</span>
+                  <span className="font-medium text-primary">{hours}</span>
+                </li>
+              ))}
+            </ul>
+
             <button
               type="button"
-              className="trigger-booking-modal mt-3 text-sm font-semibold text-primary underline underline-offset-4 hover:text-secondary transition-colors"
+              className="trigger-booking-modal mt-3 text-xs font-semibold text-doctolib underline underline-offset-4 hover:text-doctolib-dark transition-colors"
             >
-              Voir les créneaux disponibles →
+              Réserver un créneau sur Doctolib →
             </button>
-            <p className="mt-3 text-xs text-graywarm leading-relaxed">
-              Réservation en ligne 24h/24 sur Doctolib.
-            </p>
           </div>
 
           {/* Colonne 4 — Contact */}
@@ -117,7 +138,7 @@ export default function Footer() {
             {/* Liens Google Maps */}
             <div className="mt-5 text-graywarm text-sm space-y-2">
               <a
-                href="https://www.google.com/maps/place/104+Grande+Rue,+92310+Sèvres"
+                href="https://share.google/vyqDUNKOo1q0HmayO"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-2 hover:text-primary hover:underline"
@@ -125,7 +146,7 @@ export default function Footer() {
                 <IconMapPin className="w-4 h-4 shrink-0" /> Cabinet de Sèvres
               </a>
               <a
-                href="https://www.google.com/maps/place/28+Rue+Letellier,+75015+Paris"
+                href="https://share.google/fQuSNhyJKa5uEN5gK"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-2 hover:text-primary hover:underline"

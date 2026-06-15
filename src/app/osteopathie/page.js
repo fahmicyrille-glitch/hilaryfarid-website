@@ -1,81 +1,13 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
-import BackToTop from "@/components/BackToTop"; // Ajout du composant global
+import BackToTop from "@/components/BackToTop";
+import OsteopathieNav from "@/components/OsteopathieNav";
 
 export default function OsteopathiePage() {
-  const [activeSection, setActiveSection] = useState("a-qui-sadresse");
-
-  // Gestion du scrollspy pour le sommaire
-  useEffect(() => {
-    const sectionIds = [
-      "a-qui-sadresse",
-      "motifs",
-      "deroulement",
-      "pourquoi-consulter",
-      "risques",
-      "faq",
-    ];
-
-    const options = {
-      root: null,
-      rootMargin: "-30% 0px -55% 0px",
-      threshold: 0,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, options);
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
   return (
     <main className="relative">
-      {/* 🔥 STICKY SIDEBAR SOMMAIRE (desktop uniquement) */}
-      <aside className="hidden xl:block fixed left-6 top-40 w-64 bg-white/90 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-light/50 rounded-2xl p-5 z-40">
-        <h3 className="text-sm font-bold text-primary mb-4 uppercase tracking-wider">
-          Sommaire
-        </h3>
-        <ul className="space-y-4 text-base">
-          {[
-            ["À qui s'adresse l'ostéopathie ?", "a-qui-sadresse"],
-            ["Motifs fréquents", "motifs"],
-            ["Déroulement d'une séance", "deroulement"],
-            ["Pourquoi me consulter ?", "pourquoi-consulter"],
-            ["Pages spécialisées", "specialites"],
-            ["Risques & contre-indications", "risques"],
-            ["FAQ", "faq"],
-          ].map(([label, id]) => (
-            <li key={id}>
-              <a
-                href={`#${id}`}
-                className={`block transition-all duration-200 font-medium border-l-2 pl-3 ${
-                  activeSection === id
-                    ? "border-primary text-primary"
-                    : "border-transparent text-graywarm hover:text-primary hover:border-light"
-                }`}
-              >
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </aside>
+      <OsteopathieNav />
 
       {/* JSON-LD inline — dans le HTML initial */}
       <script
@@ -102,6 +34,33 @@ export default function OsteopathiePage() {
                 "Consultations d'ostéopathie pour adultes, bébés, femmes enceintes, sportifs et seniors. Approche douce et personnalisée.",
               areaServed: ["Sèvres", "Paris 15"],
               audience: ["Adult", "Infant", "PregnantWomen", "Athlete", "Child"],
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "@id": "https://www.hilaryfarid-osteopathe.fr/osteopathie#faq",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "Quand consulter un ostéopathe ?",
+                  acceptedAnswer: { "@type": "Answer", text: "Il est recommandé de consulter en cas de douleurs musculo-squelettiques (dos, cervicales, articulations), de troubles digestifs, de stress, de migraines, pour le suivi de grossesse ou l'inconfort du nourrisson. Une visite annuelle préventive est également excellente pour éviter l'apparition des douleurs." },
+                },
+                {
+                  "@type": "Question",
+                  name: "L'ostéopathie est-elle adaptée aux nourrissons ?",
+                  acceptedAnswer: { "@type": "Answer", text: "Absolument. Des techniques extrêmement douces sont utilisées, particulièrement efficaces pour les torticolis, les reflux, la plagiocéphalie (tête plate) et les problèmes de succion lors de l'allaitement (freins restrictifs)." },
+                },
+                {
+                  "@type": "Question",
+                  name: "Est-ce que l'ostéopathie aide pendant la grossesse ?",
+                  acceptedAnswer: { "@type": "Answer", text: "Oui, l'ostéopathie aide le corps à s'adapter aux changements posturaux, soulage les lombalgies, sciatiques, les tensions du bassin et améliore la fonction respiratoire. Cela aide aussi à préparer mécaniquement l'accouchement." },
+                },
+                {
+                  "@type": "Question",
+                  name: "Combien de séances sont nécessaires ?",
+                  acceptedAnswer: { "@type": "Answer", text: "En général, 1 à 2 séances suffisent pour un trouble récent. Pour des douleurs chroniques, un suivi plus régulier peut être proposé. Cela dépend de l'ancienneté du problème et est discuté dès la première séance." },
+                },
+              ],
             },
           ])
         }}
@@ -152,9 +111,22 @@ export default function OsteopathiePage() {
                 </Link>
               </div>
 
-              <p className="mt-5 text-base text-graywarm">
-                Cabinets à <strong>Sèvres (92310)</strong> et
-                <strong> Paris 15 (75015)</strong>.
+              {/* Tarifs rapides */}
+              <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {[
+                  { label: "Adulte", price: "70 €" },
+                  { label: "Nourrisson / Enfant", price: "50 €" },
+                  { label: "Maman + Bébé", price: "100 €" },
+                  { label: "Dimanche / Férié", price: "90 €" },
+                ].map(({ label, price }) => (
+                  <div key={label} className="bg-white/80 border border-light/60 rounded-xl p-3 text-center shadow-sm">
+                    <p className="text-lg font-bold text-primary">{price}</p>
+                    <p className="text-xs text-graywarm mt-0.5 leading-tight">{label}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-xs text-graywarm">
+                Remboursement possible par la mutuelle · Sèvres & Paris 15
               </p>
             </div>
 

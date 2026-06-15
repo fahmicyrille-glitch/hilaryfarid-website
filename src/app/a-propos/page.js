@@ -437,7 +437,7 @@ export default function AProposPage() {
 
                 <button
                   type="button"
-                  className="trigger-booking-modal mt-8 inline-block bg-offwhite text-doctolib font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md"
+                  className="trigger-booking-modal mt-8 inline-block bg-doctolib text-white font-bold px-10 py-4 rounded-full hover:bg-doctolib-dark transition shadow-md"
                 >
                   Réserver une séance
                 </button>

@@ -7,15 +7,20 @@ import GoogleReviewsCarousel from "@/components/GoogleReviewsCarousel";
 import StatsBand from "@/components/StatsBand";
 import { fetchGoogleReviews } from "@/lib/googleReviews";
 import {
-  OPENING_HOURS,
   GLOBAL_REVIEW_COUNT,
   RENATA_OFFICIAL_URL,
+  OPENING_HOURS_SEVRES,
+  OPENING_HOURS_PARIS15,
 } from "@/config/siteConfig";
+import { articles } from "@/data/articles";
 import {
   IconBone,
   IconDroplets,
   IconMapPin,
   IconBadgeCheck,
+  IconBaby,
+  IconHeartHands,
+  IconSparkle,
 } from "@/components/icons/UiIcons";
 
 export const revalidate = 21600; // 6h — rafraîchit les avis Google
@@ -45,35 +50,8 @@ const HOME_SCHEMAS = [
       "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid",
     },
   },
-  {
-    "@context": "https://schema.org",
-    "@type": "Physician",
-    "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid",
-    name: "Hilary Farid",
-    image: "https://www.hilaryfarid-osteopathe.fr/hilary.webp",
-    jobTitle: "Ostéopathe D.O.",
-    telephone: "+33672014539",
-    logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
-    email: "hilaryfarid.osteopathe@gmail.com",
-    url: "https://www.hilaryfarid-osteopathe.fr/",
-    medicalSpecialty: [
-      "Osteopathy",
-      "PregnancyCare",
-      "Pediatric",
-      "SportsMedicine",
-    ],
-    worksFor: [
-      { "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-sevres" },
-      { "@id": "https://www.hilaryfarid-osteopathe.fr/#cabinet-paris15" },
-    ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      reviewCount: GLOBAL_REVIEW_COUNT,
-      bestRating: "5",
-      worstRating: "5",
-    },
-  },
+  // Physician entité définie exhaustivement dans layout.js (apparaît sur toutes les pages)
+  // → on évite le doublon @id sur la home en ne la redéclarant pas ici
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -96,7 +74,7 @@ const HOME_SCHEMAS = [
     },
     identifier: { "@type": "PropertyValue", name: "SIRET", value: "90179515300013" },
     legalName: "SIREN 901795153",
-    openingHoursSpecification: OPENING_HOURS,
+    openingHoursSpecification: OPENING_HOURS_SEVRES,
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "5",
@@ -125,7 +103,7 @@ const HOME_SCHEMAS = [
     },
     identifier: { "@type": "PropertyValue", name: "SIRET", value: "90179515300021" },
     legalName: "SIREN 901795153",
-    openingHoursSpecification: OPENING_HOURS,
+    openingHoursSpecification: OPENING_HOURS_PARIS15,
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "5",
@@ -238,9 +216,19 @@ export default async function Home() {
               </Link>
             </div>
 
-            <p className="mt-5 text-xs text-offwhite/90">
-              Prise en charge ostéopathique possible par les mutuelles.
-            </p>
+            {/* Trust badges */}
+            <div className="mt-6 flex flex-wrap gap-2">
+              {[
+                "Diplômée IDO Paris",
+                "Certifiée Renata França",
+                "Mutuelles acceptées",
+              ].map((badge) => (
+                <span key={badge} className="inline-flex items-center gap-1.5 text-xs text-offwhite/80 bg-white/10 border border-offwhite/20 rounded-full px-3 py-1">
+                  <IconBadgeCheck className="w-3.5 h-3.5 text-amber-300 shrink-0" />
+                  {badge}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="fade-hero md:fade-hero">
@@ -277,7 +265,10 @@ export default async function Home() {
               <div className="w-14 h-14 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
                 <IconBone className="w-7 h-7" />
               </div>
-              <h3 className="text-2xl font-bold text-primary mb-4">Ostéopathie D.O</h3>
+              <div className="flex items-start justify-between gap-2 mb-4">
+                <h3 className="text-2xl font-bold text-primary">Ostéopathie D.O</h3>
+                <span className="shrink-0 text-xs font-semibold text-primary bg-primary/10 rounded-full px-2.5 py-1">à partir de 50€</span>
+              </div>
               <p className="text-graywarm mb-6 flex-grow">
                 Une approche douce et personnalisée pour soulager vos douleurs articulaires, musculaires, et vos troubles digestifs ou liés au stress. Prise en charge des adultes, nourrissons, femmes enceintes et sportifs.
               </p>
@@ -294,7 +285,10 @@ export default async function Home() {
               <div className="w-14 h-14 bg-white text-secondary rounded-2xl flex items-center justify-center mb-6 shadow-sm">
                 <IconDroplets className="w-7 h-7" />
               </div>
-              <h3 className="text-2xl font-bold text-ink mb-4">Drainage Renata França</h3>
+              <div className="flex items-start justify-between gap-2 mb-4">
+                <h3 className="text-2xl font-bold text-ink">Drainage Renata França</h3>
+                <span className="shrink-0 text-xs font-semibold text-secondary bg-secondary/10 rounded-full px-2.5 py-1">à partir de 160€</span>
+              </div>
               <p className="text-graywarm mb-6 flex-grow">
                 Un massage manuel tonique et exclusif aux résultats immédiats. Idéal pour lutter contre la rétention d'eau, obtenir des jambes légères, un ventre dégonflé et relancer le métabolisme.
               </p>
@@ -328,42 +322,55 @@ export default async function Home() {
             </p>
 
             <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <FadeInNoShift delay={0.1}>
-                <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 h-full">
-                  <h3 className="font-semibold text-primary">Douleurs &amp; posture</h3>
-                  <p className="mt-2 text-sm text-graywarm">
-                    Maux de dos, nuque, épaules, sciatiques, blocages, tensions
-                    récurrentes, migraines…
-                  </p>
-                </div>
-              </FadeInNoShift>
+              {[
+                {
+                  icon: <IconBone className="w-6 h-6" />,
+                  title: "Douleurs & posture",
+                  text: "Maux de dos, nuque, épaules, sciatiques, blocages, tensions récurrentes, migraines…",
+                  accent: "bg-primary/10 text-primary",
+                  delay: 0.1,
+                },
+                {
+                  icon: <IconBaby className="w-6 h-6" />,
+                  title: "Nourrissons & enfants",
+                  text: "Plagiocéphalie, coliques, reflux, troubles du sommeil, pleurs inexpliqués…",
+                  accent: "bg-blue-50 text-blue-600",
+                  delay: 0.2,
+                },
+                {
+                  icon: <IconHeartHands className="w-6 h-6" />,
+                  title: "Grossesse & post-partum",
+                  text: "Lombalgies, préparation du bassin, sciatique, confort respiratoire…",
+                  accent: "bg-rose-50 text-rose-500",
+                  delay: 0.3,
+                },
+                {
+                  icon: <IconSparkle className="w-6 h-6" />,
+                  title: "Digestion & stress",
+                  text: "Troubles digestifs, ballonnements, anxiété, sommeil agité, fatigue…",
+                  accent: "bg-amber-50 text-amber-600",
+                  delay: 0.4,
+                },
+              ].map(({ icon, title, text, accent, delay }) => (
+                <FadeInNoShift key={title} delay={delay}>
+                  <div className="p-6 rounded-2xl bg-white shadow-sm border border-light/80 h-full flex flex-col gap-4 hover:shadow-md transition-shadow">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${accent}`}>
+                      {icon}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-primary">{title}</h3>
+                      <p className="mt-2 text-sm text-graywarm">{text}</p>
+                    </div>
+                  </div>
+                </FadeInNoShift>
+              ))}
+            </div>
 
-              <FadeInNoShift delay={0.2}>
-                <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 h-full">
-                  <h3 className="font-semibold text-primary">Nourrissons &amp; enfants</h3>
-                  <p className="mt-2 text-sm text-graywarm">
-                    Plagiocéphalie, coliques, reflux, troubles du sommeil, pleurs inexpliqués…
-                  </p>
-                </div>
-              </FadeInNoShift>
-
-              <FadeInNoShift delay={0.3}>
-                <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 h-full">
-                  <h3 className="font-semibold text-primary">Grossesse &amp; post-partum</h3>
-                  <p className="mt-2 text-sm text-graywarm">
-                    Lombalgies, préparation du bassin, sciatique, confort respiratoire…
-                  </p>
-                </div>
-              </FadeInNoShift>
-
-              <FadeInNoShift delay={0.4}>
-                <div className="p-5 rounded-xl bg-white shadow-sm border border-light/80 h-full">
-                  <h3 className="font-semibold text-primary">Digestion &amp; stress</h3>
-                  <p className="mt-2 text-sm text-graywarm">
-                    Troubles digestifs, ballonnements, anxiété, sommeil agité, fatigue…
-                  </p>
-                </div>
-              </FadeInNoShift>
+            <div className="mt-8 text-center">
+              <Link href="/osteopathie"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary underline underline-offset-4 hover:text-secondary">
+                Toutes les indications de l'ostéopathie →
+              </Link>
             </div>
           </div>
         </FadeInNoShift>
@@ -415,102 +422,102 @@ export default async function Home() {
             Séances d'ostéopathie et de drainage Renata França à Sèvres et Paris 15.
           </p>
 
-          <div className="mt-12 grid md:grid-cols-2 gap-10">
+          <div className="mt-12 grid md:grid-cols-2 gap-8">
             {/* --------- CARTE SÈVRES --------- */}
-            <Link
-              href="/sevres"
-              className="group relative p-8 rounded-2xl bg-white/90 backdrop-blur-md border border-light/80 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
-            >
-              <div className="grid grid-cols-3 gap-2 mb-5 rounded-xl overflow-hidden">
+            <div className="group rounded-2xl bg-white border border-light/80 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 overflow-hidden">
+              {/* Grande image principale */}
+              <div className="relative h-52 overflow-hidden">
                 <Image
                   src="/cabinet-sevres/cabinet-sevres-1.webp"
-                  width={350} height={200}
+                  fill
                   alt="Salle de consultation du cabinet d'ostéopathie à Sèvres – Hilary Farid"
-                  className="object-cover h-28 w-full"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
-                  sizes="(max-width: 640px) 33vw, 120px"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <Image
-                  src="/cabinet-sevres/cabinet-sevres-2.webp"
-                  width={350} height={200}
-                  alt="Table de soin ostéopathie au cabinet de Sèvres – Hilary Farid"
-                  className="object-cover h-28 w-full"
-                  loading="lazy"
-                  sizes="(max-width: 640px) 33vw, 120px"
-                />
-                <Image
-                  src="/cabinet-sevres/cabinet-sevres-3.webp"
-                  width={350} height={200}
-                  alt="Salle d'attente du cabinet d'ostéopathie Sèvres – Hilary Farid"
-                  className="object-cover h-28 w-full"
-                  loading="lazy"
-                  sizes="(max-width: 640px) 33vw, 120px"
-                />
-              </div>
-
-              <div className="relative h-8">
-                <span className="absolute top-4 right-4 inline-flex items-center gap-1 bg-primary text-offwhite text-xs px-3 py-1 rounded-full shadow-sm">
-                  <IconMapPin className="w-3.5 h-3.5" /> Sèvres
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <span className="absolute bottom-3 left-4 inline-flex items-center gap-1.5 bg-white/95 text-primary text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                  <IconMapPin className="w-3.5 h-3.5" /> Sèvres – 92310
                 </span>
               </div>
-
-              <h3 className="text-xl font-semibold text-primary">Cabinet de Sèvres</h3>
-              <p className="mt-3 text-graywarm leading-relaxed">
-                104 Grande Rue, 92310 Sèvres.
-              </p>
-
-              <span className="mt-5 inline-block text-secondary underline underline-offset-4 group-hover:text-primary">
-                Voir le cabinet →
-              </span>
-            </Link>
+              {/* Miniatures */}
+              <div className="grid grid-cols-2 gap-1 px-1 pt-1">
+                <div className="relative h-24 rounded-lg overflow-hidden">
+                  <Image src="/cabinet-sevres/cabinet-sevres-2.webp" fill
+                    alt="Table de soin ostéopathie cabinet Sèvres" className="object-cover" loading="lazy" sizes="25vw" />
+                </div>
+                <div className="relative h-24 rounded-lg overflow-hidden">
+                  <Image src="/cabinet-sevres/cabinet-sevres-3.webp" fill
+                    alt="Salle d'attente cabinet Sèvres" className="object-cover" loading="lazy" sizes="25vw" />
+                </div>
+              </div>
+              {/* Infos */}
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-primary">Cabinet de Sèvres</h3>
+                <p className="mt-1.5 text-sm text-graywarm">104 Grande Rue, 92310 Sèvres</p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Link href="/sevres"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline underline-offset-4 hover:text-secondary group-hover:text-secondary">
+                    Voir le cabinet →
+                  </Link>
+                  <a
+                    href="https://share.google/vyqDUNKOo1q0HmayO"
+                    target="_blank" rel="noreferrer"
+                    className="inline-flex items-center gap-1 text-xs text-graywarm hover:text-primary border border-light rounded-full px-3 py-1"
+                  >
+                    <IconMapPin className="w-3 h-3" /> Google Maps
+                  </a>
+                </div>
+              </div>
+            </div>
 
             {/* --------- CARTE PARIS 15 --------- */}
-            <Link
-              href="/paris15"
-              className="group relative p-8 rounded-2xl bg-white/90 backdrop-blur-md border border-light/80 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
-            >
-              <div className="grid grid-cols-3 gap-2 mb-5 rounded-xl overflow-hidden">
+            <div className="group rounded-2xl bg-white border border-light/80 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 overflow-hidden">
+              {/* Grande image principale */}
+              <div className="relative h-52 overflow-hidden">
                 <Image
                   src="/cabinet-paris15/cabinet-paris15-1.webp"
-                  width={350} height={200}
+                  fill
                   alt="Salle de consultation du cabinet d'ostéopathie Paris 15 – Hilary Farid"
-                  className="object-cover h-28 w-full"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
-                  sizes="(max-width: 640px) 33vw, 120px"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <Image
-                  src="/cabinet-paris15/cabinet-paris15-2.webp"
-                  width={350} height={200}
-                  alt="Table de soin ostéopathie au cabinet Paris 15 – Hilary Farid"
-                  className="object-cover h-28 w-full"
-                  loading="lazy"
-                  sizes="(max-width: 640px) 33vw, 120px"
-                />
-                <Image
-                  src="/cabinet-paris15/cabinet-paris15-3.webp"
-                  width={350} height={200}
-                  alt="Salle d'attente du cabinet d'ostéopathie Paris 15 – Hilary Farid"
-                  className="object-cover h-28 w-full"
-                  loading="lazy"
-                  sizes="(max-width: 640px) 33vw, 120px"
-                />
-              </div>
-
-              <div className="relative h-8">
-                <span className="absolute top-4 right-4 inline-flex items-center gap-1 bg-primary text-offwhite text-xs px-3 py-1 rounded-full shadow-sm">
-                  <IconMapPin className="w-3.5 h-3.5" /> Paris 15
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <span className="absolute bottom-3 left-4 inline-flex items-center gap-1.5 bg-white/95 text-primary text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                  <IconMapPin className="w-3.5 h-3.5" /> Paris 15 – 75015
                 </span>
               </div>
-
-              <h3 className="text-xl font-semibold text-primary">Cabinet Paris 15</h3>
-              <p className="mt-3 text-graywarm leading-relaxed">
-                28 Rue Letellier, 75015 Paris.
-              </p>
-
-              <span className="mt-5 inline-block text-secondary underline underline-offset-4 group-hover:text-primary">
-                Voir le cabinet →
-              </span>
-            </Link>
+              {/* Miniatures */}
+              <div className="grid grid-cols-2 gap-1 px-1 pt-1">
+                <div className="relative h-24 rounded-lg overflow-hidden">
+                  <Image src="/cabinet-paris15/cabinet-paris15-2.webp" fill
+                    alt="Table de soin ostéopathie cabinet Paris 15" className="object-cover" loading="lazy" sizes="25vw" />
+                </div>
+                <div className="relative h-24 rounded-lg overflow-hidden">
+                  <Image src="/cabinet-paris15/cabinet-paris15-3.webp" fill
+                    alt="Salle d'attente cabinet Paris 15" className="object-cover" loading="lazy" sizes="25vw" />
+                </div>
+              </div>
+              {/* Infos */}
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-primary">Cabinet Paris 15</h3>
+                <p className="mt-1.5 text-sm text-graywarm">28 Rue Letellier, 75015 Paris</p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Link href="/paris15"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline underline-offset-4 hover:text-secondary group-hover:text-secondary">
+                    Voir le cabinet →
+                  </Link>
+                  <a
+                    href="https://share.google/fQuSNhyJKa5uEN5gK"
+                    target="_blank" rel="noreferrer"
+                    className="inline-flex items-center gap-1 text-xs text-graywarm hover:text-primary border border-light rounded-full px-3 py-1"
+                  >
+                    <IconMapPin className="w-3 h-3" /> Google Maps
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -527,25 +534,35 @@ export default async function Home() {
             </p>
           </div>
           <div className="grid sm:grid-cols-3 gap-5">
-            {[
-              { title: "Freins restrictifs chez le nourrisson", category: "Nourrisson", slug: "freins-restrictifs-nourrisson", color: "bg-blue-50 text-blue-700 border-blue-100" },
-              { title: "Plagiocéphalie : que faire ?", category: "Nourrisson", slug: "plagiocephalie-nourrisson-osteopathe", color: "bg-blue-50 text-blue-700 border-blue-100" },
-              { title: "Drainage Renata França : bienfaits", category: "Drainage", slug: "drainage-renata-franca-methode", color: "bg-teal-50 text-teal-700 border-teal-100" },
-            ].map(({ title, category, slug, color }) => (
-              <Link
-                key={slug}
-                href={`/blog/${slug}`}
-                className="group block bg-white rounded-2xl border border-light/60 overflow-hidden hover:border-secondary/40 hover:shadow-md transition-all"
-              >
-                <div className={`${color.split(" ")[0]} border-b ${color.split(" ")[2]} px-4 py-2`}>
-                  <span className={`${color.split(" ")[1]} text-xs font-bold uppercase tracking-wider`}>{category}</span>
-                </div>
-                <div className="p-5">
-                  <p className="font-bold text-primary text-sm group-hover:text-secondary transition-colors leading-snug">{title}</p>
-                  <span className="mt-3 inline-flex items-center text-xs font-semibold text-secondary">Lire →</span>
-                </div>
-              </Link>
-            ))}
+            {[...articles]
+              .sort((a, b) => new Date(b.date) - new Date(a.date))
+              .slice(0, 3)
+              .map((article) => {
+                const colorMap = {
+                  blue:  { bg: "bg-blue-50",  text: "text-blue-700",  border: "border-blue-100" },
+                  teal:  { bg: "bg-teal-50",  text: "text-teal-700",  border: "border-teal-100" },
+                  green: { bg: "bg-green-50", text: "text-green-700", border: "border-green-100" },
+                  amber: { bg: "bg-amber-50", text: "text-amber-700", border: "border-amber-100" },
+                };
+                const c = colorMap[article.categoryColor] || colorMap.blue;
+                return (
+                  <Link
+                    key={article.slug}
+                    href={`/blog/${article.slug}`}
+                    className="group block bg-white rounded-2xl border border-light/60 overflow-hidden hover:border-secondary/40 hover:shadow-md transition-all"
+                  >
+                    <div className={`${c.bg} border-b ${c.border} px-4 py-2 flex items-center justify-between`}>
+                      <span className={`${c.text} text-xs font-bold uppercase tracking-wider`}>{article.category}</span>
+                      <span className="text-xs text-graywarm">{article.readTime}</span>
+                    </div>
+                    <div className="p-5">
+                      <p className="font-bold text-primary text-sm group-hover:text-secondary transition-colors leading-snug">{article.title}</p>
+                      <p className="mt-2 text-xs text-graywarm line-clamp-2">{article.excerpt}</p>
+                      <span className="mt-3 inline-flex items-center text-xs font-semibold text-secondary">Lire l'article →</span>
+                    </div>
+                  </Link>
+                );
+              })}
           </div>
           <div className="text-center mt-8">
             <Link href="/blog" className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-primary/30 text-primary font-semibold hover:bg-primary/5 transition-colors">

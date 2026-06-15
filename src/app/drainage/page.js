@@ -1,13 +1,10 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
-import MobileSummary from "@/components/MobileSummary";
 import DrainageCarousel from "@/components/DrainageCarousel";
 import BackToTop from "@/components/BackToTop";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import Faq from "@/components/Faq";
+import DrainageNav from "@/components/DrainageNav";
 import { IconPhone, IconAlert } from "@/components/icons/UiIcons";
 
 import {
@@ -22,56 +19,7 @@ import {
   IconFertility,
 } from "@/components/icons/BenefitIcons";
 
-const SECTIONS = [
-  { id: "presentation", label: "La lymphe, c’est quoi ?" },
-  { id: "bienfaits", label: "Bienfaits" },
-  { id: "deroulement", label: "Déroulement" },
-  { id: "pour-qui", label: "Pour qui ?" },
-  { id: "pourquoi-moi", label: "Pourquoi me consulter ?" },
-  { id: "avant-apres", label: "Avant / Après" },
-  { id: "contraindications", label: "Contre-indications" },
-  { id: "faq", label: "FAQ" },
-  { id: "cta", label: "Prendre RDV" },
-];
-
 export default function DrainageLymphatiquePage() {
-  const [activeSection, setActiveSection] = useState(SECTIONS[0].id);
-
-  const smoothScroll = (e, id) => {
-    e.preventDefault();
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    const yOffset = -80; // ajuste si header fixe
-    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-    window.scrollTo({ top: y, behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    const ids = SECTIONS
-      .map((s) => s.id)
-      .filter((id) => id !== "cta");
-
-    const options = {
-      root: null,
-      rootMargin: "-25% 0px -45% 0px",
-      threshold: 0,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => entry.isIntersecting && setActiveSection(entry.target.id));
-    }, options);
-
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
 
   return (
     <main className="relative">
@@ -165,55 +113,8 @@ export default function DrainageLymphatiquePage() {
         }}
       />
 
-      {/* 🔥 STICKY SIDEBAR SOMMAIRE (desktop) */}
-      <aside className="hidden xl:block fixed left-6 top-40 w-56 bg-white/80 backdrop-blur-md shadow-lg border border-gray-200 rounded-xl p-4 z-40">
-        <h3 className="text-sm font-semibold text-primary mb-2">Sommaire</h3>
-        <ul className="space-y-2 text-sm">
-          {SECTIONS.map((s) => (
-            <li key={s.id}>
-              <a
-                href={`#${s.id}`}
-                onClick={(e) => smoothScroll(e, s.id)}
-                className={`block transition font-medium ${
-                  activeSection === s.id
-                    ? "text-primary underline underline-offset-4"
-                    : "text-graywarm hover:text-primary"
-                }`}
-              >
-                {s.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-4 pt-4 border-t border-gray-200">
-          <button
-            type="button"
-            className="trigger-booking-modal block w-full text-center bg-doctolib text-white px-4 py-2 rounded-lg font-semibold shadow-md hover:bg-doctolib-dark transition"
-          >
-            Prendre RDV sur Doctolib
-          </button>
-          <p className="mt-2 text-xs text-graywarm text-center">
-            Paris 15 & Sèvres
-          </p>
-        </div>
-      </aside>
-
-      {/* 📌 Sticky CTA (mobile) */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50">
-        <div className="bg-white/95 backdrop-blur-md border-t border-gray-200 px-4 py-3 flex items-center justify-between shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-          <div className="leading-tight">
-            <p className="text-sm font-semibold text-primary">Drainage Renata França</p>
-            <p className="text-xs text-graywarm">Paris 15 & Sèvres</p>
-          </div>
-          <button
-            type="button"
-            className="trigger-booking-modal bg-doctolib text-white px-5 py-2.5 rounded-lg shadow-md hover:bg-doctolib-dark transition text-sm font-semibold"
-          >
-            Prendre RDV
-          </button>
-        </div>
-      </div>
+      {/* Sidebar scrollspy + mobile CTA — composant client isolé */}
+      <DrainageNav />
 
       {/* ========= HERO (Optimisé CRO) ========= */}
       <FadeIn>
@@ -252,7 +153,6 @@ export default function DrainageLymphatiquePage() {
                 </button>
                 <a
                   href="#bienfaits"
-                  onClick={(e) => smoothScroll(e, "bienfaits")}
                   className="inline-flex items-center text-primary font-medium underline underline-offset-4 hover:text-secondary"
                 >
                   Découvrir les bienfaits
@@ -271,6 +171,21 @@ export default function DrainageLymphatiquePage() {
                   </div>
                 ))}
               </div>
+
+              {/* Tarifs visibles */}
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <div className="flex items-center gap-2 bg-white border border-light/60 rounded-xl px-4 py-2.5 shadow-sm">
+                  <span className="text-xl font-bold text-primary">160 €</span>
+                  <span className="text-xs text-graywarm leading-tight">Paris 15<br/>(corps entier)</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white border border-light/60 rounded-xl px-4 py-2.5 shadow-sm">
+                  <span className="text-xl font-bold text-primary">180 €</span>
+                  <span className="text-xs text-graywarm leading-tight">Sèvres<br/>(corps entier)</span>
+                </div>
+                <a href="/tarifs" className="text-xs text-secondary font-semibold underline underline-offset-4 hover:text-primary">
+                  Voir tous les tarifs →
+                </a>
+              </div>
             </div>
 
             <div className="relative w-full h-80 md:h-[28rem] rounded-2xl overflow-hidden shadow-lg">
@@ -288,17 +203,6 @@ export default function DrainageLymphatiquePage() {
           </div>
         </section>
       </FadeIn>
-
-      {/* ========= SOMMAIRE MOBILE ========= */}
-      <section className="xl:hidden py-6 px-6 bg-[#F7F9FB] border-y border-light/50">
-        <div className="max-w-4xl mx-auto">
-          <MobileSummary
-            sections={SECTIONS}
-            activeId={activeSection}
-            smoothScroll={smoothScroll}
-          />
-        </div>
-      </section>
 
       {/* ========= PRESENTATION ========= */}
       <SlideUp>

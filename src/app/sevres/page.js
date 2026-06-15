@@ -1,21 +1,9 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
-import MobileSummary from "@/components/MobileSummary";
 import BackToTop from "@/components/BackToTop";
+import SevresNav from "@/components/SevresNav";
 import { IconCheck, IconMapPin } from "@/components/icons/UiIcons";
-
-const SECTIONS = [
-  { id: "cabinet", label: "Le cabinet & Galerie" },
-  { id: "osteopathe", label: "Votre ostéopathe" },
-  { id: "avis", label: "Avis patients" },
-  { id: "pourquoi", label: "Pourquoi à Sèvres ?" },
-  { id: "acces", label: "Adresse & accès" },
-  { id: "faq", label: "FAQ" },
-];
 
 const SEVRES_SCHEMAS = [
   {
@@ -40,7 +28,7 @@ const SEVRES_SCHEMAS = [
     ],
     sameAs: [
       "https://www.doctolib.fr/osteopathe/sevres/hilary-farid",
-      "https://maps.google.com/?q=104+Grande+Rue,+92310+Sèvres",
+      "https://share.google/vyqDUNKOo1q0HmayO",
     ],
     address: {
       "@type": "PostalAddress",
@@ -94,39 +82,6 @@ const SEVRES_SCHEMAS = [
 ];
 
 export default function SevresPage() {
-  const [activeId, setActiveId] = useState("cabinet");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const trigger = window.innerHeight * 0.25;
-      let current = "cabinet";
-      SECTIONS.forEach((s) => {
-        const el = document.getElementById(s.id);
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= trigger && rect.bottom > trigger) current = s.id;
-      });
-      setActiveId(current);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const handleSmoothScroll = (e, id) => {
-    e.preventDefault();
-    const el = document.getElementById(id);
-    if (!el) return;
-    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 120, behavior: "smooth" });
-  };
-
-  const smoothScroll = (e, id) => {
-    e.preventDefault();
-    const el = document.getElementById(id);
-    if (!el) return;
-    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 120, behavior: "smooth" });
-  };
-
   return (
     <main>
       {/* JSON-LD inline — dans le HTML initial */}
@@ -172,34 +127,7 @@ export default function SevresPage() {
       {/* ================= WRAPPER : SOMMAIRE + CONTENU ================= */}
       <section className="bg-offwhite py-12 px-4 md:px-6">
         <div className="max-w-6xl mx-auto flex gap-10">
-
-          {/* ===== SOMMAIRE STICKY (DESKTOP) ===== */}
-          <aside className="hidden lg:block w-64 flex-shrink-0">
-            <div className="sticky top-28 bg-white rounded-2xl shadow-sm border border-light/70 p-5">
-              <h2 className="text-sm font-semibold text-primary mb-3 tracking-wide uppercase">Sommaire</h2>
-              <nav className="space-y-2 text-sm">
-                {SECTIONS.map((section) => (
-                  <a
-                    key={section.id}
-                    href={`#${section.id}`}
-                    onClick={(e) => handleSmoothScroll(e, section.id)}
-                    className={`block rounded-lg px-3 py-2 transition-colors ${
-                      activeId === section.id
-                        ? "bg-primary/10 text-primary font-semibold"
-                        : "text-graywarm hover:text-primary hover:bg-light/70"
-                    }`}
-                  >
-                    {section.label}
-                  </a>
-                ))}
-              </nav>
-            </div>
-          </aside>
-
-          {/* ===== CONTENU PRINCIPAL ===== */}
-          <div className="flex-1 space-y-16">
-            <MobileSummary sections={SECTIONS} activeId={activeId} smoothScroll={smoothScroll} />
-
+          <SevresNav>
             {/* ======= LE CABINET + GALERIE ======= */}
             <SlideUp>
               <section id="cabinet" className="bg-white rounded-2xl shadow-sm border border-light/70 p-6 md:p-8">
@@ -361,18 +289,18 @@ export default function SevresPage() {
 
             {/* ======= CTA FINALE ======= */}
             <FadeIn>
-              <section className="bg-primary text-offwhite rounded-2xl shadow-sm p-8 md:p-10 text-center">
-                <h2 className="text-3xl font-semibold">Prendre rendez-vous à Sèvres</h2>
-                <p className="mt-3 text-offwhite/90">Consultations disponibles du lundi au samedi.</p>
+              <section className="bg-offwhite border border-light rounded-2xl shadow-sm p-8 md:p-10 text-center">
+                <h2 className="text-3xl font-semibold text-primary">Prendre rendez-vous à Sèvres</h2>
+                <p className="mt-3 text-graywarm">Consultations disponibles du lundi au samedi.</p>
                 <button
                   type="button"
-                  className="trigger-booking-modal mt-6 inline-block bg-offwhite text-doctolib font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md"
+                  className="trigger-booking-modal mt-6 inline-block bg-doctolib text-white font-bold px-10 py-4 rounded-full hover:bg-doctolib-dark transition shadow-md"
                 >
                   Réserver sur Doctolib
                 </button>
               </section>
             </FadeIn>
-          </div>
+          </SevresNav>
         </div>
       </section>
 

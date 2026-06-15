@@ -11,7 +11,7 @@ import FloatingBookingButtons from "@/components/FloatingBookingButtons";
 import FloatingPhoneButton from "@/components/FloatingPhoneButton";
 import Script from "next/script";
 import localFont from "next/font/local";
-import { OPENING_HOURS } from "@/config/siteConfig";
+import { OPENING_HOURS_SEVRES, OPENING_HOURS_PARIS15 } from "@/config/siteConfig";
 
 const roboto = localFont({
   src: [
@@ -128,12 +128,12 @@ const SCHEMA_CABINET_SEVRES = {
     addressCountry: "FR",
   },
   geo: { "@type": "GeoCoordinates", latitude: 48.822013, longitude: 2.2179 },
-  openingHoursSpecification: OPENING_HOURS,
+  openingHoursSpecification: OPENING_HOURS_SEVRES,
   priceRange: "€€",
   identifier: { "@type": "PropertyValue", name: "SIRET", value: "90179515300013" },
   legalName: "SIREN 901795153",
   medicalSpecialty: "Osteopathic",
-  hasMap: "https://www.google.com/maps/place/104+Grande+Rue,+92310+S%C3%A8vres",
+  hasMap: "https://share.google/vyqDUNKOo1q0HmayO",
   sameAs: ["https://www.doctolib.fr/osteopathe/sevres/hilary-farid"],
   employee: { "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid" },
   areaServed: [
@@ -171,12 +171,12 @@ const SCHEMA_CABINET_PARIS15 = {
     addressCountry: "FR",
   },
   geo: { "@type": "GeoCoordinates", latitude: 48.847151, longitude: 2.293107 },
-  openingHoursSpecification: OPENING_HOURS,
+  openingHoursSpecification: OPENING_HOURS_PARIS15,
   priceRange: "€€",
   identifier: { "@type": "PropertyValue", name: "SIRET", value: "90179515300021" },
   legalName: "SIREN 901795153",
   medicalSpecialty: "Osteopathic",
-  hasMap: "https://www.google.com/maps/place/28+Rue+Letellier,+75015+Paris",
+  hasMap: "https://share.google/fQuSNhyJKa5uEN5gK",
   sameAs: ["https://www.doctolib.fr/osteopathe/paris/hilary-farid"],
   employee: { "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid" },
   areaServed: [

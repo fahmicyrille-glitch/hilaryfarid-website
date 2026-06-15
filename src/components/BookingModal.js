@@ -317,9 +317,18 @@ export default function BookingModal() {
               </button>
               <button
                 onClick={() => handleServiceSelect("drainage")}
-                className="w-full flex items-center justify-center gap-3 p-4 bg-cream border border-cream-border text-ink rounded-2xl text-lg font-semibold shadow-sm hover:bg-[#F3ECE7] transition transform hover:-translate-y-1"
+                className="w-full flex flex-col items-center gap-1 p-4 bg-cream border border-cream-border text-ink rounded-2xl shadow-sm hover:bg-[#F3ECE7] transition transform hover:-translate-y-1"
               >
-                <IconDroplets className="w-6 h-6" /> Drainage Renata França
+                <span className="flex items-center gap-3 text-lg font-semibold">
+                  <IconDroplets className="w-6 h-6" /> Drainage Renata França
+                </span>
+                <span className="flex items-center gap-2 text-sm">
+                  <span className="font-bold text-secondary text-base">
+                    {location === "paris" ? "160 €" : "180 €"}
+                  </span>
+                  <span className="text-graywarm">· séance corps entier 90 min</span>
+                </span>
+                <span className="text-xs text-graywarm/70 italic">Non remboursé – soin bien-être</span>
               </button>
             </div>
 

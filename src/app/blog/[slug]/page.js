@@ -111,31 +111,50 @@ export default function ArticlePage({ params }) {
   const colors = categoryColors[article.category] || categoryColors.Nourrisson;
   const related = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: article.title,
-    description: article.description,
-    datePublished: article.date,
-    author: {
-      "@type": "Person",
-      "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid",
-      name: "Hilary Farid",
-      jobTitle: "Ostéopathe D.O.",
+  const SITE = "https://www.hilaryfarid-osteopathe.fr";
+  const articleUrl = `${SITE}/blog/${article.slug}`;
+  const articleImage = article.image
+    ? `${SITE}${article.image}`
+    : `${SITE}/og-image.webp`;
+
+  const schemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Accueil", item: SITE },
+        { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE}/blog` },
+        { "@type": "ListItem", position: 3, name: article.title, item: articleUrl },
+      ],
     },
-    publisher: {
-      "@type": "Organization",
-      name: "Hilary Farid – Ostéopathe D.O.",
-      url: "https://www.hilaryfarid-osteopathe.fr",
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: article.title,
+      description: article.description,
+      image: articleImage,
+      datePublished: article.date,
+      author: {
+        "@type": "Person",
+        "@id": `${SITE}/#hilary-farid`,
+        name: "Hilary Farid",
+        jobTitle: "Ostéopathe D.O.",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Hilary Farid – Ostéopathe D.O.",
+        url: SITE,
+        logo: { "@type": "ImageObject", url: `${SITE}/hilary-logo.svg` },
+      },
+      mainEntityOfPage: articleUrl,
     },
-    mainEntityOfPage: `https://www.hilaryfarid-osteopathe.fr/blog/${article.slug}`,
-  };
+  ];
 
   return (
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
       />
 
       {/* Breadcrumb */}

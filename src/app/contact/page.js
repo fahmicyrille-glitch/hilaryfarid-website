@@ -248,7 +248,7 @@ export default function ContactPage() {
                 ],
                 sameAs: [
                   "https://www.doctolib.fr/osteopathe/paris/hilary-farid",
-                  "https://www.google.com/maps/place/28+Rue+Letellier,+75015+Paris",
+                  "https://share.google/fQuSNhyJKa5uEN5gK",
                 ],
               },
 
@@ -549,7 +549,7 @@ export default function ContactPage() {
 
                 <button
                   type="button"
-                  className="trigger-booking-modal mt-6 inline-block bg-offwhite text-doctolib font-bold px-10 py-4 rounded-lg hover:bg-light transition shadow-md"
+                  className="trigger-booking-modal mt-6 inline-block bg-doctolib text-white font-bold px-10 py-4 rounded-full hover:bg-doctolib-dark transition shadow-md"
                 >
                   Réserver sur Doctolib
                 </button>
