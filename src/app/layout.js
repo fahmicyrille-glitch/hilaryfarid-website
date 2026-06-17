@@ -247,7 +247,7 @@ export default function RootLayout({ children }) {
             function gtag(){dataLayer.push(arguments);}
             gtag('js',new Date());
             gtag('config','G-BWDXGTQJKT');
-            gtag('config','AW-18051131439');`}
+            gtag('config','AW-18051131439',{allow_enhanced_conversions:true});`}
         </Script>
 
         <Header />

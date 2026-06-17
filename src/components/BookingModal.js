@@ -152,9 +152,13 @@ export default function BookingModal() {
 
     pushDataLayer({
       event: "rdv_doctolib_final",
-      service_type: service, // 'osteo' ou 'drainage'
-      location: location, // 'paris' ou 'sevres'
+      service_type: service,
+      location: location,
     });
+
+    if (typeof window.gtag === "function") {
+      window.gtag("set", "user_data", { phone_number: "+33672014539" });
+    }
 
     window.open(finalUrl, "_blank");
     setIsOpen(false);
