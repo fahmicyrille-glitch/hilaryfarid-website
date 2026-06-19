@@ -122,12 +122,11 @@ export default function BookingModal() {
       event: "rdv_phone",
       device: mobile ? "mobile" : "desktop",
     });
+
     if (mobile) {
-      // Sur téléphone : appel direct
       window.location.href = `tel:${PHONE_LINK}`;
       setIsOpen(false);
     } else {
-      // Sur ordinateur : on affiche le numéro
       setStep("phone");
     }
   };
@@ -155,10 +154,6 @@ export default function BookingModal() {
       service_type: service,
       location: location,
     });
-
-    if (typeof window.gtag === "function") {
-      window.gtag("set", "user_data", { phone_number: "+33672014539" });
-    }
 
     window.open(finalUrl, "_blank");
     setIsOpen(false);
