@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { PHONE_LINK } from "@/config/contact";
 
 export default function FloatingBookingButtons() {
   const pathname = usePathname();
@@ -23,14 +24,14 @@ export default function FloatingBookingButtons() {
       <div
         className={`
           ${hasCustomMobileCta ? "hidden" : "fixed md:hidden"}
-          bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-[320px]
+          bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 w-[85%] max-w-[300px]
         `}
       >
         <button
           type="button"
           className="
             trigger-booking-modal
-            w-full flex items-center justify-center gap-3
+            flex-1 flex items-center justify-center gap-3
             bg-doctolib text-white
             px-6 py-4 rounded-full
             shadow-[0_8px_25px_rgba(5,150,222,0.4)]
@@ -53,6 +54,26 @@ export default function FloatingBookingButtons() {
             Prendre RDV
           </span>
         </button>
+
+        {/* Téléphone — à droite du bouton Doctolib, même rangée */}
+        <a
+          href={`tel:${PHONE_LINK}`}
+          aria-label="Appeler Hilary Farid"
+          className="
+            shrink-0 flex h-[52px] w-[52px] items-center justify-center rounded-full
+            bg-doctolib text-white shadow-[0_8px_25px_rgba(5,150,222,0.4)]
+            active:scale-95 transition-transform duration-200
+          "
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-5 h-5"
+          >
+            <path d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" />
+          </svg>
+        </a>
       </div>
 
       {/* =========================================
