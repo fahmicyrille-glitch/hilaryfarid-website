@@ -69,6 +69,11 @@ export async function fetchGoogleReviews() {
   if (!apiKey || places.length === 0) return { reviews: [], stats: null };
 
   const results = await Promise.allSettled(places.map((p) => fetchPlace(apiKey, p)));
+  results.forEach((r, i) => {
+    if (r.status === "rejected") {
+      console.error(`[googleReviews] Échec pour "${places[i].label}" (${places[i].placeId}):`, r.reason?.message || r.reason);
+    }
+  });
   const ok = results
     .filter((r) => r.status === "fulfilled")
     .map((r) => r.value);
@@ -77,7 +82,7 @@ export async function fetchGoogleReviews() {
 
   const reviews = ok
     .flatMap((p) => p.reviews)
-    .filter((r) => r.text && r.rating >= 4)
+    .filter((r) => r.text && r.rating === 5)
     .sort((a, b) => b.time - a.time);
 
   const total = ok.reduce((sum, p) => sum + (p.total || 0), 0);

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import BackToTop from "@/components/BackToTop";
 import { IconPhone } from "@/components/icons/UiIcons";
+import { GLOBAL_REVIEW_COUNT, GLOBAL_REVIEW_RATING } from "@/config/siteConfig";
 
 export default function FreinsRestrictifsPage() {
   const faq = [
@@ -94,7 +95,7 @@ export default function FreinsRestrictifsPage() {
               </p>
               <div className="mt-5 flex items-center gap-2">
                 <div className="flex text-amber-400 text-xl">★★★★★</div>
-                <span className="text-graywarm text-sm font-medium">5/5 · +100 avis Google</span>
+                <span className="text-graywarm text-sm font-medium">{GLOBAL_REVIEW_RATING}/5 · {GLOBAL_REVIEW_COUNT} avis Google</span>
               </div>
               <div className="mt-7 flex flex-wrap gap-4">
                 <button

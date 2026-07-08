@@ -9,6 +9,7 @@ import {
   IconMapPin,
   IconStar,
 } from "@/components/icons/UiIcons";
+import { GLOBAL_REVIEW_COUNT, GLOBAL_REVIEW_RATING } from "@/config/siteConfig";
 
 export default function DrainageBienfaitsPage() {
   return (
@@ -104,7 +105,7 @@ export default function DrainageBienfaitsPage() {
               </p>
               <div className="mt-5 flex items-center gap-2">
                 <div className="flex text-amber-400 text-xl">★★★★★</div>
-                <span className="text-graywarm text-sm font-medium">5/5 · +100 avis Google</span>
+                <span className="text-graywarm text-sm font-medium">{GLOBAL_REVIEW_RATING}/5 · {GLOBAL_REVIEW_COUNT} avis Google</span>
               </div>
               <div className="mt-7 flex flex-wrap gap-4">
                 <button
@@ -288,7 +289,7 @@ export default function DrainageBienfaitsPage() {
                   { Icon: IconBone, titre: "Ostéopathe D.O.", texte: "La connaissance approfondie de l'anatomie et du système vasculaire permet d'adapter les pressions à votre physiologie — bien au-delà d'un institut classique." },
                   { Icon: IconBadgeCheck, titre: "Certifiée Renata França", texte: "Technique structurée et précise, avec des résultats reconnus et reproductibles." },
                   { Icon: IconMapPin, titre: "2 cabinets accessibles", texte: "Paris 15 (75015) et Sèvres (92310), proches transports, RDV rapide sur Doctolib." },
-                  { Icon: IconStar, titre: "+100 avis 5/5", texte: "Patients réguliers et fidèles, résultats visibles et durables." },
+                  { Icon: IconStar, titre: `${GLOBAL_REVIEW_COUNT} avis ${GLOBAL_REVIEW_RATING}/5`, texte: "Patients réguliers et fidèles, résultats visibles et durables." },
                 ].map(({ Icon, titre, texte }) => (
                   <li key={titre} className="flex gap-3">
                     <span className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">

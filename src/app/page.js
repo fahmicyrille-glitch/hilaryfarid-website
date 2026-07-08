@@ -8,6 +8,9 @@ import StatsBand from "@/components/StatsBand";
 import { fetchGoogleReviews } from "@/lib/googleReviews";
 import {
   GLOBAL_REVIEW_COUNT,
+  GLOBAL_REVIEW_RATING,
+  SEVRES_RATING,
+  PARIS15_RATING,
   RENATA_OFFICIAL_URL,
   OPENING_HOURS_SEVRES,
   OPENING_HOURS_PARIS15,
@@ -37,7 +40,13 @@ const fadeCss = `
 }
 `;
 
-const HOME_SCHEMAS = [
+// Construit les schémas avec les vraies notes/avis quand l'API Google répond,
+// sinon retombe sur les constantes de siteConfig.js (à tenir à jour manuellement).
+const buildHomeSchemas = (googleStats) => {
+  const sevres = googleStats?.byCabinet?.sevres;
+  const paris15 = googleStats?.byCabinet?.paris15;
+
+  return [
   {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
@@ -77,8 +86,8 @@ const HOME_SCHEMAS = [
     openingHoursSpecification: OPENING_HOURS_SEVRES,
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "5",
-      reviewCount: "62",
+      ratingValue: String(sevres?.rating ?? SEVRES_RATING.ratingValue),
+      reviewCount: String(sevres?.total ?? SEVRES_RATING.reviewCount),
     },
   },
   {
@@ -106,11 +115,12 @@ const HOME_SCHEMAS = [
     openingHoursSpecification: OPENING_HOURS_PARIS15,
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "5",
-      reviewCount: "62",
+      ratingValue: String(paris15?.rating ?? PARIS15_RATING.ratingValue),
+      reviewCount: String(paris15?.total ?? PARIS15_RATING.reviewCount),
     },
   },
-];
+  ];
+};
 
 // Avis de secours (affichés uniquement si l'API Google n'est pas configurée,
 // sans aucun branding Google)
@@ -144,8 +154,9 @@ export default async function Home() {
   }
 
   const reviewCountLabel = googleStats?.total
-    ? `+${googleStats.total} avis`
-    : `+${GLOBAL_REVIEW_COUNT} avis`;
+    ? `${googleStats.total} avis`
+    : `${GLOBAL_REVIEW_COUNT} avis`;
+  const reviewRatingLabel = googleStats?.rating ?? GLOBAL_REVIEW_RATING;
 
   return (
     <main>
@@ -156,7 +167,7 @@ export default async function Home() {
       {/* JSON-LD inline — dans le HTML initial dès le rendu serveur */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_SCHEMAS) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildHomeSchemas(googleStats)) }}
       />
 
       {/* ================= HERO SECTION ================= */}
@@ -195,7 +206,7 @@ export default async function Home() {
             <div className="mt-6 mb-2 flex items-center gap-2">
               <div className="flex text-amber-400 text-lg drop-shadow-md">★★★★★</div>
               <span className="text-offwhite/90 text-sm font-medium">
-                5/5 sur Google ({reviewCountLabel})
+                {reviewRatingLabel}/5 sur Google ({reviewCountLabel})
               </span>
             </div>
 
@@ -387,7 +398,7 @@ export default async function Home() {
               <div className="mt-4 flex items-center justify-center gap-2">
                 <span className="flex text-amber-400 text-xl">★★★★★</span>
                 <span className="text-graywarm font-medium">
-                  {googleStats?.rating ?? "5"}/5 · {reviewCountLabel} · Sèvres &amp; Paris 15
+                  {reviewRatingLabel}/5 · {reviewCountLabel} · Sèvres &amp; Paris 15
                 </span>
               </div>
             </div>

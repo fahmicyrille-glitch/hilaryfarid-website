@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import BackToTop from "@/components/BackToTop";
 import OsteopathieNav from "@/components/OsteopathieNav";
+import { GLOBAL_REVIEW_COUNT, GLOBAL_REVIEW_RATING } from "@/config/siteConfig";
 
 export default function OsteopathiePage() {
   return (
@@ -92,7 +93,7 @@ export default function OsteopathiePage() {
                   ★★★★★
                 </div>
                 <span className="text-graywarm text-sm font-medium">
-                  5/5 sur Google (+100 avis)
+                  {GLOBAL_REVIEW_RATING}/5 sur Google ({GLOBAL_REVIEW_COUNT} avis)
                 </span>
               </div>
 

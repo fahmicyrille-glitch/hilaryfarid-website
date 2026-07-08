@@ -4,6 +4,7 @@ import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import BackToTop from "@/components/BackToTop";
 import Paris15Nav from "@/components/Paris15Nav";
 import { IconCheck, IconMapPin } from "@/components/icons/UiIcons";
+import { PARIS15_RATING } from "@/config/siteConfig";
 
 const PARIS15_SCHEMAS = [
   {
@@ -40,7 +41,7 @@ const PARIS15_SCHEMAS = [
       addressCountry: "FR",
     },
     geo: { "@type": "GeoCoordinates", latitude: 48.847151, longitude: 2.293107 },
-    aggregateRating: { "@type": "AggregateRating", ratingValue: "5", reviewCount: "62" },
+    aggregateRating: { "@type": "AggregateRating", ratingValue: PARIS15_RATING.ratingValue, reviewCount: PARIS15_RATING.reviewCount },
   },
   {
     "@context": "https://schema.org",
@@ -120,7 +121,7 @@ export default function Paris15Page() {
             <div className="mt-6 mb-8 flex flex-col items-center justify-center gap-1">
               <div className="flex text-amber-400 text-xl tracking-widest drop-shadow-md">★★★★★</div>
               <span className="text-offwhite/90 text-sm font-medium tracking-wide">
-                5/5 sur Google (62 avis)
+                {PARIS15_RATING.ratingValue}/5 sur Google ({PARIS15_RATING.reviewCount} avis)
               </span>
             </div>
             <button

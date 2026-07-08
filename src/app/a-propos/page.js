@@ -6,6 +6,7 @@ import Image from "next/image";
 import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import MobileSummary from "@/components/MobileSummary";
 import BackToTop from "@/components/BackToTop";
+import { GLOBAL_REVIEW_COUNT, GLOBAL_REVIEW_RATING } from "@/config/siteConfig";
 
 const SECTIONS = [
   { id: "intro", label: "Introduction" },
@@ -161,7 +162,7 @@ export default function AProposPage() {
                 ★★★★★
               </div>
               <span className="text-offwhite/90 text-sm font-medium tracking-wide">
-                5/5 sur Google (+100 avis Sèvres & Paris 15)
+                {GLOBAL_REVIEW_RATING}/5 sur Google ({GLOBAL_REVIEW_COUNT} avis Sèvres & Paris 15)
               </span>
             </div>
 

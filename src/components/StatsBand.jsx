@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { GLOBAL_REVIEW_COUNT } from "@/config/siteConfig";
 
 const STATS = [
   { value: 5, suffix: "/5", label: "Note moyenne Google", decimals: 0 },
-  { value: 100, prefix: "+", suffix: "", label: "Avis patients 5 étoiles", decimals: 0 },
+  { value: Number(GLOBAL_REVIEW_COUNT), suffix: "", label: "Avis patients 5 étoiles", decimals: 0, icon: "★" },
   { value: 2, suffix: "", label: "Cabinets — Sèvres & Paris 15", decimals: 0 },
   { value: 1500, prefix: "+", label: "Patients accompagnés", decimals: 0 },
 ];
@@ -65,7 +66,8 @@ export default function StatsBand() {
     <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6">
       {STATS.map((s) => (
         <div key={s.label} className="text-center">
-          <p className="text-4xl md:text-5xl font-bold text-primary tabular-nums">
+          <p className="text-4xl md:text-5xl font-bold text-primary tabular-nums flex items-center justify-center gap-2">
+            {s.icon && <span className="text-amber-400 text-3xl md:text-4xl" aria-hidden="true">{s.icon}</span>}
             <CountUp value={s.value} prefix={s.prefix} suffix={s.suffix} started={started} />
           </p>
           <p className="mt-2 text-sm text-graywarm font-medium">{s.label}</p>

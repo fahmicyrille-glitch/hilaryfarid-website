@@ -4,6 +4,7 @@ import { FadeIn, SlideUp } from "@/components/MotionWrapper";
 import BackToTop from "@/components/BackToTop";
 import SevresNav from "@/components/SevresNav";
 import { IconCheck, IconMapPin } from "@/components/icons/UiIcons";
+import { SEVRES_RATING } from "@/config/siteConfig";
 
 const SEVRES_SCHEMAS = [
   {
@@ -39,7 +40,7 @@ const SEVRES_SCHEMAS = [
       addressCountry: "FR",
     },
     geo: { "@type": "GeoCoordinates", latitude: 48.822013, longitude: 2.2179 },
-    aggregateRating: { "@type": "AggregateRating", ratingValue: "5", reviewCount: "62" },
+    aggregateRating: { "@type": "AggregateRating", ratingValue: SEVRES_RATING.ratingValue, reviewCount: SEVRES_RATING.reviewCount },
   },
   {
     "@context": "https://schema.org",
@@ -111,7 +112,7 @@ export default function SevresPage() {
             <div className="mt-6 mb-8 flex flex-col items-center justify-center gap-1">
               <div className="flex text-amber-400 text-xl tracking-widest drop-shadow-md">★★★★★</div>
               <span className="text-offwhite/90 text-sm font-medium tracking-wide">
-                5/5 sur Google (62 avis)
+                {SEVRES_RATING.ratingValue}/5 sur Google ({SEVRES_RATING.reviewCount} avis)
               </span>
             </div>
             <button

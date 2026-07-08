@@ -27,10 +27,12 @@ export const OPENING_HOURS = OPENING_HOURS_SEVRES;
 
 export const RENATA_OFFICIAL_URL = "https://renatafranca.com";
 
-// Chiffres d'avis — à mettre à jour lors de chaque palier significatif
-export const SEVRES_RATING  = { ratingValue: "5", reviewCount: "62" };
-export const PARIS15_RATING = { ratingValue: "5", reviewCount: "62" };
-export const GLOBAL_REVIEW_COUNT = "100"; // total combiné affiché en page d'accueil
+// Chiffres d'avis — mis à jour le 2026-07-08 depuis l'API Google Places
+// (source de vérité manuelle : à rafraîchir périodiquement si l'API est indisponible)
+export const SEVRES_RATING  = { ratingValue: "4.9", reviewCount: "59" };
+export const PARIS15_RATING = { ratingValue: "5", reviewCount: "13" };
+export const GLOBAL_REVIEW_COUNT = "72"; // total combiné affiché en page d'accueil
+export const GLOBAL_REVIEW_RATING = "4.9"; // note combinée affichée en page d'accueil
 
 // Horaires affichables (texte, pour le footer)
 export const HOURS_DISPLAY_SEVRES = [

@@ -4,6 +4,7 @@ import BackToTop from "@/components/BackToTop";
 import Faq from "@/components/Faq";
 import TarifsNav from "@/components/TarifsNav";
 import { IconInfo, IconMapPin, IconGift } from "@/components/icons/UiIcons";
+import { GLOBAL_REVIEW_COUNT, GLOBAL_REVIEW_RATING } from "@/config/siteConfig";
 
 const DRAINAGE_REGULAR_PRICES = {
   "Paris 15": 160,
@@ -113,7 +114,7 @@ export default function TarifsPage() {
             </p>
             <div className="mt-6 mb-8 flex flex-col items-center justify-center gap-1">
               <div className="flex text-amber-400 text-xl tracking-widest drop-shadow-md">★★★★★</div>
-              <span className="text-offwhite/90 text-sm font-medium tracking-wide">5/5 sur Google (+100 avis)</span>
+              <span className="text-offwhite/90 text-sm font-medium tracking-wide">{GLOBAL_REVIEW_RATING}/5 sur Google ({GLOBAL_REVIEW_COUNT} avis)</span>
             </div>
             <button
               type="button"

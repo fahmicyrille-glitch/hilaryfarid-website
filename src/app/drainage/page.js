@@ -6,6 +6,7 @@ import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import Faq from "@/components/Faq";
 import DrainageNav from "@/components/DrainageNav";
 import { IconPhone, IconAlert } from "@/components/icons/UiIcons";
+import { GLOBAL_REVIEW_COUNT, GLOBAL_REVIEW_RATING, SEVRES_RATING, PARIS15_RATING } from "@/config/siteConfig";
 
 import {
   IconLegs,
@@ -63,7 +64,7 @@ export default function DrainageLymphatiquePage() {
               logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
               image: "https://www.hilaryfarid-osteopathe.fr/cabinet-sevres/cabinet-sevres-1.webp",
               address: { "@type": "PostalAddress", streetAddress: "104 Grande Rue", postalCode: "92310", addressLocality: "Sèvres", addressCountry: "FR" },
-              aggregateRating: { "@type": "AggregateRating", ratingValue: "5", reviewCount: "62" },
+              aggregateRating: { "@type": "AggregateRating", ratingValue: SEVRES_RATING.ratingValue, reviewCount: SEVRES_RATING.reviewCount },
               makesOffer: { "@type": "Service", "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#service" },
             },
             {
@@ -75,7 +76,7 @@ export default function DrainageLymphatiquePage() {
               logo: "https://www.hilaryfarid-osteopathe.fr/hilary-logo.svg",
               image: "https://www.hilaryfarid-osteopathe.fr/cabinet-paris15/cabinet-paris15-1.webp",
               address: { "@type": "PostalAddress", streetAddress: "28 Rue Letellier", postalCode: "75015", addressLocality: "Paris", addressRegion: "Île-de-France", addressCountry: "FR" },
-              aggregateRating: { "@type": "AggregateRating", ratingValue: "5", reviewCount: "62" },
+              aggregateRating: { "@type": "AggregateRating", ratingValue: PARIS15_RATING.ratingValue, reviewCount: PARIS15_RATING.reviewCount },
               makesOffer: { "@type": "Service", "@id": "https://www.hilaryfarid-osteopathe.fr/drainage#service" },
             },
             {
@@ -140,7 +141,7 @@ export default function DrainageLymphatiquePage() {
                   ★★★★★
                 </div>
                 <span className="text-graywarm text-sm font-medium">
-                  5/5 sur Google (+100 avis Sèvres & Paris 15)
+                  {GLOBAL_REVIEW_RATING}/5 sur Google ({GLOBAL_REVIEW_COUNT} avis Sèvres & Paris 15)
                 </span>
               </div>
 
