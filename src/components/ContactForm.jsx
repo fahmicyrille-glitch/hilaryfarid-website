@@ -1,10 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { PHONE, PHONE_LINK, EMAIL } from "@/config/contact";
 
 export default function ContactForm() {
+  const pathname = usePathname();
+  const isEn = pathname?.startsWith("/en") ?? false;
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   // honeypot anti-spam
   const [botField, setBotField] = useState("");
@@ -15,24 +20,31 @@ export default function ContactForm() {
     if (botField !== "") return; // bot → ignore
 
     setLoading(true);
+    setError(false);
 
     const form = e.target;
     const data = new FormData(form);
 
-    // Envoi AJAX vers FormSubmit
-    const res = await fetch(
-      "https://formsubmit.co/ajax/hilaryfarid.osteopathe@gmail.com",
-      {
-        method: "POST",
-        body: data,
+    try {
+      // Envoi AJAX vers FormSubmit
+      const res = await fetch(
+        "https://formsubmit.co/ajax/hilaryfarid.osteopathe@gmail.com",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+
+      if (res.ok) {
+        setSuccess(true);
+        form.reset();
+      } else {
+        setError(true);
       }
-    );
-
-    setLoading(false);
-
-    if (res.ok) {
-      setSuccess(true);
-      form.reset();
+    } catch (err) {
+      setError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -41,7 +53,26 @@ export default function ContactForm() {
       {/* ✔ Message de succès */}
       {success && (
         <div className="mb-4 p-4 rounded-lg bg-green-50 border border-green-200 text-green-700 animate-fade-in">
-          🎉 Votre message a bien été envoyé ! Je vous réponds rapidement.
+          🎉 {isEn ? "Your message has been sent! I'll get back to you shortly." : "Votre message a bien été envoyé ! Je vous réponds rapidement."}
+        </div>
+      )}
+
+      {/* ⚠ Message d'erreur avec solution de repli */}
+      {error && (
+        <div className="mb-4 p-4 rounded-lg bg-red-50 border border-red-200 text-red-700 animate-fade-in">
+          {isEn ? (
+            <>
+              ⚠️ The form couldn't be sent right now. Please contact me directly by phone at{" "}
+              <a href={`tel:${PHONE_LINK}`} className="font-semibold underline">{PHONE}</a> or by email at{" "}
+              <a href={`mailto:${EMAIL}`} className="font-semibold underline">{EMAIL}</a>.
+            </>
+          ) : (
+            <>
+              ⚠️ Le formulaire n'a pas pu être envoyé pour le moment. Contactez-moi directement par téléphone au{" "}
+              <a href={`tel:${PHONE_LINK}`} className="font-semibold underline">{PHONE}</a> ou par e-mail à{" "}
+              <a href={`mailto:${EMAIL}`} className="font-semibold underline">{EMAIL}</a>.
+            </>
+          )}
         </div>
       )}
 
@@ -61,14 +92,14 @@ export default function ContactForm() {
         <input
           type="hidden"
           name="_subject"
-          value="Nouveau message depuis le site Hilary Farid"
+          value={isEn ? "New message from Hilary Farid's website (EN)" : "Nouveau message depuis le site Hilary Farid"}
         />
 
         {/* Nom */}
         <input
           type="text"
           name="name"
-          placeholder="Votre nom"
+          placeholder={isEn ? "Your name" : "Votre nom"}
           required
           className="w-full p-3 border rounded-lg"
         />
@@ -77,23 +108,23 @@ export default function ContactForm() {
         <input
           type="email"
           name="email"
-          placeholder="Votre e-mail"
+          placeholder={isEn ? "Your email" : "Votre e-mail"}
           required
           className="w-full p-3 border rounded-lg"
         />
 
-        {/* 📞 Nouveau champ téléphone (non obligatoire) */}
+        {/* 📞 Champ téléphone (non obligatoire) */}
         <input
           type="tel"
           name="telephone"
-          placeholder="Votre numéro de téléphone (optionnel)"
+          placeholder={isEn ? "Your phone number (optional)" : "Votre numéro de téléphone (optionnel)"}
           className="w-full p-3 border rounded-lg"
         />
 
         {/* Message */}
         <textarea
           name="message"
-          placeholder="Votre message"
+          placeholder={isEn ? "Your message" : "Votre message"}
           rows={5}
           required
           className="w-full p-3 border rounded-lg"
@@ -110,10 +141,10 @@ export default function ContactForm() {
           {loading ? (
             <span className="flex items-center justify-center gap-2">
               <span className="w-4 h-4 border-2 border-offwhite border-t-transparent rounded-full animate-spin"></span>
-              Envoi en cours…
+              {isEn ? "Sending…" : "Envoi en cours…"}
             </span>
           ) : (
-            "Envoyer le message"
+            isEn ? "Send Message" : "Envoyer le message"
           )}
         </button>
       </form>
