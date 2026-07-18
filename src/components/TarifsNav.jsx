@@ -1,13 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import MobileSummary from "@/components/MobileSummary";
 
-const SECTIONS = [
+const SECTIONS_FR = [
   { id: "consultations", label: "Consultations & prestations" },
   { id: "note", label: "Informations importantes" },
   { id: "faq", label: "FAQ Tarifs" },
   { id: "cta", label: "Prendre rendez-vous" },
+];
+
+const SECTIONS_EN = [
+  { id: "consultations", label: "Consultations & Services" },
+  { id: "note", label: "Important Information" },
+  { id: "faq", label: "Pricing FAQ" },
+  { id: "cta", label: "Book an Appointment" },
 ];
 
 function smoothScroll(e, id) {
@@ -18,6 +26,9 @@ function smoothScroll(e, id) {
 }
 
 export default function TarifsNav({ children }) {
+  const pathname = usePathname();
+  const isEn = pathname?.startsWith("/en") ?? false;
+  const SECTIONS = isEn ? SECTIONS_EN : SECTIONS_FR;
   const [activeId, setActiveId] = useState("consultations");
 
   useEffect(() => {
@@ -42,7 +53,7 @@ export default function TarifsNav({ children }) {
       <aside className="hidden lg:block w-64 flex-shrink-0">
         <div className="sticky top-28 bg-white rounded-2xl shadow-sm border border-light p-5">
           <h3 className="text-sm font-semibold text-primary mb-3 tracking-wide uppercase">
-            Sommaire
+            {isEn ? "Contents" : "Sommaire"}
           </h3>
           <nav className="space-y-2 text-sm">
             {SECTIONS.map((s) => (
@@ -63,7 +74,7 @@ export default function TarifsNav({ children }) {
         </div>
       </aside>
       <div className="flex-1 space-y-16">
-        <MobileSummary sections={SECTIONS} activeId={activeId} smoothScroll={smoothScroll} />
+        <MobileSummary sections={SECTIONS} activeId={activeId} smoothScroll={smoothScroll} isEn={isEn} />
         {children}
       </div>
     </>

@@ -1,14 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import MobileSummary from "@/components/MobileSummary";
 
-const SECTIONS = [
+const SECTIONS_FR = [
   { id: "cabinet", label: "Le cabinet & Galerie" },
   { id: "osteopathe", label: "Votre ostéopathe" },
   { id: "avis", label: "Avis patients" },
   { id: "pourquoi", label: "Pourquoi à Paris 15 ?" },
   { id: "acces", label: "Adresse & accès" },
+  { id: "faq", label: "FAQ" },
+];
+
+const SECTIONS_EN = [
+  { id: "cabinet", label: "The Clinic & Gallery" },
+  { id: "osteopathe", label: "Your Osteopath" },
+  { id: "avis", label: "Patient Reviews" },
+  { id: "pourquoi", label: "Why Paris 15?" },
+  { id: "acces", label: "Address & Access" },
   { id: "faq", label: "FAQ" },
 ];
 
@@ -20,6 +30,9 @@ function smoothScroll(e, id) {
 }
 
 export default function Paris15Nav({ children }) {
+  const pathname = usePathname();
+  const isEn = pathname?.startsWith("/en") ?? false;
+  const SECTIONS = isEn ? SECTIONS_EN : SECTIONS_FR;
   const [activeId, setActiveId] = useState("cabinet");
 
   useEffect(() => {
@@ -43,7 +56,7 @@ export default function Paris15Nav({ children }) {
     <>
       <aside className="hidden lg:block w-64 flex-shrink-0">
         <div className="sticky top-28 bg-white rounded-2xl shadow-sm border border-light/70 p-5">
-          <h2 className="text-sm font-semibold text-primary mb-3 tracking-wide uppercase">Sommaire</h2>
+          <h2 className="text-sm font-semibold text-primary mb-3 tracking-wide uppercase">{isEn ? "Contents" : "Sommaire"}</h2>
           <nav className="space-y-2 text-sm">
             {SECTIONS.map((s) => (
               <a
@@ -63,7 +76,7 @@ export default function Paris15Nav({ children }) {
         </div>
       </aside>
       <div className="flex-1 space-y-16">
-        <MobileSummary sections={SECTIONS} activeId={activeId} smoothScroll={smoothScroll} />
+        <MobileSummary sections={SECTIONS} activeId={activeId} smoothScroll={smoothScroll} isEn={isEn} />
         {children}
       </div>
     </>

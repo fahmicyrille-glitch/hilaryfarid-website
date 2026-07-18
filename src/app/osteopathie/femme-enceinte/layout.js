@@ -1,3 +1,5 @@
+import { hreflangFor } from "@/config/i18n";
+
 export const metadata = {
   title: "Ostéopathie Femme Enceinte & Post-partum",
   description:
@@ -5,6 +7,7 @@ export const metadata = {
   alternates: {
     canonical:
       "https://www.hilaryfarid-osteopathe.fr/osteopathie/femme-enceinte",
+    ...hreflangFor("/osteopathie/femme-enceinte"),
   },
   openGraph: {
     title: "Ostéopathie Grossesse & Post-partum – Paris 15 & Sèvres | Hilary Farid",

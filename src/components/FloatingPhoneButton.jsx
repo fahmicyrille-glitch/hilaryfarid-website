@@ -1,5 +1,7 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 function trackPhoneClick() {
   if (typeof window !== "undefined") {
     window.dataLayer = window.dataLayer || [];
@@ -8,12 +10,15 @@ function trackPhoneClick() {
 }
 
 export default function FloatingPhoneButton() {
+  const pathname = usePathname();
+  const isEn = pathname?.startsWith("/en") ?? false;
+
   return (
     <a
       href="tel:+33672014539"
       onClick={trackPhoneClick}
       className="hidden md:flex fixed bottom-8 right-8 z-50 h-12 w-12 items-center justify-center rounded-full bg-doctolib text-white shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 hover:bg-doctolib-dark"
-      aria-label="Appeler Hilary Farid"
+      aria-label={isEn ? "Call Hilary Farid" : "Appeler Hilary Farid"}
     >
       {/* Icône de téléphone animée */}
       <div className="relative flex items-center justify-center">

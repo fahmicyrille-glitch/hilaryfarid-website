@@ -1,9 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function BackToTop() {
   const [show, setShow] = useState(false);
+  const pathname = usePathname();
+  const isEn = pathname?.startsWith("/en") ?? false;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +37,7 @@ export default function BackToTop() {
         text-lg
         hover:bg-secondary transition
       "
-      aria-label="Revenir en haut de la page"
+      aria-label={isEn ? "Back to top" : "Revenir en haut de la page"}
     >
       ↑
     </button>

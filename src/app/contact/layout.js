@@ -1,11 +1,18 @@
 // src/app/contact/layout.js
 
+import { FR_TO_EN, SITE_URL } from "@/config/i18n";
+
 export const metadata = {
   title: "Contact & RDV ⭐ Ostéopathe Sèvres & Paris 15",
   description:
     "Prenez rendez-vous en ligne avec Hilary Farid, Ostéopathe D.O. à Sèvres et Paris 15. Horaires, accès (Métro/Tram) et formulaire de contact direct.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/contact",
+    languages: {
+      "fr-FR": `${SITE_URL}/contact`,
+      "en-US": `${SITE_URL}${FR_TO_EN["/contact"]}`,
+      "x-default": `${SITE_URL}/contact`,
+    },
   },
   openGraph: {
     title: "Prendre RDV avec Hilary Farid | Ostéopathe Sèvres & Paris 15",

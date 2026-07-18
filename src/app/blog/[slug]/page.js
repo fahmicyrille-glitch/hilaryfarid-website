@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { articles, getArticleBySlug, getAllSlugs } from "@/data/articles";
 import { notFound } from "next/navigation";
+import { hreflangFor } from "@/config/i18n";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -12,7 +13,10 @@ export async function generateMetadata({ params }) {
   return {
     title: `${article.title} | Hilary Farid`,
     description: article.description,
-    alternates: { canonical: `https://www.hilaryfarid-osteopathe.fr/blog/${article.slug}` },
+    alternates: {
+      canonical: `https://www.hilaryfarid-osteopathe.fr/blog/${article.slug}`,
+      ...hreflangFor(`/blog/${article.slug}`),
+    },
     openGraph: {
       title: article.title,
       description: article.description,

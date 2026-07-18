@@ -5,6 +5,11 @@ import Faq from "@/components/Faq";
 import TarifsNav from "@/components/TarifsNav";
 import { IconInfo, IconMapPin, IconGift } from "@/components/icons/UiIcons";
 import { GLOBAL_REVIEW_COUNT, GLOBAL_REVIEW_RATING } from "@/config/siteConfig";
+import { hreflangFor } from "@/config/i18n";
+
+export const metadata = {
+  alternates: hreflangFor("/tarifs"),
+};
 
 const DRAINAGE_REGULAR_PRICES = {
   "Paris 15": 160,

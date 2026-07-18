@@ -24,9 +24,14 @@ const doctolibUrls = {
   },
 };
 
-const CABINETS = {
+const CABINETS_FR = {
   paris: { label: "Cabinet Paris 15", address: "28 rue Letellier, 75015 Paris" },
   sevres: { label: "Cabinet Sèvres", address: "104 Grande Rue, 92310 Sèvres" },
+};
+
+const CABINETS_EN = {
+  paris: { label: "Paris 15 Clinic", address: "28 rue Letellier, 75015 Paris, France" },
+  sevres: { label: "Sèvres Clinic", address: "104 Grande Rue, 92310 Sèvres, France" },
 };
 
 const isMobileDevice = () =>
@@ -45,6 +50,8 @@ export default function BookingModal() {
   const [step, setStep] = useState("channel");
   const [location, setLocation] = useState("");
   const pathname = usePathname();
+  const isEn = pathname?.startsWith("/en") ?? false;
+  const CABINETS = isEn ? CABINETS_EN : CABINETS_FR;
   const dialogRef = useRef(null);
   const lastFocusedRef = useRef(null);
 
@@ -174,14 +181,14 @@ export default function BookingModal() {
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
-        aria-label="Prendre rendez-vous"
+        aria-label={isEn ? "Book an Appointment" : "Prendre rendez-vous"}
         tabIndex={-1}
         className="relative bg-white rounded-3xl shadow-2xl w-full max-w-md p-6 md:p-8 transform transition-all animate-fade-in-up outline-none"
       >
         {/* Bouton Fermer */}
         <button
           onClick={close}
-          aria-label="Fermer"
+          aria-label={isEn ? "Close" : "Fermer"}
           className="absolute top-4 right-4 text-gray-400 hover:text-primary transition"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -193,10 +200,10 @@ export default function BookingModal() {
         {step === "channel" && (
           <div className="text-center animate-fade-in">
             <h3 className="text-2xl font-bold text-primary mb-2">
-              Prendre rendez-vous
+              {isEn ? "Book an Appointment" : "Prendre rendez-vous"}
             </h3>
             <p className="text-sm text-graywarm mb-6">
-              Choisissez la façon la plus simple pour vous.
+              {isEn ? "Choose whichever works best for you." : "Choisissez la façon la plus simple pour vous."}
             </p>
             <div className="space-y-4">
               <button
@@ -207,9 +214,9 @@ export default function BookingModal() {
                   <IconCalendar className="w-6 h-6" />
                 </span>
                 <span>
-                  <span className="block text-lg font-bold">Réserver sur Doctolib</span>
+                  <span className="block text-lg font-bold">{isEn ? "Book via Doctolib" : "Réserver sur Doctolib"}</span>
                   <span className="block text-sm text-white/85">
-                    Créneaux en ligne, 24h/24
+                    {isEn ? "Online slots, 24/7 — form is in French, just pick a slot" : "Créneaux en ligne, 24h/24"}
                   </span>
                 </span>
               </button>
@@ -223,10 +230,10 @@ export default function BookingModal() {
                 </span>
                 <span>
                   <span className="block text-lg font-bold text-ink group-hover:text-primary transition">
-                    Par téléphone
+                    {isEn ? "By Phone" : "Par téléphone"}
                   </span>
                   <span className="block text-sm text-graywarm">
-                    Échangez directement avec Hilary
+                    {isEn ? "Speak directly with Hilary, in English" : "Échangez directement avec Hilary"}
                   </span>
                 </span>
               </button>
@@ -241,16 +248,16 @@ export default function BookingModal() {
               onClick={() => setStep("channel")}
               className="text-sm text-graywarm hover:text-primary mb-4 flex items-center justify-center gap-1 mx-auto transition"
             >
-              <IconArrowLeft className="w-4 h-4" /> Retour
+              <IconArrowLeft className="w-4 h-4" /> {isEn ? "Back" : "Retour"}
             </button>
             <span className="mx-auto w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
               <IconPhone className="w-7 h-7" />
             </span>
             <h3 className="text-2xl font-bold text-primary mb-2">
-              Appelez directement
+              {isEn ? "Call Directly" : "Appelez directement"}
             </h3>
             <p className="text-sm text-graywarm mb-5">
-              Hilary vous répond ou vous rappelle au plus vite.
+              {isEn ? "Hilary will answer or call you back as soon as possible (English spoken)." : "Hilary vous répond ou vous rappelle au plus vite."}
             </p>
             <a
               href={`tel:${PHONE_LINK}`}
@@ -259,7 +266,7 @@ export default function BookingModal() {
               {PHONE}
             </a>
             <p className="mt-4 text-xs text-graywarm">
-              Du lundi au samedi, selon le cabinet (Sèvres / Paris 15).
+              {isEn ? "Monday to Saturday, depending on the location (Sèvres / Paris 15)." : "Du lundi au samedi, selon le cabinet (Sèvres / Paris 15)."}
             </p>
           </div>
         )}
@@ -271,10 +278,10 @@ export default function BookingModal() {
               onClick={() => setStep("channel")}
               className="text-sm text-graywarm hover:text-primary mb-4 flex items-center justify-center gap-1 mx-auto transition"
             >
-              <IconArrowLeft className="w-4 h-4" /> Retour
+              <IconArrowLeft className="w-4 h-4" /> {isEn ? "Back" : "Retour"}
             </button>
             <h3 className="text-2xl font-bold text-primary mb-6">
-              Où souhaitez-vous consulter ?
+              {isEn ? "Which location would you prefer?" : "Où souhaitez-vous consulter ?"}
             </h3>
             <div className="space-y-4">
               {Object.entries(CABINETS).map(([key, cab]) => (
@@ -302,32 +309,32 @@ export default function BookingModal() {
               onClick={() => setStep("location")}
               className="text-sm text-graywarm hover:text-primary mb-4 flex items-center justify-center gap-1 mx-auto transition"
             >
-              <IconArrowLeft className="w-4 h-4" /> Changer de cabinet
+              <IconArrowLeft className="w-4 h-4" /> {isEn ? "Change Location" : "Changer de cabinet"}
             </button>
             <h3 className="text-2xl font-bold text-primary mb-6">
-              Pour quel type de soin ?
+              {isEn ? "What type of treatment?" : "Pour quel type de soin ?"}
             </h3>
             <div className="space-y-4">
               <button
                 onClick={() => handleServiceSelect("osteo")}
                 className="w-full flex items-center justify-center gap-3 p-4 bg-primary text-white rounded-2xl text-lg font-semibold shadow-md hover:bg-primary/90 transition transform hover:-translate-y-1"
               >
-                <IconBone className="w-6 h-6" /> Ostéopathie
+                <IconBone className="w-6 h-6" /> {isEn ? "Osteopathy" : "Ostéopathie"}
               </button>
               <button
                 onClick={() => handleServiceSelect("drainage")}
                 className="w-full flex flex-col items-center gap-1 p-4 bg-cream border border-cream-border text-ink rounded-2xl shadow-sm hover:bg-[#F3ECE7] transition transform hover:-translate-y-1"
               >
                 <span className="flex items-center gap-3 text-lg font-semibold">
-                  <IconDroplets className="w-6 h-6" /> Drainage Renata França
+                  <IconDroplets className="w-6 h-6" /> {isEn ? "Renata França Drainage" : "Drainage Renata França"}
                 </span>
                 <span className="flex items-center gap-2 text-sm">
                   <span className="font-bold text-secondary text-base">
                     {location === "paris" ? "160 €" : "180 €"}
                   </span>
-                  <span className="text-graywarm">· séance corps entier 90 min</span>
+                  <span className="text-graywarm">{isEn ? "· 90-min full-body session" : "· séance corps entier 90 min"}</span>
                 </span>
-                <span className="text-xs text-graywarm/70 italic">Non remboursé – soin bien-être</span>
+                <span className="text-xs text-graywarm/70 italic">{isEn ? "Not covered by French health insurance – wellness treatment" : "Non remboursé – soin bien-être"}</span>
               </button>
             </div>
 

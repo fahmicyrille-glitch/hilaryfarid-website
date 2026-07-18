@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect, useCallback, useLayoutEffect } from "react";
+import { usePathname } from "next/navigation";
 import { IconGoogle, IconMapPin, IconExternalLink } from "@/components/icons/UiIcons";
 
 const AVATAR_COLORS = [
@@ -18,9 +19,9 @@ const initials = (name = "") =>
     .map((w) => w[0].toUpperCase())
     .join("");
 
-function Stars({ rating = 5 }) {
+function Stars({ rating = 5, isEn = false }) {
   return (
-    <div className="flex text-amber-400 text-sm" aria-label={`${rating} étoiles sur 5`}>
+    <div className="flex text-amber-400 text-sm" aria-label={isEn ? `${rating} out of 5 stars` : `${rating} étoiles sur 5`}>
       {"★★★★★".slice(0, Math.round(rating))}
       <span className="text-graywarm/30">{"★★★★★".slice(Math.round(rating))}</span>
     </div>
@@ -33,6 +34,8 @@ function Stars({ rating = 5 }) {
  * sans aucun branding Google.
  */
 export default function GoogleReviewsCarousel({ reviews = [], fallback = [] }) {
+  const pathname = usePathname();
+  const isEn = pathname?.startsWith("/en") ?? false;
   const isGoogle = reviews.length > 0;
   const items = isGoogle ? reviews : fallback;
   const trackRef = useRef(null);
@@ -105,14 +108,14 @@ export default function GoogleReviewsCarousel({ reviews = [], fallback = [] }) {
                     {r.author || r.name}
                   </p>
                   <div className="flex items-center gap-2">
-                    <Stars rating={r.rating ?? 5} />
+                    <Stars rating={r.rating ?? 5} isEn={isEn} />
                     {r.relativeTime && (
                       <span className="text-[11px] text-graywarm">{r.relativeTime}</span>
                     )}
                   </div>
                 </div>
                 {isGoogle && (
-                  <span className="ml-auto text-graywarm/70" title="Avis Google">
+                  <span className="ml-auto text-graywarm/70" title={isEn ? "Google review" : "Avis Google"}>
                     <IconGoogle className="w-4 h-4" />
                   </span>
                 )}
@@ -128,7 +131,7 @@ export default function GoogleReviewsCarousel({ reviews = [], fallback = [] }) {
                     <IconMapPin className="w-3.5 h-3.5" /> {r.cabinetLabel}
                   </span>
                 ) : (
-                  <span className="text-graywarm font-medium">{r.context || "Avis patient"}</span>
+                  <span className="text-graywarm font-medium">{r.context || (isEn ? "Patient review" : "Avis patient")}</span>
                 )}
                 {isGoogle && r.sourceUrl && (
                   <a
@@ -137,7 +140,7 @@ export default function GoogleReviewsCarousel({ reviews = [], fallback = [] }) {
                     rel="noreferrer"
                     className="inline-flex items-center gap-1 text-doctolib font-semibold hover:underline underline-offset-2"
                   >
-                    Voir sur Google <IconExternalLink className="w-3 h-3" />
+                    {isEn ? "See on Google" : "Voir sur Google"} <IconExternalLink className="w-3 h-3" />
                   </a>
                 )}
               </div>
@@ -151,7 +154,7 @@ export default function GoogleReviewsCarousel({ reviews = [], fallback = [] }) {
             <button
               type="button"
               onClick={() => scrollByCard(-1)}
-              aria-label="Avis précédents"
+              aria-label={isEn ? "Previous reviews" : "Avis précédents"}
               className="hidden md:flex absolute -left-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-light shadow-md items-center justify-center text-primary hover:bg-light transition"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -159,7 +162,7 @@ export default function GoogleReviewsCarousel({ reviews = [], fallback = [] }) {
             <button
               type="button"
               onClick={() => scrollByCard(1)}
-              aria-label="Avis suivants"
+              aria-label={isEn ? "Next reviews" : "Avis suivants"}
               className="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-light shadow-md items-center justify-center text-primary hover:bg-light transition"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>

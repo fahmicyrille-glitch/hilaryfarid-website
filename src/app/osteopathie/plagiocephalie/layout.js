@@ -1,9 +1,12 @@
+import { hreflangFor } from "@/config/i18n";
+
 export const metadata = {
   title: { absolute: "Plagiocéphalie : Ostéopathe Nourrisson Sèvres & Paris 15" },
   description:
     "Tête plate du nourrisson : l'ostéopathie aide dès les premières semaines, avec les meilleurs résultats avant 4 mois. Cabinets à Sèvres et Paris 15.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/osteopathie/plagiocephalie",
+    ...hreflangFor("/osteopathie/plagiocephalie"),
   },
   openGraph: {
     title: "Plagiocéphalie Nourrisson — Ostéopathie Douce | Hilary Farid D.O.",

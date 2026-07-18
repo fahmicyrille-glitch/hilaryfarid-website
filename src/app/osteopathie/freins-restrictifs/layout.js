@@ -1,9 +1,12 @@
+import { hreflangFor } from "@/config/i18n";
+
 export const metadata = {
   title: { absolute: "Freins Restrictifs Nourrisson : Ostéopathie & Frénectomie" },
   description:
     "Frein de langue ou de lèvre : l'ostéopathie accompagne votre bébé avant et après la frénectomie. Allaitement difficile, succion. Sèvres & Paris 15.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/osteopathie/freins-restrictifs",
+    ...hreflangFor("/osteopathie/freins-restrictifs"),
   },
   openGraph: {
     title: "Freins Restrictifs du Nourrisson — Ostéopathie | Hilary Farid D.O.",

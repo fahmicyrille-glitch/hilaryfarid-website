@@ -10,6 +10,11 @@ import {
   IconStar,
 } from "@/components/icons/UiIcons";
 import { GLOBAL_REVIEW_COUNT, GLOBAL_REVIEW_RATING } from "@/config/siteConfig";
+import { hreflangFor } from "@/config/i18n";
+
+export const metadata = {
+  alternates: hreflangFor("/drainage/bienfaits"),
+};
 
 export default function DrainageBienfaitsPage() {
   return (

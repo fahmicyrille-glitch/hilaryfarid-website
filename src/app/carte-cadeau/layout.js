@@ -1,10 +1,13 @@
 // src/app/carte-cadeau/layout.js
+import { hreflangFor } from "@/config/i18n";
+
 export const metadata = {
   title: "Carte cadeau – Drainage Renata França",
   description:
     "Offrez une séance ou une cure de drainage Renata França à Sèvres ou Paris 15. Carte cadeau idéale pour un anniversaire, un post-partum ou simplement faire plaisir.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/carte-cadeau",
+    ...hreflangFor("/carte-cadeau"),
   },
   openGraph: {
     title: "Carte cadeau – Drainage Renata França | Hilary Farid",

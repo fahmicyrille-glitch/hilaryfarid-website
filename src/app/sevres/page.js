@@ -5,6 +5,11 @@ import BackToTop from "@/components/BackToTop";
 import SevresNav from "@/components/SevresNav";
 import { IconCheck, IconMapPin } from "@/components/icons/UiIcons";
 import { SEVRES_RATING } from "@/config/siteConfig";
+import { hreflangFor } from "@/config/i18n";
+
+export const metadata = {
+  alternates: hreflangFor("/sevres"),
+};
 
 const SEVRES_SCHEMAS = [
   {
@@ -210,7 +215,7 @@ export default function SevresPage() {
                 </div>
                 <div className="mt-8">
                   <Link href="/temoignages" className="inline-block text-secondary font-medium underline underline-offset-4 hover:text-primary transition">
-                    Lire tous les avis (62+)
+                    Lire tous les avis ({SEVRES_RATING.reviewCount}+)
                   </Link>
                 </div>
               </section>

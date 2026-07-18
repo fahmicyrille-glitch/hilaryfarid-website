@@ -7,6 +7,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { IconChevronDown, IconCalendar, IconPhone } from "@/components/icons/UiIcons";
 import { PHONE, PHONE_LINK } from "@/config/contact";
+import { getAlternatePath } from "@/config/i18n";
 
 /*
   Navigation resserrée : 6 entrées + CTA "Prendre RDV".
@@ -55,6 +56,52 @@ const NAV = [
   { label: "Contact", href: "/contact" },
 ];
 
+/*
+  Navigation anglaise — couverture complète, miroir de NAV ci-dessus.
+*/
+const NAV_EN = [
+  {
+    label: "Osteopathy",
+    href: "/en/osteopathie",
+    sub: [
+      ["All Treatments", "/en/osteopathie"],
+      ["Infants", "/en/osteopathie/nourrisson"],
+      ["Tongue/Lip Ties", "/en/osteopathie/freins-restrictifs"],
+      ["Flat Head Syndrome", "/en/osteopathie/plagiocephalie"],
+      ["Pregnancy & Postpartum", "/en/osteopathie/femme-enceinte"],
+      ["Sport", "/en/osteopathie/sport"],
+    ],
+  },
+  {
+    label: "Renata França Drainage",
+    href: "/en/drainage",
+    sub: [
+      ["The Method", "/en/drainage"],
+      ["Benefits", "/en/drainage/bienfaits"],
+      ["Gift Card", "/en/carte-cadeau"],
+    ],
+  },
+  {
+    label: "Locations",
+    href: null,
+    sub: [
+      ["Sèvres", "/en/sevres"],
+      ["Paris 15", "/en/paris15"],
+    ],
+  },
+  { label: "Pricing", href: "/en/tarifs" },
+  {
+    label: "About",
+    href: "/en/a-propos",
+    sub: [
+      ["Bio", "/en/a-propos"],
+      ["Testimonials", "/en/temoignages"],
+      ["Blog", "/en/blog"],
+    ],
+  },
+  { label: "Contact", href: "/en/contact" },
+];
+
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -62,6 +109,10 @@ export default function Header() {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [mobileExpanded, setMobileExpanded] = useState(null);
   const pathname = usePathname();
+  const isEn = pathname?.startsWith("/en") ?? false;
+  const activeNav = isEn ? NAV_EN : NAV;
+  const alternatePath = getAlternatePath(pathname || "/");
+  const switchHref = alternatePath ?? (isEn ? "/" : "/en");
 
   /* ==== Scroll shadow ==== */
   useEffect(() => {
@@ -142,7 +193,7 @@ export default function Header() {
         className="fixed inset-0 z-[9999] bg-offwhite flex flex-col animate-fadeInMenu"
         role="dialog"
         aria-modal="true"
-        aria-label="Menu mobile"
+        aria-label={isEn ? "Mobile menu" : "Menu mobile"}
       >
         {/* Barre du haut — même hauteur que le header pour une transition douce */}
         <div className="h-[72px] shrink-0 flex items-center justify-between px-5 border-b border-graywarm/20">
@@ -161,7 +212,7 @@ export default function Header() {
           <button
             onClick={toggleMenu}
             className="w-10 h-10 flex items-center justify-center rounded-full text-primary hover:bg-light transition"
-            aria-label="Fermer le menu"
+            aria-label={isEn ? "Close menu" : "Fermer le menu"}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M5 5l14 14M19 5L5 19" strokeWidth="1.8" strokeLinecap="round" />
@@ -172,16 +223,16 @@ export default function Header() {
         {/* Liste de navigation — alignée à gauche, séparateurs fins */}
         <nav className="flex-1 overflow-y-auto px-5 py-2">
           <Link
-            href="/"
+            href={isEn ? "/en" : "/"}
             onClick={closeMobile}
             className={`block py-4 border-b border-light text-[17px] font-semibold ${
-              pathname === "/" ? "text-primary" : "text-graywarm"
+              (isEn ? pathname === "/en" : pathname === "/") ? "text-primary" : "text-graywarm"
             }`}
           >
-            Accueil
+            {isEn ? "Home" : "Accueil"}
           </Link>
 
-          {NAV.map((item) =>
+          {activeNav.map((item) =>
             item.sub ? (
               <div key={item.label} className="border-b border-light">
                 <button
@@ -253,7 +304,7 @@ export default function Header() {
             className="trigger-booking-modal w-full flex items-center justify-center gap-2 bg-doctolib text-white font-bold px-6 py-3.5 rounded-full shadow-lg hover:bg-doctolib-dark transition"
           >
             <IconCalendar className="w-5 h-5" />
-            Prendre rendez-vous
+            {isEn ? "Book an Appointment" : "Prendre rendez-vous"}
           </button>
           <a
             href={`tel:${PHONE_LINK}`}
@@ -262,6 +313,13 @@ export default function Header() {
             <IconPhone className="w-4 h-4" />
             {PHONE}
           </a>
+          <Link
+            href={switchHref}
+            onClick={closeMobile}
+            className="w-full flex items-center justify-center gap-1.5 text-sm font-semibold text-graywarm hover:text-primary transition py-1"
+          >
+            {isEn ? "🇫🇷 Français" : "🇬🇧 English"}
+          </Link>
         </div>
       </div>
     );
@@ -273,12 +331,12 @@ export default function Header() {
           isScrolled ? "shadow-md" : "shadow-none"
         }`}
         style={{ height: "72px" }}
-        aria-label="Navigation principale"
+        aria-label={isEn ? "Main navigation" : "Navigation principale"}
       >
         <div className="max-w-[1400px] mx-auto h-full flex items-center justify-between px-4 lg:px-8">
 
         {/* LOGO */}
-        <Link href="/" className="flex items-center gap-2 lg:gap-3 shrink-0" aria-label="Retour à l'accueil">
+        <Link href={isEn ? "/en" : "/"} className="flex items-center gap-2 lg:gap-3 shrink-0" aria-label={isEn ? "Back to home" : "Retour à l'accueil"}>
           <div className="relative w-10 h-10 md:w-11 md:h-11 shrink-0">
             <Image
               src="/hilary-logo.svg"
@@ -294,15 +352,15 @@ export default function Header() {
               Hilary Farid
             </span>
             <span className="text-xs text-graywarm hidden xl:block whitespace-nowrap">
-              Ostéopathe DO – Drainage Lymphatique Renata França
+              {isEn ? "Osteopath D.O. – Renata França Lymphatic Drainage" : "Ostéopathe DO – Drainage Lymphatique Renata França"}
             </span>
           </div>
         </Link>
 
           {/* MENU DESKTOP (lg+ : en dessous, le menu burger prend le relais
               pour éviter tout débordement avec le CTA) */}
-          <nav className="hidden lg:flex items-center gap-x-4 xl:gap-x-6 text-primary font-medium px-2" aria-label="Menu principal">
-            {NAV.map((item) =>
+          <nav className="hidden lg:flex items-center gap-x-4 xl:gap-x-6 text-primary font-medium px-2" aria-label={isEn ? "Main menu" : "Menu principal"}>
+            {activeNav.map((item) =>
               item.sub ? (
                 <div
                   key={item.label}
@@ -359,19 +417,26 @@ export default function Header() {
 
           {/* CTA DESKTOP + BOUTON MOBILE */}
           <div className="flex items-center gap-3">
+            <Link
+              href={switchHref}
+              className="hidden lg:inline-flex items-center gap-1 text-sm font-semibold text-graywarm hover:text-primary transition whitespace-nowrap"
+            >
+              {isEn ? "🇫🇷 FR" : "🇬🇧 EN"}
+            </Link>
+
             <button
               type="button"
               className="trigger-booking-modal hidden lg:inline-flex items-center gap-2 bg-doctolib text-white text-sm xl:text-[15px] font-bold px-4 xl:px-6 py-2.5 rounded-full shadow-md hover:bg-doctolib-dark hover:shadow-lg transition-all whitespace-nowrap"
             >
               <IconCalendar className="w-4 h-4" />
-              Prendre RDV
+              {isEn ? "Book Now" : "Prendre RDV"}
             </button>
 
             <button
               className="lg:hidden flex items-center p-2 text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 rounded-lg"
               onClick={toggleMenu}
               aria-expanded={open}
-              aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-label={open ? (isEn ? "Close menu" : "Fermer le menu") : (isEn ? "Open menu" : "Ouvrir le menu")}
             >
               {!open ? (
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor">

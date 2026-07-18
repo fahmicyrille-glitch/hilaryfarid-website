@@ -1,13 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { GLOBAL_REVIEW_COUNT } from "@/config/siteConfig";
 
-const STATS = [
+const STATS_FR = [
   { value: 5, suffix: "/5", label: "Note moyenne Google", decimals: 0 },
   { value: Number(GLOBAL_REVIEW_COUNT), suffix: "", label: "Avis patients 5 étoiles", decimals: 0, icon: "★" },
   { value: 2, suffix: "", label: "Cabinets — Sèvres & Paris 15", decimals: 0 },
   { value: 1500, prefix: "+", label: "Patients accompagnés", decimals: 0 },
+];
+
+const STATS_EN = [
+  { value: 5, suffix: "/5", label: "Average Google rating", decimals: 0 },
+  { value: Number(GLOBAL_REVIEW_COUNT), suffix: "", label: "5-star patient reviews", decimals: 0, icon: "★" },
+  { value: 2, suffix: "", label: "Locations — Sèvres & Paris 15", decimals: 0 },
+  { value: 1500, prefix: "+", label: "Patients treated", decimals: 0 },
 ];
 
 const easeOut = (t) => 1 - Math.pow(1 - t, 3);
@@ -41,6 +49,8 @@ function CountUp({ value, prefix = "", suffix = "", started, duration = 1400 }) 
 export default function StatsBand() {
   const ref = useRef(null);
   const [started, setStarted] = useState(false);
+  const pathname = usePathname();
+  const STATS = pathname?.startsWith("/en") ? STATS_EN : STATS_FR;
 
   useEffect(() => {
     const el = ref.current;

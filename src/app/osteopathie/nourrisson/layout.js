@@ -1,9 +1,12 @@
+import { hreflangFor } from "@/config/i18n";
+
 export const metadata = {
   title: "Ostéopathie Nourrisson Sèvres & Paris 15",
   description:
     "Ostéopathe spécialisée nourrisson à Paris 15 et Sèvres : coliques, reflux, plagiocéphalie, freins restrictifs, torticolis. Techniques ultra-douces.",
   alternates: {
     canonical: "https://www.hilaryfarid-osteopathe.fr/osteopathie/nourrisson",
+    ...hreflangFor("/osteopathie/nourrisson"),
   },
   openGraph: {
     title: "Ostéopathie Nourrisson & Bébé – Paris 15 & Sèvres | Hilary Farid",

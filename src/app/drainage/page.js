@@ -7,6 +7,11 @@ import Faq from "@/components/Faq";
 import DrainageNav from "@/components/DrainageNav";
 import { IconPhone, IconAlert } from "@/components/icons/UiIcons";
 import { GLOBAL_REVIEW_COUNT, GLOBAL_REVIEW_RATING, SEVRES_RATING, PARIS15_RATING } from "@/config/siteConfig";
+import { hreflangFor } from "@/config/i18n";
+
+export const metadata = {
+  alternates: hreflangFor("/drainage"),
+};
 
 import {
   IconLegs,

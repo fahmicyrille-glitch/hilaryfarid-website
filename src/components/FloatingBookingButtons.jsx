@@ -5,6 +5,7 @@ import { PHONE_LINK } from "@/config/contact";
 
 export default function FloatingBookingButtons() {
   const pathname = usePathname();
+  const isEn = pathname?.startsWith("/en") ?? false;
 
   // Pages avec leur propre barre sticky mobile → on masque le bouton flottant global
   const hasCustomMobileCta = [
@@ -51,14 +52,14 @@ export default function FloatingBookingButtons() {
             </svg>
           </div>
           <span className="font-bold text-base tracking-wide text-white">
-            Prendre RDV
+            {isEn ? "Book Now" : "Prendre RDV"}
           </span>
         </button>
 
         {/* Téléphone — à droite du bouton Doctolib, même rangée */}
         <a
           href={`tel:${PHONE_LINK}`}
-          aria-label="Appeler Hilary Farid"
+          aria-label={isEn ? "Call Hilary Farid" : "Appeler Hilary Farid"}
           className="
             shrink-0 flex h-[52px] w-[52px] items-center justify-center rounded-full
             bg-doctolib text-white shadow-[0_8px_25px_rgba(5,150,222,0.4)]
@@ -107,7 +108,7 @@ export default function FloatingBookingButtons() {
             </svg>
           </div>
           <span className="font-bold text-base tracking-wide whitespace-nowrap">
-            Prendre RDV
+            {isEn ? "Book Now" : "Prendre RDV"}
           </span>
         </button>
       </div>

@@ -16,6 +16,7 @@ import {
   OPENING_HOURS_PARIS15,
 } from "@/config/siteConfig";
 import { articles } from "@/data/articles";
+import { hreflangFor } from "@/config/i18n";
 import {
   IconBone,
   IconDroplets,
@@ -27,6 +28,10 @@ import {
 } from "@/components/icons/UiIcons";
 
 export const revalidate = 21600; // 6h — rafraîchit les avis Google
+
+export const metadata = {
+  alternates: hreflangFor("/"),
+};
 
 /* 🚀 ANIMATION CSS SSR-SAFE (ZÉRO CLS) */
 const fadeCss = `

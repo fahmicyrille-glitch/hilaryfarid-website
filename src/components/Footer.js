@@ -1,5 +1,8 @@
 // src/components/Footer.js
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { PHONE, PHONE_LINK } from "@/config/contact";
 import { HOURS_DISPLAY_SEVRES, HOURS_DISPLAY_PARIS15 } from "@/config/siteConfig";
 import {
@@ -10,11 +13,65 @@ import {
   IconBadgeCheck,
 } from "@/components/icons/UiIcons";
 
+// Traduction des jours (les horaires sont définis en FR dans siteConfig)
+const DAY_EN = {
+  Lundi: "Monday",
+  Mardi: "Tuesday",
+  Mercredi: "Wednesday",
+  Jeudi: "Thursday",
+  Vendredi: "Friday",
+  Samedi: "Saturday",
+  Dimanche: "Sunday",
+};
+
+/** "12h – 20h" → "12:00 – 20:00", "14h45 – 19h45" → "14:45 – 19:45", "Fermé" → "Closed" */
+function localizeHours(str) {
+  if (str === "Fermé") return "Closed";
+  return str.replace(/(\d{1,2})h(\d{2})?/g, (_, h, m) => `${h}:${m ?? "00"}`);
+}
+
 export default function Footer() {
+  const pathname = usePathname();
+  const isEn = pathname?.startsWith("/en") ?? false;
+
+  const navLinks = isEn
+    ? [
+        ["Home", "/en"],
+        ["Osteopathy", "/en/osteopathie"],
+        ["Renata França Drainage", "/en/drainage"],
+        ["Gift Card", "/en/carte-cadeau"],
+        ["Pricing", "/en/tarifs"],
+        ["Blog", "/en/blog"],
+        ["Testimonials", "/en/temoignages"],
+        ["Sèvres", "/en/sevres"],
+        ["Paris 15", "/en/paris15"],
+        ["About", "/en/a-propos"],
+        ["Contact", "/en/contact"],
+        ["Legal Notice", "/en/mentions-legales"],
+        ["Privacy Policy", "/en/politique-confidentialite"],
+      ]
+    : [
+        ["Accueil", "/"],
+        ["Ostéopathie", "/osteopathie"],
+        ["Drainage Renata França", "/drainage"],
+        ["Carte cadeau", "/carte-cadeau"],
+        ["Tarifs", "/tarifs"],
+        ["Blog", "/blog"],
+        ["Témoignages", "/temoignages"],
+        ["Sèvres", "/sevres"],
+        ["Paris 15", "/paris15"],
+        ["À propos", "/a-propos"],
+        ["Contact", "/contact"],
+        ["Mentions légales", "/mentions-legales"],
+        ["Politique de confidentialité", "/politique-confidentialite"],
+      ];
+
+  const contactHref = isEn ? "/en/contact" : "/contact";
+
   return (
     <footer
       className="bg-offwhite border-t border-graywarm/40 mt-16 py-10"
-      aria-label="Pied de page"
+      aria-label={isEn ? "Footer" : "Pied de page"}
     >
       <div className="max-w-7xl mx-auto px-6">
 
@@ -25,36 +82,32 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-semibold">Hilary Farid</h3>
             <p className="text-graywarm mt-2 leading-relaxed">
-              Ostéopathe DO – Sèvres & Paris 15. <br />
-              Spécialisée nourrissons, grossesse, post-accouchement et drainage
-              lymphatique méthode Renata França.
+              {isEn ? (
+                <>
+                  Osteopath D.O. – Sèvres & Paris 15. <br />
+                  Specialising in infants, pregnancy, postpartum care and Renata
+                  França method lymphatic drainage. English spoken.
+                </>
+              ) : (
+                <>
+                  Ostéopathe DO – Sèvres & Paris 15. <br />
+                  Spécialisée nourrissons, grossesse, post-accouchement et drainage
+                  lymphatique méthode Renata França.
+                </>
+              )}
             </p>
 
             <p className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-secondary">
               <IconBadgeCheck className="w-5 h-5 shrink-0" />
-              Praticienne certifiée Renata França
+              {isEn ? "Certified Renata França practitioner" : "Praticienne certifiée Renata França"}
             </p>
           </div>
 
           {/* Colonne 2 — Navigation */}
           <div>
-            <h4 className="font-semibold text-lg">Navigation</h4>
+            <h4 className="font-semibold text-lg">{isEn ? "Navigation" : "Navigation"}</h4>
             <ul className="mt-3 space-y-2 text-graywarm">
-              {[
-                ["Accueil", "/"],
-                ["Ostéopathie", "/osteopathie"],
-                ["Drainage Renata França", "/drainage"],
-                ["Carte cadeau", "/carte-cadeau"],
-                ["Tarifs", "/tarifs"],
-                ["Blog", "/blog"],
-                ["Témoignages", "/temoignages"],
-                ["Sèvres", "/sevres"],
-                ["Paris 15", "/paris15"],
-                ["À propos", "/a-propos"],
-                ["Contact", "/contact"],
-                ["Mentions légales", "/mentions-legales"],
-                ["Politique de confidentialité", "/politique-confidentialite"],
-              ].map(([label, href], i) => (
+              {navLinks.map(([label, href], i) => (
                 <li key={i}>
                   <Link
                     href={href}
@@ -70,7 +123,7 @@ export default function Footer() {
           {/* Colonne 3 — Horaires par cabinet */}
           <div>
             <h4 className="font-semibold text-lg flex items-center gap-2">
-              <IconClock className="w-5 h-5" /> Horaires
+              <IconClock className="w-5 h-5" /> {isEn ? "Opening Hours" : "Horaires"}
             </h4>
 
             {/* Sèvres */}
@@ -81,8 +134,8 @@ export default function Footer() {
             <ul className="mt-1 space-y-0.5 text-sm text-graywarm">
               {HOURS_DISPLAY_SEVRES.map(({ day, hours }) => (
                 <li key={day} className={`flex justify-between gap-3 ${hours === "Fermé" ? "opacity-40" : ""}`}>
-                  <span>{day}</span>
-                  <span className="font-medium text-primary">{hours}</span>
+                  <span>{isEn ? DAY_EN[day] ?? day : day}</span>
+                  <span className="font-medium text-primary">{isEn ? localizeHours(hours) : hours}</span>
                 </li>
               ))}
             </ul>
@@ -95,8 +148,8 @@ export default function Footer() {
             <ul className="mt-1 space-y-0.5 text-sm text-graywarm">
               {HOURS_DISPLAY_PARIS15.map(({ day, hours }) => (
                 <li key={day} className={`flex justify-between gap-3 ${hours === "Fermé" ? "opacity-40" : ""}`}>
-                  <span>{day}</span>
-                  <span className="font-medium text-primary">{hours}</span>
+                  <span>{isEn ? DAY_EN[day] ?? day : day}</span>
+                  <span className="font-medium text-primary">{isEn ? localizeHours(hours) : hours}</span>
                 </li>
               ))}
             </ul>
@@ -105,7 +158,7 @@ export default function Footer() {
               type="button"
               className="trigger-booking-modal mt-3 text-xs font-semibold text-doctolib underline underline-offset-4 hover:text-doctolib-dark transition-colors"
             >
-              Réserver un créneau sur Doctolib →
+              {isEn ? "Book a slot on Doctolib →" : "Réserver un créneau sur Doctolib →"}
             </button>
           </div>
 
@@ -120,10 +173,10 @@ export default function Footer() {
                 <IconPhone className="w-4 h-4 shrink-0" /> {PHONE}
               </a>
               <Link
-                href="/contact"
+                href={contactHref}
                 className="flex items-center gap-2 text-primary hover:underline"
               >
-                <IconMail className="w-4 h-4 shrink-0" /> Formulaire de contact
+                <IconMail className="w-4 h-4 shrink-0" /> {isEn ? "Contact form" : "Formulaire de contact"}
               </Link>
             </div>
 
@@ -132,7 +185,7 @@ export default function Footer() {
               type="button"
               className="trigger-booking-modal mt-4 inline-block bg-primary text-offwhite px-6 py-2 rounded-lg hover:bg-secondary transition duration-300"
             >
-              Prendre rendez-vous
+              {isEn ? "Book an Appointment" : "Prendre rendez-vous"}
             </button>
 
             {/* Liens Google Maps */}
@@ -143,7 +196,7 @@ export default function Footer() {
                 rel="noreferrer"
                 className="flex items-center gap-2 hover:text-primary hover:underline"
               >
-                <IconMapPin className="w-4 h-4 shrink-0" /> Cabinet de Sèvres
+                <IconMapPin className="w-4 h-4 shrink-0" /> {isEn ? "Sèvres clinic" : "Cabinet de Sèvres"}
               </a>
               <a
                 href="https://share.google/fQuSNhyJKa5uEN5gK"
@@ -151,7 +204,7 @@ export default function Footer() {
                 rel="noreferrer"
                 className="flex items-center gap-2 hover:text-primary hover:underline"
               >
-                <IconMapPin className="w-4 h-4 shrink-0" /> Cabinet Paris 15
+                <IconMapPin className="w-4 h-4 shrink-0" /> {isEn ? "Paris 15 clinic" : "Cabinet Paris 15"}
               </a>
             </div>
           </div>
@@ -159,8 +212,8 @@ export default function Footer() {
 
         {/* Bas de page */}
         <div className="border-t border-graywarm/30 mt-10 pt-6 text-center text-graywarm text-sm">
-          <p>© {new Date().getFullYear()} Hilary Farid – Ostéopathe DO</p>
-          <p>Sèvres & Paris 15 – Tous droits réservés</p>
+          <p>© {new Date().getFullYear()} Hilary Farid – {isEn ? "Osteopath D.O." : "Ostéopathe DO"}</p>
+          <p>Sèvres & Paris 15 – {isEn ? "All rights reserved" : "Tous droits réservés"}</p>
         </div>
       </div>
     </footer>
