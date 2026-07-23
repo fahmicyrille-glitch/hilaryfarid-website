@@ -106,6 +106,9 @@ const SCHEMA_PERSON = {
   ],
   sameAs: [
     "https://www.doctolib.fr/osteopathe/sevres/hilary-farid",
+    "https://www.doctolib.fr/osteopathe/paris/hilary-farid",
+    "https://share.google/vyqDUNKOo1q0HmayO",
+    "https://share.google/fQuSNhyJKa5uEN5gK",
   ],
 };
 
@@ -134,7 +137,10 @@ const SCHEMA_CABINET_SEVRES = {
   legalName: "SIREN 901795153",
   medicalSpecialty: "Osteopathic",
   hasMap: "https://share.google/vyqDUNKOo1q0HmayO",
-  sameAs: ["https://www.doctolib.fr/osteopathe/sevres/hilary-farid"],
+  sameAs: [
+    "https://www.doctolib.fr/osteopathe/sevres/hilary-farid",
+    "https://share.google/vyqDUNKOo1q0HmayO",
+  ],
   employee: { "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid" },
   areaServed: [
     { "@type": "City", name: "Sèvres" },
@@ -177,7 +183,10 @@ const SCHEMA_CABINET_PARIS15 = {
   legalName: "SIREN 901795153",
   medicalSpecialty: "Osteopathic",
   hasMap: "https://share.google/fQuSNhyJKa5uEN5gK",
-  sameAs: ["https://www.doctolib.fr/osteopathe/paris/hilary-farid"],
+  sameAs: [
+    "https://www.doctolib.fr/osteopathe/paris/hilary-farid",
+    "https://share.google/fQuSNhyJKa5uEN5gK",
+  ],
   employee: { "@id": "https://www.hilaryfarid-osteopathe.fr/#hilary-farid" },
   areaServed: [
     { "@type": "City", name: "Paris 15ème arrondissement" },
