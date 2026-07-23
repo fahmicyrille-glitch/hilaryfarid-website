@@ -109,6 +109,7 @@ const SCHEMA_PERSON = {
     "https://www.doctolib.fr/osteopathe/paris/hilary-farid",
     "https://share.google/vyqDUNKOo1q0HmayO",
     "https://share.google/fQuSNhyJKa5uEN5gK",
+    "https://sparenatafranca.com/fr/trouver-votre-th%C3%A9rapeute/hilary",
   ],
 };
 
