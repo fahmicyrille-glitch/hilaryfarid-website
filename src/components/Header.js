@@ -424,6 +424,15 @@ export default function Header() {
               {isEn ? "🇫🇷 FR" : "🇬🇧 EN"}
             </Link>
 
+            {/* Switch de langue — visible directement dans la navbar mobile */}
+            <Link
+              href={switchHref}
+              className="lg:hidden inline-flex items-center gap-1 h-9 px-2.5 rounded-lg text-sm font-semibold text-graywarm hover:text-primary hover:bg-light transition whitespace-nowrap"
+              aria-label={isEn ? "Switch to French" : "Passer en anglais"}
+            >
+              {isEn ? "🇫🇷 FR" : "🇬🇧 EN"}
+            </Link>
+
             <button
               type="button"
               className="trigger-booking-modal hidden lg:inline-flex items-center gap-2 bg-doctolib text-white text-sm xl:text-[15px] font-bold px-4 xl:px-6 py-2.5 rounded-full shadow-md hover:bg-doctolib-dark hover:shadow-lg transition-all whitespace-nowrap"

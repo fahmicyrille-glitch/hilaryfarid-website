@@ -25,14 +25,14 @@ export default function FloatingBookingButtons() {
       <div
         className={`
           ${hasCustomMobileCta ? "hidden" : "fixed md:hidden"}
-          bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 w-[85%] max-w-[300px]
+          bottom-6 right-4 z-50 flex items-center gap-2 max-w-[calc(100%-5.5rem)]
         `}
       >
         <button
           type="button"
           className="
             trigger-booking-modal
-            flex-1 flex items-center justify-center gap-3
+            flex items-center justify-center gap-3
             bg-doctolib text-white
             px-6 py-4 rounded-full
             shadow-[0_8px_25px_rgba(5,150,222,0.4)]
