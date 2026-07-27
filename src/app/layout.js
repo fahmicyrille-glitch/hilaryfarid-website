@@ -268,10 +268,12 @@ export default function RootLayout({ children }) {
         <FloatingPhoneButton />
         <BookingModal />
 
-        {/* Chatbase — réactivé le 2026-07-08 */}
+        {/* Chatbase DÉSACTIVÉ le 2026-07-27 (crédits épuisés) — RÉACTIVER le 2026-08-01
+            en décommentant le bloc <Script> ci-dessous.
         <Script id="chatbase-chatbot" strategy="lazyOnload">
           {`(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const inject=function(){const s=document.createElement("script");s.src="https://www.chatbase.co/embed.min.js";s.id="4nLAVyx6WTo4JJTaR2ODQ";s.domain="www.chatbase.co";document.body.appendChild(s)};const defer=function(){if(typeof requestIdleCallback!=="undefined"){requestIdleCallback(inject,{timeout:4000})}else{setTimeout(inject,4000)}};if(document.readyState==="complete"){defer()}else{window.addEventListener("load",defer)}})();`}
         </Script>
+        */}
       </body>
     </html>
   );
