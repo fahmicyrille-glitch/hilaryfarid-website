@@ -12,8 +12,8 @@ import {
   IconArrowLeft,
 } from "@/components/icons/UiIcons";
 
-// URLs profondes Doctolib
-const doctolibUrls = {
+// URLs profondes Doctolib (base sans langue)
+const doctolibUrlsBase = {
   paris: {
     osteo: "https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/motives?specialityId=10&telehealth=false&placeId=practice-528728&motiveCategoryIds%5B%5D=536392&pid=practice-528728&source=profile",
     drainage: "https://www.doctolib.fr/osteopathe/sevres/hilary-farid/booking/availabilities?specialityId=10&telehealth=false&placeId=practice-528728&motiveIds%5B%5D=8713974&pid=practice-528728&vmids%5B%5D=8713974&visit_motive_category_ids%5B%5D=536393&speciality_ids%5B%5D=10&source=deep_link",
@@ -24,17 +24,20 @@ const doctolibUrls = {
   },
 };
 
-// Mêmes URLs, formulaire Doctolib en anglais (paramètre officiel Doctolib : locale=en)
-const doctolibUrlsEn = {
+// Paramètre officiel Doctolib (testé et confirmé) pour forcer la langue du formulaire
+const withLocale = (locale) => ({
   paris: {
-    osteo: `${doctolibUrls.paris.osteo}&locale=en`,
-    drainage: `${doctolibUrls.paris.drainage}&locale=en`,
+    osteo: `${doctolibUrlsBase.paris.osteo}&locale=${locale}`,
+    drainage: `${doctolibUrlsBase.paris.drainage}&locale=${locale}`,
   },
   sevres: {
-    osteo: `${doctolibUrls.sevres.osteo}&locale=en`,
-    drainage: `${doctolibUrls.sevres.drainage}&locale=en`,
+    osteo: `${doctolibUrlsBase.sevres.osteo}&locale=${locale}`,
+    drainage: `${doctolibUrlsBase.sevres.drainage}&locale=${locale}`,
   },
-};
+});
+
+const doctolibUrls = withLocale("fr");
+const doctolibUrlsEn = withLocale("en");
 
 const CABINETS_FR = {
   paris: { label: "Cabinet Paris 15", address: "28 rue Letellier, 75015 Paris" },
