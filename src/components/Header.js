@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { IconChevronDown, IconCalendar, IconPhone } from "@/components/icons/UiIcons";
+import { IconChevronDown, IconCalendar, IconPhone, FlagFR, FlagGB } from "@/components/icons/UiIcons";
 import { PHONE, PHONE_LINK } from "@/config/contact";
 import { getAlternatePath } from "@/config/i18n";
 
@@ -318,7 +318,15 @@ export default function Header() {
             onClick={closeMobile}
             className="w-full flex items-center justify-center gap-1.5 text-sm font-semibold text-graywarm hover:text-primary transition py-1"
           >
-            {isEn ? "🇫🇷 Français" : "🇬🇧 English"}
+            {isEn ? (
+              <>
+                <FlagFR className="w-5 h-[15px] rounded-[2px] shadow-sm" /> Français
+              </>
+            ) : (
+              <>
+                <FlagGB className="w-5 h-[15px] rounded-[2px] shadow-sm" /> English
+              </>
+            )}
           </Link>
         </div>
       </div>
@@ -417,20 +425,21 @@ export default function Header() {
 
           {/* CTA DESKTOP + BOUTON MOBILE */}
           <div className="flex items-center gap-3">
+            {/* Switch de langue — même présentation sur desktop et mobile */}
             <Link
               href={switchHref}
-              className="hidden lg:inline-flex items-center gap-1 text-sm font-semibold text-graywarm hover:text-primary transition whitespace-nowrap"
-            >
-              {isEn ? "🇫🇷 FR" : "🇬🇧 EN"}
-            </Link>
-
-            {/* Switch de langue — visible directement dans la navbar mobile */}
-            <Link
-              href={switchHref}
-              className="lg:hidden inline-flex items-center gap-1 h-9 px-2.5 rounded-lg text-sm font-semibold text-graywarm hover:text-primary hover:bg-light transition whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 h-9 px-2.5 rounded-lg text-sm font-semibold text-graywarm hover:text-primary hover:bg-light transition whitespace-nowrap"
               aria-label={isEn ? "Switch to French" : "Passer en anglais"}
             >
-              {isEn ? "🇫🇷 FR" : "🇬🇧 EN"}
+              {isEn ? (
+                <>
+                  <FlagFR className="w-5 h-[15px] rounded-[2px] shadow-sm" /> FR
+                </>
+              ) : (
+                <>
+                  <FlagGB className="w-5 h-[15px] rounded-[2px] shadow-sm" /> EN
+                </>
+              )}
             </Link>
 
             <button
