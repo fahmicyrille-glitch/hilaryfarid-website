@@ -24,6 +24,18 @@ const doctolibUrls = {
   },
 };
 
+// Mêmes URLs, formulaire Doctolib en anglais (paramètre officiel Doctolib : locale=en)
+const doctolibUrlsEn = {
+  paris: {
+    osteo: `${doctolibUrls.paris.osteo}&locale=en`,
+    drainage: `${doctolibUrls.paris.drainage}&locale=en`,
+  },
+  sevres: {
+    osteo: `${doctolibUrls.sevres.osteo}&locale=en`,
+    drainage: `${doctolibUrls.sevres.drainage}&locale=en`,
+  },
+};
+
 const CABINETS_FR = {
   paris: { label: "Cabinet Paris 15", address: "28 rue Letellier, 75015 Paris" },
   sevres: { label: "Cabinet Sèvres", address: "104 Grande Rue, 92310 Sèvres" },
@@ -55,12 +67,15 @@ export default function BookingModal() {
   const dialogRef = useRef(null);
   const lastFocusedRef = useRef(null);
 
-  // Cabinet pré-sélectionné selon la page visitée
-  const presetLocation = pathname?.startsWith("/sevres")
+  // Cabinet pré-sélectionné selon la page visitée (FR ou /en/...)
+  const presetLocation = /^\/(en\/)?sevres/.test(pathname || "")
     ? "sevres"
-    : pathname?.startsWith("/paris15")
+    : /^\/(en\/)?paris15/.test(pathname || "")
     ? "paris"
     : "";
+
+  // Soin pré-sélectionné selon la page visitée (/drainage, /drainage/bienfaits, /en/drainage...)
+  const presetService = pathname?.includes("/drainage") ? "drainage" : "";
 
   // Écouteur global pour ouvrir la modale
   useEffect(() => {
@@ -138,8 +153,23 @@ export default function BookingModal() {
     }
   };
 
+  const openDoctolib = (loc, service) => {
+    const finalUrl = (isEn ? doctolibUrlsEn : doctolibUrls)[loc][service];
+
+    pushDataLayer({
+      event: "rdv_doctolib_final",
+      service_type: service,
+      location: loc,
+    });
+
+    window.open(finalUrl, "_blank");
+    setIsOpen(false);
+  };
+
   const handleDoctolibChoice = () => {
-    if (presetLocation) {
+    if (presetLocation && presetService) {
+      openDoctolib(presetLocation, presetService);
+    } else if (presetLocation) {
       setLocation(presetLocation);
       setStep("service");
     } else {
@@ -149,21 +179,16 @@ export default function BookingModal() {
 
   /* ---------- Workflow Doctolib ---------- */
   const handleLocationSelect = (loc) => {
+    if (presetService) {
+      openDoctolib(loc, presetService);
+      return;
+    }
     setLocation(loc);
     setStep("service");
   };
 
   const handleServiceSelect = (service) => {
-    const finalUrl = doctolibUrls[location][service];
-
-    pushDataLayer({
-      event: "rdv_doctolib_final",
-      service_type: service,
-      location: location,
-    });
-
-    window.open(finalUrl, "_blank");
-    setIsOpen(false);
+    openDoctolib(location, service);
   };
 
   if (!isOpen) return null;
@@ -216,7 +241,7 @@ export default function BookingModal() {
                 <span>
                   <span className="block text-lg font-bold">{isEn ? "Book via Doctolib" : "Réserver sur Doctolib"}</span>
                   <span className="block text-sm text-white/85">
-                    {isEn ? "Online slots, 24/7 — form is in French, just pick a slot" : "Créneaux en ligne, 24h/24"}
+                    {isEn ? "Online slots, 24/7" : "Créneaux en ligne, 24h/24"}
                   </span>
                 </span>
               </button>
