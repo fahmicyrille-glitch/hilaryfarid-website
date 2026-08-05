@@ -3,6 +3,15 @@
 import { usePathname } from "next/navigation";
 import { PHONE_LINK } from "@/config/contact";
 
+// Même événement que FloatingPhoneButton : ce bouton l'a remplacé sur mobile,
+// où il concentre l'essentiel des appels.
+function trackPhoneClick() {
+  if (typeof window !== "undefined") {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "phone_call_click", source: "mobile_booking_bar" });
+  }
+}
+
 export default function FloatingBookingButtons() {
   const pathname = usePathname();
   const isEn = pathname?.startsWith("/en") ?? false;
@@ -59,6 +68,7 @@ export default function FloatingBookingButtons() {
         {/* Téléphone — à droite du bouton Doctolib, même rangée */}
         <a
           href={`tel:${PHONE_LINK}`}
+          onClick={trackPhoneClick}
           aria-label={isEn ? "Call Hilary Farid" : "Appeler Hilary Farid"}
           className="
             shrink-0 flex h-[52px] w-[52px] items-center justify-center rounded-full
