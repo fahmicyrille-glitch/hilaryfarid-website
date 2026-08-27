@@ -364,7 +364,7 @@ export default function BookingModal() {
                   <span className="font-bold text-secondary text-base">
                     {location === "paris" ? "160 €" : "180 €"}
                   </span>
-                  <span className="text-graywarm">{isEn ? "· 90-min full-body session" : "· séance corps entier 90 min"}</span>
+                  <span className="text-graywarm">{isEn ? "· 90-min session (60 min drainage)" : "· séance 90 min (dont 60 min de drainage)"}</span>
                 </span>
                 <span className="text-xs text-graywarm/70 italic">{isEn ? "Not covered by French health insurance – wellness treatment" : "Non remboursé – soin bien-être"}</span>
               </button>

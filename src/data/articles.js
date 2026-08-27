@@ -346,7 +346,7 @@ export const articles = [
           "Des mouvements de pompage lents et rythmés sur les ganglions lymphatiques",
           "Des effleurages progressifs qui suivent le trajet naturel des vaisseaux lymphatiques",
           "Une séquence précise et codifiée, du proximal vers le distal",
-          "Une durée minimum de 90 minutes pour un effet complet",
+          "Une séance totale de 90 minutes, dont 60 minutes de drainage effectif, pour un effet complet",
         ],
       },
       {
@@ -379,7 +379,7 @@ export const articles = [
       },
       {
         type: "p",
-        text: "Une séance de drainage Renata França dure 90 minutes et se déroule sur table de massage :",
+        text: "Une séance de drainage Renata França dure 90 minutes au total, dont 60 minutes de massage de drainage à proprement parler. Elle se déroule sur table de massage :",
       },
       {
         type: "ul",
@@ -437,8 +437,8 @@ export const articles = [
             a: "Non. La pression est ferme mais jamais douloureuse. La sensation est celle d'un massage profond et enveloppant. La plupart des patients s'endorment pendant la séance.",
           },
           {
-            q: "Pourquoi une séance dure-t-elle 90 minutes minimum ?",
-            a: "Contrairement à d'autres massages, le protocole Renata França est séquencé et ne peut pas être raccourci sans perdre en efficacité. La lymphe circule lentement — il faut du temps pour activer tout le réseau superficiel. En dessous de 90 minutes, les résultats sont partiels.",
+            q: "Pourquoi une séance dure-t-elle 90 minutes au total ?",
+            a: "La séance comprend 60 minutes de drainage effectif, entourées d'un bilan initial et de conseils personnalisés. Contrairement à d'autres massages, le protocole Renata França est séquencé et ne peut pas être raccourci sans perdre en efficacité. La lymphe circule lentement — il faut du temps pour activer tout le réseau superficiel. En dessous de 60 minutes de drainage, les résultats sont partiels.",
           },
           {
             q: "Peut-on faire du drainage Renata França pendant la grossesse ?",

@@ -104,9 +104,9 @@ export default function CarteCadeauPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-ink">La séance découverte</h3>
                 <p className="mt-3 text-graywarm flex-grow">
-                  90 minutes de drainage Renata França corps entier, sensation de
-                  légèreté immédiate. Très apprécié pour un post-partum,
-                  un anniversaire ou avant un grand événement.
+                  Séance de 90 minutes (dont 60 minutes de drainage Renata França
+                  corps entier), sensation de légèreté immédiate. Très apprécié
+                  pour un post-partum, un anniversaire ou avant un grand événement.
                 </p>
                 <p className="mt-5 text-sm text-graywarm">
                   Dès <strong className="text-ink text-lg">160 €</strong> selon le cabinet —{" "}

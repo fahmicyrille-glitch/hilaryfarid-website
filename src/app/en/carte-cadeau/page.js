@@ -105,9 +105,9 @@ export default function CarteCadeauEnPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-ink">The Discovery Session</h3>
                 <p className="mt-3 text-graywarm flex-grow">
-                  90 minutes of full-body Renata França drainage, an immediate
-                  feeling of lightness. Very popular for post-partum,
-                  a birthday, or ahead of a big event.
+                  A 90-minute session (including 60 minutes of full-body
+                  Renata França drainage), an immediate feeling of lightness.
+                  Very popular for post-partum, a birthday, or ahead of a big event.
                 </p>
                 <p className="mt-5 text-sm text-graywarm">
                   From <strong className="text-ink text-lg">€160</strong> depending on the clinic —{" "}

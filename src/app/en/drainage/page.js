@@ -678,7 +678,7 @@ export default function DrainageEnPage() {
               Locations in <strong>Paris 15</strong> and <strong>Sèvres</strong>.
             </p>
             <p className="mt-2 text-sm text-graywarm">
-              A session lasts about <strong>90 minutes</strong> – book online via Doctolib.
+              A session lasts <strong>90 minutes</strong>, including <strong>60 minutes of drainage</strong> – book online via Doctolib.
             </p>
             <div className="mt-8 flex flex-wrap gap-4 justify-center">
               <button

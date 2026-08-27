@@ -170,7 +170,7 @@ export default function TarifsPage() {
                 <div className="border border-primary/20 rounded-2xl p-6 bg-offwhite/50 shadow-sm">
                   <div className="flex flex-col gap-4">
                     <p className="text-primary font-semibold text-lg md:text-xl">
-                      Séance de drainage Renata França corps entier (90 min)
+                      Séance de drainage Renata França corps entier (90 min, dont 60 min de drainage)
                     </p>
                   </div>
 

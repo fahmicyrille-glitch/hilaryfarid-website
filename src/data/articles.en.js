@@ -346,7 +346,7 @@ export const articles = [
           "Slow, rhythmic pumping movements over the lymph nodes",
           "Progressive strokes that follow the natural path of the lymphatic vessels",
           "A precise, codified sequence, working from proximal to distal",
-          "A minimum duration of 90 minutes for a complete effect",
+          "A total session length of 90 minutes, including 60 minutes of actual drainage, for a complete effect",
         ],
       },
       {
@@ -379,7 +379,7 @@ export const articles = [
       },
       {
         type: "p",
-        text: "A Renata França drainage session lasts 90 minutes and takes place on a massage table:",
+        text: "A Renata França drainage session lasts 90 minutes in total, including 60 minutes of hands-on drainage massage. It takes place on a massage table:",
       },
       {
         type: "ul",
@@ -437,8 +437,8 @@ export const articles = [
             a: "No. The pressure is firm but never painful. It feels like a deep, enveloping massage. Most patients fall asleep during the session.",
           },
           {
-            q: "Why does a session last a minimum of 90 minutes?",
-            a: "Unlike other massages, the Renata França protocol is sequenced and cannot be shortened without losing effectiveness. Lymph moves slowly — it takes time to activate the whole superficial network. Under 90 minutes, results are only partial.",
+            q: "Why does a session last 90 minutes in total?",
+            a: "The session includes 60 minutes of hands-on drainage, framed by an initial consultation and personalised advice. Unlike other massages, the Renata França protocol is sequenced and cannot be shortened without losing effectiveness. Lymph moves slowly — it takes time to activate the whole superficial network. Under 60 minutes of drainage, results are only partial.",
           },
           {
             q: "Can I have Renata França drainage during pregnancy?",
