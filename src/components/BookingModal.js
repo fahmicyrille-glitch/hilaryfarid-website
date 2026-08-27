@@ -41,12 +41,12 @@ const doctolibUrlsEn = withLocale("en");
 
 const CABINETS_FR = {
   paris: { label: "Cabinet Paris 15", address: "28 rue Letellier, 75015 Paris" },
-  sevres: { label: "Cabinet Sèvres", address: "104 Grande Rue, 92310 Sèvres" },
+  sevres: { label: "Cabinet Sèvres (92)", address: "104 Grande Rue, 92310 Sèvres" },
 };
 
 const CABINETS_EN = {
   paris: { label: "Paris 15 Clinic", address: "28 rue Letellier, 75015 Paris, France" },
-  sevres: { label: "Sèvres Clinic", address: "104 Grande Rue, 92310 Sèvres, France" },
+  sevres: { label: "Sèvres Clinic (92)", address: "104 Grande Rue, 92310 Sèvres, France" },
 };
 
 const isMobileDevice = () =>
@@ -321,7 +321,7 @@ export default function BookingModal() {
                   <span className="flex items-center gap-2 text-lg font-bold text-ink group-hover:text-doctolib transition">
                     <IconMapPin className="w-5 h-5" /> {cab.label}
                   </span>
-                  <span className="text-sm font-normal text-graywarm mt-1">
+                  <span className="text-base font-semibold text-primary mt-1.5">
                     {cab.address}
                   </span>
                 </button>
@@ -339,9 +339,13 @@ export default function BookingModal() {
             >
               <IconArrowLeft className="w-4 h-4" /> {isEn ? "Change Location" : "Changer de cabinet"}
             </button>
-            <h3 className="text-2xl font-bold text-primary mb-6">
+            <h3 className="text-2xl font-bold text-primary mb-2">
               {isEn ? "What type of treatment?" : "Pour quel type de soin ?"}
             </h3>
+            <p className="inline-flex items-center gap-2 mb-6 rounded-full bg-primary/10 px-4 py-2 text-sm font-bold text-primary">
+              <IconMapPin className="w-4 h-4 shrink-0" />
+              {CABINETS[location]?.label} – {CABINETS[location]?.address}
+            </p>
             <div className="space-y-4">
               <button
                 onClick={() => handleServiceSelect("osteo")}
@@ -365,11 +369,6 @@ export default function BookingModal() {
                 <span className="text-xs text-graywarm/70 italic">{isEn ? "Not covered by French health insurance – wellness treatment" : "Non remboursé – soin bien-être"}</span>
               </button>
             </div>
-
-            <p className="mt-6 text-xs text-graywarm italic flex items-center justify-center gap-1.5">
-              <IconMapPin className="w-3.5 h-3.5" />
-              {CABINETS[location]?.label} – {CABINETS[location]?.address}
-            </p>
           </div>
         )}
       </div>

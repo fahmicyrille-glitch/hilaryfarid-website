@@ -129,7 +129,7 @@ export default function Footer() {
             {/* Sèvres */}
             <div className="mt-3 flex items-center gap-1.5">
               <IconMapPin className="w-4 h-4 text-secondary shrink-0" />
-              <p className="text-base font-bold text-primary">Sèvres</p>
+              <p className="text-base font-bold text-primary">Sèvres (92)</p>
             </div>
             <ul className="mt-1 space-y-0.5 text-sm text-graywarm">
               {HOURS_DISPLAY_SEVRES.map(({ day, hours }) => (
@@ -196,7 +196,7 @@ export default function Footer() {
                 rel="noreferrer"
                 className="flex items-center gap-2 hover:text-primary hover:underline"
               >
-                <IconMapPin className="w-4 h-4 shrink-0" /> {isEn ? "Sèvres clinic" : "Cabinet de Sèvres"}
+                <IconMapPin className="w-4 h-4 shrink-0" /> {isEn ? "Sèvres clinic (92)" : "Cabinet de Sèvres (92)"}
               </a>
               <a
                 href="https://share.google/fQuSNhyJKa5uEN5gK"

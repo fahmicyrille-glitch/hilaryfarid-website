@@ -184,7 +184,7 @@ export default async function Home() {
           <div className="fade-hero">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-offwhite">
               Ostéopathe D.O.<br />
-              à Sèvres &amp; Paris 15
+              à Sèvres (92) &amp; Paris 15
             </h1>
 
             {/* Badge certification vérifiable */}
@@ -204,7 +204,7 @@ export default async function Home() {
             </h2>
 
             <p className="mt-5 text-base md:text-lg text-offwhite/90">
-              Hilary Farid vous accompagne à Sèvres et Paris 15 avec une prise en charge globale : soulagez vos douleurs grâce à <strong>l'ostéopathie</strong>, et retrouvez légèreté et vitalité avec la méthode <strong>Renata França</strong>.
+              Hilary Farid vous accompagne à Sèvres (92) et Paris 15 avec une prise en charge globale : soulagez vos douleurs grâce à <strong>l'ostéopathie</strong>, et retrouvez légèreté et vitalité avec la méthode <strong>Renata França</strong>.
             </p>
 
             {/* ⭐ PREUVE SOCIALE ⭐ */}

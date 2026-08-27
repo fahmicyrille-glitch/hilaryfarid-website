@@ -111,7 +111,7 @@ export default function SevresEnPage() {
         <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-center px-6">
           <FadeIn>
             <h1 className="text-4xl md:text-5xl font-semibold text-offwhite drop-shadow-lg">
-              Osteopathy Clinic – Sèvres
+              Osteopathy Clinic – Sèvres (92)
             </h1>
             <p className="mt-4 text-offwhite text-lg md:text-xl max-w-2xl mx-auto">
               A modern, calm and bright space designed for your wellbeing. English spoken.

@@ -179,7 +179,7 @@ export default async function HomeEn() {
           <div className="fade-hero">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-offwhite">
               Osteopath D.O.<br />
-              in Sèvres &amp; Paris 15
+              in Sèvres (92) &amp; Paris 15
             </h1>
 
             <a
@@ -198,7 +198,7 @@ export default async function HomeEn() {
             </h2>
 
             <p className="mt-5 text-base md:text-lg text-offwhite/90">
-              Hilary Farid welcomes you in Sèvres and Paris 15, near Paris, for comprehensive care — English spoken throughout your visit: relieve your pain with <strong>osteopathy</strong>, and regain lightness and vitality with the <strong>Renata França</strong> method.
+              Hilary Farid welcomes you in Sèvres (92) and Paris 15, near Paris, for comprehensive care — English spoken throughout your visit: relieve your pain with <strong>osteopathy</strong>, and regain lightness and vitality with the <strong>Renata França</strong> method.
             </p>
 
             <div className="mt-6 mb-2 flex items-center gap-2">

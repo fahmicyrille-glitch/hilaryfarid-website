@@ -39,7 +39,7 @@ const NAV = [
     label: "Cabinets",
     href: null,
     sub: [
-      ["Sèvres", "/sevres"],
+      ["Sèvres (92)", "/sevres"],
       ["Paris 15", "/paris15"],
     ],
   },
@@ -85,7 +85,7 @@ const NAV_EN = [
     label: "Locations",
     href: null,
     sub: [
-      ["Sèvres", "/en/sevres"],
+      ["Sèvres (92)", "/en/sevres"],
       ["Paris 15", "/en/paris15"],
     ],
   },
