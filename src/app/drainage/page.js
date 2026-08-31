@@ -100,8 +100,8 @@ export default function DrainageLymphatiquePage() {
                 },
                 {
                   "@type": "Question",
-                  name: "Le drainage Renata França est-il remboursé par la Sécurité sociale ?",
-                  acceptedAnswer: { "@type": "Answer", text: "Non. Le drainage Renata França est une pratique de bien-être, différente du drainage lymphatique médical prescrit par un médecin et remboursé par la Sécurité sociale. Il n’est pas remboursé." },
+                  name: "Le drainage Renata França est-il remboursé (Sécu, mutuelle, kiné) ?",
+                  acceptedAnswer: { "@type": "Answer", text: "Non. Le drainage Renata França est une pratique de bien-être que je réalise en tant qu’ostéopathe D.O. — c’est différent du drainage lymphatique manuel médical, prescrit par un médecin et réalisé par un kinésithérapeute. Le drainage Renata França n’est pas un acte médical remboursable, ni par la Sécu ni par la mutuelle." },
                 },
                 {
                   "@type": "Question",
@@ -667,6 +667,10 @@ export default function DrainageLymphatiquePage() {
                   {
                     q: "Que faire après la séance ?",
                     a: "Hydratation, marche douce si possible, et écouter vos sensations. Je vous donne des conseils adaptés à votre cas.",
+                  },
+                  {
+                    q: "Le drainage Renata França est-il remboursé (Sécu, mutuelle, kiné) ?",
+                    a: "Non. Le drainage Renata França est une pratique de bien-être que je réalise en tant qu’ostéopathe D.O. — c’est différent du drainage lymphatique manuel médical, prescrit par un médecin et réalisé par un kinésithérapeute. Le drainage Renata França n’est pas un acte médical remboursable, ni par la Sécu ni par la mutuelle.",
                   },
                 ]}
               />

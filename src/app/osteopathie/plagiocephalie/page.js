@@ -26,6 +26,14 @@ export default function PlagiocephaliePage() {
       q: "Comment distinguer une plagiocéphalie positionnelle d'une craniosynostose ?",
       a: "La craniosynostose présente des signes spécifiques (crête osseuse sur la suture, forme très particulière) et nécessite un diagnostic médical. En cas de doute, votre pédiatre peut vous orienter vers un neurochirurgien pédiatrique. L'ostéopathie n'est PAS indiquée en cas de craniosynostose sans avis médical.",
     },
+    {
+      q: "Qu'est-ce que la brachycéphalie ? Est-ce la même chose que la plagiocéphalie ?",
+      a: "La brachycéphalie est un aplatissement symétrique de l'arrière du crâne (souvent lié à la position sur le dos), alors que la plagiocéphalie est un aplatissement asymétrique, d'un seul côté. Ce sont deux formes de déformation positionnelle du crâne, prises en charge de la même façon : diversification des positions et suivi ostéopathique, idéalement avant 4 mois.",
+    },
+    {
+      q: "Faut-il un casque de remodelage ou l'ostéopathie suffit-elle ?",
+      a: "Pour les formes légères à modérées, la diversification des positions associée à un suivi ostéopathique est souvent suffisante. Le casque de remodelage est envisagé par un spécialiste pour les formes plus sévères ou persistantes, généralement autour de 5-6 mois. Il reste complémentaire à l'ostéopathie plutôt qu'une alternative — les deux peuvent être menés ensemble.",
+    },
   ];
 
   return (
