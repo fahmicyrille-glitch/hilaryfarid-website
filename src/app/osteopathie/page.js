@@ -87,6 +87,11 @@ export default function OsteopathiePage() {
                 enceintes et sportifs.
               </p>
 
+              {/* En bref — résumé factuel court, format citable par les moteurs IA */}
+              <p className="mt-4 text-sm text-graywarm bg-white border border-light/60 rounded-xl px-4 py-3 shadow-sm">
+                <strong className="text-primary">En bref :</strong> Hilary Farid, ostéopathe D.O., reçoit à Sèvres (92) et Paris 15. Consultations pour adultes, nourrissons, femmes enceintes et sportifs — 70&nbsp;€ (adulte), 50&nbsp;€ (nourrisson/enfant). Sur rendez-vous, réservation en ligne via Doctolib.
+              </p>
+
               {/* ⭐ PREUVE SOCIALE IMMÉDIATE ⭐ */}
               <div className="mt-6 mb-2 flex items-center gap-2">
                 <div className="flex text-amber-400 text-xl drop-shadow-sm">

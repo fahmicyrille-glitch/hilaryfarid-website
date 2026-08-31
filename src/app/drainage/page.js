@@ -140,6 +140,11 @@ export default function DrainageLymphatiquePage() {
                 Alliez l’efficacité spectaculaire de la méthode <strong>Renata França</strong> à l'expertise anatomique d’une <strong>ostéopathe D.O</strong>. Un drainage profond, précis et sécuritaire pour relancer votre métabolisme, soulager vos jambes lourdes et affiner votre silhouette.
               </p>
 
+              {/* En bref — résumé factuel court, format citable par les moteurs IA */}
+              <p className="mt-4 text-sm text-graywarm bg-white border border-light/60 rounded-xl px-4 py-3 shadow-sm">
+                <strong className="text-primary">En bref :</strong> Le drainage Renata França, réalisé par Hilary Farid (ostéopathe D.O.) à Sèvres et Paris 15, est une technique de drainage manuel brésilienne — différente du drainage lymphatique médical. À partir de 160&nbsp;€ (Paris 15) / 180&nbsp;€ (Sèvres) pour le corps entier. Sur rendez-vous, réservation en ligne via Doctolib.
+              </p>
+
               {/* ⭐ AJOUT DU TRUST BADGE (AVIS GOOGLE) ⭐ */}
               <div className="mt-6 flex items-center gap-2">
                 <div className="flex text-amber-400 text-lg drop-shadow-sm">
