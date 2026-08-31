@@ -14,7 +14,6 @@ export const metadata = {
     description:
       "Accompagnement ostéopathique pendant la grossesse et après l'accouchement. Douleurs du bassin, sciatique, préparation à l'accouchement. Formation CFPCO.",
     url: "https://www.hilaryfarid-osteopathe.fr/osteopathie/femme-enceinte",
-    images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
     type: "website",
   },
 };

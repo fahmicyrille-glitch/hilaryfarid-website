@@ -13,7 +13,6 @@ export const metadata = {
     description:
       "Consultations d'ostéopathie pour nourrissons : coliques, reflux, plagiocéphalie, freins restrictifs, torticolis. Spécialiste formée Centre YGY.",
     url: "https://www.hilaryfarid-osteopathe.fr/osteopathie/nourrisson",
-    images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
     type: "website",
   },
 };

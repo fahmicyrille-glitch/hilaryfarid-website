@@ -13,7 +13,6 @@ export const metadata = {
     description:
       "Votre bébé a la tête plate ? L'ostéopathie agit tôt pour libérer les tensions crâniennes et cervicales. Cabinet Sèvres & Paris 15.",
     url: "https://www.hilaryfarid-osteopathe.fr/osteopathie/plagiocephalie",
-    images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
     type: "website",
   },
 };

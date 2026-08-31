@@ -12,7 +12,6 @@ export const metadata = {
     description:
       "L'expertise du drainage Renata França combinée à une approche ostéopathique. Résultats immédiats sur les gonflements et la silhouette à Sèvres & Paris 15.",
     url: "https://www.hilaryfarid-osteopathe.fr/drainage",
-    images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
     type: "website",
   },
 };

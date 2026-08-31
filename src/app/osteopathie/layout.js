@@ -15,7 +15,6 @@ export const metadata = {
     description:
       "Consultations d'ostéopathie pour toute la famille. Expertise nourrissons, suivi de grossesse, sportifs et adultes. Prenez rendez-vous en ligne.",
     url: "https://www.hilaryfarid-osteopathe.fr/osteopathie",
-    images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
     type: "website",
   },
 };
