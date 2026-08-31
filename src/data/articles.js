@@ -309,9 +309,9 @@ export const articles = [
 
   {
     slug: "drainage-renata-franca-methode",
-    title: "Drainage Renata França : tout savoir sur cette méthode",
+    title: "Drainage Lymphatique Renata França : Le Guide 2026",
     description:
-      "Drainage Renata França : origines, bienfaits, déroulement d'une séance et différence avec le drainage médical remboursé. Le guide avant votre RDV.",
+      "Drainage lymphatique Renata França à Sèvres & Paris 15 : bienfaits, déroulement, tarifs et différence avec le drainage médical remboursé.",
     excerpt:
       "Créée par la thérapeute brésilienne Renata França, cette méthode de massage drainant révolutionne le bien-être des jambes lourdes, de la rétention d'eau et de la récupération. Mais c'est quoi exactement ?",
     image: "/drainage/drainage_ventre.webp",
