@@ -113,6 +113,11 @@ export default function DrainageLymphatiquePage() {
                   name: "Quelles sont les contre-indications principales ?",
                   acceptedAnswer: { "@type": "Answer", text: "Fièvre/infection aiguë, phlébite/risque thrombotique, pathologies non stabilisées, chirurgie très récente selon avis médical. En cas de doute, contactez-moi avant de réserver." },
                 },
+                {
+                  "@type": "Question",
+                  name: "Massage brésilien, drainage brésilien, méthode Renata França... c'est la même chose ?",
+                  acceptedAnswer: { "@type": "Answer", text: "Oui. « Massage brésilien » et « drainage brésilien » sont des appellations courantes pour désigner la méthode Renata França, du nom de la thérapeute brésilienne qui l'a créée. C'est exactement la technique que je pratique à Sèvres et Paris 15." },
+                },
               ],
             },
           ])
@@ -269,6 +274,19 @@ export default function DrainageLymphatiquePage() {
                 </p>
               </div>
 
+            </div>
+
+            {/* Qui est Renata França */}
+            <div className="mt-10 rounded-2xl border bg-white p-7 shadow-sm">
+              <h3 className="text-xl font-semibold text-primary">
+                Qui est Renata França ?
+              </h3>
+              <p className="mt-3 text-base text-graywarm leading-relaxed">
+                <strong>Renata França</strong> est une thérapeute brésilienne à l’origine du <strong>massage brésilien</strong> qui porte aujourd’hui son nom dans le monde entier. Formée aux techniques traditionnelles de drainage au Brésil, elle a développé une méthode propre — parfois appelée simplement <strong>« massage Renata »</strong> ou <strong>« drainage brésilien »</strong> — aujourd’hui enseignée dans plusieurs pays via son centre de formation, le SPA Renata França.
+              </p>
+              <p className="mt-3 text-base text-graywarm leading-relaxed">
+                En France, la méthode Renata França s’est imposée comme une référence du bien-être corporel, entre confort circulatoire et sensation de légèreté immédiate.
+              </p>
             </div>
           </div>
         </section>
@@ -676,6 +694,10 @@ export default function DrainageLymphatiquePage() {
                   {
                     q: "Le drainage Renata França est-il remboursé (Sécu, mutuelle, kiné) ?",
                     a: "Non. Le drainage Renata França est une pratique de bien-être que je réalise en tant qu’ostéopathe D.O. — c’est différent du drainage lymphatique manuel médical, prescrit par un médecin et réalisé par un kinésithérapeute. Le drainage Renata França n’est pas un acte médical remboursable, ni par la Sécu ni par la mutuelle.",
+                  },
+                  {
+                    q: "Massage brésilien, drainage brésilien, méthode Renata França... c'est la même chose ?",
+                    a: "Oui. « Massage brésilien » et « drainage brésilien » sont des appellations courantes pour désigner la méthode Renata França, du nom de la thérapeute brésilienne qui l'a créée. C'est exactement la technique que je pratique à Sèvres et Paris 15.",
                   },
                 ]}
               />

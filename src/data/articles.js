@@ -330,7 +330,7 @@ export const articles = [
       },
       {
         type: "p",
-        text: "Renata França est une thérapeute brésilienne spécialisée en massage bien-être qui a développé sa propre technique de drainage lymphatique dans les années 2000. Son approche, distincte du drainage lymphatique médical traditionnel, s'est imposée comme une référence mondiale dans le domaine du bien-être et de l'esthétique médicale. Elle forme aujourd'hui des praticiens dans de nombreux pays via le SPA Renata França.",
+        text: "Renata França est une thérapeute brésilienne spécialisée en massage bien-être qui a développé sa propre technique de drainage lymphatique dans les années 2000. Son approche, distincte du drainage lymphatique médical traditionnel, s'est imposée comme une référence mondiale dans le domaine du bien-être et de l'esthétique médicale. On parle aujourd'hui de \"massage brésilien\" ou de \"drainage brésilien\" pour désigner sa méthode, qui porte aussi simplement son prénom : Renata. Elle forme aujourd'hui des praticiens dans de nombreux pays via le SPA Renata França.",
       },
       {
         type: "h2",
